@@ -1,22 +1,3 @@
-/*!
-
-=========================================================
-* Paper Dashboard React - v1.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/paper-dashboard-react
-* Copyright 2019 Creative Tim (https://www.creative-tim.com)
-
-* Licensed under MIT (https://github.com/creativetimofficial/paper-dashboard-react/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
-/*eslint-disable*/
 import React from "react";
 import { Container, Row } from "reactstrap";
 // used for making the prop types of this component
@@ -33,7 +14,10 @@ class Footer extends React.Component {
             <nav className="footer-nav">
               <ul>
                 <li>
-                  <a href="https://www.cs.purdue.edu/academic-programs/courses/canonical/cs307.html" target="_blank">
+                  <a 
+                    href="https://www.cs.purdue.edu/academic-programs/courses/canonical/cs307.html" 
+                    target="_blank" 
+                    rel="noopener noreferrer">
                     Purdue CS 307 Project
                   </a>
                 </li>
@@ -41,6 +25,7 @@ class Footer extends React.Component {
                   <a
                     href="https://github.com/charlorr/TwistR"
                     target="_blank"
+                    rel="noopener noreferrer"
                   >
                     Github Repo
                   </a>
