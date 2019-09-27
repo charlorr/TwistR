@@ -5,7 +5,6 @@ import {
   Card,
   CardHeader,
   CardBody,
-  CardFooter,
   CardTitle,
   FormGroup,
   Form,
@@ -23,7 +22,7 @@ class SignIn extends React.Component {
                     <CardTitle tag="h5">Log In</CardTitle>
                   </CardHeader>
                   <CardBody className ="update ml-auto mr-auto">
-                    <Form>
+                    <Form method="post">
                       <Row>
                         <FormGroup>
                             <label><b>Username</b></label>
