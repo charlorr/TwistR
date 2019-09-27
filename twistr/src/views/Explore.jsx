@@ -6,7 +6,7 @@ import {
   CardHeader,
   CardBody,
   CardTitle,
-  Table,
+  CardFooter,
   Row,
   Col
 } from "reactstrap";
@@ -16,135 +16,69 @@ class Tables extends React.Component {
     return (
       <>
         <div className="content">
+            <Card align="center">
+              <CardHeader>
+                <CardTitle tag="h5">
+                  <h1>
+                    <b><font color="#54BFEC">Explo</font>
+                    <font color="#FF0005">Я</font>
+                    <font color="#54BFEC">e</font></b>
+                  </h1>
+                  <p><i>See posts from users all over the world!</i></p>
+                </CardTitle>
+              </CardHeader>
+            </Card> 
           <Row>
             <Col md="12">
               <Card>
                 <CardHeader>
-                  <CardTitle tag="h4">Simple Table</CardTitle>
+                  <CardTitle tag="h5">Random user here</CardTitle>
+                  <p className="card-category">Tag1 | Tag2 | Tag3</p>
                 </CardHeader>
                 <CardBody>
-                  <Table responsive>
-                    <thead className="text-primary">
-                      <tr>
-                        <th>Name</th>
-                        <th>Country</th>
-                        <th>City</th>
-                        <th className="text-right">Salary</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>Dakota Rice</td>
-                        <td>Niger</td>
-                        <td>Oud-Turnhout</td>
-                        <td className="text-right">$36,738</td>
-                      </tr>
-                      <tr>
-                        <td>Minerva Hooper</td>
-                        <td>Curaçao</td>
-                        <td>Sinaai-Waas</td>
-                        <td className="text-right">$23,789</td>
-                      </tr>
-                      <tr>
-                        <td>Sage Rodriguez</td>
-                        <td>Netherlands</td>
-                        <td>Baileux</td>
-                        <td className="text-right">$56,142</td>
-                      </tr>
-                      <tr>
-                        <td>Philip Chaney</td>
-                        <td>Korea, South</td>
-                        <td>Overland Park</td>
-                        <td className="text-right">$38,735</td>
-                      </tr>
-                      <tr>
-                        <td>Doris Greene</td>
-                        <td>Malawi</td>
-                        <td>Feldkirchen in Kärnten</td>
-                        <td className="text-right">$63,542</td>
-                      </tr>
-                      <tr>
-                        <td>Mason Porter</td>
-                        <td>Chile</td>
-                        <td>Gloucester</td>
-                        <td className="text-right">$78,615</td>
-                      </tr>
-                      <tr>
-                        <td>Jon Porter</td>
-                        <td>Portugal</td>
-                        <td>Gloucester</td>
-                        <td className="text-right">$98,615</td>
-                      </tr>
-                    </tbody>
-                  </Table>
+                  <h1>Recent Post here</h1>
                 </CardBody>
-              </Card>
+                <CardFooter>
+                  <hr />
+                  <div className="stats">
+                    <i className="fa fa-history" /> Posted 4 seconds ago
+                  </div>
+                </CardFooter>
+              </Card> 
             </Col>
             <Col md="12">
-              <Card className="card-plain">
+              <Card>
                 <CardHeader>
-                  <CardTitle tag="h4">Table on Plain Background</CardTitle>
-                  <p className="card-category">
-                    Here is a subtitle for this table
-                  </p>
+                  <CardTitle tag="h5">Another random user here</CardTitle>
+                  <p className="card-category">Tag1 | Tag2 | Tag3</p>
                 </CardHeader>
                 <CardBody>
-                  <Table responsive>
-                    <thead className="text-primary">
-                      <tr>
-                        <th>Name</th>
-                        <th>Country</th>
-                        <th>City</th>
-                        <th className="text-right">Salary</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>Dakota Rice</td>
-                        <td>Niger</td>
-                        <td>Oud-Turnhout</td>
-                        <td className="text-right">$36,738</td>
-                      </tr>
-                      <tr>
-                        <td>Minerva Hooper</td>
-                        <td>Curaçao</td>
-                        <td>Sinaai-Waas</td>
-                        <td className="text-right">$23,789</td>
-                      </tr>
-                      <tr>
-                        <td>Sage Rodriguez</td>
-                        <td>Netherlands</td>
-                        <td>Baileux</td>
-                        <td className="text-right">$56,142</td>
-                      </tr>
-                      <tr>
-                        <td>Philip Chaney</td>
-                        <td>Korea, South</td>
-                        <td>Overland Park</td>
-                        <td className="text-right">$38,735</td>
-                      </tr>
-                      <tr>
-                        <td>Doris Greene</td>
-                        <td>Malawi</td>
-                        <td>Feldkirchen in Kärnten</td>
-                        <td className="text-right">$63,542</td>
-                      </tr>
-                      <tr>
-                        <td>Mason Porter</td>
-                        <td>Chile</td>
-                        <td>Gloucester</td>
-                        <td className="text-right">$78,615</td>
-                      </tr>
-                      <tr>
-                        <td>Jon Porter</td>
-                        <td>Portugal</td>
-                        <td>Gloucester</td>
-                        <td className="text-right">$98,615</td>
-                      </tr>
-                    </tbody>
-                  </Table>
+                  <h1>Recent Post here</h1>
                 </CardBody>
-              </Card>
+                <CardFooter>
+                  <hr />
+                  <div className="stats">
+                    <i className="fa fa-history" /> Posted 45 seconds ago
+                  </div>
+                </CardFooter>
+              </Card> 
+            </Col>
+            <Col md="12">
+              <Card>
+                <CardHeader>
+                  <CardTitle tag="h5">Anea Shuckzo</CardTitle>
+                  <p className="card-category">Tag1 | Tag2 | Tag3</p>
+                </CardHeader>
+                <CardBody>
+                  <h1>Recent Post here</h1>
+                </CardBody>
+                <CardFooter>
+                  <hr />
+                  <div className="stats">
+                    <i className="fa fa-history" /> Posted 1 minute ago
+                  </div>
+                </CardFooter>
+              </Card> 
             </Col>
           </Row>
         </div>

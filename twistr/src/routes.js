@@ -36,7 +36,7 @@ var routes = [
   },
   {
     path: "/explore",
-    name: "Explore Page",
+    name: "Explore",
     icon: "fas fa-rocket",
     component: Explore,
     layout: "/admin"
