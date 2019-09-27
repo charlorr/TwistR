@@ -8,15 +8,15 @@ import Notifications from "views/Notifications.jsx";
 var routes = [
   {
     path: "/signin",
-    name: "Sign In / Register",
-    icon: "nc-icon nc-caps-small",
+    name: "Log In",
+    icon: "fas fa-sign-in-alt",
     component: SignIn,
     layout: "/admin"
   },
   {
     path: "/profile",
-    name: "Edit Profile",
-    icon: "nc-icon nc-single-02",
+    name: "Profile",
+    icon: "fas fa-user-alt",
     component: Profile,
     layout: "/admin"
   },
@@ -30,21 +30,21 @@ var routes = [
   {
     path: "/timeline",
     name: "Timeline",
-    icon: "nc-icon nc-bank",
+    icon: "far fa-newspaper",
     component: Timeline,
     layout: "/admin"
   },
   {
     path: "/explore",
-    name: "Explore",
-    icon: "nc-icon nc-tile-56",
+    name: "Explore Page",
+    icon: "fas fa-rocket",
     component: Explore,
     layout: "/admin"
   },
   {
     path: "/notifications",
     name: "Notifications",
-    icon: "nc-icon nc-bell-55",
+    icon: "fas fa-bell",
     component: Notifications,
     layout: "/admin"
   },

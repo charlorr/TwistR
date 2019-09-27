@@ -17,26 +17,28 @@ import {
 class SignIn extends React.Component {
   render() {
     return (
-      <Card className="card-user">
-                <CardHeader>
-                  <CardTitle tag="h5">Log In</CardTitle>
-                </CardHeader>
-                <CardBody>
-                  <Form>
-                        <FormGroup>
-                          <label><b>Username</b></label>
-                          <input placeholder="Enter Username" type="text"/>
-                        </FormGroup>
-                        <FormGroup>
-                          <label><b>Password</b></label>
-                          <input placeholder="Enter Password"  type="password" />
-                        </FormGroup>
-                      <div className="update ml-auto mr-auto">
-                        <Button className="btn-round" color="primary" type="submit"> Log In </Button>
-                      </div>
-                  </Form>
-                </CardBody>
-              </Card>
+      <div className="content">
+        <Card className="card-user">
+                  <CardHeader>
+                    <CardTitle tag="h5">Log In</CardTitle>
+                  </CardHeader>
+                  <CardBody>
+                    <Form>
+                          <FormGroup>
+                            <label><b>Username</b></label>
+                            <Input placeholder="Enter Username" type="text"/>
+                          </FormGroup>
+                          <FormGroup>
+                            <label><b>Password</b></label>
+                            <Input placeholder="Enter Password"  type="password" />
+                          </FormGroup>
+                        <div className="update ml-auto mr-auto">
+                          <Button className="btn-round" size = "lg" color="primary" type="submit"> Log In </Button>
+                        </div>
+                    </Form>
+                  </CardBody>
+          </Card>
+        </div>
     );
   }
 }
