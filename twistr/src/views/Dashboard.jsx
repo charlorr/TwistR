@@ -10,6 +10,8 @@ import {
   Col
 } from "reactstrap";
 
+import Post from "components/Post/Post.jsx";
+
 class Dashboard extends React.Component {
   render() {
     return (
@@ -101,42 +103,10 @@ class Dashboard extends React.Component {
             </Col>
           </Row>
           <Row>
-            <Col md="9">
-              <Card>
-                <CardHeader>
-                  <CardTitle tag="h5">This can be a user's post</CardTitle>
-                  <p className="card-category">Tags could go here</p>
-                </CardHeader>
-                <CardBody>
-                  <h1>The actual post can go here</h1>
-                </CardBody>
-                <CardFooter>
-                  <hr />
-                  <div className="stats">
-                    <i className="fa fa-history" /> Updated 3 minutes ago
-                  </div>
-                </CardFooter>
-              </Card>
-            </Col>
+            <Post/>
           </Row>
           <Row>
-            <Col md="9">
-              <Card>
-                <CardHeader>
-                  <CardTitle tag="h5">This can be a user's post</CardTitle>
-                  <p className="card-category">Tags could go here</p>
-                </CardHeader>
-                <CardBody>
-                  <h1>The actual post can go here</h1>
-                </CardBody>
-                <CardFooter>
-                  <hr />
-                  <div className="stats">
-                    <i className="fa fa-history" /> Updated 3 minutes ago
-                  </div>
-                </CardFooter>
-              </Card>
-            </Col>
+            <Post/>
           </Row>
         </div>
       </>
