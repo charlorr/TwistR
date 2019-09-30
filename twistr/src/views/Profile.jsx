@@ -185,7 +185,8 @@ class Profile extends React.Component {
                             disabled
                             placeholder="Username"
                             type="text"
-                          />
+                            maxLength="30"
+                            required/>
                         </FormGroup>
                       </Col>
                       <Col className="pl-1" md="4">
@@ -195,17 +196,19 @@ class Profile extends React.Component {
                           </label>
                           <Input 
                             placeholder="Email" 
-                            type="email" />
+                            type="email"
+                            maxLength="40"
+                            required/>
                         </FormGroup>
                       </Col>
                       <Col className="px-1" md="3">
                         <FormGroup>
                           <label>Phone number</label>
                           <Input
-                            defaultValue="XXX-XXX-XXXX"
-                            placeholder="Phone number"
+                            placeholder="XXX-XXX-XXXX"
                             type="text"
-                          />
+                            pattern="[0-9]{3}[-]?[0-9]{3}[-]?[0-9]{4}"
+                            required/>
                         </FormGroup>
                       </Col>
                     </Row>
@@ -217,7 +220,8 @@ class Profile extends React.Component {
                             defaultValue="Purdue"
                             placeholder="First Name"
                             type="text"
-                          />
+                            maxLength="30"
+                            required/>
                         </FormGroup>
                       </Col>
                       <Col className="pl-1" md="6">
@@ -227,7 +231,8 @@ class Profile extends React.Component {
                             defaultValue="Pete"
                             placeholder="Last Name"
                             type="text"
-                          />
+                            maxLength="30"
+                            required/>
                         </FormGroup>
                       </Col>
                     </Row>
@@ -238,7 +243,8 @@ class Profile extends React.Component {
                           <Input
                             type="textarea"
                             defaultValue="Hail Purdue, amirite?"
-                          />
+                            maxLength="200"
+                            required/>
                         </FormGroup>
                       </Col>
                     </Row>
