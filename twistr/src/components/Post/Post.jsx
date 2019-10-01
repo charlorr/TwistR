@@ -19,7 +19,7 @@ class Post extends React.Component {
         "IE", "salad", "Purdue"
       ],
       content: "I like salad",
-      history: "8",
+      timestamp: 8,
     };
   }
 
@@ -38,7 +38,7 @@ class Post extends React.Component {
           <CardFooter>
             <hr />
             <div className="stats">
-              <i className="fa fa-history" /> Updated {this.state.history} minutes ago
+              <i className="fa fa-history" /> Updated {this.state.timestamp} minutes ago
             </div>
           </CardFooter>
         </Card>
