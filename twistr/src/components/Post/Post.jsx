@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'reaxct';
 
 import {
   Card,
@@ -11,6 +11,17 @@ import {
 
 class Post extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      author: "Ania Szesko",
+      tags: [
+        "IE", "salad", "Purdue"
+      ],
+      content: "I like salad",
+      history: "8",
+    };
+  }
 
   render() {
     return (
@@ -18,16 +29,16 @@ class Post extends React.Component {
       <Col md="9">
         <Card>
           <CardHeader>
-            <CardTitle tag="h5">This can be a friend's post</CardTitle>
-            <p className="card-category">Tags could go here</p>
+            <CardTitle tag="h5">{this.state.author}</CardTitle>
+            <p className="card-category">{this.state.tags}</p>
           </CardHeader>
           <CardBody>
-            <h1>The actual post can go here</h1>
+            <h1>{this.state.content}</h1>
           </CardBody>
           <CardFooter>
             <hr />
             <div className="stats">
-              <i className="fa fa-history" /> Updated 3 minutes ago
+              <i className="fa fa-history" /> Updated {this.state.history} minutes ago
             </div>
           </CardFooter>
         </Card>
