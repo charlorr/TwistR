@@ -1,4 +1,4 @@
-import React from 'reaxct';
+import React from 'react';
 
 import {
   Card,
