@@ -6,13 +6,12 @@ import {
   CardBody,
   CardFooter,
   CardTitle,
-  FormGroup,
-  Input,
   Row,
   Col
 } from "reactstrap";
 
 import Post from "components/Post/Post.jsx";
+import CreatePost from "components/CreatePost/CreatePost.jsx";
 
 class Timeline extends React.Component {
   render() {
@@ -20,7 +19,7 @@ class Timeline extends React.Component {
       <>
         <div className="content">
           <Row>
-            <Col lg="6" md="12" sm="12">
+            <Col lg="9" md="12" sm="12">
               <Card className="card-stats">
                 <CardBody>
                   <Row>
@@ -33,55 +32,13 @@ class Timeline extends React.Component {
                         />
                       </div>
                     </Col>
-                    <Col md="8" xs="7">
-                      <div className="numbers">
-                        <p className="card-category">Create Post
-                          <FormGroup>
-                            <label htmlFor="exampleInputEmail1">
-                              Email address
-                            </label>
-                            <Input 
-                              placeholder="Email" 
-                              type="email" />
-                          </FormGroup>
-                        </p>
-                        <CardTitle tag="p">Write a new post here.</CardTitle>
-                        <CardTitle tag="p">select tags</CardTitle>
-                        <p />
-                      </div>
-                    </Col>
+                    <CreatePost/>
                   </Row>
                 </CardBody>
                 <CardFooter>
                   <hr />
                   <div className="stats">
                     <i className="fas fa-sync-alt" /> Character Count
-                  </div>
-                </CardFooter>
-              </Card>
-            </Col>
-            <Col lg="3" md="6" sm="6">
-              <Card className="card-stats">
-                <CardBody>
-                  <Row>
-                    <Col md="4" xs="5">
-                      <div className="icon-big text-center icon-warning">
-                        <i className="nc-icon nc-vector text-danger" />
-                      </div>
-                    </Col>
-                    <Col md="8" xs="7">
-                      <div className="numbers">
-                        <p className="card-category">Errors</p>
-                        <CardTitle tag="p">23</CardTitle>
-                        <p />
-                      </div>
-                    </Col>
-                  </Row>
-                </CardBody>
-                <CardFooter>
-                  <hr />
-                  <div className="stats">
-                    <i className="far fa-clock" /> In the last hour
                   </div>
                 </CardFooter>
               </Card>
