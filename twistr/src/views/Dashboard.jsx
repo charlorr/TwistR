@@ -1,4 +1,5 @@
 import React from "react";
+import CreatePost from "components/CreatePost/CreatePost.jsx";
 import {SortablePostTable} from "components/PostRoster/PostRoster.jsx";
 // reactstrap components
 import {
@@ -21,22 +22,20 @@ var POSTS_ALL=[{
   tags: ["yellow ", "feathers "],
   content: "Update: I have a stomach ache.",
   timestamp: 15,
-},
-{author: "Elmo",
-tags: ["red ", "tickle me ", "seseame street"],
-content: "First Post! #like4like",
-timestamp: 40,
-
+}, {
+  author: "Elmo",
+  tags: ["red ", "tickle me ", "seseame street"],
+  content: "First Post! #like4like",
+  timestamp: 40,
 }]
-
 
 class Dashboard extends React.Component {
   render() {
     return (
       <>
         <div className="content">
-          <Row>
-            <Col lg="6" md="12" sm="12">
+        <Row>
+            <Col lg="9" md="12" sm="12">
               <Card className="card-stats">
                 <CardBody>
                   <Row>
@@ -45,50 +44,17 @@ class Dashboard extends React.Component {
                         <img
                           alt="..."
                           className="avatar border-gray"
-                          src={require("assets/img/PurduePete.jpg")}
+                          src={require("assets/img/default-avatar.png")}
                         />
                       </div>
                     </Col>
-                    <Col md="8" xs="7">
-                      <div className="numbers">
-                        <p className="card-category">Create Post</p>
-                        <CardTitle tag="p">Write a new post here.</CardTitle>
-                        <CardTitle tag="p">select tags</CardTitle>
-                        <p />
-                      </div>
-                    </Col>
+                    <CreatePost/>
                   </Row>
                 </CardBody>
                 <CardFooter>
                   <hr />
                   <div className="stats">
                     <i className="fas fa-sync-alt" /> Character Count
-                  </div>
-                </CardFooter>
-              </Card>
-            </Col>
-            <Col lg="3" md="6" sm="6">
-              <Card className="card-stats">
-                <CardBody>
-                  <Row>
-                    <Col md="4" xs="5">
-                      <div className="icon-big text-center icon-warning">
-                        <i className="nc-icon nc-vector text-danger" />
-                      </div>
-                    </Col>
-                    <Col md="8" xs="7">
-                      <div className="numbers">
-                        <p className="card-category">Errors</p>
-                        <CardTitle tag="p">23</CardTitle>
-                        <p />
-                      </div>
-                    </Col>
-                  </Row>
-                </CardBody>
-                <CardFooter>
-                  <hr />
-                  <div className="stats">
-                    <i className="far fa-clock" /> In the last hour
                   </div>
                 </CardFooter>
               </Card>
@@ -120,7 +86,7 @@ class Dashboard extends React.Component {
               </Card>
             </Col>
           </Row>
-          <Row id = "test">
+          <Row>
             <SortablePostTable posts_all={POSTS_ALL} />
           </Row>
             

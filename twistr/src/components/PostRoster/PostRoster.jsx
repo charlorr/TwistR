@@ -69,6 +69,5 @@ class SortablePostTable extends React.Component { //called from Dashboard to org
   }
 }
 
-
 export default PostRoster;
 export {SortablePostTable};

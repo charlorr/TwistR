@@ -1,4 +1,6 @@
 import React from "react";
+import CreatePost from "components/CreatePost/CreatePost.jsx";
+import {SortablePostTable} from "components/PostRoster/PostRoster.jsx";
 // reactstrap components
 import {
   Card,
@@ -10,8 +12,23 @@ import {
   Col
 } from "reactstrap";
 
-import Post from "components/Post/Post.jsx";
-import CreatePost from "components/CreatePost/CreatePost.jsx";
+//hardcoded posts for now, until we have connection to database
+var POSTS_ALL=[{
+  author: "Cookie Monster",
+  tags: ["cookies ", "trashcan ", ""],
+  content: "I just ate 49 cookies. I had some chocolate chip, triple chocolate, and peanut butter",
+  timestamp: 30,
+}, {
+  author: "Cookie Monster",
+  tags: ["yellow ", "feathers "],
+  content: "Update: I have a stomach ache.",
+  timestamp: 15,
+}, {
+  author: "Elmo",
+  tags: ["red ", "tickle me ", "seseame street"],
+  content: "First Post! #like4like",
+  timestamp: 40,
+}]
 
 class Timeline extends React.Component {
   render() {
@@ -71,10 +88,7 @@ class Timeline extends React.Component {
             </Col>
           </Row>
           <Row>
-            <Post/>
-          </Row>
-          <Row>
-            <Post/>
+            <SortablePostTable posts_all={POSTS_ALL} />
           </Row>
         </div>
       </>
