@@ -9,17 +9,6 @@ import {
   Col
 } from "reactstrap";
 
-/*var POSTS_ALL=[{
-  author: "Ania",
-  tags: ["A", "B", "C"],
-  content: "hi",
-  timestamp: 10,
-}, {
-  author: "Colin",
-  tags: ["A2", "B2", "C2"],
-  content: "hihi",
-  timestamp: 15,
-}]*/
 class Post extends React.Component {
   render() {
     return (
@@ -31,7 +20,7 @@ class Post extends React.Component {
             <p className="card-category">{this.props.post.tags}</p>
           </CardHeader>
           <CardBody>
-            <h1>{this.props.content}</h1>
+            <h1>{this.props.post.content}</h1>
           </CardBody>
           <CardFooter>
             <hr />
@@ -51,49 +40,30 @@ class PostRoster extends React.Component {
     // Create posts from sorted, dynamic JSON collection
     var cards = [];
     this.props.posts_all.forEach(function(post) { 
-        cards.push(<Post post={post} />); //have to actually define posts within here...?
+        cards.push(<Post post={post} />);
     });
-    
-    return (<div>{cards}</div>);
+    return (cards);
   }
 }
         
-class Sort extends React.Component {
-  sortRoster(field){
-    this.props.sortRosterStateBy(field, this.props.posts_all, this.props.direction);
-  }
-  render() {
-    return (
-      <div className="sort-section">
-        <h1>Sort<br></br>by</h1>
-        <div className="pill" onClick={this.sortRoster.bind(this,'timestamp')} >Timestamp</div>
-      </div>
-    )
-  }
-}
 
-class SortablePostTable extends React.Component {
+class SortablePostTable extends React.Component { //called from Dashboard to organize posts chronologically
   state = {
-   'posts_all': this.props.posts_all, // default state
+   'posts_all': this.props.posts_all, 
    'direction': -1                               
   };     
-  sortRoster(field){
-    this.props.sortRosterStateBy(field, this.props.posts_all, this.props.direction);
-  }
+  
   sortRosterStateBy = (field, posts_all, direction) => {
-    // Sorting ...TODO: needs to be editted
+    // Sorting ...
     posts_all.sort( (a, b) => { if (a[field] > b[field]) { return -direction; } if (a[field] < b[field]) { return direction; } return 0; })
-    // Change state
-    this.setState({'posts_all': posts_all, 'direction': direction});
   };
   render() {
-    // Return page with stats data and Roster
+    
     return (
       <div>
-        {this.sortRoster.bind(this,'timestamp')}
-        {/*this.sortRosterStateBy */}
-        {<Sort direction={this.state.direction} posts_all={this.props.posts_all} sortRosterStateBy={this.sortRosterStateBy}/>}
-        <PostRoster posts_all={this.state.posts_all}/>
+        {this.sortRosterStateBy('timestamp',this.props.posts_all, this.state.direction ) //calls its own function to actually sort
+        }<PostRoster posts_all={this.state.posts_all //creates roster of all the posts to be displayed
+        }/>
       </div>
     );
   }

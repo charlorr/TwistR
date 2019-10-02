@@ -1,5 +1,5 @@
 import React from "react";
-
+import {SortablePostTable} from "components/PostRoster/PostRoster.jsx";
 // reactstrap components
 import {
   Card,
@@ -10,23 +10,22 @@ import {
   Col
 } from "reactstrap";
 
-import {SortablePostTable} from "components/PostRoster/PostRoster.jsx";
-
+//hardcoded posts for now, until we have connection to database
 var POSTS_ALL=[{
-  author: "Ania",
-  tags: ["A", "B", "C"],
-  content: "hi",
-  timestamp: 20,
+  author: "Cookie Monster",
+  tags: ["cookies ", "trashcan ", ""],
+  content: "I just ate 49 cookies. I had some chocolate chip, triple chocolate, and peanut butter",
+  timestamp: 30,
 }, {
-  author: "Colin",
-  tags: ["A2", "B2", "C2"],
-  content: "hihi",
+  author: "Cookie Monster",
+  tags: ["yellow ", "feathers "],
+  content: "Update: I have a stomach ache.",
   timestamp: 15,
 },
-{author: "dada",
-tags: ["A3", "B1", "C4"],
-content: "omg it works",
-timestamp: 100,
+{author: "Elmo",
+tags: ["red ", "tickle me ", "seseame street"],
+content: "First Post! #like4like",
+timestamp: 40,
 
 }]
 
