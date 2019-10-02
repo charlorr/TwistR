@@ -1,5 +1,5 @@
 import React from "react";
-
+import NotificationAlert from "react-notification-alert";
 // reactstrap components
 import {
   Button,
@@ -16,10 +16,45 @@ import {
 } from "reactstrap";
 
 class Profile extends React.Component {
+  bio="Boiler Up, Hammer Down!";
+  state = {
+    visible: true
+  };
+  notificationAlert = React.createRef();
+  update() {
+    if (document.getElementById("username").reportValidity() &&
+        document.getElementById("email").reportValidity() &&
+        document.getElementById("tel").reportValidity() &&
+        document.getElementById("first").reportValidity() &&
+        document.getElementById("last").reportValidity() &&
+        document.getElementById("bio").reportValidity()) {
+      document.getElementById("displayBio").innerHTML = document.getElementById("bio").value;
+      document.getElementById("fullName").innerHTML = document.getElementById("first").value + " " + document.getElementById("last").value;
+      var options = {};
+      options = {
+        place: "tr",
+        message: (
+          <div>
+            <div>
+              Profile successfully updated!
+            </div>
+          </div>
+        ),
+        type: "warning",
+        icon: "nc-icon nc-bell-55",
+        autoDismiss: 7
+      };
+      this.notificationAlert.current.notificationAlert(options);
+    }
+    // else {
+    //   alert(document.getElementById("email").validationMessage);
+    // }
+  }
   render() {
     return (
       <>
         <div className="content">
+          <NotificationAlert ref={this.notificationAlert} />
           <Row>
             <Col md="4">
               <Card className="card-user">
@@ -37,13 +72,13 @@ class Profile extends React.Component {
                         className="avatar border-gray"
                         src={require("assets/img/PurduePete.jpg")}
                       />
-                      <h5 className="title">Purdue Pete</h5>
+                      <h5 className="title" id="fullName">Purdue Pete</h5>
                     </a>
                     <p className="description">@therealscrummaster</p>
                   </div>
-                  <p className="description text-center">
-                    "Boiler Up, <br />
-                    Hammer Down"
+                  <p className="description text-center"
+                    id = "displayBio">
+                    {this.bio}
                   </p>
                 </CardBody>
                 <CardFooter>
@@ -181,6 +216,7 @@ class Profile extends React.Component {
                         <FormGroup>
                           <label>Username (disabled)</label>
                           <Input
+                            id="username"
                             defaultValue="therealscrummaster"
                             disabled
                             placeholder="Username"
@@ -195,6 +231,7 @@ class Profile extends React.Component {
                             Email address
                           </label>
                           <Input 
+                            id="email"
                             placeholder="Email" 
                             type="email"
                             maxLength="40"
@@ -205,9 +242,11 @@ class Profile extends React.Component {
                         <FormGroup>
                           <label>Phone number</label>
                           <Input
+                            id="tel"
                             placeholder="XXX-XXX-XXXX"
                             type="text"
                             pattern="[0-9]{3}[-]?[0-9]{3}[-]?[0-9]{4}"
+                            maxLength="12"
                             required/>
                         </FormGroup>
                       </Col>
@@ -217,6 +256,7 @@ class Profile extends React.Component {
                         <FormGroup>
                           <label>First Name</label>
                           <Input
+                            id="first"
                             defaultValue="Purdue"
                             placeholder="First Name"
                             type="text"
@@ -228,6 +268,7 @@ class Profile extends React.Component {
                         <FormGroup>
                           <label>Last Name</label>
                           <Input
+                            id="last"
                             defaultValue="Pete"
                             placeholder="Last Name"
                             type="text"
@@ -241,8 +282,9 @@ class Profile extends React.Component {
                         <FormGroup>
                           <label>Bio</label>
                           <Input
+                            id="bio"
                             type="textarea"
-                            defaultValue="Hail Purdue, amirite?"
+                            defaultValue={this.bio}
                             maxLength="200"
                             required/>
                         </FormGroup>
@@ -253,7 +295,8 @@ class Profile extends React.Component {
                         <Button
                           className="btn-round"
                           color="primary"
-                          type="submit"
+                          type="button"
+                          onClick={() => this.update()}
                         >
                           Update Profile
                         </Button>
