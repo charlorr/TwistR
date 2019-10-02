@@ -1,5 +1,6 @@
 import React from "react";
 import CreatePost from "components/CreatePost/CreatePost.jsx";
+import NewTag from "components/NewTag/NewTag.jsx";
 import {SortablePostTable} from "components/PostRoster/PostRoster.jsx";
 // reactstrap components
 import {
@@ -36,56 +37,14 @@ class Timeline extends React.Component {
       <>
         <div className="content">
           <Row>
-            <Col lg="9" md="12" sm="12">
-              <Card className="card-stats">
-                <CardBody>
-                  <Row>
-                    <Col md="4" xs="5">
-                      <div className="icon-big text-center icon-warning">
-                        <img
-                          alt="..."
-                          className="avatar border-gray"
-                          src={require("assets/img/default-avatar.png")}
-                        />
-                      </div>
-                    </Col>
-                    <CreatePost/>
-                  </Row>
-                </CardBody>
-                <CardFooter>
-                  <hr />
-                  <div className="stats">
-                    <i className="fas fa-sync-alt" /> Character Count
-                  </div>
-                </CardFooter>
-              </Card>
-            </Col>
-            <Col lg="3" md="6" sm="6">
-              <Card className="card-stats">
-                <CardBody>
-                  <Row>
-                    <Col md="4" xs="5">
-                      <div className="icon-big text-center icon-warning">
-                        <i className="nc-icon nc-favourite-28 text-primary" />
-                      </div>
-                    </Col>
-                    <Col md="8" xs="7">
-                      <div className="numbers">
-                        <p className="card-category">New Tags</p>
-                        <CardTitle tag="p">#clickhere</CardTitle>
-                        <p />
-                      </div>
-                    </Col>
-                  </Row>
-                </CardBody>
-                <CardFooter>
-                  <hr />
-                  <div className="stats">
-                    <i className="fas fa-sync-alt" /> Update now
-                  </div>
-                </CardFooter>
-              </Card>
-            </Col>
+            <CreatePost/>
+          </Row>
+          <Row>
+            {/* These NewTag components will be populated in a NewTagRoster component in a later sprint*/}
+            <NewTag/>
+            <NewTag/>
+            <NewTag/>
+            <NewTag/>
           </Row>
           <Row>
             <SortablePostTable posts_all={POSTS_ALL} />
