@@ -23,14 +23,14 @@ var routes = [
   {
     path: "/dashboard",
     name: "Dashboard",
-    icon: "far fa-fan",
+    icon: "far fa-newspaper",
     component: Dashboard,
     layout: "/admin"
   },
   {
     path: "/timeline",
     name: "Timeline",
-    icon: "far fa-newspaper",
+    icon: "fas fa-user-edit",
     component: Timeline,
     layout: "/admin"
   },
