@@ -22,7 +22,7 @@ class SignIn extends React.Component {
                     <CardTitle tag="h5">Log In</CardTitle>
                   </CardHeader>
                   <CardBody className ="update ml-auto mr-auto">
-                    <Form method="post">
+                    <Form >{/*method="post"*/}
                       <Row>
                         <FormGroup>
                             <label><b>Username</b></label>
@@ -60,13 +60,13 @@ class SignIn extends React.Component {
                       <Col className="pl-1" md="4">
                         <FormGroup>
                           <label> <b>Email Address</b> </label>
-                          <Input name = "email" placeholder="Email" type="email" pattern = "/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" required/>
+                          <Input name = "email" placeholder="Email" type="email" required/>
                         </FormGroup>
                       </Col>
                       <Col className="pl-1" md="3">
                         <FormGroup>
                           <label><b>Phone Number</b></label>
-                          <Input type="tel" name="phone" placeholder ="Enter Phone Number" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"/>
+                          <Input type="tel" name="phone" placeholder ="Enter Phone Number" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"/>
                         </FormGroup>
                       </Col>
                     </Row>
