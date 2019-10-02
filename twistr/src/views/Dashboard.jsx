@@ -1,8 +1,8 @@
 import React from "react";
+
 // reactstrap components
 import {
   Card,
-  CardHeader,
   CardBody,
   CardFooter,
   CardTitle,
@@ -10,7 +10,26 @@ import {
   Col
 } from "reactstrap";
 
-import Post from "components/Post/Post.jsx";
+import {SortablePostTable} from "components/PostRoster/PostRoster.jsx";
+
+var POSTS_ALL=[{
+  author: "Ania",
+  tags: ["A", "B", "C"],
+  content: "hi",
+  timestamp: 20,
+}, {
+  author: "Colin",
+  tags: ["A2", "B2", "C2"],
+  content: "hihi",
+  timestamp: 15,
+},
+{author: "dada",
+tags: ["A3", "B1", "C4"],
+content: "omg it works",
+timestamp: 100,
+
+}]
+
 
 class Dashboard extends React.Component {
   render() {
@@ -102,12 +121,10 @@ class Dashboard extends React.Component {
               </Card>
             </Col>
           </Row>
-          <Row>
-            <Post/>
+          <Row id = "test">
+            <SortablePostTable posts_all={POSTS_ALL} />
           </Row>
-          <Row>
-            <Post/>
-          </Row>
+            
         </div>
       </>
     );
