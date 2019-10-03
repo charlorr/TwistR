@@ -1,4 +1,5 @@
 import React from 'react';
+import UserCard from "components/UserCard/UserCard.jsx";
 
 import {
   Card,
@@ -8,7 +9,8 @@ import {
   CardTitle,
   Col,
   Input,
-  FormGroup
+  FormGroup,
+  Row
 } from "reactstrap";
 
 class CreatePost extends React.Component {
@@ -16,12 +18,6 @@ class CreatePost extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      author: "Ania Szesko",
-      tags: [
-        "IE", "salad", "Purdue"
-      ],
-      content: "I like salad",
-      history: "8",
       chars_left: 280, max_chars: 280,
     };
   }
@@ -36,32 +32,39 @@ class CreatePost extends React.Component {
   render() {
     return (
       <>
-      <Col md="8" xs="7">
-            <div className="numbers">
-            <p className="card-category">Create Post
+      <Col lg="9" md="6" sm="6">
+        <Card className="card-stats">
+          <CardBody>
+            <Row>
+              <Col lg="8" md="8">
+                <CardTitle tag="h5">Write a new post here.</CardTitle>
                 <FormGroup>
-                    <label>Max length is 280 characters</label>
+                    <label>Be creative! Remember to use at least one tag.</label>
                     <Input
                         type="textarea"
-                        defaultValue="Type here"
                         maxLength="280"
                         required
                         onChange={this.handleWordCount}
                     />
-                    <div>{this.state.chars_left}</div>
                 </FormGroup>
                 <FormGroup>
                     <Input 
-                        placeholder="Email" 
-                        type="email"
+                        placeholder="Add tags (separated by commas)" 
+                        type="textarea"
                     />
                 </FormGroup>
-            </p>
-            <CardTitle tag="p">Write a new post here.</CardTitle>
-            <CardTitle tag="p">select tags</CardTitle>
-            <p />
+              </Col>
+            </Row>
+          </CardBody>
+          <CardFooter>
+            <hr />
+            <div className="stats">
+              <i className="fas fa-sync-alt" /> {this.state.chars_left} / 280 characters left
             </div>
-        </Col>
+          </CardFooter>
+        </Card>
+      </Col>
+      <UserCard/>
       </>
     );
   }
