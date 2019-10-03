@@ -1,60 +1,68 @@
 import React from 'react';
-import UserCard from "components/UserCard/UserCard.jsx";
 
 import {
-  Button,
   Card,
   CardHeader,
   CardBody,
   CardFooter,
   CardTitle,
-  FormGroup,
-  Form,
+  Col,
   Input,
-  Row,
-  Col
+  FormGroup
 } from "reactstrap";
 
 class CreatePost extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      author: "Ania Szesko",
+      tags: [
+        "IE", "salad", "Purdue"
+      ],
+      content: "I like salad",
+      history: "8",
+      chars_left: 280, max_chars: 280,
+    };
+  }
+
+  handleWordCount = event => {
+    const charCount = event.target.value.length;
+    const maxChar = this.state.max_chars;
+    const charLength = maxChar - charCount;
+    this.setState({chars_left: charLength});
+  }
+
   render() {
-    
     return (
-    <>
-      <Col lg="9" md="6" sm="6">
-        <Card className="card-stats">
-          <CardBody>
-            <Row>
-              <Col lg="8" md="8">
-                <CardTitle tag="h5">Write a new post here.</CardTitle>
+      <>
+      <Col md="8" xs="7">
+            <div className="numbers">
+            <p className="card-category">Create Post
                 <FormGroup>
-                    <label>Be creative! Remember to use at least one tag.</label>
+                    <label>Max length is 280 characters</label>
                     <Input
                         type="textarea"
                         defaultValue="Type here"
                         maxLength="280"
                         required
+                        onChange={this.handleWordCount}
                     />
+                    <div>{this.state.chars_left}</div>
                 </FormGroup>
                 <FormGroup>
                     <Input 
-                        placeholder="Add tags (separated by commas)" 
-                        type="textarea"
+                        placeholder="Email" 
+                        type="email"
                     />
                 </FormGroup>
-              </Col>
-            </Row>
-          </CardBody>
-          <CardFooter>
-            <hr />
-            <div className="stats">
-              <i className="fas fa-sync-alt" /> XX / 280 characters left
+            </p>
+            <CardTitle tag="p">Write a new post here.</CardTitle>
+            <CardTitle tag="p">select tags</CardTitle>
+            <p />
             </div>
-          </CardFooter>
-        </Card>
-      </Col>
-      <UserCard/>
-    </>
+        </Col>
+      </>
     );
   }
 }
