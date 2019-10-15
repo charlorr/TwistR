@@ -14,6 +14,14 @@ import {
 } from "reactstrap";
 
 class SignIn extends React.Component {
+  checkMatch(){
+    if(document.getElementById("password_confirm").value !== document.getElementById("password_reg").value) {
+      document.getElementById("password_confirm").setCustomValidity("Passwords must match");
+    }
+    else {
+      document.getElementById("password_confirm").setCustomValidity("");
+    }
+  }
   render() {
     return (
       <div className="content" >
@@ -89,13 +97,13 @@ class SignIn extends React.Component {
                       <Col className="pr-1" md="6">
                         <FormGroup>
                           <label><b>Password<font color="red">*</font></b></label>
-                          <Input placeholder="Password" type="text" required />
+                          <Input id="password_reg" placeholder="Password" type="password" onChange={() => this.checkMatch()} required />
                         </FormGroup>
                       </Col>
                       <Col className="pl-1" md="6">
                         <FormGroup>
                           <label><b>Confirm Password<font color="red">*</font></b></label>
-                          <Input placeholder="Password" type="text" required />
+                          <Input id="password_confirm" placeholder="Password" type="password" onChange={() => this.checkMatch()} required />
                         </FormGroup>
                       </Col>
                     </Row>
