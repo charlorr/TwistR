@@ -3,7 +3,6 @@ import UserCard from "components/UserCard/UserCard.jsx";
 
 import {
   Card,
-  CardHeader,
   CardBody,
   CardFooter,
   CardTitle,
