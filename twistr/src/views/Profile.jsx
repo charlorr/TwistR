@@ -208,13 +208,14 @@ class Profile extends React.Component {
               <Card className="card-user">
                 <CardHeader>
                   <CardTitle tag="h5">Edit Profile</CardTitle>
+                  <p><font color="red">*</font>Required</p>
                 </CardHeader>
                 <CardBody>
                   <Form>
                     <Row>
                       <Col className="pr-1" md="5">
                         <FormGroup>
-                          <label>Username (disabled)</label>
+                          <label>Username<font color="red">*</font> (disabled)</label>
                           <Input
                             id="username"
                             defaultValue="therealscrummaster"
@@ -228,7 +229,7 @@ class Profile extends React.Component {
                       <Col className="pl-1" md="4">
                         <FormGroup>
                           <label htmlFor="exampleInputEmail1">
-                            Email address
+                            Email address<font color="red">*</font>
                           </label>
                           <Input 
                             id="email"
@@ -240,7 +241,7 @@ class Profile extends React.Component {
                       </Col>
                       <Col className="px-1" md="3">
                         <FormGroup>
-                          <label>Phone number</label>
+                          <label>Phone number<font color="red">*</font></label>
                           <Input
                             id="tel"
                             placeholder="XXX-XXX-XXXX"
@@ -254,7 +255,7 @@ class Profile extends React.Component {
                     <Row>
                       <Col className="pr-1" md="6">
                         <FormGroup>
-                          <label>First Name</label>
+                          <label>First Name<font color="red">*</font></label>
                           <Input
                             id="first"
                             defaultValue="Purdue"
@@ -266,7 +267,7 @@ class Profile extends React.Component {
                       </Col>
                       <Col className="pl-1" md="6">
                         <FormGroup>
-                          <label>Last Name</label>
+                          <label>Last Name<font color="red">*</font></label>
                           <Input
                             id="last"
                             defaultValue="Pete"
@@ -280,7 +281,7 @@ class Profile extends React.Component {
                     <Row>
                       <Col md="12">
                         <FormGroup>
-                          <label>Bio</label>
+                          <label>Bio<font color="red">*</font></label>
                           <Input
                             id="bio"
                             type="textarea"
