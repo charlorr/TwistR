@@ -43,5 +43,8 @@
     "jquery": "3.4.1",
     "typescript": "3.4.5"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "file-loader": "^4.2.0",
+    "url-loader": "^2.2.0"
+  }
 }
