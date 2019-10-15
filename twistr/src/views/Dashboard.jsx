@@ -19,16 +19,19 @@ var POSTS_ALL=[{
   tags: ["boiler ", "maker ", ""],
   content: "I love TwistR",
   timestamp: 8,
+  picture: require("assets/img/PurduePete.jpg"),
 }, {
   author: "Purdue Pete",
   tags: ["choo ", "choochoo "],
   content: "Update: I have a stomach ache.",
   timestamp: 15,
+  picture: require("assets/img/PurduePete.jpg"),
 }, {
   author: "Purdue Pete",
   tags: ["black ", "gold ", "cs307 "],
   content: "First Post! Woooo!",
   timestamp: 400,
+  picture: require("assets/img/PurduePete.jpg"),
 }]
 
 class Dashboard extends React.Component {

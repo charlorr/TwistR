@@ -63,7 +63,7 @@ class CreatePost extends React.Component {
           </CardFooter>
         </Card>
       </Col>
-      <UserCard/>
+      <UserCard userPic={require("assets/img/PurduePete.jpg")}/>
       </>
     );
   }

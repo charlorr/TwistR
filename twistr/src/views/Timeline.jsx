@@ -19,19 +19,19 @@ var POSTS_ALL=[{
   tags: ["cookies ", "trashcan ", ""],
   content: "I just ate 49 cookies. I had some chocolate chip, triple chocolate, and peanut butter",
   timestamp: 30,
-  picture: "assets/img/CookieMonster.jpg"
+  picture: require("assets/img/CookieMonster.jpg"),
 }, {
   author: "Cookie Monster",
   tags: ["yellow ", "feathers "],
   content: "Update: I have a stomach ache.",
   timestamp: 15,
-  picture: "assets/img/CookieMonster.jpg"
+  picture: require("assets/img/CookieMonster.jpg"),
 }, {
   author: "Elmo",
   tags: ["red ", "tickle me ", "seseame street"],
   content: "First Post! #like4like",
   timestamp: 40,
-  picture: "assets/img/Elmo.jpg"
+  picture: require("assets/img/Elmo.jpg"),
 }]
 
 class Timeline extends React.Component {

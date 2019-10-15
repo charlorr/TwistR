@@ -20,16 +20,16 @@ class UserCard extends React.Component {
     return (
     <>
       <Col lg="2" md="2" sm="1">
-          <Card>
-            <CardBody>
-              <img
-                alt="..."
-                className="border-gray"
-                src={require("assets/img/PurduePete.jpg")}
-              />
-            </CardBody>
-          </Card>
-        </Col>
+        <Card>
+          <CardBody>
+            <img
+              alt="..."
+              className="border-gray"
+              src={this.props.userPic}
+            />
+          </CardBody>
+        </Card>
+      </Col>
     </>
     );
   }
