@@ -1,5 +1,5 @@
 import React from "react";
-
+import PasswordForm from "components/PasswordForm/PasswordForm.jsx";
 import {
   Button,
   Card,
@@ -30,7 +30,7 @@ class SignIn extends React.Component {
                     <CardTitle tag="h5">Log In</CardTitle>
                   </CardHeader>
                   <CardBody className ="update ml-auto mr-auto">
-                    <Form >{/*method="post"*/}
+                    <Form >
                       <Row>
                         <FormGroup>
                             <label><b>Username/Email</b></label>
@@ -98,6 +98,14 @@ class SignIn extends React.Component {
                         <FormGroup>
                           <label><b>Password<font color="red">*</font></b></label>
                           <Input id="password_reg" placeholder="Password" type="password" onChange={() => this.checkMatch()} required />
+                        
+                        </FormGroup>
+                      </Col>
+                      <Col className ="pl-1" md="6">
+                        <FormGroup>
+                        <div id="reg-PasswordForm">
+                        <PasswordForm ></PasswordForm>
+                        </div>
                         </FormGroup>
                       </Col>
                       <Col className="pl-1" md="6">

@@ -193,3 +193,11 @@
   color: #FFFFFF;
   outline-color: #ef8157;
 }
+
+.reg-status-red{
+color: red;
+}
+.reg-status-green{
+  color: green;
+
+}
