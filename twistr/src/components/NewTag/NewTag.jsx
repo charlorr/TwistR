@@ -18,9 +18,9 @@ class NewTag extends React.Component {
     return (
       <>
         <Col lg="3" md="6" sm="6">
-            <Card className="card-stats">
+          <Card className="card-stats">
             <CardBody>
-                <Row>
+              <Row>
                 <Col md="4" xs="5">
                     <div className="icon-big text-center icon-warning">
                     <i className="nc-icon nc-favourite-28 text-primary" />
@@ -33,7 +33,7 @@ class NewTag extends React.Component {
                     <p />
                     </div>
                 </Col>
-                </Row>
+              </Row>
             </CardBody>
             <CardFooter>
                 <hr />
@@ -41,7 +41,7 @@ class NewTag extends React.Component {
                 <i className="fas fa-sync-alt" /> Update now
                 </div>
             </CardFooter>
-            </Card>
+          </Card>
         </Col>
       </>
     );
