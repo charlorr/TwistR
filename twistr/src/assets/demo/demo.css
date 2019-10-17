@@ -193,3 +193,8 @@
   color: #FFFFFF;
   outline-color: #ef8157;
 }
+
+/*Chiranth added this*/
+.main-panel > .content {
+  margin-top: 23px; 
+}
