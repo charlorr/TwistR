@@ -30,7 +30,7 @@ var routes = [
   {
     path: "/timeline",
     name: "Timeline",
-    icon: "fas fa-user-edit",
+    icon: "fas fa-pencil-alt",
     component: Timeline,
     layout: "/admin"
   },
