@@ -31,6 +31,18 @@ var POSTS_ALL=[{
   content: "First Post! #like4like",
   timestamp: 40,
   picture: require("assets/img/Elmo.jpg"),
+}, {
+  author: "Big Bird",
+  tags: ["yellow ", "birds ", "food "],
+  content: "I wonder if Cookie Monster will share his cookies with me...",
+  timestamp: 16,
+  picture: require("assets/img/BigBird.jpg"),
+}, {
+  author: "Bird",
+  tags: ["help ", "elmo ", "friends"],
+  content: "I wish Elmo would be friends with me. :(",
+  timestamp: 35,
+  picture: require("assets/img/BigBird.jpg"),
 }]
 
 class Tables extends React.Component {
