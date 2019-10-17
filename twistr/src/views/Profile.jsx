@@ -126,19 +126,14 @@ class Profile extends React.Component {
                         </Col>
                         <Col md="7" xs="7">
                           DJ Khaled <br />
-                          <span className="text-muted">
-                            <small>Offline</small>
-                          </span>
                         </Col>
                         <Col className="text-right" md="3" xs="3">
-                          <Button
-                            className="btn-round btn-icon"
-                            color="success"
-                            outline
-                            size="sm"
-                          >
-                            <i className="fa fa-envelope" />
-                          </Button>
+                        <Button className = "follow-icons btn-round btn-icon"
+                               color = "success"
+                               size="sm">
+                                <i className = "fa fa-check follow-check"></i>
+                                <i className = "fa fa-times follow-uncheck"></i>
+                            </Button>
                         </Col>
                       </Row>
                     </li>
@@ -155,19 +150,14 @@ class Profile extends React.Component {
                         </Col>
                         <Col md="7" xs="7">
                           Ashwin Gokhale <br />
-                          <span className="text-success">
-                            <small>Available</small>
-                          </span>
                         </Col>
                         <Col className="text-right" md="3" xs="3">
-                          <Button
-                            className="btn-round btn-icon"
-                            color="success"
-                            outline
-                            size="sm"
-                          >
-                            <i className="fa fa-envelope" />
-                          </Button>
+                            <Button className = "follow-icons btn-round btn-icon"
+                               color = "success"
+                               size="sm">
+                                <i className = "fa fa-check follow-check"></i>
+                                <i className = "fa fa-times follow-uncheck"></i>
+                            </Button>
                         </Col>
                       </Row>
                     </li>
@@ -184,19 +174,15 @@ class Profile extends React.Component {
                         </Col>
                         <Col className="col-ms-7" xs="7">
                           Professor Samanta <br />
-                          <span className="text-danger">
-                            <small>Busy</small>
-                          </span>
+                          
                         </Col>
                         <Col className="text-right" md="3" xs="3">
-                          <Button
-                            className="btn-round btn-icon"
-                            color="success"
-                            outline
-                            size="sm"
-                          >
-                            <i className="fa fa-envelope" />
-                          </Button>
+                        <Button className = "follow-icons btn-round btn-icon"
+                               color = "success"
+                               size="sm">
+                                <i className = "fa fa-check follow-check"></i>
+                                <i className = "fa fa-times follow-uncheck"></i>
+                            </Button>
                         </Col>
                       </Row>
                     </li>

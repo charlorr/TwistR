@@ -20,6 +20,7 @@ Licensed under the MIT license - http://opensource.org/licenses/MIT
 
 Copyright (c) 2015 Daniel Eden
 */
+
 .animated {
   -webkit-animation-duration: 1s;
   animation-duration: 1s;
@@ -4737,6 +4738,10 @@ select.form-control:not([size]):not([multiple]) {
   top: 3px;
   text-align: center;
   width: 21px; }
+
+
+
+
 
 /*--------------------------------
 

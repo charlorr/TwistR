@@ -182,3 +182,14 @@
   outline: none;
   display: none;
 }
+
+.follow-icons:hover .follow-check, .follow-icons .follow-uncheck{
+  display:none;
+}
+
+.follow-icons:hover .follow-uncheck{
+  display: inline;
+  background-color: #ef8157;
+  color: #FFFFFF;
+  outline-color: #ef8157;
+}
