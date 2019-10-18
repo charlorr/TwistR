@@ -5,9 +5,7 @@ import {SortablePostTable} from "components/PostRoster/PostRoster.jsx";
 import {
   Card,
   CardHeader,
-  CardBody,
   CardTitle,
-  CardFooter,
   Row,
   Col
 } from "reactstrap";
@@ -46,7 +44,7 @@ var POSTS_ALL=[{
 }]
 
 class Tables extends React.Component {
-  
+
   render() {
     return (
       <>

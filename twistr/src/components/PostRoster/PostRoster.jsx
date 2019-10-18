@@ -1,16 +1,6 @@
 import React from "react";
 import Post from "components/Post/Post.jsx";
 
-import {
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  CardTitle,
-  Col,
-  Row
-} from "reactstrap";
-
 class PostRoster extends React.Component {
   render() {
     // Create posts from sorted, dynamic JSON collection

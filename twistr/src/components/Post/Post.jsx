@@ -4,11 +4,6 @@ import PostCard from "components/PostCard/PostCard.jsx";
 import ReactCard from "components/ReactCard/ReactCard.jsx";
 
 import {
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  CardTitle,
   Col,
   Row
 } from "reactstrap";

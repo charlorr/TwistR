@@ -4,13 +4,7 @@ import NewTag from "components/NewTag/NewTag.jsx";
 import {SortablePostTable} from "components/PostRoster/PostRoster.jsx";
 // reactstrap components
 import {
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  CardTitle,
-  Row,
-  Col
+  Row
 } from "reactstrap";
 
 //hardcoded posts for now, until we have connection to database
