@@ -38,21 +38,21 @@ class Dashboard extends React.Component {
   render() {
     return (
       <>
-        <div className="content">
-          <Row>
-            <CreatePost/>
-          </Row>
-          <Row>
-            {/* These NewTag components will be populated in a NewTagRoster component in a later sprint*/}
-            <NewTag/>
-            <NewTag/>
-            <NewTag/>
-            <NewTag/>
-          </Row>
-          <Row>
-            <SortablePostTable posts_all={POSTS_ALL} />
-          </Row>
-        </div>
+      <div className="content">
+        <Row>
+          <CreatePost/>
+        </Row>
+        <Row>
+          {/* These NewTag components will be populated in a NewTagRoster component in a later sprint*/}
+          <NewTag/>
+          <NewTag/>
+          <NewTag/>
+          <NewTag/>
+        </Row>
+        <Row>
+          <SortablePostTable posts_all={POSTS_ALL} />
+        </Row>
+      </div>
       </>
     );
   }
