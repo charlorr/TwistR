@@ -11,7 +11,8 @@ import {
   Form,
   Input,
   Row,
-  Col
+  Col,
+  NavLink
 } from "reactstrap";
 
 class LogIn extends React.Component {
@@ -106,7 +107,24 @@ class LogIn extends React.Component {
               </Row>
               <Row>
                 <div className="update ml-auto mr-auto">
-                  <Button className="btn-round" size = "lg" color="primary" type="submit"> Log In </Button>
+                  <Button 
+                    className="btn-round" 
+                    size="lg" 
+                    color="secondary"
+                    type="submit">
+                    <NavLink>
+                      Log In
+                    </NavLink>
+                  </Button>
+                  <Button 
+                    className="btn-round" 
+                    size="lg" 
+                    color="secondary"
+                    type="submit">
+                    <NavLink href="forgot">
+                      Forgot Password
+                    </NavLink>
+                  </Button>
                 </div>
               </Row>
             </Form>

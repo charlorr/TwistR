@@ -1,5 +1,8 @@
 import React from "react";
 import logo from '../twistr.png';
+import Register from "components/Register/Register.jsx";
+import LogIn from "components/LogIn/LogIn.jsx";
+import ForgotPassword from "components/ForgotPassword/ForgotPassword.jsx";
 
 import {
   Button,
@@ -7,14 +10,11 @@ import {
   CardHeader,
   CardBody,
   CardTitle,
-  NavLink,
-  Form,
-  Input,
   Row,
-  Col
 } from "reactstrap";
 
 class Welcome extends React.Component {
+
 
   render() {
     return (
@@ -34,29 +34,38 @@ class Welcome extends React.Component {
             <hr />
             <Row>
               <div className="update ml-auto mr-auto">
-                <Button className="btn-round" size = "lg" color="secondary" type="submit">
-                  <NavLink href="register">
-                    Register
-                  </NavLink>
+                <Button 
+                  className="btn-round" 
+                  size="lg" 
+                  color="secondary"
+                  type="submit">
+                  Register
                 </Button>
               </div>
               <div className="update ml-auto mr-auto">
-                <Button className="btn-round" size = "lg" color="secondary" type="submit">
-                  <NavLink href="login">
-                    Log In
-                  </NavLink>
+                <Button 
+                  className="btn-round" 
+                  size="lg" 
+                  color="secondary"
+                  type="submit">
+                  Log In
                 </Button>
               </div>
               <div className="update ml-auto mr-auto">
-                <Button className="btn-round" size = "lg" color="secondary" type="submit">
-                  <NavLink href="forgot">
-                    Forgot Password
-                  </NavLink>
+                <Button 
+                  className="btn-round" 
+                  size="lg" 
+                  color="secondary"
+                  type="submit">
+                  Forgot Password
                 </Button>
               </div>
             </Row>
           </CardBody>
         </Card>
+        <Register />
+        <LogIn />
+        <ForgotPassword />
       </div>
       </>
     );
