@@ -1,5 +1,6 @@
 import React from 'react';
 import UserCard from "components/UserCard/UserCard.jsx";
+import NameCard from "components/NameCard/NameCard.jsx";
 
 import {
   Card,
@@ -64,7 +65,8 @@ class CreatePost extends React.Component {
         </Card>
       </Col>
       <Col lg="2" md="2" sm="1">
-        <UserCard picture={require("assets/img/PurduePete.jpg")}/>
+        <UserCard picture={require("assets/img/PurduePete.jpg")} />
+        <NameCard />
       </Col>
       </>
     );
