@@ -204,3 +204,7 @@ color: red;
 .main-panel > .content {
   margin-top: 23px; 
 }
+
+#passwordFormReqs {
+  margin-left: 15px;
+}
