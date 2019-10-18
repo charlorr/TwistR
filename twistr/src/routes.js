@@ -1,4 +1,7 @@
-import SignIn from "views/SignIn.jsx";
+import Welcome from "views/Welcome.jsx";
+import LogIn from "views/LogIn.jsx";
+import Register from "views/Register.jsx";
+import ForgotPassword from "views/ForgotPassword.jsx";
 import Profile from "views/Profile.jsx";
 import Dashboard from "views/Dashboard.jsx";
 import Timeline from "views/Timeline.jsx";
@@ -7,10 +10,10 @@ import Notifications from "views/Notifications.jsx";
 
 var routes = [
   {
-    path: "/signin",
-    name: "Log In",
-    icon: "fas fa-sign-in-alt",
-    component: SignIn,
+    path: "/welcome",
+    name: "Welcome",
+    icon: "fa fa-home",
+    component: Welcome,
     layout: "/admin"
   },
   {
@@ -39,6 +42,27 @@ var routes = [
     name: "Explore",
     icon: "fas fa-rocket",
     component: Explore,
+    layout: "/admin"
+  },
+  {
+    path: "/register",
+    name: "Register",
+    icon: "fas fa-sign-in-alt",
+    component: Register,
+    layout: "/admin"
+  },
+  {
+    path: "/login",
+    name: "Log In",
+    icon: "fas fa-sign-in-alt",
+    component: LogIn,
+    layout: "/admin"
+  },
+  {
+    path: "/forgot",
+    name: "Forgot Password",
+    icon: "fas fa-sign-in-alt",
+    component: ForgotPassword,
     layout: "/admin"
   },
   {

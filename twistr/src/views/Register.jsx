@@ -14,7 +14,7 @@ import {
   Col
 } from "reactstrap";
 
-class SignIn extends React.Component {
+class Register extends React.Component {
 
   constructor(props) {
     super(props);
@@ -86,32 +86,6 @@ class SignIn extends React.Component {
     return (
       <>
       <div className="content" >
-        <Card className="card-user">
-          <CardHeader>
-            <CardTitle tag="h5">Log In</CardTitle>
-          </CardHeader>
-          <CardBody className ="update ml-auto mr-auto">
-            <Form >
-              <Row>
-                <FormGroup>
-                  <label><b>Username/Email</b></label>
-                  <Input name = "username" placeholder="Enter Username/Email" type="text"/>
-                </FormGroup>
-              </Row>
-              <Row>
-                <FormGroup>
-                  <label><b>Password</b></label>
-                  <Input name = "password" placeholder="Enter Password"  type="password" />
-                </FormGroup>
-              </Row>
-              <Row>
-                <div className="update ml-auto mr-auto">
-                  <Button className="btn-round" size = "lg" color="primary" type="submit"> Log In </Button>
-                </div>
-              </Row>
-            </Form>
-          </CardBody>
-        </Card>
         <Card className="card-user">
           <CardHeader>
             <CardTitle tag="h5">Register</CardTitle>
@@ -193,4 +167,4 @@ class SignIn extends React.Component {
   }
 }
 
-export default SignIn;
+export default Register;

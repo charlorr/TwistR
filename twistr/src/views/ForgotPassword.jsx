@@ -14,7 +14,7 @@ import {
   Col
 } from "reactstrap";
 
-class SignIn extends React.Component {
+class ForgotPassword extends React.Component {
 
   constructor(props) {
     super(props);
@@ -88,71 +88,11 @@ class SignIn extends React.Component {
       <div className="content" >
         <Card className="card-user">
           <CardHeader>
-            <CardTitle tag="h5">Log In</CardTitle>
-          </CardHeader>
-          <CardBody className ="update ml-auto mr-auto">
-            <Form >
-              <Row>
-                <FormGroup>
-                  <label><b>Username/Email</b></label>
-                  <Input name = "username" placeholder="Enter Username/Email" type="text"/>
-                </FormGroup>
-              </Row>
-              <Row>
-                <FormGroup>
-                  <label><b>Password</b></label>
-                  <Input name = "password" placeholder="Enter Password"  type="password" />
-                </FormGroup>
-              </Row>
-              <Row>
-                <div className="update ml-auto mr-auto">
-                  <Button className="btn-round" size = "lg" color="primary" type="submit"> Log In </Button>
-                </div>
-              </Row>
-            </Form>
-          </CardBody>
-        </Card>
-        <Card className="card-user">
-          <CardHeader>
-            <CardTitle tag="h5">Register</CardTitle>
+            <CardTitle tag="h5">Forgot Password</CardTitle>
             <label><font color="red">* </font>Required</label>
           </CardHeader>
           <CardBody>
             <Form onSubmit = {this.handleSubmit}>
-              <Row>
-                <Col className="pr-1" md="5">
-                  <FormGroup>
-                    <label><b>Username<font color="red"> *</font></b></label>
-                    <Input name ="username" placeholder="Enter Username" type="text" required />
-                  </FormGroup>
-                </Col>
-                <Col className="pl-1" md="4">
-                  <FormGroup>
-                    <label> <b>Email Address<font color="red"> *</font></b> </label>
-                    <Input name = "email" placeholder="Email" type="example@twistr.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{1,63}$" required/>
-                  </FormGroup>
-                </Col>
-                <Col className="pl-1" md="3">
-                  <FormGroup>
-                    <label><b>Phone Number<font color="red"> *</font></b></label>
-                    <Input type="tel" name="phone" placeholder ="Enter Phone Number" pattern="[0-9]{3}[-]?[0-9]{3}[-]?[0-9]{4}"/>
-                  </FormGroup>
-                </Col>
-              </Row>
-              <Row>
-                <Col className="pr-1" md="6">
-                  <FormGroup>
-                    <label><b>First Name<font color="red"> *</font></b></label>
-                    <Input placeholder="Enter First Name" type="text" required />
-                  </FormGroup>
-                </Col>
-                <Col className="pl-1" md="6">
-                  <FormGroup>
-                    <label><b>Last Name<font color="red"> *</font></b></label>
-                    <Input placeholder="Enter Last Name" type="text" required />
-                  </FormGroup>
-                </Col>
-              </Row>
               <Row>
                 <Col className="pr-1" md="6">
                   <FormGroup>
@@ -193,4 +133,4 @@ class SignIn extends React.Component {
   }
 }
 
-export default SignIn;
+export default ForgotPassword;
