@@ -1,5 +1,7 @@
 import React from 'react';
 import UserCard from "components/UserCard/UserCard.jsx";
+import PostCard from "components/PostCard/PostCard.jsx";
+import ReactCard from "components/ReactCard/ReactCard.jsx";
 
 import {
   Card,
@@ -12,28 +14,19 @@ import {
 } from "reactstrap";
 
 class Post extends React.Component {
+
   render() {
     return (
       <>
       <Col lg="12" md="11" sm="10">
         <Row>
-          <UserCard userPic={this.props.post.picture}/>
+          <Col lg="2" md="2" sm="1">
+            <UserCard picture={this.props.post.picture}/>
+            <ReactCard />
+            <hr />
+          </Col>
           <Col lg="10" md="9" sm="9">
-            <Card>
-              <CardHeader>
-                <CardTitle tag="h5">{this.props.post.author}</CardTitle>
-                <p className="card-category">{this.props.post.tags}</p>
-              </CardHeader>
-              <CardBody>
-                <h1>{this.props.post.content}</h1>
-              </CardBody>
-              <CardFooter>
-                <hr />
-                <div className="stats">
-                  <i className="fa fa-history" /> Updated {this.props.post.timestamp} minutes ago
-                </div>
-              </CardFooter>
-            </Card>
+            <PostCard post={this.props.post} />
           </Col>
         </Row>
       </Col>

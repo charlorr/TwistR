@@ -19,17 +19,15 @@ class UserCard extends React.Component {
   render() {
     return (
     <>
-      <Col lg="2" md="2" sm="1">
-        <Card>
-          <CardBody>
-            <img
-              alt="..."
-              className="border-gray"
-              src={this.props.userPic}
-            />
-          </CardBody>
-        </Card>
-      </Col>
+    <Card>
+      <CardBody>
+        <img
+          alt="..."
+          className="border-gray"
+          src={this.props.picture}
+        />
+      </CardBody>
+    </Card>
     </>
     );
   }
