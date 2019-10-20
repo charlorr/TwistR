@@ -39,15 +39,6 @@ class Welcome extends React.Component {
                   size="lg" 
                   color="secondary"
                   type="submit">
-                  Register
-                </Button>
-              </div>
-              <div className="update ml-auto mr-auto">
-                <Button 
-                  className="btn-round" 
-                  size="lg" 
-                  color="secondary"
-                  type="submit">
                   Log In
                 </Button>
               </div>
@@ -60,12 +51,21 @@ class Welcome extends React.Component {
                   Forgot Password
                 </Button>
               </div>
+              <div className="update ml-auto mr-auto">
+                <Button 
+                  className="btn-round" 
+                  size="lg" 
+                  color="secondary"
+                  type="submit">
+                  Register
+                </Button>
+              </div>
             </Row>
           </CardBody>
         </Card>
-        <Register />
         <LogIn />
         <ForgotPassword />
+        <Register />
       </div>
       </>
     );
