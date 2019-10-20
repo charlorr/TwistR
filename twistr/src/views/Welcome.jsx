@@ -1,5 +1,5 @@
 import React from "react";
-import logo from '../twistr.png';
+import logo from '../Welcome_to_TwistR.png';
 import Register from "components/Register/Register.jsx";
 import LogIn from "components/LogIn/LogIn.jsx";
 import ForgotPassword from "components/ForgotPassword/ForgotPassword.jsx";
@@ -54,15 +54,9 @@ class Welcome extends React.Component {
       <>
       <div className="content" >
         <Card className="card-user">
-          <CardHeader>
-            <CardTitle tag="h5">
-              <b><font color="#54BFEC">Welcome to Twist</font>
-              <font color="#FF0005">Я</font></b>
-            </CardTitle>
-          </CardHeader>
           <CardBody className ="update ml-auto mr-auto">
             <Row>
-              <img src={logo} className="App-logo" alt="logo" />
+              <img src={logo} className="App-logo welcomeLogo" alt="logo" />
             </Row>
             <hr />
             <Row>
