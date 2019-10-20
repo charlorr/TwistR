@@ -1,5 +1,5 @@
 import React from "react";
-import logo from '../Welcome to TwistR.png';
+import logo from '../Welcome_to_TwistR.png';
 import Register from "components/Register/Register.jsx";
 import LogIn from "components/LogIn/LogIn.jsx";
 import ForgotPassword from "components/ForgotPassword/ForgotPassword.jsx";
