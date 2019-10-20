@@ -61,7 +61,7 @@ class Register extends React.Component {
 			status5: !valid_specialchar
     })
 
-    /*const regex = new RegExp("(?=.*[a-z])(?=.*[A-Z])(?=.{8,})(?=.*[!@#\\$%\\^&\\*])(?=.*[0-9])");
+    const regex = new RegExp("(?=.*[a-z])(?=.*[A-Z])(?=.{8,})(?=.*[!@#\\$%\\^&\\*])(?=.*[0-9])");
 		const isValid = regex.test(document.getElementById("password_reg").value);
     
     if(!isValid){
@@ -70,7 +70,7 @@ class Register extends React.Component {
     }
 		else {
 		  document.getElementById("password_reg").setCustomValidity("");
-    }  */  
+    }  
 	}
 
 	handleSubmit(event) {
@@ -103,7 +103,7 @@ class Register extends React.Component {
                 <Col className="pl-1" md="4">
                   <FormGroup>
                     <label> <b>Email Address<font color="red"> *</font></b> </label>
-                    <Input name = "email" placeholder="Email" type="example@twistr.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{1,63}$" required/>
+                    <Input name = "email" placeholder="example@twistr.com" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{1,63}$" required/>
                   </FormGroup>
                 </Col>
                 <Col className="pl-1" md="3">
