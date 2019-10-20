@@ -72,16 +72,6 @@ class Welcome extends React.Component {
                   size="lg" 
                   color="secondary"
                   type="submit"
-                  onClick={() => this.showReg()}>
-                  Register
-                </Button>
-              </div>
-              <div className="update ml-auto mr-auto">
-                <Button 
-                  className="btn-round" 
-                  size="lg" 
-                  color="secondary"
-                  type="submit"
                   onClick={() => this.showLogin()}>
                   Log In
                 </Button>
@@ -94,6 +84,16 @@ class Welcome extends React.Component {
                   type="submit"
                   onClick={() => this.showForgotPass()}>
                   Forgot Password
+                </Button>
+              </div>
+              <div className="update ml-auto mr-auto">
+                <Button 
+                  className="btn-round" 
+                  size="lg" 
+                  color="secondary"
+                  type="submit"
+                  onClick={() => this.showReg()}>
+                  Register
                 </Button>
               </div>
             </Row>
