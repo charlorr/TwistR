@@ -15,6 +15,39 @@ import {
 
 class Welcome extends React.Component {
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      LogIn: false,
+      Register: false,
+      ForgotPass: false,
+    }
+  }
+
+  showLogin() {
+    this.setState({
+      LogIn: true,
+      Register: false,
+      ForgotPass: false,
+    })
+  }
+
+  showReg() {
+    this.setState({
+      LogIn: false,
+      Register: true,
+      ForgotPass: false,
+    })
+  }
+
+  showForgotPass() {
+    this.setState({
+      LogIn: false,
+      Register: false,
+      ForgotPass: true,
+    })
+  }
 
   render() {
     return (
@@ -32,7 +65,8 @@ class Welcome extends React.Component {
                   className="btn-round" 
                   size="lg" 
                   color="secondary"
-                  type="submit">
+                  type="submit"
+                  onClick={() => this.showReg()}>
                   Register
                 </Button>
               </div>
@@ -41,7 +75,8 @@ class Welcome extends React.Component {
                   className="btn-round" 
                   size="lg" 
                   color="secondary"
-                  type="submit">
+                  type="submit"
+                  onClick={() => this.showLogin()}>
                   Log In
                 </Button>
               </div>
@@ -50,16 +85,17 @@ class Welcome extends React.Component {
                   className="btn-round" 
                   size="lg" 
                   color="secondary"
-                  type="submit">
+                  type="submit"
+                  onClick={() => this.showForgotPass()}>
                   Forgot Password
                 </Button>
               </div>
             </Row>
           </CardBody>
         </Card>
-        <Register />
-        <LogIn />
-        <ForgotPassword />
+        { this.state.Register ? <Register /> : null}
+        { this.state.LogIn ? <LogIn /> : null}
+        { this.state.ForgotPass ? <ForgotPassword /> : null}
       </div>
       </>
     );
