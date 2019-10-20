@@ -208,3 +208,8 @@ color: red;
 #passwordFormReqs {
   margin-left: 15px;
 }
+
+.welcomeLogo{
+  width: 1000px;
+  height: 250px;
+}
