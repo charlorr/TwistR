@@ -214,3 +214,11 @@ color: red;
   width: 1000px;
   height: 250px;
 }
+
+.heartedTag:hover .outline-heart, .heartedTag .filled-heart{
+  display:none;
+}
+
+.heartedTag:hover .filled-heart{
+  display: inline;
+}

@@ -20,8 +20,9 @@ class NewTag extends React.Component {
             <CardBody>
               <Row>
                 <Col md="4" xs="5">
-                    <div className="icon-big text-center icon-warning">
-                      <i className="nc-icon nc-favourite-28 text-primary" />
+                    <div className="icon-big text-center icon-warning heartedTag">
+                      <i className="far fa-heart text-primary outline-heart" />
+                      <i className = "fas fa-heart text-primary filled-heart"/>
                     </div>
                 </Col>
                 <Col md="8" xs="7">
