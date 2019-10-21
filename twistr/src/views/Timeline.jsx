@@ -1,6 +1,8 @@
 import React from "react";
 import CreatePost from "components/CreatePost/CreatePost.jsx";
 import NewTag from "components/NewTag/NewTag.jsx";
+import Post from "components/Post/Post.jsx";
+import {SortableTagTable} from "components/NewTagRoster/NewTagRoster.jsx";
 import {SortablePostTable} from "components/PostRoster/PostRoster.jsx";
 // reactstrap components
 import {
@@ -16,7 +18,7 @@ var POSTS_ALL=[{
   picture: require("assets/img/CookieMonster.jpg"),
 }, {
   author: "Cookie Monster",
-  tags: ["yellow ", "feathers "],
+  tags: ["ouch ", "regrets "],
   content: "Update: I have a stomach ache.",
   timestamp: 15,
   picture: require("assets/img/CookieMonster.jpg"),
@@ -28,6 +30,20 @@ var POSTS_ALL=[{
   picture: require("assets/img/Elmo.jpg"),
 }]
 
+var TAGS_ALL=[{
+  author: "Cookie Monster",
+  content: "ouch",
+  timestamp: 15
+}, {
+  author: "Cookie Monster",
+  content: "regrets",
+  timestamp: 15
+}, {
+  author: "Elmo",
+  content: "tickle me",
+  timestamp: 40
+}]
+
 class Timeline extends React.Component {
   render() {
     return (
@@ -37,11 +53,7 @@ class Timeline extends React.Component {
           <CreatePost/>
         </Row>
         <Row>
-          {/* These NewTag components will be populated in a NewTagRoster component in a later sprint*/}
-          <NewTag/>
-          <NewTag/>
-          <NewTag/>
-          <NewTag/>
+              <SortableTagTable tags_all = {TAGS_ALL}/>
         </Row>
         <Row>
           <SortablePostTable posts_all={POSTS_ALL} />
