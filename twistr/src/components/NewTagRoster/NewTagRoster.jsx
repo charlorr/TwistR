@@ -2,12 +2,21 @@ import React from "react";
 //import Post from "components/Post/Post.jsx";
 import NewTag from "components/NewTag/NewTag.jsx"
 
+import {
+  Row,
+  Col
+} from "reactstrap";
+
 class NewTagRoster extends React.Component {
   render() {
     // Create tags
     var cards = [];
     this.props.tags_all.forEach(function(newTag) { 
-        cards.push(<NewTag newTag={newTag} />);
+        cards.push(
+          <Col lg="3" md="3" sm="3">
+            <NewTag newTag={newTag} />
+          </Col>
+        );
     });
     return (cards);
   }
@@ -27,9 +36,10 @@ class SortableTagTable extends React.Component { //called from Timeline to organ
     
     return (
       <div>
-        {this.sortRosterStateBy('timestamp',this.props.tags_all, this.state.direction ) //calls its own function to actually sort
-        }<NewTagRoster tags_all={this.state.tags_all //creates roster of all the tags to be displayed
-        }/>
+        <Row>
+          {this.sortRosterStateBy('timestamp',this.props.tags_all, this.state.direction )}
+          <NewTagRoster tags_all={this.state.tags_all}/>
+        </Row>
       </div>
     );
   }

@@ -5,7 +5,8 @@ import {SortablePostTable} from "components/PostRoster/PostRoster.jsx";
 import {SortableTagTable} from "components/NewTagRoster/NewTagRoster.jsx";
 // reactstrap components
 import {
-  Row
+  Row,
+  Col
 } from "reactstrap";
 
 //hardcoded posts for now, until we have connection to database
@@ -52,9 +53,10 @@ class Dashboard extends React.Component {
         <Row>
           <CreatePost/>
         </Row>
-          {/* These NewTag components will be populated in a NewTagRoster component in a later sprint*/}
         <Row>
-        <SortableTagTable tags_all = {TAGS_ALL} />
+          <Col lg="12" md="12" sm="12">
+            <SortableTagTable tags_all = {TAGS_ALL}/>
+          </Col>
         </Row>
         <Row>
           <SortablePostTable posts_all={POSTS_ALL} />

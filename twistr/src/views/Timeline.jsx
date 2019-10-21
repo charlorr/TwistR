@@ -7,6 +7,7 @@ import {SortablePostTable} from "components/PostRoster/PostRoster.jsx";
 // reactstrap components
 import {
   Row,
+  Col
 } from "reactstrap";
 
 //hardcoded posts for now, until we have connection to database
@@ -42,6 +43,10 @@ var TAGS_ALL=[{
   author: "Elmo",
   content: "tickle me",
   timestamp: 40
+}, {
+  author: "Ania delete this example tag once you see this",
+  content: "this is an example of what happens when you make the tag too long, the box is still responsive and contains it, but we need to obviously only allow a certain size input for new tags",
+  timestamp: 420
 }]
 
 class Timeline extends React.Component {
@@ -53,7 +58,9 @@ class Timeline extends React.Component {
           <CreatePost/>
         </Row>
         <Row>
-              <SortableTagTable tags_all = {TAGS_ALL}/>
+          <Col lg="12" md="12" sm="12">
+            <SortableTagTable tags_all = {TAGS_ALL}/>
+          </Col>
         </Row>
         <Row>
           <SortablePostTable posts_all={POSTS_ALL} />
