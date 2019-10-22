@@ -41,12 +41,8 @@ var TAGS_ALL=[{
   timestamp: 15
 }, {
   author: "Elmo",
-  content: "tickle me",
+  content: "tickleMe",
   timestamp: 40
-}, {
-  author: "Ania delete this example tag once you see this",
-  content: "this is an example of what happens when you make the tag too long, the box is still responsive and contains it, but we need to obviously only allow a certain size input for new tags",
-  timestamp: 420
 }]
 
 class Timeline extends React.Component {
