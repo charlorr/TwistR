@@ -131,13 +131,13 @@ class Register extends React.Component {
                 <Col className="pr-1" md="6">
                   <FormGroup>
                     <label><b>Password<font color="red"> *</font></b></label>
-                    <Input id="password_reg" placeholder="Enter Password" value={this.state.value} type="text" onChange={() => this.handleChange()} required />
+                    <Input id="password_reg" placeholder="Enter Password" value={this.state.value} type="password" onChange={() => this.handleChange()} required />
                   </FormGroup>
                 </Col>
                   <Col className="pl-1" md="6">
                   <FormGroup>
                     <label><b>Confirm Password<font color="red"> *</font></b></label>
-                    <Input id="password_confirm" placeholder="Enter Password Again" type="text" onChange={() => this.handleChange()} required />
+                    <Input id="password_confirm" placeholder="Enter Password Again" type="password" onChange={() => this.handleChange()} required />
                   </FormGroup>
                 </Col>
               </Row>
