@@ -1,5 +1,5 @@
 import  React, { Component } from  'react';
-import  UserService  from  '../UserService/UserService.js';
+import  UserService  from  'components/UserService/UserService.jsx';
 
 const  userService  =  new  UserService();
 
