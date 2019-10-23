@@ -222,3 +222,16 @@ color: red;
 .heartedTag:hover .filled-heart{
   display: inline;
 }
+
+.reactedHeart:hover .outline-heart, .reactedHeart .filled-heart{
+  display:none;
+}
+
+.reactedHeart:hover .filled-heart{
+  display: inline;
+}
+
+.reactedShare:hover .colored-share{
+  display: inline;
+  color:#60b0f4;
+}

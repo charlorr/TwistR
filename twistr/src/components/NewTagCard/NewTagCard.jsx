@@ -24,15 +24,17 @@ class NewTagCard extends React.Component {
         </Row>
         <Row>
           <Col lg="12" md="12" sm="12">
-            <div className="numbers text-center">
+            <div className="numbers">
               <p>#{this.props.newTag.content}</p>
             </div>
           </Col>
         </Row>
         <Row>
           <Col lg="12" md="12" sm="12">
-          <div className="icon-big text-center icon-warning">
-            Follow this Twist? <i class="fas fa-plus" />
+            
+          <div className="icon-big icon-warning heartedTag">
+          Follow this Twist? <i className="fas fa-heart text-primary filled-heart" />
+            <i className = "far fa-heart text-primary outline-heart"/>
           </div>
           </Col>
         </Row>
