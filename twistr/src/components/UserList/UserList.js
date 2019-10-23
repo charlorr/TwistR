@@ -1,9 +1,9 @@
 import  React, { Component } from  'react';
-import  UsersService  from  './UsersService.js';
+import  UserService  from  '../UserService/UserService.js';
 
-const  usersService  =  new  UsersService();
+const  userService  =  new  UserService();
 
-class  UsersList  extends  Component {
+class  UserList  extends  Component {
 
 constructor(props) {
     super(props);
@@ -17,14 +17,14 @@ constructor(props) {
 
 componentDidMount() {
     var  self  =  this;
-    usersService.getUsers().then(function (result) {
+    userService.getUsers().then(function (result) {
         console.log(result);
         self.setState({ users:  result.data, nextPageURL:  result.nextlink})
     });
 }
 handleDelete(e,pk){
     var  self  =  this;
-    usersService.deleteUser({pk :  pk}).then(()=>{
+    userService.deleteUser({pk :  pk}).then(()=>{
         var  newArr  =  self.state.users.filter(function(obj) {
             return  obj.pk  !==  pk;
         });
@@ -36,7 +36,7 @@ handleDelete(e,pk){
 nextPage(){
     var  self  =  this;
     console.log(this.state.nextPageURL);        
-    usersService.getUsersByURL(this.state.nextPageURL).then((result) => {
+    userService.getUsersByURL(this.state.nextPageURL).then((result) => {
         self.setState({ users:  result.data, nextPageURL:  result.nextlink})
     });
 }
@@ -79,4 +79,4 @@ render() {
         );
   }
 }
-export  default  UsersList;
+export  default  UserList;
