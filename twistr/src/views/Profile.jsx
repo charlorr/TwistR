@@ -219,7 +219,7 @@ class Profile extends React.Component {
                         </label>
                         <Input 
                           id="email"
-                          placeholder="Email" 
+                          placeholder="example@twistr.com" 
                           type="email"
                           maxLength="40"
                           required/>

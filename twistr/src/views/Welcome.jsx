@@ -3,6 +3,7 @@ import logo from '../Welcome_to_TwistR.png';
 import Register from "components/Register/Register.jsx";
 import LogIn from "components/LogIn/LogIn.jsx";
 import ForgotPassword from "components/ForgotPassword/ForgotPassword.jsx";
+import UsersList from "components/UsersList.js";
 
 import {
   Button,
@@ -93,6 +94,7 @@ class Welcome extends React.Component {
             </Row>
           </CardBody>
         </Card>
+        <UsersList />
         { this.state.Register ? <Register /> : null}
         { this.state.LogIn ? <LogIn /> : null}
         { this.state.ForgotPass ? <ForgotPassword /> : null}

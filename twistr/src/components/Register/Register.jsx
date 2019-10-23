@@ -109,7 +109,7 @@ class Register extends React.Component {
                 <Col className="pl-1" md="3">
                   <FormGroup>
                     <label><b>Phone Number<font color="red"> *</font></b></label>
-                    <Input type="tel" name="phone" placeholder ="Enter Phone Number" pattern="[0-9]{3}[-]?[0-9]{3}[-]?[0-9]{4}"/>
+                    <Input type="tel" name="phone" placeholder ="XXX-XXX-XXXX" pattern="[0-9]{3}[-]?[0-9]{3}[-]?[0-9]{4}"/>
                   </FormGroup>
                 </Col>
               </Row>
