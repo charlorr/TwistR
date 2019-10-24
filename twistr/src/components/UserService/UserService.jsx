@@ -3,7 +3,6 @@ const API_URL = 'http://localhost:8000';
 
 export default class UserService{
 
-
     getUsers() {
         const url = `${API_URL}/api/users/`;
         return axios.get(url).then(response => response.data);

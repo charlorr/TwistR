@@ -3,7 +3,7 @@ import logo from '../Welcome_to_TwistR.png';
 import Register from "components/Register/Register.jsx";
 import LogIn from "components/LogIn/LogIn.jsx";
 import ForgotPassword from "components/ForgotPassword/ForgotPassword.jsx";
-import UserList from "components/UserList/UserList.js";
+import UserList from "components/UserList/UserList.jsx";
 
 import {
   Button,

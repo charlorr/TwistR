@@ -1,5 +1,6 @@
 import React from "react";
 import NotificationAlert from "react-notification-alert";
+import UserService from "../components/UserService/UserService.jsx";
 // reactstrap components
 import {
   Button,
@@ -15,13 +16,15 @@ import {
   Col
 } from "reactstrap";
 
+
+const userService = new UserService();
 class Profile extends React.Component {
   bio="Boiler Up, Hammer Down!";
   state = {
     visible: true
   };
   notificationAlert = React.createRef();
-  update() {
+  updateProfile() {
     if (document.getElementById("username").reportValidity() &&
         document.getElementById("email").reportValidity() &&
         document.getElementById("tel").reportValidity() &&
@@ -283,7 +286,7 @@ class Profile extends React.Component {
                         className="btn-round"
                         color="primary"
                         type="button"
-                        onClick={() => this.update()}
+                        onClick={() => this.updateProfile()}
                       >
                         Update Profile
                       </Button>
