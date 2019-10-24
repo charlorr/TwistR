@@ -145,7 +145,7 @@ class Register extends React.Component {
             <label><font color="red">* </font>Required</label>
           </CardHeader>
           <CardBody>
-            <Form>
+            <Form onSubmit={this.handleSubmit}>
               <Row>
                 <Col className="pr-1" md="5">
                   <FormGroup>
@@ -207,7 +207,7 @@ class Register extends React.Component {
                     size="lg" 
                     color="primary"
                     type="submit"
-                    onClick={() => this.handleSubmit()}>
+                    >
                     Register
                   </Button>
                 </div>
