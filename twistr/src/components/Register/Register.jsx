@@ -1,6 +1,7 @@
 import React from "react";
 //import PasswordForm from "components/PasswordForm/PasswordForm.jsx";
 import PasswordFormReqs from "components/PasswordFormReqs/PasswordFormReqs.jsx";
+import  UserService  from  '../UserService/UserService.js';
 import {
   Button,
   Card,
@@ -14,6 +15,7 @@ import {
   Col
 } from "reactstrap";
 
+const userService = new UserService();
 class Register extends React.Component {
 
   constructor(props) {
@@ -31,6 +33,66 @@ class Register extends React.Component {
       };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    var  self  =  this;
+    userService.getUsers().then(function (result) {
+        console.log(result);
+        self.setState({ users:  result.data, nextPageURL:  result.nextlink})
+    });
+  }//Didn't follow the tutorial on this one, used the one from UserList
+
+  handleCreate() {
+      userService.createUser(
+        {
+            "firstName": document.getElementById("firstName").value,
+            "lastName": document.getElementById("lastName").value,
+            "email": document.getElementById("email").value,
+            "phoneNumber": document.getElementById("phoneNumber").value,
+            "username": document.getElementById("username").value,
+            "password": document.getElementById("password_reg").value
+        }
+        ).then((result)=>{
+          alert("Customer created!");
+        }).catch(()=>{
+          alert('There was an error! Please re-check your form.');
+        });
+  } //TODO: check that username and email are unique
+
+  // handleUpdate(){
+  //     var first = document.getElementById("firstName").value;
+  //     var last = document.getElementById("lastName").value;
+  //     var email = document.getElementById("email").value;
+  //     var phoneNumber = document.getElementById("phoneNumber").value;
+  //     var username = document.getElementById("username").value;
+  //     var password = document.getElementById("password_reg").value;
+  //   userService.updateUser(
+  //       {
+  //       "pk":  1,
+  //       "firstName":  first,
+  //       "lastName": last,
+  //       "email": email,
+  //       "phone":  phoneNumber,
+  //       "username":  username,
+  //       "password":  password
+  //       }
+  //       ).then((result)=>{
+  //           alert("Customer updated!");
+  //       }).catch(()=>{
+  //           alert('There was an error! Please re-check your form.');
+  //       });
+  //   }
+  // ^^Not needed, use for reference, then delete.
+
+  handleSubmit(event) {
+    event.preventDefault();
+		this.setState({
+			value: document.getElementById("password_reg").value,
+			show: true
+		});
+    this.handleCreate();
+    event.preventDefault();
   }
 
   handleChange() {
@@ -73,15 +135,6 @@ class Register extends React.Component {
     }  
 	}
 
-	handleSubmit(event) {
-		event.preventDefault();
-		this.setState({
-			value: document.getElementById("password_reg").value,
-			show: true
-		});
-		    
-	}
-
   render() {
     return (
       <>
@@ -92,24 +145,24 @@ class Register extends React.Component {
             <label><font color="red">* </font>Required</label>
           </CardHeader>
           <CardBody>
-            <Form onSubmit = {this.handleSubmit}>
+            <Form>
               <Row>
                 <Col className="pr-1" md="5">
                   <FormGroup>
                     <label><b>Username<font color="red"> *</font></b></label>
-                    <Input name ="username" placeholder="Enter Username" type="text" required />
+                    <Input name ="username" id="username" placeholder="Enter Username" type="text" required />
                   </FormGroup>
                 </Col>
                 <Col className="pl-1" md="4">
                   <FormGroup>
                     <label> <b>Email Address<font color="red"> *</font></b> </label>
-                    <Input name = "email" placeholder="example@twistr.com" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{1,63}$" required/>
+                    <Input name = "email" id="email" placeholder="example@twistr.com" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{1,63}$" required/>
                   </FormGroup>
                 </Col>
                 <Col className="pl-1" md="3">
                   <FormGroup>
                     <label><b>Phone Number<font color="red"> *</font></b></label>
-                    <Input type="tel" name="phone" placeholder ="XXX-XXX-XXXX" pattern="[0-9]{3}[-]?[0-9]{3}[-]?[0-9]{4}"/>
+                    <Input type="tel" name="phone" id="phoneNumber" placeholder ="XXX-XXX-XXXX" pattern="[0-9]{3}[-]?[0-9]{3}[-]?[0-9]{4}"/>
                   </FormGroup>
                 </Col>
               </Row>
@@ -117,13 +170,13 @@ class Register extends React.Component {
                 <Col className="pr-1" md="6">
                   <FormGroup>
                     <label><b>First Name<font color="red"> *</font></b></label>
-                    <Input placeholder="Enter First Name" type="text" required />
+                    <Input id="firstName" placeholder="Enter First Name" type="text" required />
                   </FormGroup>
                 </Col>
                 <Col className="pl-1" md="6">
                   <FormGroup>
                     <label><b>Last Name<font color="red"> *</font></b></label>
-                    <Input placeholder="Enter Last Name" type="text" required />
+                    <Input id="lastName" placeholder="Enter Last Name" type="text" required />
                   </FormGroup>
                 </Col>
               </Row>
@@ -153,7 +206,8 @@ class Register extends React.Component {
                     className="btn-round" 
                     size="lg" 
                     color="primary"
-                    type="submit">
+                    type="submit"
+                    onClick={() => this.handleSubmit()}>
                     Register
                   </Button>
                 </div>
