@@ -1,6 +1,7 @@
 import  React, { Component } from  'react';
 import  UserService  from  'components/UserService/UserService.jsx';
 import NotificationAlert from "react-notification-alert";
+
 import {
     Button,
     Card,
@@ -18,19 +19,16 @@ const  userService  =  new  UserService();
 class  ProfileEditCard  extends  Component {
   
   constructor(props) {
-        super(props);
-        // var current = props.currentUser;
-        // const output = Object.fromEntries(current);
-        // console.log(output);
-        this.state  = {
-            users: [],
-            currentUserPk: null, //Profile sends ProfileEditCard a prop of currentUserPK
-            currentUser: []
-        };
-      this.handleSubmit  =  this.handleSubmit.bind(this);
-      const current = userService.getUser(this.props.currentUser);
-      console.log(current);
-    }
+    super(props);
+    this.state  = {
+      users: [],
+      currentUserPk: null,
+      currentUser: []
+    };
+    this.handleSubmit  =  this.handleSubmit.bind(this);
+    const current = userService.getUser(this.props.currentUser);
+    console.log(current);
+  }
 
     // componentWillReceiveProps(props){
     //   this.setState({currentUser: props.currentUser})
@@ -46,14 +44,12 @@ class  ProfileEditCard  extends  Component {
     // }
 
     notificationAlert = React.createRef();
-    handleSubmit(event){
-      
+    handleSubmit(event) {
       this.updateProfile(this.props.currentUser.pk)
       event.preventDefault();
     }
     
-    updateProfile(pk){
-      
+    updateProfile(pk) {
       var username = document.getElementById("username").value;
       var firstName = document.getElementById("firstName").value;
       var lastName = document.getElementById("lastName").value;
@@ -61,38 +57,36 @@ class  ProfileEditCard  extends  Component {
       var phoneNumber = document.getElementById("phoneNumber").value;
       var bio = document.getElementById("bio").value;
       
-      userService.updateUser(
-              {
-              "pk":  pk,
-              "username": username,
-              "firstName":  firstName,
-              "lastName":  lastName,
-              "email":  email,
-              "phoneNumber":phoneNumber,
-              "bio":  bio
-              }
-              ).then((result)=>{
-                
-                  console.log(result);
-                  
-                  var options = {};
-                  options = {
-                    place: "tr",
-                    message: (
-                      <div>
-                        <div>
-                          Profile successfully updated!
-                        </div>
-                      </div>
-                    ),
-                    type: "warning",
-                    icon: "nc-icon nc-bell-55",
-                    autoDismiss: 7
-                  };
-                  this.notificationAlert.current.notificationAlert(options);
-              }).catch(()=>{
-                  alert('There was an error! Please re-check your form.');
-              });
+      userService.updateUser({
+        "pk": pk,
+        "username": username,
+        "firstName": firstName,
+        "lastName": lastName,
+        "email": email,
+        "phoneNumber": phoneNumber,
+        "bio": bio
+      })
+      .then((result) => {
+        console.log(result);
+        var options = {};
+        options = {
+          place: "tr",
+          message: (
+            <div>
+              <div>
+                Profile successfully updated!
+              </div>
+            </div>
+          ),
+          type: "warning",
+          icon: "nc-icon nc-bell-55",
+          autoDismiss: 7
+        };
+        this.notificationAlert.current.notificationAlert(options);
+      })
+      .catch(()=>{
+        alert('There was an error! Please re-check your form.');
+      });
     }
 
     render() { 

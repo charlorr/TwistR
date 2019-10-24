@@ -1,5 +1,4 @@
 import React from "react";
-import NotificationAlert from "react-notification-alert";
 import UserService from "../components/UserService/UserService.jsx";
 import ProfileEditCard from "../components/ProfileEditCard/ProfileEditCard.jsx";
 import FollowerCard from "../components/FollowerCard/FollowerCard.jsx";
@@ -7,15 +6,6 @@ import ProfileSummaryCard from "../components/ProfileSummaryCard/ProfileSummaryC
 
 // reactstrap components
 import {
-  Button,
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  CardTitle,
-  FormGroup,
-  Form,
-  Input,
   Row,
   Col
 } from "reactstrap";
@@ -43,21 +33,18 @@ class Profile extends React.Component {
       })
     }
   }
+  
   render() {
     return (
       <>
       <div className="content">
         <Row>
           <Col md="4">
-            
-            <ProfileSummaryCard/>
-            <FollowerCard/>
+            <ProfileSummaryCard />
+            <FollowerCard />
           </Col>
-          
           <Col md="8">
-            
             <ProfileEditCard currentUser = {this.state.currentUser} />
-            
           </Col>
         </Row>
 
