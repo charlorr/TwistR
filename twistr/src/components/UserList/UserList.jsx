@@ -52,8 +52,8 @@ render() {
                 <th>Last Name</th>
                 <th>Phone</th>
                 <th>Email</th>
-                <th>Address</th>
-                <th>Description</th>
+                <th>Username</th>
+                <th>Bio</th>
                 <th>Actions</th>
             </tr>
             </thead>
@@ -61,15 +61,16 @@ render() {
             {this.state.users.map( c  =>
                 <tr  key={c.pk}>
                 <td>{c.pk}  </td>
-                <td>{c.first_name}</td>
-                <td>{c.last_name}</td>
-                <td>{c.phone}</td>
+                <td>{c.firstName}</td>
+                <td>{c.lastName}</td>
+                <td>{c.phoneNumber}</td>
                 <td>{c.email}</td>
-                <td>{c.address}</td>
-                <td>{c.description}</td>
+                <td>{c.username}</td>
+                <td>{c.bio}</td>
+                
                 <td>
                 <button  onClick={(e)=>  this.handleDelete(e,c.pk) }> Delete</button>
-                <a  href={"/user/" + c.pk}> Update</a>
+                <a  href={"user/" + c.pk}> Update</a>
                 </td>
             </tr>)}
             </tbody>

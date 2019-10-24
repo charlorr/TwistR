@@ -4,6 +4,7 @@ import Dashboard from "views/Dashboard.jsx";
 import Timeline from "views/Timeline.jsx";
 import Explore from "views/Explore.jsx";
 import Notifications from "views/Notifications.jsx";
+import ProfileEditCard from "components/ProfileEditCard/ProfileEditCard";
 
 var routes = [
   {
@@ -14,7 +15,7 @@ var routes = [
     layout: "/admin"
   },
   {
-    path: "/profile",
+    path: "/profile/user/:pk",
     name: "Profile",
     icon: "fas fa-user-alt",
     component: Profile,
@@ -46,6 +47,13 @@ var routes = [
     name: "Notifications",
     icon: "fas fa-bell",
     component: Notifications,
+    layout: "/admin"
+  },
+  {
+    path: "/user/:pk",
+    name: "ProfileUser",
+    icon: "fas fa-user-alt",
+    component: ProfileEditCard,
     layout: "/admin"
   },
 ];
