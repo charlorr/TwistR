@@ -10,7 +10,6 @@ import {
   Col
 } from "reactstrap";
 
-
 const userService = new UserService();
 class Profile extends React.Component {
 
@@ -24,12 +23,13 @@ class Profile extends React.Component {
 
   componentDidMount() {
     const { match: { params } } =  this.props;
-    if(params  &&  params.pk)
-    {      var  self  =  this;
-      userService.getUser(params.pk).then(function(result){
-      console.log(result);
-      self.setState({currentUser: result});
-      console.log("this is the currentUser after setting state:" +self.state.currentUser)
+    if(params && params.pk)
+    {
+      var self = this;
+      userService.getUser(params.pk).then(function(result) {
+        //console.log(result);
+        self.setState({currentUser: result});
+        //console.log("this is the currentUser after setting state:" +self.state.currentUser)
       })
     }
   }
@@ -47,7 +47,6 @@ class Profile extends React.Component {
             <ProfileEditCard currentUser = {this.state.currentUser} />
           </Col>
         </Row>
-
       </div>
       </>
     );
