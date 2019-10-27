@@ -72,4 +72,4 @@ render() {
         );
   }
 }
-export  default  UserList;
+export  default  PostList;
