@@ -1,6 +1,7 @@
 import Welcome from "views/Welcome.jsx";
 import Profile from "views/Profile.jsx";
 import Dashboard from "views/Dashboard.jsx";
+import Userline from "views/Userline.jsx";
 import Timeline from "views/Timeline.jsx";
 import Explore from "views/Explore.jsx";
 import Notifications from "views/Notifications.jsx";
@@ -25,6 +26,13 @@ var routes = [
     name: "Dashboard",
     icon: "far fa-newspaper",
     component: Dashboard,
+    layout: "/admin"
+  },
+  {
+    path: "/userline",
+    name: "Userline",
+    icon: "far fa-newspaper",
+    component: Userline,
     layout: "/admin"
   },
   {

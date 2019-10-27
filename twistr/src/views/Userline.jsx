@@ -1,5 +1,5 @@
 import React from "react";
-import CreatePost from "components/CreatePost/CreatePost.jsx";
+import BioCard from "components/BioCard/BioCard.jsx";
 import {SortablePostTable} from "components/PostRoster/PostRoster.jsx";
 import {SortableTagTable} from "components/NewTagRoster/NewTagRoster.jsx";
 // reactstrap components
@@ -10,25 +10,18 @@ import {
 
 //hardcoded posts for now, until we have connection to database
 var POSTS_ALL=[{
-  author: "Purdue Pete",
-  tags: ["boiler ", "maker ", ""],
-  content: "I love TwistR",
-  timestamp: 8,
-  picture: require("assets/img/PurduePete.jpg"),
+  author: "Cookie Monster",
+  tags: ["cookies ", "trashcan ", ""],
+  content: "I just ate 49 cookies. I had some chocolate chip, triple chocolate, and peanut butter",
+  timestamp: 30,
+  picture: require("assets/img/CookieMonster.jpg"),
 }, {
-  author: "Purdue Pete",
-  tags: ["choo ", "choochoo "],
+  author: "Cookie Monster",
+  tags: ["ouch ", "regrets "],
   content: "Update: I have a stomach ache.",
   timestamp: 15,
-  picture: require("assets/img/PurduePete.jpg"),
-}, {
-  author: "Purdue Pete",
-  tags: ["black ", "gold ", "cs307 "],
-  content: "First Post! Woooo!",
-  timestamp: 400,
-  picture: require("assets/img/PurduePete.jpg"),
+  picture: require("assets/img/CookieMonster.jpg"),
 }]
-
 
 var TAGS_ALL=[{
   author: "Cookie Monster",
@@ -38,19 +31,15 @@ var TAGS_ALL=[{
   author: "Cookie Monster",
   content: "regrets",
   timestamp: 15
-}, {
-  author: "Elmo",
-  content: "tickle me",
-  timestamp: 40
 }]
 
-class Dashboard extends React.Component {
+class Userline extends React.Component {
   render() {
     return (
       <>
       <div className="content">
         <Row>
-          <CreatePost/>
+          <BioCard />
         </Row>
         <Row>
           <Col lg="12" md="12" sm="12">
@@ -66,4 +55,4 @@ class Dashboard extends React.Component {
   }
 }
 
-export default Dashboard;
+export default Userline;
