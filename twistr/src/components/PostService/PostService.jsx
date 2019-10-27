@@ -11,6 +11,11 @@ export default class PostService{
         const url = `${API_URL}${link}`;
         return axios.get(url).then(response => response.data);
     }
+    
+    getPostByAuthor(pk){
+        const url = `${API_URL}/api/userline/${pk}`;
+        return axios.get(url).then(response  => response.data);
+    }
     getPost(pk) {
         const url = `${API_URL}/api/posts/${pk}`;
         return axios.get(url).then(response => response.data);
