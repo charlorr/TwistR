@@ -1,31 +1,35 @@
 import React from 'react';
-import UserCard from "components/UserCard/UserCard.jsx";
-import NameCard from "components/NameCard/NameCard.jsx";
 
 import {
   Card,
+  CardHeader,
   CardBody,
-  CardFooter,
   CardTitle,
   Col,
-  Input,
-  FormGroup,
   Row
 } from "reactstrap";
 
 class BioCard extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state  = {
+      users: [],
+      currentUserPk: null,
+      currentUser: []
+    };
+  }
 
   render() {
     return (
       <>
       <Col lg="9" md="6" sm="6">
         <Card className="card-stats">
+          <CardHeader>
+            <CardTitle tag="h5">Bio</CardTitle>
+          </CardHeader>
           <CardBody>
-            <Row>
-              <Col lg="8" md="8">
-                <CardTitle tag="h5">Bio</CardTitle>
-              </Col>
-            </Row>
+            <h3>{this.props.currentUser.bio}</h3>
           </CardBody>
         </Card>
       </Col>

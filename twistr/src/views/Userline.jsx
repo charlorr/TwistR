@@ -1,12 +1,13 @@
 import React from "react";
+import  UserService  from  'components/UserService/UserService.jsx';
 import BioCard from "components/BioCard/BioCard.jsx";
 import {SortablePostTable} from "components/PostRoster/PostRoster.jsx";
 import {SortableTagTable} from "components/NewTagRoster/NewTagRoster.jsx";
-// reactstrap components
 import {
   Row,
   Col
 } from "reactstrap";
+const userService = new UserService();
 
 //hardcoded posts for now, until we have connection to database
 var POSTS_ALL=[{
@@ -22,7 +23,6 @@ var POSTS_ALL=[{
   timestamp: 15,
   picture: require("assets/img/CookieMonster.jpg"),
 }]
-
 var TAGS_ALL=[{
   author: "Cookie Monster",
   content: "ouch",
@@ -34,12 +34,32 @@ var TAGS_ALL=[{
 }]
 
 class Userline extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state  = {
+      users: [],
+      currentUser: []
+    };
+  }
+
+  componentDidMount() {
+    const { match: { params } } =  this.props;
+    if (params && params.pk) {
+      var self = this;
+      userService.getUser(params.pk).then(function(result) {
+        self.setState({currentUser: result});
+      })
+    }
+  }
+
   render() {
     return (
       <>
       <div className="content">
+      <Col lg="12" md="11" sm="10">
         <Row>
-          <BioCard />
+          <BioCard currentUser = {this.state.currentUser} />
         </Row>
         <Row>
           <Col lg="12" md="12" sm="12">
@@ -49,6 +69,7 @@ class Userline extends React.Component {
         <Row>
           <SortablePostTable posts_all={POSTS_ALL} />
         </Row>
+      </Col>
       </div>
       </>
     );
