@@ -1,14 +1,14 @@
 import  React, { Component } from  'react';
-import  PostService  from  'components/PostService/PostService.jsx';
+import  TagService  from  'components/TagService/TagService.jsx';
 
-const  postService  =  new  PostService();
+const  tagService  =  new  TagService();
 
-class  PostList  extends  Component {
+class  TagList  extends  Component {
 
 constructor(props) {
     super(props);
     this.state  = {
-        posts: [],
+        tags: [],
         nextPageURL:  ''
     };
     this.nextPage  =  this.nextPage.bind(this);
@@ -17,33 +17,33 @@ constructor(props) {
 
 componentDidMount() {
     var  self  =  this;
-    postService.getPosts().then(function (result) {
+    tagService.getTags().then(function (result) {
         console.log(result);
-        self.setState({ posts:  result.data, nextPageURL:  result.nextlink})
+        self.setState({ tags:  result.data, nextPageURL:  result.nextlink})
     });
 }
 handleDelete(e,pk){
     var  self  =  this;
-    postService.deletePost({pk :  pk}).then(()=>{
-        var  newArr  =  self.state.posts.filter(function(obj) {
+    tagService.deleteTag({pk :  pk}).then(()=>{
+        var  newArr  =  self.state.tags.filter(function(obj) {
             return  obj.pk  !==  pk;
         });
 
-        self.setState({posts:  newArr})
+        self.setState({tags:  newArr})
     });
 }
 
 nextPage(){
     var  self  =  this;
     console.log(this.state.nextPageURL);        
-    postService.getPostsByURL(this.state.nextPageURL).then((result) => {
-        self.setState({ posts:  result.data, nextPageURL:  result.nextlink})
+    tagService.getTagsByURL(this.state.nextPageURL).then((result) => {
+        self.setState({ tags:  result.data, nextPageURL:  result.nextlink})
     });
 }
 render() {
 
     return (
-        <div  className="posts--list">
+        <div  className="tags--list">
             <table  className="table">
             <thead  key="thead">
             <tr>
@@ -62,7 +62,7 @@ render() {
                 
                 <td>
                 <button  onClick={(e)=>  this.handleDelete(e,c.pk) }> Delete</button>
-                <a  href={"post/" + c.pk}> Update</a>
+                <a  href={"tag/" + c.pk}> Update</a>
                 </td>
             </tr>)}
             </tbody>
@@ -72,4 +72,4 @@ render() {
         );
   }
 }
-export  default  PostList;
+export  default  TagList;

@@ -29,7 +29,7 @@ var routes = [
     layout: "/admin"
   },
   {
-    path: "/userline",
+    path: "/userline/:pk",
     name: "Userline",
     icon: "far fa-newspaper",
     component: Userline,

@@ -37,19 +37,20 @@ class CreatePost extends React.Component {
     var self = this;
     postService.getPosts().then(function (result) {
       console.log(result);
-      self.setState({ posts: result.data, nextPageURL: result.nectLink})
+      self.setState({ posts: result.data, nextPageURL: result.nextLink})
     });
   }
 
   handleCreate(){
     postService.createPost(
       {
-        "text": document.getElementById("text").value
+        "text_body": document.getElementById("text_body").value,
+        "author": 1
       }
     ).then((result) =>{
       alert("Customer created!");
     }).catch(()=>{
-      alert("There was an error! Please re-check your form.test")
+      alert("There was an error! Please re-check your form.")
     });
   }
 
@@ -60,36 +61,6 @@ class CreatePost extends React.Component {
   }
 
   notificationAlert = React.createRef();
-
-  updatePost(pk) {
-    var text = document.getElementById("text").value;
-
-    postService.updatePost({
-      "pk": pk,
-      "text": text
-    })
-    .then((result) => {
-      console.log(result);
-      var options = {};
-      options = {
-        place: "tr",
-        message: (
-          <div>
-            <div>
-              Post successfully updated!
-            </div>
-          </div>
-        ),
-        type: "warning",
-        icon: "nc-icon nc-bell-55",
-        autoDismiss: 7
-      };
-      this.notificationAlert.current.notificationAlert(options);
-    })
-    .catch(()=>{
-      alert('There was an error! Please re-check your form.');
-    });
-  }
 
   handleWordCount = event => {
     const charCount = event.target.value.length;
@@ -113,10 +84,10 @@ class CreatePost extends React.Component {
                 <FormGroup>
                     <label>Be creative! Remember to use at least one tag.</label>
                     <Input
-                        name="text"
-                        id="text"
+                        name="text_body"
+                        id="text_body"
                         placeholder="Write your post here!"
-                        type="textarea"
+                        type="text"
                         maxLength="280"
                         required
                         onChange={this.handleWordCount}

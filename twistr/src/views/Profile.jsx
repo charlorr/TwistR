@@ -3,33 +3,28 @@ import UserService from "../components/UserService/UserService.jsx";
 import ProfileEditCard from "../components/ProfileEditCard/ProfileEditCard.jsx";
 import FollowerCard from "../components/FollowerCard/FollowerCard.jsx";
 import ProfileSummaryCard from "../components/ProfileSummaryCard/ProfileSummaryCard.jsx";
-
-// reactstrap components
 import {
   Row,
   Col
 } from "reactstrap";
-
 const userService = new UserService();
+
 class Profile extends React.Component {
 
   constructor(props) {
     super(props);
     this.state  = {
-        users: [],
-        currentUser: []
+      users: [],
+      currentUser: []
     };
   }
 
   componentDidMount() {
     const { match: { params } } =  this.props;
-    if(params && params.pk)
-    {
+    if (params && params.pk) {
       var self = this;
       userService.getUser(params.pk).then(function(result) {
-        //console.log(result);
         self.setState({currentUser: result});
-        //console.log("this is the currentUser after setting state:" +self.state.currentUser)
       })
     }
   }

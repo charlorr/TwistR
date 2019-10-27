@@ -1,7 +1,6 @@
 import  React, { Component } from  'react';
 import  UserService  from  'components/UserService/UserService.jsx';
 import NotificationAlert from "react-notification-alert";
-
 import {
     Button,
     Card,
@@ -14,8 +13,8 @@ import {
     Row,
     Col
   } from "reactstrap";
-
-const  userService  =  new  UserService();
+  const  userService  =  new  UserService();
+  
 class  ProfileEditCard  extends  Component {
   
   constructor(props) {
@@ -26,8 +25,7 @@ class  ProfileEditCard  extends  Component {
       currentUser: []
     };
     this.handleSubmit  =  this.handleSubmit.bind(this);
-    const current = userService.getUser(this.props.currentUser);
-    console.log(current);
+    //const current = userService.getUser(this.props.currentUser);
   }
 
     // componentWillReceiveProps(props){

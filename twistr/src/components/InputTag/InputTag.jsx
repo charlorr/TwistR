@@ -32,6 +32,10 @@ class InputTag extends React.Component {
     }
   }
 
+  getCurrentTags(){
+    return this.state;
+  }
+
   render() {
     const { tags } = this.state;
 
