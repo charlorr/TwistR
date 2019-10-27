@@ -1,25 +1,94 @@
 import React from 'react';
 import UserCard from "components/UserCard/UserCard.jsx";
 import NameCard from "components/NameCard/NameCard.jsx";
+import PostService from "components/PostService/PostService.jsx";
+import NotificationAlert from "react-notification-alert";
+import InputTag from "components/InputTag/InputTag.jsx";
 
 import {
+  Button,
   Card,
   CardBody,
   CardFooter,
   CardTitle,
+  Form,
   Col,
   Input,
   FormGroup,
   Row
 } from "reactstrap";
 
+const postService = new PostService();
+
 class CreatePost extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
+      posts: [],
+      currentPostPk: null,
+      currentPost: [],
       chars_left: 280, max_chars: 280,
     };
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    var self = this;
+    postService.getPosts().then(function (result) {
+      console.log(result);
+      self.setState({ posts: result.data, nextPageURL: result.nectLink})
+    });
+  }
+
+  handleCreate(){
+    postService.createPost(
+      {
+        "text": document.getElementById("text").value
+      }
+    ).then((result) =>{
+      alert("Customer created!");
+    }).catch(()=>{
+      alert("There was an error! Please re-check your form.test")
+    });
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    this.handleCreate();
+    event.preventDefault();
+  }
+
+  notificationAlert = React.createRef();
+
+  updatePost(pk) {
+    var text = document.getElementById("text").value;
+
+    postService.updatePost({
+      "pk": pk,
+      "text": text
+    })
+    .then((result) => {
+      console.log(result);
+      var options = {};
+      options = {
+        place: "tr",
+        message: (
+          <div>
+            <div>
+              Post successfully updated!
+            </div>
+          </div>
+        ),
+        type: "warning",
+        icon: "nc-icon nc-bell-55",
+        autoDismiss: 7
+      };
+      this.notificationAlert.current.notificationAlert(options);
+    })
+    .catch(()=>{
+      alert('There was an error! Please re-check your form.');
+    });
   }
 
   handleWordCount = event => {
@@ -32,15 +101,21 @@ class CreatePost extends React.Component {
   render() {
     return (
       <>
+      <div className="content" >
       <Col lg="9" md="6" sm="6">
         <Card className="card-stats">
+          <NotificationAlert ref ={this.notificationAlert} />
           <CardBody>
+            <Form onSubmit={this.handleSubmit}>
             <Row>
               <Col lg="8" md="8">
                 <CardTitle tag="h5">Write a new post here.</CardTitle>
                 <FormGroup>
                     <label>Be creative! Remember to use at least one tag.</label>
                     <Input
+                        name="text"
+                        id="text"
+                        placeholder="Write your post here!"
                         type="textarea"
                         maxLength="280"
                         required
@@ -48,13 +123,22 @@ class CreatePost extends React.Component {
                     />
                 </FormGroup>
                 <FormGroup>
-                    <Input 
-                        placeholder="Add tags (separated by commas)" 
-                        type="textarea"
-                    />
+                       <InputTag />
                 </FormGroup>
               </Col>
             </Row>
+            <Row>
+              <div className="update ml-auto mr-auto">
+                <Button
+                className="btn-round"
+                color="primary"
+                type="submit"
+                >
+                  Create Post
+                </Button>
+              </div>
+            </Row>
+            </Form>
           </CardBody>
           <CardFooter>
             <hr />
@@ -68,6 +152,7 @@ class CreatePost extends React.Component {
         <UserCard picture={require("assets/img/PurduePete.jpg")} />
         <NameCard />
       </Col>
+      </div>
       </>
     );
   }
