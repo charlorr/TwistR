@@ -8,9 +8,7 @@ import UserList from "components/UserList/UserList.jsx";
 import {
   Button,
   Card,
-  CardHeader,
   CardBody,
-  CardTitle,
   Row,
 } from "reactstrap";
 

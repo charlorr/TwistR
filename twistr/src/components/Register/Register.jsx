@@ -36,12 +36,34 @@ class Register extends React.Component {
   }
 
   componentDidMount() {
-    var  self  =  this;
-    userService.getUsers().then(function (result) {
-        console.log(result);
-        self.setState({ users:  result.data, nextPageURL:  result.nextlink})
-    });
-  }//Didn't follow the tutorial on this one, used the one from UserList
+    //var  self  =  this;
+    // userService.getUsers().then(function (result) {
+    //     console.log("Connected!");
+    //     //self.setState({ users:  result.data})
+    // });
+  }//Really not sure how this function works
+
+  handleSubmit(event) {
+    if (this.isUnique()) {
+      this.setState({
+        value: document.getElementById("password_reg").value,
+        show: true
+      });
+      this.handleCreate();
+    }
+    else {
+      alert("Username/email not unique!");
+      event.preventDefault();
+    }
+  }
+
+  isUnique() {
+    const username = document.getElementById("username").value;
+    const email = document.getElementById("email").value;
+    //TODO: Use query to check if username exists
+    //TODO: Use query to check if email exists
+    return true; //TODO: eturn false if not unique
+  } //TODO
 
   handleCreate() {
       userService.createUser(
@@ -54,46 +76,11 @@ class Register extends React.Component {
             "password": document.getElementById("password_reg").value
         }
         ).then((result)=>{
-          alert("Customer created!");
+          alert("Account Registered!");
         }).catch(()=>{
           alert('There was an error! Please re-check your form.');
         });
   } //TODO: check that username and email are unique
-
-  // handleUpdate(){
-  //     var first = document.getElementById("firstName").value;
-  //     var last = document.getElementById("lastName").value;
-  //     var email = document.getElementById("email").value;
-  //     var phoneNumber = document.getElementById("phoneNumber").value;
-  //     var username = document.getElementById("username").value;
-  //     var password = document.getElementById("password_reg").value;
-  //   userService.updateUser(
-  //       {
-  //       "pk":  1,
-  //       "firstName":  first,
-  //       "lastName": last,
-  //       "email": email,
-  //       "phone":  phoneNumber,
-  //       "username":  username,
-  //       "password":  password
-  //       }
-  //       ).then((result)=>{
-  //           alert("Customer updated!");
-  //       }).catch(()=>{
-  //           alert('There was an error! Please re-check your form.');
-  //       });
-  //   }
-  // ^^Not needed, use for reference, then delete.
-
-  handleSubmit(event) {
-    event.preventDefault();
-		this.setState({
-			value: document.getElementById("password_reg").value,
-			show: true
-		});
-    this.handleCreate();
-    event.preventDefault();
-  }
 
   handleChange() {
 		this.setState({
@@ -127,7 +114,6 @@ class Register extends React.Component {
 		const isValid = regex.test(document.getElementById("password_reg").value);
     
     if(!isValid){
-      
       document.getElementById("password_reg").setCustomValidity("Invalid password");
     }
 		else {
