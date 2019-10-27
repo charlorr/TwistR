@@ -8,7 +8,7 @@ class  TagList  extends  Component {
 constructor(props) {
     super(props);
     this.state  = {
-        users: [],
+        tags: [],
         nextPageURL:  ''
     };
     this.nextPage  =  this.nextPage.bind(this);
@@ -25,7 +25,7 @@ componentDidMount() {
 handleDelete(e,pk){
     var  self  =  this;
     tagService.deleteTag({pk :  pk}).then(()=>{
-        var  newArr  =  self.state.users.filter(function(obj) {
+        var  newArr  =  self.state.tags.filter(function(obj) {
             return  obj.pk  !==  pk;
         });
 

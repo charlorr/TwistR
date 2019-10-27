@@ -37,14 +37,14 @@ class CreatePost extends React.Component {
     var self = this;
     postService.getPosts().then(function (result) {
       console.log(result);
-      self.setState({ posts: result.data, nextPageURL: result.nectLink})
+      self.setState({ posts: result.data, nextPageURL: result.nextLink})
     });
   }
 
   handleCreate(){
     postService.createPost(
       {
-        "text": document.getElementById("text").value,
+        "text_body": document.getElementById("text_body").value,
         "author": 1
       }
     ).then((result) =>{
@@ -84,8 +84,8 @@ class CreatePost extends React.Component {
                 <FormGroup>
                     <label>Be creative! Remember to use at least one tag.</label>
                     <Input
-                        name="text"
-                        id="text"
+                        name="text_body"
+                        id="text_body"
                         placeholder="Write your post here!"
                         type="text"
                         maxLength="280"

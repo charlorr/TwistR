@@ -8,7 +8,7 @@ class  PostList  extends  Component {
 constructor(props) {
     super(props);
     this.state  = {
-        users: [],
+        posts: [],
         nextPageURL:  ''
     };
     this.nextPage  =  this.nextPage.bind(this);
@@ -25,7 +25,7 @@ componentDidMount() {
 handleDelete(e,pk){
     var  self  =  this;
     postService.deletePost({pk :  pk}).then(()=>{
-        var  newArr  =  self.state.users.filter(function(obj) {
+        var  newArr  =  self.state.posts.filter(function(obj) {
             return  obj.pk  !==  pk;
         });
 
