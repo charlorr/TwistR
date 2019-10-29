@@ -49,19 +49,19 @@ class  ProfileEditCard  extends  Component {
     
     updateProfile(pk) {
       var username = document.getElementById("username").value;
-      var firstName = document.getElementById("firstName").value;
-      var lastName = document.getElementById("lastName").value;
+      var first_name = document.getElementById("first_name").value;
+      var last_name = document.getElementById("last_name").value;
       var email = document.getElementById("email").value;
-      var phoneNumber = document.getElementById("phoneNumber").value;
+      var phone_number = document.getElementById("phone_number").value;
       var bio = document.getElementById("bio").value;
       
       userService.updateUser({
         "pk": pk,
         "username": username,
-        "firstName": firstName,
-        "lastName": lastName,
+        "first_name": first_name,
+        "last_name": last_name,
         "email": email,
-        "phoneNumber": phoneNumber,
+        "phone_number": phone_number,
         "bio": bio
       })
       .then((result) => {
@@ -136,13 +136,13 @@ class  ProfileEditCard  extends  Component {
                       <FormGroup>
                         <label>Phone number<font color="red">*</font></label>
                         <Input
-                          id="phoneNumber"
+                          id="phone_number"
                           placeholder="XXX-XXX-XXXX"
                           type="text"
                           pattern="[0-9]{3}[-]?[0-9]{3}[-]?[0-9]{4}"
                           maxLength="12"
-                          defaultValue = {this.props.currentUser.phoneNumber}
-                          ref = "phoneNumber"
+                          defaultValue = {this.props.currentUser.phone_number}
+                          ref = "phone_number"
                           required/>
                       </FormGroup>
                     </Col>
@@ -152,12 +152,12 @@ class  ProfileEditCard  extends  Component {
                       <FormGroup>
                         <label>First Name<font color="red">*</font></label>
                         <Input
-                          id="firstName"
-                          ref = "firstName"
+                          id="first_name"
+                          ref = "first_name"
                           placeholder="First Name"
                           type="text"
                           maxLength="30"
-                          defaultValue = {this.props.currentUser.firstName}
+                          defaultValue = {this.props.currentUser.first_name}
                           required/>
                       </FormGroup>
                     </Col>
@@ -165,12 +165,12 @@ class  ProfileEditCard  extends  Component {
                       <FormGroup>
                         <label>Last Name<font color="red">*</font></label>
                         <Input
-                          id="lastName"
-                          ref = "lastName"
+                          id="last_name"
+                          ref = "last_name"
                           placeholder="Last Name"
                           type="text"
                           maxLength="30"
-                          defaultValue = {this.props.currentUser.lastName}
+                          defaultValue = {this.props.currentUser.last_name}
                           required/>
                       </FormGroup>
                     </Col>

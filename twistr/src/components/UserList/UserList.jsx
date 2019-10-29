@@ -61,9 +61,9 @@ render() {
             {this.state.users.map( c  =>
                 <tr  key={c.pk}>
                 <td>{c.pk}  </td>
-                <td>{c.firstName}</td>
-                <td>{c.lastName}</td>
-                <td>{c.phoneNumber}</td>
+                <td>{c.first_name}</td>
+                <td>{c.last_name}</td>
+                <td>{c.phone_number}</td>
                 <td>{c.email}</td>
                 <td>{c.username}</td>
                 <td>{c.bio}</td>

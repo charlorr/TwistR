@@ -1,6 +1,7 @@
 import React from "react";
 //import PasswordForm from "components/PasswordForm/PasswordForm.jsx";
 import PasswordFormReqs from "components/PasswordFormReqs/PasswordFormReqs.jsx";
+import  UserService  from  '../UserService/UserService.jsx';
 import {
   Button,
   Card,
@@ -13,6 +14,7 @@ import {
   Row,
 } from "reactstrap";
 
+const userService = new UserService();
 class LogIn extends React.Component {
 
   constructor(props) {
@@ -74,12 +76,22 @@ class LogIn extends React.Component {
 
 	handleSubmit(event) {
 		event.preventDefault();
-		this.setState({
-			value: document.getElementById("password_reg").value,
-			show: true
-		});
+		//this.setState({
+			//value: document.getElementById("password_reg").value,
+			//show: true
+    //});
+    this.handleLogIn();
 		    
-	}
+  }
+  
+  handleLogIn() {
+    userService.loginUser(
+      {
+          "username": document.getElementById("username").value,
+          "password": document.getElementById("password").value,
+      }
+      )
+} //TODO: check that username and email are unique
 
   render() {
     return (
@@ -90,17 +102,17 @@ class LogIn extends React.Component {
             <CardTitle tag="h5">Log In</CardTitle>
           </CardHeader>
           <CardBody className ="update ml-auto mr-auto">
-            <Form >
+            <Form onSubmit={this.handleSubmit}>
               <Row>
                 <FormGroup>
                   <label><b>Username/Email</b></label>
-                  <Input name = "username" placeholder="Enter Username/Email" type="text"/>
+                  <Input name = "username" id="username" placeholder="Enter Username/Email" type="text"/>
                 </FormGroup>
               </Row>
               <Row>
                 <FormGroup>
                   <label><b>Password</b></label>
-                  <Input name = "password" placeholder="Enter Password"  type="password" />
+                  <Input name = "password" id="password" placeholder="Enter Password"  type="password" />
                 </FormGroup>
               </Row>
               <Row>

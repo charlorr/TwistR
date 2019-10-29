@@ -68,12 +68,13 @@ class Register extends React.Component {
   handleCreate() {
       userService.createUser(
         {
-            "firstName": document.getElementById("firstName").value,
-            "lastName": document.getElementById("lastName").value,
+            "first_name": document.getElementById("firstName").value,
+            "last_name": document.getElementById("lastName").value,
             "email": document.getElementById("email").value,
-            "phoneNumber": document.getElementById("phoneNumber").value,
+            "phone_number": document.getElementById("phoneNumber").value,
             "username": document.getElementById("username").value,
-            "password": document.getElementById("password_reg").value
+            "password": document.getElementById("password_reg").value,
+            "bio" : "edit bio"
         }
         ).then((result)=>{
           alert("Account Registered!");
