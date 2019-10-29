@@ -1,7 +1,6 @@
 import React from "react";
-//import PasswordForm from "components/PasswordForm/PasswordForm.jsx";
-import PasswordFormReqs from "components/PasswordFormReqs/PasswordFormReqs.jsx";
 import  UserService  from  '../UserService/UserService.jsx';
+import { Redirect } from 'react-router-dom'
 import {
   Button,
   Card,
@@ -22,66 +21,16 @@ class LogIn extends React.Component {
     //show =false means the req box isn't shown
     //statusX = true means the color is red
     this.state = {
-      value: '',
-      show: false,
-      status1: true,
-      status2: true,
-      status3: true,
-      status4: true,
-      status5: true
+      sendToProfile: false
       };
-    this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.redirect = this.redirect.bind(this);
   }
-
-  handleChange() {
-		this.setState({
-			value: document.getElementById("password_reg").value,
-			show: true
-    });
-    
-    if(document.getElementById("password_confirm").value !== document.getElementById("password_reg").value) {
-      document.getElementById("password_confirm").setCustomValidity("Passwords must match");
-    }
-    else {
-      document.getElementById("password_confirm").setCustomValidity("");
-    }
-
-		const value1  = document.getElementById("password_reg").value;
-		const valid_lowercase = /(?=.*[a-z])/.test(value1);
-		const valid_uppercase = /(?=.*[A-Z])/.test(value1);
-		const valid_8char = /(?=.{8,})/.test(value1);
-		const valid_specialchar = /(?=.*[!@#\\$%\\^&\\*])/.test(value1);
-		const valid_number = /(?=.*[0-9])/.test(value1);
-		
-		this.setState({
-			status1: !valid_lowercase, 
-			status2: !valid_uppercase,
-			status3: !valid_8char,
-			status4: !valid_number,
-			status5: !valid_specialchar
-    })
-
-    /*const regex = new RegExp("(?=.*[a-z])(?=.*[A-Z])(?=.{8,})(?=.*[!@#\\$%\\^&\\*])(?=.*[0-9])");
-		const isValid = regex.test(document.getElementById("password_reg").value);
-    
-    if(!isValid){
-      
-      document.getElementById("password_reg").setCustomValidity("Invalid password");
-    }
-		else {
-		  document.getElementById("password_reg").setCustomValidity("");
-    }  */  
-	}
 
 	handleSubmit(event) {
 		event.preventDefault();
-		//this.setState({
-			//value: document.getElementById("password_reg").value,
-			//show: true
-    //});
     this.handleLogIn();
-		    
+    this.setState({sendToProfile: true});
   }
   
   handleLogIn() {
@@ -91,12 +40,19 @@ class LogIn extends React.Component {
           "password": document.getElementById("password").value,
       }
       )
-} //TODO: check that username and email are unique
+  }
+
+  redirect() {
+    if (this.state.sendToProfile) {
+      return <Redirect to="/admin/profile/user"/>;
+    }
+  }
 
   render() {
     return (
       <>
       <div className="content" >
+        {this.redirect()}
         <Card className="card-user">
           <CardHeader>
             <CardTitle tag="h5">Log In</CardTitle>

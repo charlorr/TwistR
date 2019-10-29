@@ -19,14 +19,22 @@ class Profile extends React.Component {
     };
   }
 
+  // componentDidMount() {
+  //   const { match: { params } } =  this.props;
+  //   if (params && params.pk) {
+  //     var self = this;
+  //     userService.getUser(params.pk).then(function(result) {
+  //       self.setState({currentUser: result});
+  //     })
+  //   }
+  // }
+
   componentDidMount() {
-    const { match: { params } } =  this.props;
-    if (params && params.pk) {
-      var self = this;
-      userService.getUser(params.pk).then(function(result) {
+    console.log(localStorage.getItem('pk'));
+    var self = this;
+    userService.getUser(localStorage.getItem('pk')).then(function (result) {
         self.setState({currentUser: result});
-      })
-    }
+    })
   }
   
   render() {

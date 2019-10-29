@@ -1,6 +1,7 @@
 import  React, { Component } from  'react';
 import  UserService  from  'components/UserService/UserService.jsx';
 import NotificationAlert from "react-notification-alert";
+import { Redirect } from 'react-router-dom'
 import {
     Button,
     Card,
@@ -22,26 +23,31 @@ class  ProfileEditCard  extends  Component {
     this.state  = {
       users: [],
       currentUserPk: null,
-      currentUser: []
+      currentUser: [],
+      logOut: false
     };
     this.handleSubmit  =  this.handleSubmit.bind(this);
-    //const current = userService.getUser(this.props.currentUser);
+    this.logOut = this.logOut.bind(this);
+    this.deleteProfile = this.deleteProfile.bind(this);
   }
 
-    // componentWillReceiveProps(props){
-    //   this.setState({currentUser: props.currentUser})
-    //   console.log("will receive props: "+ this.state.currentUser.pk)
-    // }
-
-    // componentDidMount() { //this function calls the backend to grab the user with currentUserPK and loads that user into the state
-    //   var  self  =  this;
-    //   userService.getUser(self.state.currentUserPk).then(function(result){
-    //     console.log(result);
-    //     self.setState({currentUser: result})
-    //   })
-    // }
-
     notificationAlert = React.createRef();
+    deleteProfile() {
+      userService.deleteUser(this.props.currentUser.pk);
+      this.logOut();
+    }
+
+    logOut(){
+      localStorage.clear();
+      this.setState({logOut: true});
+    }
+
+    redirect(){
+      if (this.state.logOut) {
+        return <Redirect to="/welcome"/>;
+      }
+    }
+    
     handleSubmit(event) {
       this.updateProfile(this.props.currentUser.pk)
       event.preventDefault();
@@ -92,6 +98,7 @@ class  ProfileEditCard  extends  Component {
           <div >
             {/* <p>this is the {this.props.currentUser} </p> */}
             {/* <p> this is the username: {this.props.currentUser.username}</p> */}
+            {this.redirect()}
           <Card className="card-user">
               <NotificationAlert ref={this.notificationAlert} />
               <CardHeader>
@@ -197,6 +204,20 @@ class  ProfileEditCard  extends  Component {
                         type="submit"
                       >
                         Update Profile
+                      </Button>
+                      <Button
+                        className="btn-round"
+                        color="red"
+                        onClick={this.deleteProfile}
+                      >
+                        Delete Profile
+                      </Button>
+                      <Button
+                        className="btn-round"
+                        color="orange"
+                        onClick={this.logOut}
+                      >
+                        Log out
                       </Button>
                     </div>
                   </Row>

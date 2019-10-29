@@ -15,7 +15,7 @@ var routes = [
     layout: "/admin"
   },
   {
-    path: "/profile/user/:pk",
+    path: "/profile/user",
     name: "Profile",
     icon: "fas fa-user-alt",
     component: Profile,

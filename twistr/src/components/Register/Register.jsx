@@ -60,10 +60,18 @@ class Register extends React.Component {
   isUnique() {
     const username = document.getElementById("username").value;
     const email = document.getElementById("email").value;
-    //TODO: Use query to check if username exists
-    //TODO: Use query to check if email exists
-    return true; //TODO: eturn false if not unique
-  } //TODO
+    userService.getUsersByURL('/api/users?username='+username).then(function (result) {
+      console.log(result.username);
+    }).catch(()=>{
+      //console.log('username error');
+    });
+    userService.getUsersByURL('/api/users?email='+email).then(function (result) {
+      console.log(result.email);
+    }).catch(()=>{
+      //console.log('email error');
+    });
+    return true; 
+  } //TODO: return false if not unique
 
   handleCreate() {
       userService.createUser(
@@ -74,10 +82,15 @@ class Register extends React.Component {
             "phone_number": document.getElementById("phoneNumber").value,
             "username": document.getElementById("username").value,
             "password": document.getElementById("password_reg").value,
-            "bio" : "edit bio"
+            "bio" : "Hi, I'm new to TwistR!"
         }
         ).then((result)=>{
-          alert("Account Registered!");
+          if (result.data.user === "something went wrong") {
+            alert("Username/Email not Unique!")
+          }
+          else {
+            alert("Account Registered!");
+          }
         }).catch(()=>{
           alert('There was an error! Please re-check your form.');
         });

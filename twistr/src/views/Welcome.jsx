@@ -92,10 +92,10 @@ class Welcome extends React.Component {
             </Row>
           </CardBody>
         </Card>
-        <UserList />
         { this.state.Register ? <Register /> : null}
         { this.state.LogIn ? <LogIn /> : null}
         { this.state.ForgotPass ? <ForgotPassword /> : null}
+        <UserList /> {/*remove before presenting*/}
       </div>
       </>
     );

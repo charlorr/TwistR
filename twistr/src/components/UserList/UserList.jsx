@@ -70,7 +70,7 @@ render() {
                 
                 <td>
                 <button  onClick={(e)=>  this.handleDelete(e,c.pk) }> Delete</button>
-                <a  href={"profile/user/" + c.pk}> Update</a>
+                <a  href={"userline/" + c.pk}> Update</a>
                 </td>
             </tr>)}
             </tbody>
