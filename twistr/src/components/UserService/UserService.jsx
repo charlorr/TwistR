@@ -21,7 +21,7 @@ export default class UserService{
         return axios.get(url, auth_config).then(response => response.data);
     }
     deleteUser(user){
-        //need to have auth_config, copy this line and put it in any request that requires authorization
+        //need to have auth_config, copy this line and put it in any request that  requires authorization
         var auth_config = {headers : {'Authorization' : "token " + auth_token}};
         const url = `${API_URL}/api/users/delete/${user.pk}`;
         //note you put auth_config as last argument in the actual request
