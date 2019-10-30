@@ -51,7 +51,7 @@ class Timeline extends React.Component {
       <>
       <div className="content">
         <Row>
-          <CreatePost/>
+          <CreatePost />
         </Row>
         <Row>
           <Col lg="12" md="12" sm="12">

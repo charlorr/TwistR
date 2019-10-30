@@ -20,13 +20,13 @@ var POSTS_ALL=[{
   author: "Cookie Monster",
   tags: ["ouch ", "regrets "],
   content: "Update: I have a stomach ache.",
-  timestamp: 15,
+  timestamp: 10,
   picture: require("assets/img/CookieMonster.jpg"),
 }]
 var TAGS_ALL=[{
   author: "Cookie Monster",
   content: "ouch",
-  timestamp: 15
+  timestamp: 10
 }, {
   author: "Cookie Monster",
   content: "regrets",
