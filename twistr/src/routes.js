@@ -12,49 +12,56 @@ var routes = [
     name: "Welcome",
     icon: "fa fa-home",
     component: Welcome,
-    layout: "/admin"
+    layout: "/admin",
+    auth: false
   },
   {
     path: "/profile/user",
     name: "Profile",
     icon: "fas fa-user-alt",
     component: Profile,
-    layout: "/admin"
+    layout: "/admin",
+    auth: true
   },
   {
     path: "/dashboard",
     name: "Dashboard",
     icon: "far fa-newspaper",
     component: Dashboard,
-    layout: "/admin"
+    layout: "/admin",
+    auth: true
   },
   {
     path: "/userline/:pk",
     name: "Userline",
     icon: "far fa-newspaper",
     component: Userline,
-    layout: "/admin"
+    layout: "/admin",
+    auth: true
   },
   {
     path: "/timeline",
     name: "Timeline",
     icon: "fas fa-pencil-alt",
     component: Timeline,
-    layout: "/admin"
+    layout: "/admin",
+    auth: true
   },
   {
     path: "/explore",
     name: "Explore",
     icon: "fas fa-rocket",
     component: Explore,
-    layout: "/admin"
+    layout: "/admin",
+    auth: false //Authenticated or Unauthenticated
   },
   {
     path: "/notifications",
     name: "Notifications",
     icon: "fas fa-bell",
     component: Notifications,
-    layout: "/admin"
+    layout: "/admin",
+    auth: true
   },
 ];
 export default routes;

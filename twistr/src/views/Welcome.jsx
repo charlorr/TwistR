@@ -4,6 +4,7 @@ import Register from "components/Register/Register.jsx";
 import LogIn from "components/LogIn/LogIn.jsx";
 import ForgotPassword from "components/ForgotPassword/ForgotPassword.jsx";
 import UserList from "components/UserList/UserList.jsx";
+import { Redirect } from 'react-router-dom';
 
 import {
   Button,
@@ -21,6 +22,12 @@ class Welcome extends React.Component {
       LogIn: false,
       Register: false,
       ForgotPass: false,
+    }
+  }
+
+  redirect() {
+    if (localStorage.getItem('pk') !== null) {
+      return <Redirect to="/admin/profile/user"/>;
     }
   }
 
@@ -52,6 +59,7 @@ class Welcome extends React.Component {
     return (
       <>
       <div className="content" >
+        {this.redirect()}
         <Card className="card-user">
           <CardBody className ="update ml-auto mr-auto">
             <Row>

@@ -38,17 +38,18 @@ export default class UserService{
 
         const url = `${API_URL}/api/users/login/`;
 
-        axios.post(url,user)
+        return axios.post(url,user)
         .then(function (response) {
             localStorage.setItem('pk', response.data.user_pk);
             localStorage.setItem('auth_token', response.data.token);
             console.log(localStorage.getItem('auth_token'));
             console.log(localStorage.getItem('pk'));
+            return localStorage.getItem('pk');
         })
         .catch(function(error){
             console.log(error);
         });
-        return;
+        
     }
     
 }

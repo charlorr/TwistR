@@ -1,6 +1,5 @@
 import React from "react";
 import  UserService  from  '../UserService/UserService.jsx';
-import { Redirect } from 'react-router-dom'
 import {
   Button,
   Card,
@@ -24,35 +23,30 @@ class LogIn extends React.Component {
       sendToProfile: false
       };
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.redirect = this.redirect.bind(this);
+    this.handleLogIn = this.handleLogIn.bind(this);
   }
 
 	handleSubmit(event) {
 		event.preventDefault();
-    this.handleLogIn();
-    this.setState({sendToProfile: true});
+    this.handleLogIn().then(() => {
+      //this.setState({sendToProfile: true});
+      window.location.reload();
+    });
   }
   
   handleLogIn() {
-    userService.loginUser(
+    return userService.loginUser(
       {
           "username": document.getElementById("username").value,
           "password": document.getElementById("password").value,
       }
-      )
-  }
-
-  redirect() {
-    if (this.state.sendToProfile) {
-      return <Redirect to="/admin/profile/user"/>;
-    }
+      ).then(() => {})
   }
 
   render() {
     return (
       <>
       <div className="content" >
-        {this.redirect()}
         <Card className="card-user">
           <CardHeader>
             <CardTitle tag="h5">Log In</CardTitle>

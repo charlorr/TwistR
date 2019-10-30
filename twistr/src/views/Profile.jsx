@@ -7,6 +7,7 @@ import {
   Row,
   Col
 } from "reactstrap";
+import { Redirect } from 'react-router-dom';
 const userService = new UserService();
 
 class Profile extends React.Component {
@@ -36,14 +37,21 @@ class Profile extends React.Component {
         self.setState({currentUser: result});
     })
   }
+
+  redirect() {
+    if (localStorage.getItem('pk') === null) {
+      return <Redirect to="/admin/welcome"/>;
+    }
+  }
   
   render() {
     return (
       <>
       <div className="content">
+        {this.redirect()}
         <Row>
           <Col md="4">
-            <ProfileSummaryCard />
+            <ProfileSummaryCard currentUser = {this.state.currentUser}/>
             <FollowerCard />
           </Col>
           <Col md="8">

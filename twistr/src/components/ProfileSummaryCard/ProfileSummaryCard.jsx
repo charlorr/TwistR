@@ -11,6 +11,14 @@ import {
 } from "reactstrap";
 
 class  ProfileSummaryCard  extends  Component {
+
+  constructor(props) {
+    super(props);
+    this.state  = {
+      currentUser: [],
+    };
+  }
+
     render() {
 
         return (
@@ -29,13 +37,13 @@ class  ProfileSummaryCard  extends  Component {
                       className="avatar border-gray"
                       src={require("assets/img/PurduePete.jpg")}
                     />
-                    <h5 className="title" id="fullName">Purdue Pete</h5>
+                    <h5 className="title" id="fullName">{this.props.currentUser.first_name + " " + this.props.currentUser.last_name}</h5>
                   </a>
-                  <p className="description">@therealscrummaster</p>
+                  <p className="description">{this.props.currentUser.username}</p>
                 </div>
                 <p className="description text-center"
                   id = "displayBio">
-                  {this.bio}
+                  {this.props.currentUser.bio}
                 </p>
               </CardBody>
               <CardFooter>

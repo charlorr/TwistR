@@ -1,7 +1,6 @@
 import  React, { Component } from  'react';
 import  UserService  from  'components/UserService/UserService.jsx';
 import NotificationAlert from "react-notification-alert";
-import { Redirect } from 'react-router-dom'
 import {
     Button,
     Card,
@@ -22,9 +21,7 @@ class  ProfileEditCard  extends  Component {
     super(props);
     this.state  = {
       users: [],
-      currentUserPk: null,
       currentUser: [],
-      logOut: false
     };
     this.handleSubmit  =  this.handleSubmit.bind(this);
     this.logOut = this.logOut.bind(this);
@@ -39,13 +36,7 @@ class  ProfileEditCard  extends  Component {
 
     logOut(){
       localStorage.clear();
-      this.setState({logOut: true});
-    }
-
-    redirect(){
-      if (this.state.logOut) {
-        return <Redirect to="/welcome"/>;
-      }
+      window.location.reload();
     }
     
     handleSubmit(event) {
@@ -98,7 +89,7 @@ class  ProfileEditCard  extends  Component {
           <div >
             {/* <p>this is the {this.props.currentUser} </p> */}
             {/* <p> this is the username: {this.props.currentUser.username}</p> */}
-            {this.redirect()}
+            {/*this.redirect()*/}
           <Card className="card-user">
               <NotificationAlert ref={this.notificationAlert} />
               <CardHeader>

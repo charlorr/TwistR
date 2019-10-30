@@ -11,8 +11,12 @@ var ps;
 class Sidebar extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      auth: false
+    };
     this.activeRoute.bind(this);
     this.sidebar = React.createRef();
+    this.updateAuth = this.updateAuth.bind(this);
   }
   // verifies if routeName is the one active (in browser input)
   activeRoute(routeName) {
@@ -24,6 +28,15 @@ class Sidebar extends React.Component {
         suppressScrollX: true,
         suppressScrollY: false
       });
+    }
+    this.updateAuth();
+  }
+  updateAuth() {
+    if (localStorage.getItem('pk') === null) {
+      this.setState({auth: false});
+    }
+    else {
+      this.setState({auth: true});
     }
   }
   componentWillUnmount() {
@@ -46,24 +59,28 @@ class Sidebar extends React.Component {
         <div className="sidebar-wrapper" ref={this.sidebar}>
           <Nav>
             {this.props.routes.map((prop, key) => {
-              return (
-                <li
-                  className={
-                    this.activeRoute(prop.path) +
-                    (prop.pro ? " active-pro" : "")
-                  }
-                  key={key}
-                >
-                  <NavLink
-                    to={prop.layout + prop.path}
-                    className="nav-link"
-                    activeClassName="active"
+              if (prop.auth === this.state.auth || prop.name === "Explore") {
+                return (
+                  <li
+                    className={
+                      this.activeRoute(prop.path) +
+                      (prop.pro ? " active-pro" : "")
+                    }
+                    key={key}
                   >
-                    <i className={prop.icon} />
-                    <p>{prop.name}</p>
-                  </NavLink>
-                </li>
-              );
+                    <NavLink
+                      to={prop.layout + prop.path}
+                      className="nav-link"
+                      activeClassName="active"
+                    >
+                      <i className={prop.icon} />
+                      <p>{prop.name}</p>
+                    </NavLink>
+                  </li>
+                );}
+              else {
+                return null;
+              }
             })}
           </Nav>
         </div>
