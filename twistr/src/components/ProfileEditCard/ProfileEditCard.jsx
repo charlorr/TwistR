@@ -99,104 +99,118 @@ class  ProfileEditCard  extends  Component {
               <CardBody>
                 <Form onSubmit={this.handleSubmit}>
                   <div>
-                    <Row>
-                      <Col className="pr-1" md="5">
-                        <FormGroup>
-                          <label>Username<font color="red">*</font> (disabled)</label>
-                          <Input
-                            id="username"
-                            ref="username"
-                            defaultValue={this.props.currentUser.username}
-                            disabled
-                            placeholder="Username"
-                            type="text"
-                            maxLength="30"
-                            required/>
-                        </FormGroup>
-                      </Col>
-                      <Col className="pl-1" md="4">
-                        <FormGroup>
-                          <label htmlFor="exampleInputEmail1">
-                            Email address<font color="red">*</font>
-                          </label>
-                          <Input 
-                            id="email"
-                            placeholder="example@twistr.com" 
-                            ref = "email"
-                            type="email"
-                            maxLength="40"
-                            defaultValue = {this.props.currentUser.email}
-                            required/>
-                        </FormGroup>
-                      </Col>
-                      <Col className="px-1" md="3">
-                        <FormGroup>
-                          <label>Phone number<font color="red">*</font></label>
-                          <Input
-                            id="phoneNumber"
-                            placeholder="XXX-XXX-XXXX"
-                            type="text"
-                            pattern="[0-9]{3}[-]?[0-9]{3}[-]?[0-9]{4}"
-                            maxLength="12"
-                            defaultValue = {this.props.currentUser.phoneNumber}
-                            ref = "phoneNumber"
-                            required/>
-                        </FormGroup>
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Col className="pr-1" md="6">
-                        <FormGroup>
-                          <label>First Name<font color="red">*</font></label>
-                          <Input
-                            id="firstName"
-                            ref = "firstName"
-                            placeholder="First Name"
-                            type="text"
-                            maxLength="30"
-                            defaultValue = {this.props.currentUser.firstName}
-                            required/>
-                        </FormGroup>
-                      </Col>
-                      <Col className="pl-1" md="6">
-                        <FormGroup>
-                          <label>Last Name<font color="red">*</font></label>
-                          <Input
-                            id="lastName"
-                            ref = "lastName"
-                            placeholder="Last Name"
-                            type="text"
-                            maxLength="30"
-                            defaultValue = {this.props.currentUser.lastName}
-                            required/>
-                        </FormGroup>
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Col md="12">
-                        <FormGroup>
-                          <label>Bio<font color="red">*</font></label>
-                          <Input
-                            id="bio"
-                            ref = "bio"
-                            defaultValue={this.props.currentUser.bio}
-                            type="text"
-                            maxLength="200"
-                            required/>
-                        </FormGroup>
-                      </Col>
-                    </Row>
-                    <Row>
-                      <div className="update ml-auto mr-auto">
-                        <Button
-                          className="btn-round"
-                          color="primary"
-                          type="submit"
-                        >
-                          Update Profile
-                        </Button>
-                      </div>
-                    </Row>
+                  <Row>
+                    <Col className="pr-1" md="5">
+                      <FormGroup>
+                        <label>Username<font color="red">*</font> (disabled)</label>
+                        <Input
+                          id="username"
+                          ref="username"
+                          defaultValue={this.props.currentUser.username}
+                          disabled
+                          placeholder="Username"
+                          type="text"
+                          maxLength="30"
+                          required/>
+                      </FormGroup>
+                    </Col>
+                    <Col className="pl-1" md="4">
+                      <FormGroup>
+                        <label htmlFor="exampleInputEmail1">
+                          Email address<font color="red">*</font>
+                        </label>
+                        <Input 
+                          id="email"
+                          placeholder="example@twistr.com" 
+                          ref = "email"
+                          type="email"
+                          maxLength="40"
+                          defaultValue = {this.props.currentUser.email}
+                          required/>
+                      </FormGroup>
+                    </Col>
+                    <Col className="px-1" md="3">
+                      <FormGroup>
+                        <label>Phone number<font color="red">*</font></label>
+                        <Input
+                          id="phone_number"
+                          placeholder="XXX-XXX-XXXX"
+                          type="text"
+                          pattern="[0-9]{3}[-]?[0-9]{3}[-]?[0-9]{4}"
+                          maxLength="12"
+                          defaultValue = {this.props.currentUser.phone_number}
+                          ref = "phone_number"
+                          required/>
+                      </FormGroup>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col className="pr-1" md="6">
+                      <FormGroup>
+                        <label>First Name<font color="red">*</font></label>
+                        <Input
+                          id="first_name"
+                          ref = "first_name"
+                          placeholder="First Name"
+                          type="text"
+                          maxLength="30"
+                          defaultValue = {this.props.currentUser.first_name}
+                          required/>
+                      </FormGroup>
+                    </Col>
+                    <Col className="pl-1" md="6">
+                      <FormGroup>
+                        <label>Last Name<font color="red">*</font></label>
+                        <Input
+                          id="last_name"
+                          ref = "last_name"
+                          placeholder="Last Name"
+                          type="text"
+                          maxLength="30"
+                          defaultValue = {this.props.currentUser.last_name}
+                          required/>
+                      </FormGroup>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col md="12">
+                      <FormGroup>
+                        <label>Bio<font color="red">*</font></label>
+                        <Input
+                          id="bio"
+                          ref = "bio"
+                          defaultValue={this.props.currentUser.bio}
+                          type="text"
+                          maxLength="200"
+                          required/>
+                      </FormGroup>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <div className="update ml-auto mr-auto">
+                      <Button
+                        className="btn-round"
+                        color="primary"
+                        type="submit"
+                      >
+                        Update Profile
+                      </Button>
+                      <Button
+                        className="btn-round"
+                        color="red"
+                        onClick={this.deleteProfile}
+                      >
+                        Delete Profile
+                      </Button>
+                      <Button
+                        className="btn-round"
+                        color="orange"
+                        onClick={this.logOut}
+                      >
+                        Log out
+                      </Button>
+                    </div>
+                  </Row>
                   </div>
                 </Form>
               </CardBody>
