@@ -1,7 +1,5 @@
 import React from "react";
 import CreatePost from "components/CreatePost/CreatePost.jsx";
-import NewTag from "components/NewTag/NewTag.jsx";
-import Post from "components/Post/Post.jsx";
 import {SortableTagTable} from "components/NewTagRoster/NewTagRoster.jsx";
 import {SortablePostTable} from "components/PostRoster/PostRoster.jsx";
 // reactstrap components

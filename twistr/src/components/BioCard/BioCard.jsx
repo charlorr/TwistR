@@ -6,7 +6,6 @@ import {
   CardBody,
   CardTitle,
   Col,
-  Row
 } from "reactstrap";
 
 class BioCard extends React.Component {
