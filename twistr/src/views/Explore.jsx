@@ -66,7 +66,7 @@ class Tables extends React.Component {
           </Col>
         </Row>
         <Row>
-          <SortablePostTable posts_all={POSTS_ALL} />
+          <SortablePostTable parent = "explore" posts_all={POSTS_ALL} />
         </Row>
       </div>
       </>

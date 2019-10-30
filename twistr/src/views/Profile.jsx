@@ -3,6 +3,8 @@ import UserService from "../components/UserService/UserService.jsx";
 import ProfileEditCard from "../components/ProfileEditCard/ProfileEditCard.jsx";
 import FollowerCard from "../components/FollowerCard/FollowerCard.jsx";
 import ProfileSummaryCard from "../components/ProfileSummaryCard/ProfileSummaryCard.jsx";
+import UserList from "components/UserList/UserList.jsx";
+
 import {
   Row,
   Col
@@ -56,6 +58,7 @@ class Profile extends React.Component {
           </Col>
           <Col md="8">
             <ProfileEditCard currentUser = {this.state.currentUser} />
+           
           </Col>
         </Row>
       </div>

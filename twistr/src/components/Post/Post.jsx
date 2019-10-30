@@ -21,7 +21,7 @@ class Post extends React.Component {
             <hr />
           </Col>
           <Col lg="10" md="9" sm="9">
-            <PostCard post={this.props.post} />
+            <PostCard parent = {this.props.parent} post={this.props.post} />
           </Col>
         </Row>
       </Col>

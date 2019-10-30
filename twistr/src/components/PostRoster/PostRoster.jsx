@@ -5,8 +5,9 @@ class PostRoster extends React.Component {
   render() {
     // Create posts from sorted, dynamic JSON collection
     var cards = [];
+    var parent = this.props.parent;
     this.props.posts_all.forEach(function(post) { 
-        cards.push(<Post post={post} />);
+        cards.push(<Post parent = {parent} post={post} />);
     });
     return (cards);
   }
@@ -16,7 +17,7 @@ class PostRoster extends React.Component {
 class SortablePostTable extends React.Component { //called from Dashboard to organize posts chronologically
   state = {
    'posts_all': this.props.posts_all, 
-   'direction': -1                               
+   'direction': -1                            
   };     
   
   sortRosterStateBy = (field, posts_all, direction) => {
@@ -28,7 +29,7 @@ class SortablePostTable extends React.Component { //called from Dashboard to org
     return (
       <div>
         {this.sortRosterStateBy('timestamp',this.props.posts_all, this.state.direction ) //calls its own function to actually sort
-        }<PostRoster posts_all={this.state.posts_all //creates roster of all the posts to be displayed
+        }<PostRoster parent = {this.props.parent} posts_all={this.state.posts_all //creates roster of all the posts to be displayed
         }/>
       </div>
     );

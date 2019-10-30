@@ -64,7 +64,7 @@ class  ProfileSummaryCard  extends  Component {
                     </Col>
                     <Col className="mr-auto" lg="4" md="6" xs="6">
                       <h5>
-                        666 <br />
+                        12 <br />
                         <small>Tags</small>
                       </h5>
                     </Col>

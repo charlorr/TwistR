@@ -58,7 +58,7 @@ class Dashboard extends React.Component {
           </Col>
         </Row>
         <Row>
-          <SortablePostTable posts_all={POSTS_ALL} />
+          <SortablePostTable parent = "dashboard" posts_all={POSTS_ALL} />
         </Row>
       </div>
       </>

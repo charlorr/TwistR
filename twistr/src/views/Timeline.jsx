@@ -57,7 +57,7 @@ class Timeline extends React.Component {
           </Col>
         </Row>
         <Row>
-          <SortablePostTable posts_all={POSTS_ALL} />
+          <SortablePostTable parent = "timeline" posts_all={POSTS_ALL} />
         </Row>
       </div>
       </>

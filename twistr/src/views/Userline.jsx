@@ -5,7 +5,8 @@ import {SortablePostTable} from "components/PostRoster/PostRoster.jsx";
 import {SortableTagTable} from "components/NewTagRoster/NewTagRoster.jsx";
 import {
   Row,
-  Col
+  Col,
+  Button
 } from "reactstrap";
 const userService = new UserService();
 
@@ -53,13 +54,35 @@ class Userline extends React.Component {
     }
   }
 
+  followUser(){
+
+  }
+
+  unfollowUser(){
+
+  }
+
   render() {
     return (
       <>
       <div className="content">
       <Col lg="12" md="11" sm="10">
         <Row>
+          
           <BioCard currentUser = {this.state.currentUser} />
+          <Col>
+          <Button 
+          className="btn-round"
+          color="primary"
+          onClick={this.followUser}>
+          Follow User </Button>
+
+          <Button 
+          className="btn-round"
+          color="primary"
+          onClick={this.unfollowUser}>
+          Unfollow User </Button>
+          </Col>
         </Row>
         <Row>
           <Col lg="12" md="12" sm="12">
@@ -67,7 +90,7 @@ class Userline extends React.Component {
           </Col>
         </Row>
         <Row>
-          <SortablePostTable posts_all={POSTS_ALL} />
+          <SortablePostTable parent = "userline" posts_all={POSTS_ALL} />
         </Row>
       </Col>
       </div>

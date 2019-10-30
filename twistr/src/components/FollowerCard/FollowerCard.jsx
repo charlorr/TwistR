@@ -34,7 +34,8 @@ class  FollowerCard  extends  Component {
                       </div>
                     </Col>
                     <Col md="7" xs="7">
-                      DJ Khaled <br />
+                    <a className = "blackHref" href = {"../userline/1"} >DJ Khaled <br /> </a>
+                      
                     </Col>
                     <Col className="text-right" md="3" xs="3">
                     <Button className = "follow-icons btn-round btn-icon"
@@ -58,8 +59,10 @@ class  FollowerCard  extends  Component {
                       </div>
                     </Col>
                     <Col md="7" xs="7">
-                      Ashwin Gokhale <br />
-                    </Col>
+                      
+                      <a className = "blackHref" href = {"../userline/1"} >Ashwin Gokhale <br /> </a>
+                      
+                      </Col>
                     <Col className="text-right" md="3" xs="3">
                         <Button className = "follow-icons btn-round btn-icon"
                             color = "success"
@@ -82,7 +85,7 @@ class  FollowerCard  extends  Component {
                       </div>
                     </Col>
                     <Col className="col-ms-7" xs="7">
-                      Professor Samanta <br />
+                    <a className = "blackHref" href = {"../userline/2"} > Ashwin2 <br /> </a>
                       
                     </Col>
                     <Col className="text-right" md="3" xs="3">

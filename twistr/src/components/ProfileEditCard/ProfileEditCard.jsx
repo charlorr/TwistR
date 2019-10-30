@@ -100,7 +100,7 @@ class  ProfileEditCard  extends  Component {
                 <Form onSubmit={this.handleSubmit}>
                   <div>
                   <Row>
-                    <Col className="pr-1" md="5">
+                    <Col className="pr-1" md="3">
                       <FormGroup>
                         <label>Username<font color="red">*</font> (disabled)</label>
                         <Input
@@ -114,7 +114,7 @@ class  ProfileEditCard  extends  Component {
                           required/>
                       </FormGroup>
                     </Col>
-                    <Col className="pl-1" md="4">
+                    <Col className="pr-1" md="4">
                       <FormGroup>
                         <label htmlFor="exampleInputEmail1">
                           Email address<font color="red">*</font>
@@ -129,7 +129,7 @@ class  ProfileEditCard  extends  Component {
                           required/>
                       </FormGroup>
                     </Col>
-                    <Col className="px-1" md="3">
+                    <Col className="pr-1" md="3">
                       <FormGroup>
                         <label>Phone number<font color="red">*</font></label>
                         <Input
@@ -187,7 +187,7 @@ class  ProfileEditCard  extends  Component {
                     </Col>
                   </Row>
                   <Row>
-                    <div className="update ml-auto mr-auto">
+                    <div className="update ml-auto mr-auto ">
                       <Button
                         className="btn-round"
                         color="primary"
@@ -195,16 +195,20 @@ class  ProfileEditCard  extends  Component {
                       >
                         Update Profile
                       </Button>
+                      </div>
+                      <div className="update ml-auto mr-auto">
                       <Button
                         className="btn-round"
-                        color="red"
+                        color="primary"
                         onClick={this.deleteProfile}
                       >
                         Delete Profile
                       </Button>
+                      </div>
+                      <div className="update ml-auto mr-auto">
                       <Button
                         className="btn-round"
-                        color="orange"
+                        color="primary"
                         onClick={this.logOut}
                       >
                         Log out
