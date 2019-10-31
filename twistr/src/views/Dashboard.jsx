@@ -106,7 +106,7 @@ redirect() {
         </Row>
         <Row>
           {/*<PostRoster post_all = {this.posts_all}/>*/}
-          <SortablePostTable post_all = {POSTS_ALL}/>
+          <SortablePostTable posts_all={POSTS_ALL} />
         </Row>
       </div>
       </>
