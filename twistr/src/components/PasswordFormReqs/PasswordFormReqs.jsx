@@ -1,9 +1,4 @@
 import React from "react";
-import {
-	Form,
-	Input,
-	FormGroup
-  } from "reactstrap";
 
 
 class PasswordFormReqs extends React.Component{

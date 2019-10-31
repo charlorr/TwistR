@@ -35,66 +35,48 @@ class Register extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  componentDidMount() {
-    //var  self  =  this;
-    // userService.getUsers().then(function (result) {
-    //     console.log("Connected!");
-    //     //self.setState({ users:  result.data})
-    // });
-  }//Really not sure how this function works
+  componentDidMount() {}
 
   handleSubmit(event) {
-    if (this.isUnique()) {
-      this.setState({
-        value: document.getElementById("password_reg").value,
-        show: true
+    event.preventDefault();
+    this.setState({
+      value: document.getElementById("password_reg").value,
+      show: true
+    });
+    userService.createUser(
+      {
+          "first_name": document.getElementById("firstName").value,
+          "last_name": document.getElementById("lastName").value,
+          "email": document.getElementById("email").value,
+          "phone_number": document.getElementById("phoneNumber").value,
+          "username": document.getElementById("username").value,
+          "password": document.getElementById("password_reg").value,
+          "bio" : "Hi, I'm new to TwistR!"
+      }
+      ).then((result)=>{
+        alert("Account Registered!");
+        this.logIn();
+      }).catch((error)=>{
+        console.log(error);
+        if (error.toString().includes("406")){
+          alert('Username/Email Unique!');
+        }
+        else {
+          alert('There was an error! Please re-check your form.');
+        }
       });
-      this.handleCreate();
-    }
-    else {
-      alert("Username/email not unique!");
-      event.preventDefault();
-    }
   }
 
-  isUnique() {
-    const username = document.getElementById("username").value;
-    const email = document.getElementById("email").value;
-    userService.getUsersByURL('/api/users?username='+username).then(function (result) {
-      console.log(result.username);
-    }).catch(()=>{
-      //console.log('username error');
-    });
-    userService.getUsersByURL('/api/users?email='+email).then(function (result) {
-      console.log(result.email);
-    }).catch(()=>{
-      //console.log('email error');
-    });
-    return true; 
-  } //TODO: return false if not unique
-
-  handleCreate() {
-      userService.createUser(
-        {
-            "first_name": document.getElementById("firstName").value,
-            "last_name": document.getElementById("lastName").value,
-            "email": document.getElementById("email").value,
-            "phone_number": document.getElementById("phoneNumber").value,
-            "username": document.getElementById("username").value,
-            "password": document.getElementById("password_reg").value,
-            "bio" : "Hi, I'm new to TwistR!"
-        }
-        ).then((result)=>{
-          if (result.data.user === "something went wrong") {
-            alert("Username/Email not Unique!")
-          }
-          else {
-            alert("Account Registered!");
-          }
-        }).catch(()=>{
-          alert('There was an error! Please re-check your form.');
-        });
-  } //TODO: check that username and email are unique
+  logIn() {
+    userService.loginUser(
+      {
+          "username": document.getElementById("username").value,
+          "password": document.getElementById("password_reg").value,
+      }
+      ).then(() => {
+          window.location.reload();
+      });
+  }
 
   handleChange() {
 		this.setState({
@@ -156,7 +138,7 @@ class Register extends React.Component {
                 <Col className="pl-1" md="4">
                   <FormGroup>
                     <label> <b>Email Address<font color="red"> *</font></b> </label>
-                    <Input name = "email" id="email" placeholder="example@twistr.com" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{1,63}$" required/>
+                    <Input name = "email" id="email" placeholder="example@twistr.com" type="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{1,63}$" required/>
                   </FormGroup>
                 </Col>
                 <Col className="pl-1" md="3">
