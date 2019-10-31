@@ -1,4 +1,6 @@
 import React from "react";
+import  UserService  from  '../UserService/UserService.jsx';
+
 
 import {
   Button,
@@ -14,6 +16,10 @@ import {
 
 class ForgotPassword extends React.Component {
 
+  handleSubmit() {
+    UserService.addPassword();
+  }
+
   render() {
     return (
       <>
@@ -23,7 +29,7 @@ class ForgotPassword extends React.Component {
             <CardTitle tag="h5">Forgot Password</CardTitle>
           </CardHeader>
           <CardBody className ="update ml-auto mr-auto">
-            <Form >
+            <Form onSubmit={this.handleSubmit}>
               <Row>
                 <FormGroup>
                   <label><b>Email</b></label>

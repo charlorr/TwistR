@@ -86,7 +86,16 @@ redirect() {
   render() {
     if (this.state.posts_all.length === 0) {
      // console.log("no post data")
-      return <div />
+     return (
+      <>
+      <div className="content">
+        {this.redirect()}
+        <Row>
+          <CreatePost/>
+        </Row>
+      </div>
+      </>
+    );
     }else{
      // console.log("yes post data")
      // console.log(this.state.posts_all)
@@ -99,7 +108,7 @@ redirect() {
           </Row>
           <Row>
             <Col lg="12" md="12" sm="12">
-              <SortableTagTable tags_all = {TAGS_ALL}/>
+              {/*<SortableTagTable tags_all = {TAGS_ALL}/>*/}
             </Col>
           </Row>
           <Row>
