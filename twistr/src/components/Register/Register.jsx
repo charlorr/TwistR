@@ -59,7 +59,7 @@ class Register extends React.Component {
       }).catch((error)=>{
         console.log(error);
         if (error.toString().includes("406")){
-          alert('Username/Email Unique!');
+          alert('Username/Email Not Unique!');
         }
         else {
           alert('There was an error! Please re-check your form.');
