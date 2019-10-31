@@ -12,7 +12,9 @@ import {
   Col,
   Button
 } from "reactstrap";
+//import FollowerCard from "components/FollowerCard/ProfileFollowerCard.jsx";
 const userService = new UserService();
+const followUserService = new FollowUserService();
 
 //hardcoded posts for now, until we have connection to database
 var POSTS_ALL=[{
@@ -45,7 +47,8 @@ class Userline extends React.Component {
     this.state  = {
       users: [],
       currentUserline: [],
-      currentUser: []
+      currentUser: [],
+      followExists: false
     };
   }
 
@@ -57,13 +60,22 @@ class Userline extends React.Component {
       userService.getUser(params.pk).then(function(result) {
         self.setState({currentUserline: result});
       })
+
+      //gets the twists to determine if user already follows the userline they are viewing
+      followUserService.getFollowUsers(localStorage.getItem('pk'),params.pk).then((result)=>{
+        if(Object.keys(result.data).length === 0)
+        self.setState({followExists: false})
+        else{
+          self.setState({followExists: true})
+        }
+
+    })
     }
-    console.log("this is the current userline:" + this.state.currentUserline)
-    console.log("this is the current logged in: "+localStorage.getItem('pk'));
    
     userService.getUser(localStorage.getItem('pk')).then(function (result) {
         self.setState({currentUser: result});
     })
+
   }
 
   redirect() {
@@ -82,7 +94,7 @@ class Userline extends React.Component {
           <BioCard currentUserline = {this.state.currentUserline} />
           <Col>
           
-          <UserlineFollowCard currentUser= {this.state.currentUser} currentUserline = {this.state.currentUserline}/>
+          <UserlineFollowCard followExists = {this.state.followExists} currentUser= {this.state.currentUser} currentUserline = {this.state.currentUserline}/>
           </Col>
         </Row>
         <Row>

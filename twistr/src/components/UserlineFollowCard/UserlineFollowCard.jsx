@@ -13,7 +13,9 @@ import {
 } from "reactstrap";
 import FollowUserService from "components/FollowUserService/FollowUserService";
 
+
 const followUserService = new FollowUserService();
+
 class  UserlineFollowCard  extends  Component {
 
     constructor(props) {
@@ -26,9 +28,20 @@ class  UserlineFollowCard  extends  Component {
         };
         this.followUser  =  this.followUser.bind(this);
         this.unfollowUser = this.unfollowUser.bind(this);
+        
         }
 
-      followUser(){
+        // test(){
+        //     console.log("current User:" + this.props.currentUser.pk +"current userline:" + this.props.currentUserline.pk)
+        //     followUserService.getFollowUsers(this.props.currentUser.pk, this.props.currentUserline.pk).then((result)=>{
+        //         console.log("this is did mount: "+result.data);
+        //         console.log("length: "+ Object.keys(result.data).length);
+        //     })
+        //     this.setState({followed: true})
+        // }
+        
+        
+        followUser(){
         followUserService.createFollowUser({
             "user": this.props.currentUser.pk,
             "author":this.props.currentUserline.pk
@@ -43,6 +56,7 @@ class  UserlineFollowCard  extends  Component {
                 alert('There was an error here!');
 
             });
+            window.location.reload();
         }
 
       unfollowUser(){
@@ -57,26 +71,31 @@ class  UserlineFollowCard  extends  Component {
                 alert('There was an error here!');
 
             });
+            window.location.reload();
 
       }
-
-
     render() {
+        let but; //determines whether button is follow or unfollow
+
+        if(this.props.followExists){
+            but=  <Button 
+            className="btn-round"
+            color="primary"
+            onClick={this.unfollowUser}>
+            Unfollow User </Button>
+            
+        }
+        else{but = <Button 
+            className="btn-round"
+            color="primary"
+            onClick={this.followUser}>
+            Follow User </Button>
+        }
+        
         return(
             <Card>
-                <Button 
-                className="btn-round"
-                color="primary"
-                onClick={this.followUser}>
-                Follow User </Button>
-
-                <Button 
-                className="btn-round"
-                color="primary"
-                onClick={this.unfollowUser}>
-                Unfollow User </Button>
-                </Card>
-            
+                {but}
+            </Card>
             )
             };
 }
