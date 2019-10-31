@@ -29,7 +29,7 @@ class  FollowerCard  extends  Component {
                         <img
                           alt="..."
                           className="img-circle img-no-padding img-responsive"
-                          src={require("assets/img/Train.png")}
+                          src={require("./node_modules/assets/img/Train.png")}
                         />
                       </div>
                     </Col>
@@ -54,7 +54,7 @@ class  FollowerCard  extends  Component {
                         <img
                           alt="..."
                           className="img-circle img-no-padding img-responsive"
-                          src={require("assets/img/BoilermakerSpecial.jpg")}
+                          src={require("./node_modules/assets/img/BoilermakerSpecial.jpg")}
                         />
                       </div>
                     </Col>
@@ -80,7 +80,7 @@ class  FollowerCard  extends  Component {
                         <img
                           alt="..."
                           className="img-circle img-no-padding img-responsive"
-                          src={require("assets/img/Fountain.jpg")}
+                          src={require("./node_modules/assets/img/Fountain.jpg")}
                         />
                       </div>
                     </Col>

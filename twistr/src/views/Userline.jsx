@@ -1,8 +1,12 @@
 import React from "react";
 import  UserService  from  'components/UserService/UserService.jsx';
+import FollowUserService from "../components/FollowUserService/FollowUserService.jsx";
+import UserlineFollowCard from "../components/UserlineFollowCard/UserlineFollowCard.jsx";
 import BioCard from "components/BioCard/BioCard.jsx";
 import {SortablePostTable} from "components/PostRoster/PostRoster.jsx";
 import {SortableTagTable} from "components/NewTagRoster/NewTagRoster.jsx";
+import { Redirect } from 'react-router-dom';
+
 import {
   Row,
   Col,
@@ -40,48 +44,45 @@ class Userline extends React.Component {
     super(props);
     this.state  = {
       users: [],
+      currentUserline: [],
       currentUser: []
     };
   }
 
   componentDidMount() {
+    var self = this;
     const { match: { params } } =  this.props;
     if (params && params.pk) {
-      var self = this;
+      
       userService.getUser(params.pk).then(function(result) {
-        self.setState({currentUser: result});
+        self.setState({currentUserline: result});
       })
     }
+    console.log("this is the current userline:" + this.state.currentUserline)
+    console.log("this is the current logged in: "+localStorage.getItem('pk'));
+   
+    userService.getUser(localStorage.getItem('pk')).then(function (result) {
+        self.setState({currentUser: result});
+    })
   }
 
-  followUser(){
-
+  redirect() {
+    if (localStorage.getItem('pk') === null) {
+      return <Redirect to="/admin/welcome"/>;
+    }
   }
-
-  unfollowUser(){
-
-  }
-
   render() {
     return (
       <>
       <div className="content">
+      {this.redirect()}
       <Col lg="12" md="11" sm="10">
         <Row>
           
-          <BioCard currentUser = {this.state.currentUser} />
+          <BioCard currentUserline = {this.state.currentUserline} />
           <Col>
-          <Button 
-          className="btn-round"
-          color="primary"
-          onClick={this.followUser}>
-          Follow User </Button>
-
-          <Button 
-          className="btn-round"
-          color="primary"
-          onClick={this.unfollowUser}>
-          Unfollow User </Button>
+          
+          <UserlineFollowCard currentUser= {this.state.currentUser} currentUserline = {this.state.currentUserline}/>
           </Col>
         </Row>
         <Row>
