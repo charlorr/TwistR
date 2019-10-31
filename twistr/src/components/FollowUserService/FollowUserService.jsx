@@ -4,8 +4,8 @@ const API_URL = 'http://localhost:8000';
 
 
 export default class FollowUserService{
-    getFollowUsers() {
-        const url = `${API_URL}/api/twists/`;
+    getFollowUsers(userPK,authorPK) {
+        const url = `${API_URL}/api/twists/?user=${userPK}&author=${authorPK}`;
         return axios.get(url).then(response => response.data);
     }  
     getFollowUsersByURL(link){
