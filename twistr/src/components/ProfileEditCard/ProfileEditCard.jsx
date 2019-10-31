@@ -31,6 +31,7 @@ class  ProfileEditCard  extends  Component {
     notificationAlert = React.createRef();
     deleteProfile() {
       userService.deleteUser(this.props.currentUser.pk);
+      alert('Deleting!');
       this.logOut();
     }
 

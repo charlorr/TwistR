@@ -28,19 +28,23 @@ class LogIn extends React.Component {
 
 	handleSubmit(event) {
 		event.preventDefault();
-    this.handleLogIn().then(() => {
-      //this.setState({sendToProfile: true});
-      window.location.reload();
-    });
+    this.handleLogIn();
   }
   
   handleLogIn() {
-    return userService.loginUser(
+    userService.loginUser(
       {
           "username": document.getElementById("username").value,
           "password": document.getElementById("password").value,
       }
-      ).then(() => {})
+      ).then((result) => {
+        if (result.toString().includes("401")) {
+          alert('Username/Password not correct!');
+        }
+        else {
+          console.log(result);
+          window.location.reload();
+        }});
   }
 
   render() {

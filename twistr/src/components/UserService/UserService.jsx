@@ -42,12 +42,13 @@ export default class UserService{
         .then(function (response) {
             localStorage.setItem('pk', response.data.user_pk);
             localStorage.setItem('auth_token', response.data.token);
-            console.log(localStorage.getItem('auth_token'));
-            console.log(localStorage.getItem('pk'));
-            return localStorage.getItem('pk');
+            // console.log(localStorage.getItem('auth_token'));
+            // console.log(localStorage.getItem('pk'));
+            return response.data;
         })
         .catch(function(error){
-            console.log(error);
+            // console.log(error);
+            return error;
         });
         
     }
