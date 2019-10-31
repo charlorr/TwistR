@@ -1,56 +1,81 @@
 import React from 'react';
+import {
+  Row,
+  Col,
+  Button,
+  FormField,
+  Input,
+  Badge 
+} from "reactstrap";
+import onEvent from "react-onevent";
 
 class InputTag extends React.Component {
-  constructor() {
-    super();
-
+  constructor(props) {
+    super(props);
     this.state= {
-      tags: [
-        'Tags',
-        'Input'
-      ]
+      tagsInputValue:'',
+      tags: [],
+      tag_chars_left:20, max_tag_chars: 60,
     };
   }
 
-  removeTag = (i) => {
-    const inTags = [ ...this.state.tags ];
-    inTags.splice(i, 1);
-    this.setState({ tags: inTags });
+  sendData = () => {
+    this.props.parentCallback(this.state.tagsInputValue);
   }
 
-  inputDownKey = (e) => {
-    const val = e.target.value;
-    if(e.key === 'Enter' && val) {
-      if (this.state.tags.find(tag => tag.toLowerCase())) {
-        return;
-      }
-      this.setState({ tags: [...this.state.tags, val]});
-      this.tagInput.value = null;  
+  addTag = (tag) => {
+    tag = tag.trim();
+    if(!(this.state.tags.indexOf(tag) >-1)) {
+      let tags = this.state.tags.concat([tag]);
+      this.updateTags(tags);
     }
-    else if (e.key === 'Backspace' && !val) {
-      this.removeTag(this.state.length - 1);
-    }
+    this.updateTagValue('');
   }
 
-  getCurrentTags(){
-    return this.state;
+  updateTagValue = (value) => {
+    if(value === ','){
+      return;
+    }
+    this.setState({
+      tagsInputValue: value
+    })
+  }
+
+  removeTag = (removeTag) => {
+    let tags = this.state.tags.filter((tag) => tag !== removeTag);
+    this.updateTags(tags);
+  }
+
+  updateTags = (tags) => {
+    this.setState({
+      tags
+    })
+  }
+
+  handleTagWordCount = event => {
+    const tagCharCount = event.target.value.length;
+    const maxTagChar = this.state.max_tag_chars;
+    const tagCharLength = maxTagChar - tagCharCount;
+    this.setState({tag_chars_left: tagCharLength});
   }
 
   render() {
-    const { tags } = this.state;
+    const {tagsInputValue, tags} = this.state;
 
     return (
       <div className="input-tag">
-        <ul className="input-tag__tags">
-          { tags.map((tag, i) => (
-            <li key={tag}>
-              {tag}
-              <button type="button" onClick={() => {this.removeTag(i);}}>+</button>
-            </li>
-          ))}
-          <li className="input-tag__tags__input"><input type="text" onKeyDown=
-          {this.inputDownKey} ref={c => {this.tagInput = c;}}/></li>
-        </ul>
+        <onEvent space={(e) => this.addTag(e.target.value)}>
+          <Input value={tagsInputValue} onChange={(e) =>{
+            this.updateTagValue(e.target.value);
+          }} type="text" placeholder="Up to three tags seperated by commas" />
+        </onEvent>
+        <div>
+        {tags && tags.map((tag, index) => 
+        <Badge varient={index} 
+        label={tag} 
+        type="success-inverted" 
+        onClear={() => this.removeTag(tag)} />)}
+        </div>
       </div>   
     );
   }

@@ -1,12 +1,18 @@
 import React from "react";
 import CreatePost from "components/CreatePost/CreatePost.jsx";
-import {SortablePostTable} from "components/PostRoster/PostRoster.jsx";
+import PostRoster from "components/PostRoster/PostRoster.jsx";
 import {SortableTagTable} from "components/NewTagRoster/NewTagRoster.jsx";
+import PostService from "components/PostService/PostService.jsx"
+import {Redirect} from 'react-router-dom';
 // reactstrap components
 import {
   Row,
-  Col
+  Col, 
+  CardBody
 } from "reactstrap";
+import { SortablePostTable } from "components/PostRoster/PostRoster";
+
+const postService = new PostService();
 
 //hardcoded posts for now, until we have connection to database
 var POSTS_ALL=[{
@@ -45,10 +51,51 @@ var TAGS_ALL=[{
 }]
 
 class Dashboard extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      posts_all: []
+    };
+    this.getPosts.bind(this);
+  }
+
+/*componentDidMount() {
+  postService.getPostByAuthor(localStorage.getItem('pk'))
+  .then((response) => {
+    return response.json();
+  })
+  .then(data => {
+    this.setState({
+      posts_all : data.results.map(({text_body}) => text_body)
+    })
+});
+}*/
+
+getPosts(){
+  var self = this;
+  postService.getPostByAuthor(localStorage.getItem('pk'))
+  .then(function(response) {
+    console.log(response);
+    self.setState({posts_all : response.data})
+  })
+  .catch(function(error) {
+    console.log(error);
+  });
+}
+
+redirect() {
+  if (localStorage.getItem('pk') === null) {
+    return <Redirect to="/admin/welcome"/>;
+  }
+}
+
   render() {
+    this.getPosts();
+    console.log(this.state.posts_all)
     return (
       <>
       <div className="content">
+        {this.redirect()}
         <Row>
           <CreatePost/>
         </Row>
@@ -58,7 +105,8 @@ class Dashboard extends React.Component {
           </Col>
         </Row>
         <Row>
-          <SortablePostTable parent = "dashboard" posts_all={POSTS_ALL} />
+          {/*<PostRoster post_all = {this.posts_all}/>*/}
+          <SortablePostTable post_all - {POSTS_ALL}/>
         </Row>
       </div>
       </>

@@ -16,7 +16,7 @@ class Post extends React.Component {
       <Col lg="12" md="11" sm="10">
         <Row>
           <Col lg="2" md="2" sm="1">
-            <UserCard picture={this.props.post.picture}/>
+            {/*<UserCard picture={this.props.post.picture/>*/}
             <ReactCard />
             <hr />
           </Col>

@@ -2,8 +2,10 @@ import React from 'react';
 import UserCard from "components/UserCard/UserCard.jsx";
 import NameCard from "components/NameCard/NameCard.jsx";
 import PostService from "components/PostService/PostService.jsx";
+import UserService from "components/UserService/UserService.jsx";
 import NotificationAlert from "react-notification-alert";
 import InputTag from "components/InputTag/InputTag.jsx";
+import TagService from "components/TagService/TagService.jsx";
 
 import {
   Button,
@@ -17,8 +19,10 @@ import {
   FormGroup,
   Row
 } from "reactstrap";
+import { Redirect } from 'react-router-dom';
 
 const postService = new PostService();
+const tagService = new TagService();
 
 class CreatePost extends React.Component {
 
@@ -28,24 +32,29 @@ class CreatePost extends React.Component {
       posts: [],
       currentPostPk: null,
       currentPost: [],
+      currentUser: [],
+      tags: [],
       chars_left: 280, max_chars: 280,
+      tag_chars_left:20, max_tag_chars: 20,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  componentDidMount() {
-    var self = this;
-    postService.getPosts().then(function (result) {
-      console.log(result);
-      self.setState({ posts: result.data, nextPageURL: result.nextLink})
-    });
+  redirect() {
+    if (localStorage.getItem('pk') === null) {
+      return <Redirect to="/admin/welcom"/>;
+    }
+  }
+
+  callBack = (tags) => {
+    this.setState({tags : tags})
   }
 
   handleCreate(){
     postService.createPost(
       {
         "text_body": document.getElementById("text_body").value,
-        "author": 1
+        "author": localStorage.getItem('pk')
       }
     ).then((result) =>{
       alert("Customer created!");
@@ -54,9 +63,34 @@ class CreatePost extends React.Component {
     });
   }
 
+  handleTagCreate(){
+    if(this.state.tags.length > 3){
+      alert("too many tags!");
+    }
+    else{
+      for(var i=0; i <this.state.tags.length; i++){
+        if(this.state.tags[i].length > 20){
+          alert("too many characters in a tag!")
+        }else{
+          tagService.createTag(
+            {
+              "post": localStorage.getItem('pk'),
+              "name": this.state.tags[i]
+            }
+          ).then((result) =>{
+            alert("Customer created!");
+          }).catch(()=>{
+            alert("There was an error! Please re-check your form.")
+          });
+        }
+      }
+    }  
+  }
+
   handleSubmit(event) {
     event.preventDefault();
     this.handleCreate();
+    this.handleTagCreate();
     event.preventDefault();
   }
 
@@ -68,11 +102,12 @@ class CreatePost extends React.Component {
     const charLength = maxChar - charCount;
     this.setState({chars_left: charLength});
   }
-
+ 
   render() {
     return (
       <>
       <div className="content" >
+        {this.redirect()}
       <Col lg="12" md="12" sm="12">
         <Row>
           <Col lg="9" md="6" sm="6">
@@ -97,6 +132,7 @@ class CreatePost extends React.Component {
                           maxLength="280"
                           required
                           onChange={this.handleWordCount}
+                          author={this.state.currentUser}
                       />
                     </FormGroup>
                   </Col>
@@ -104,7 +140,8 @@ class CreatePost extends React.Component {
                 <Row>
                   <Col>
                     <FormGroup>
-                      <InputTag />
+                      <InputTag parentCallback = {this.callBack}/>
+                      <p>{this.state.tags}</p>
                     </FormGroup>
                   </Col>
                 </Row>
