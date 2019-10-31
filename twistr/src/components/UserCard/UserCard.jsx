@@ -14,6 +14,7 @@ class UserCard extends React.Component {
       <CardBody>
         <img
           alt="..."
+          width="500px"
           className="border-gray"
           src={this.props.picture}
         />
