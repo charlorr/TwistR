@@ -1,4 +1,7 @@
 import axios from 'axios';
+import { resolveModuleName } from 'typescript';
+import { resolve } from 'path';
+import { reject } from 'q';
 const API_URL = 'http://localhost:8000';
 
 
@@ -20,14 +23,24 @@ export default class UserService{
     }
     deleteUser(pk){
         //need to have auth_config, copy this line and put it in any request that  requires authorization
-        var auth_config = {headers : {'Authorization' : "token " + localStorage.getItem('auth_token')}};
-        const url = `${API_URL}/api/users/delete/${pk}`;
+        var auth_config = {headers : {
+                                'Authorization' : "token " + localStorage.getItem('auth_token'),
+                                //'Access-Control-Allow-Origin': '*'
+                            }};
+        alert(localStorage.getItem('pk'))
+        const url = `${API_URL}/api/users/delete/${localStorage.getItem('pk')}`;
         //note you put auth_config as last argument in the actual request
+        alert(url)
         return axios.delete(url, auth_config);
     }
     createUser(user){
         const url = `${API_URL}/api/users/register/`;
-        return axios.post(url, user);
+        return axios.post(url, user)
+    }
+    addPassword() {
+        alert("hello sir");
+        const url = `${API_URL}/api/password/`;
+        return axios.get(url)
     }
     updateUser(user){
         var auth_config = {headers : {'Authorization' : "token " + localStorage.getItem('auth_token')}};
