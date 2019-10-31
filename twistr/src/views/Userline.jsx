@@ -53,6 +53,8 @@ class Userline extends React.Component {
       followExists: false,
       posts_all: []
     };
+
+    this.getPosts = this.getPosts.bind(this);
   }
 
   componentDidMount() {
@@ -62,7 +64,7 @@ class Userline extends React.Component {
       
       userService.getUser(params.pk).then(function(result) {
         self.setState({currentUserline: result});
-       
+        self.getPosts();
       })
 
       //gets the twists to determine if user already follows the userline they are viewing
@@ -72,9 +74,7 @@ class Userline extends React.Component {
         else{
           self.setState({followExists: true})
         }
-
     })
-    this.getPosts();
     }
    
     userService.getUser(localStorage.getItem('pk')).then(function (result) {
@@ -85,7 +85,7 @@ class Userline extends React.Component {
   getPosts(){
     var self = this;
     //postService.getPostByAuthor(this.state.currentUserline)
-    postService.getPostByAuthor(2) //this is hardcoded! will always show userline posts of the second user in the database!
+    postService.getPostByAuthor(this.state.currentUserline.pk) //this is hardcoded! will always show userline posts of the second user in the database!
     .then(function(response) {
       console.log(response);
       self.setState({posts_all : response.data})
