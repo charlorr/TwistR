@@ -54,13 +54,14 @@ class Dashboard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      posts_all: []
+      posts_all: [],
+      flag: false
     };
     this.getPosts.bind(this);
   }
 
-/*componentDidMount() {
-  postService.getPostByAuthor(localStorage.getItem('pk'))
+componentDidMount() {
+  /*postService.getPostByAuthor(localStorage.getItem('pk'))
   .then((response) => {
     return response.json();
   })
@@ -68,8 +69,9 @@ class Dashboard extends React.Component {
     this.setState({
       posts_all : data.results.map(({text_body}) => text_body)
     })
-});
-}*/
+});*/
+  this.getPosts();
+}
 
 getPosts(){
   var self = this;
@@ -77,6 +79,7 @@ getPosts(){
   .then(function(response) {
     console.log(response);
     self.setState({posts_all : response.data})
+    self.setState({flag: true})
   })
   .catch(function(error) {
     console.log(error);
@@ -90,28 +93,38 @@ redirect() {
 }
 
   render() {
-    this.getPosts();
-    console.log(this.state.posts_all)
-    return (
-      <>
-      <div className="content">
-        {this.redirect()}
-        <Row>
-          <CreatePost/>
-        </Row>
-        <Row>
-          <Col lg="12" md="12" sm="12">
-            <SortableTagTable tags_all = {TAGS_ALL}/>
-          </Col>
-        </Row>
-        <Row>
-          {/*<PostRoster post_all = {this.posts_all}/>*/}
-          <SortablePostTable posts_all={POSTS_ALL} />
-        </Row>
-      </div>
-      </>
-    );
-  }
+    //this.getPosts();
+    //console.log(this.state.posts_all)
+    if (this.state.posts_all.length === 0) {
+      console.log("no post data")
+      return <div />
+    }else{
+      console.log("yes post data")
+      console.log(this.state.posts_all)
+      return (
+        <>
+        <div className="content">
+          {this.redirect()}
+          <Row>
+            <CreatePost/>
+          </Row>
+          <Row>
+            <Col lg="12" md="12" sm="12">
+              <SortableTagTable tags_all = {TAGS_ALL}/>
+            </Col>
+          </Row>
+          <Row>
+              <PostRoster posts_all = {this.state.posts_all}/>
+          </Row>
+        </div>
+        </>
+      );
+    }
+    }
+
+    //this.getPosts();
+   // console.log(this.state.posts_all)
+    
 }
 
 export default Dashboard;

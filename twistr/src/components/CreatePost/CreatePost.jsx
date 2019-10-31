@@ -168,7 +168,7 @@ class CreatePost extends React.Component {
           </Col>
           <Col lg="2" md="2" sm="1">
             <UserCard picture={require("assets/img/PurduePete.jpg")} />
-            <NameCard />
+            {/*<NameCard />*/}
           </Col>
         </Row>
         </Col>

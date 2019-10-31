@@ -5,9 +5,13 @@ class PostRoster extends React.Component {
   render() {
     // Create posts from sorted, dynamic JSON collection
     var cards = [];
-    var parent = this.props.parent;
+    var posts_all = this.props.posts_all;
+    /*if(this.props.posts_all === undefined){
+      return null;
+    }*/
+    console.log(this.props.posts_all)
     this.props.posts_all.forEach(function(post) { 
-        cards.push(<Post parent = {parent} post={post} />);
+        cards.push(<Post parent = {posts_all} post={post} />);
     });
     return (cards);
   }
@@ -19,8 +23,9 @@ class SortablePostTable extends React.Component { //called from Dashboard to org
    'posts_all': this.props.posts_all, 
    'direction': -1                            
   };     
-  
+
   sortRosterStateBy = (field, posts_all, direction) => {
+    console.log(this.props.posts_all)
     // Sorting ...
     posts_all.sort( (a, b) => { if (a[field] > b[field]) { return -direction; } if (a[field] < b[field]) { return direction; } return 0; })
   };

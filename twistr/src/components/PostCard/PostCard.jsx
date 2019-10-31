@@ -33,12 +33,12 @@ class PostCard extends React.Component {
         <p className="card-category">{this.props.post.tags}</p>
       </CardHeader>
       <CardBody>
-        <h1>{this.props.post.content}</h1>
+        <h1>{this.props.post.text_body}</h1>
       </CardBody>
       <CardFooter>
         <hr />
         <div className="stats">
-            <i className="fa fa-history" /> Updated {this.props.post.timestamp} minutes ago
+            <i className="fa fa-history" /> Posted at {this.props.post.posted_date}
         </div>
       </CardFooter>
     </Card>
