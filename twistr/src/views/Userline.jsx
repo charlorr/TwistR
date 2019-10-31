@@ -1,6 +1,7 @@
 import React from "react";
 import  UserService  from  'components/UserService/UserService.jsx';
 import FollowUserService from "../components/FollowUserService/FollowUserService.jsx";
+import PostService from "components/PostService/PostService.jsx";
 import UserlineFollowCard from "../components/UserlineFollowCard/UserlineFollowCard.jsx";
 import BioCard from "components/BioCard/BioCard.jsx";
 import {SortablePostTable} from "components/PostRoster/PostRoster.jsx";
@@ -15,6 +16,7 @@ import {
 //import FollowerCard from "components/FollowerCard/ProfileFollowerCard.jsx";
 const userService = new UserService();
 const followUserService = new FollowUserService();
+const postService = new PostService();
 
 //hardcoded posts for now, until we have connection to database
 var POSTS_ALL=[{
@@ -48,7 +50,8 @@ class Userline extends React.Component {
       users: [],
       currentUserline: [],
       currentUser: [],
-      followExists: false
+      followExists: false,
+      posts_all: []
     };
   }
 
@@ -59,6 +62,7 @@ class Userline extends React.Component {
       
       userService.getUser(params.pk).then(function(result) {
         self.setState({currentUserline: result});
+        console.log(self.currentUserline)
       })
 
       //gets the twists to determine if user already follows the userline they are viewing
@@ -70,12 +74,26 @@ class Userline extends React.Component {
         }
 
     })
+    this.getPosts();
     }
    
     userService.getUser(localStorage.getItem('pk')).then(function (result) {
         self.setState({currentUser: result});
     })
 
+  }
+  getPosts(){
+    var self = this;
+    //postService.getPostByAuthor(this.state.currentUserline)
+    postService.getPostByAuthor(2) //this is hardcoded! will always show userline posts of the second user in the database!
+    .then(function(response) {
+      console.log(response);
+      self.setState({posts_all : response.data})
+      self.setState({flag: true})
+    })
+    .catch(function(error) {
+      console.log(error);
+    });
   }
 
   redirect() {
@@ -84,6 +102,12 @@ class Userline extends React.Component {
     }
   }
   render() {
+    if (this.state.posts_all.length === 0) {
+      console.log("no post data")
+      return <div />
+    }else{
+      console.log("yes post data")
+      console.log(this.state.posts_all)
     return (
       <>
       <div className="content">
@@ -103,13 +127,14 @@ class Userline extends React.Component {
           </Col>
         </Row>
         <Row>
-          <SortablePostTable parent = "userline" posts_all={POSTS_ALL} />
+          <SortablePostTable parent = "userline" posts_all={this.state.posts_all} />
         </Row>
       </Col>
       </div>
       </>
     );
   }
+}
 }
 
 export default Userline;
