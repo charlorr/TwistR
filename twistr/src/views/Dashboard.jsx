@@ -61,15 +61,6 @@ class Dashboard extends React.Component {
   }
 
 componentDidMount() {
-  /*postService.getPostByAuthor(localStorage.getItem('pk'))
-  .then((response) => {
-    return response.json();
-  })
-  .then(data => {
-    this.setState({
-      posts_all : data.results.map(({text_body}) => text_body)
-    })
-});*/
   this.getPosts();
 }
 
@@ -93,14 +84,12 @@ redirect() {
 }
 
   render() {
-    //this.getPosts();
-    //console.log(this.state.posts_all)
     if (this.state.posts_all.length === 0) {
-      console.log("no post data")
+     // console.log("no post data")
       return <div />
     }else{
-      console.log("yes post data")
-      console.log(this.state.posts_all)
+     // console.log("yes post data")
+     // console.log(this.state.posts_all)
       return (
         <>
         <div className="content">

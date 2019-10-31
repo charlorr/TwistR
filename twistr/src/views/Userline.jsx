@@ -4,7 +4,7 @@ import FollowUserService from "../components/FollowUserService/FollowUserService
 import PostService from "components/PostService/PostService.jsx";
 import UserlineFollowCard from "../components/UserlineFollowCard/UserlineFollowCard.jsx";
 import BioCard from "components/BioCard/BioCard.jsx";
-import {SortablePostTable} from "components/PostRoster/PostRoster.jsx";
+import PostRoster from "components/PostRoster/PostRoster.jsx";
 import {SortableTagTable} from "components/NewTagRoster/NewTagRoster.jsx";
 import { Redirect } from 'react-router-dom';
 
@@ -62,7 +62,7 @@ class Userline extends React.Component {
       
       userService.getUser(params.pk).then(function(result) {
         self.setState({currentUserline: result});
-        console.log(self.currentUserline)
+       
       })
 
       //gets the twists to determine if user already follows the userline they are viewing
@@ -103,22 +103,23 @@ class Userline extends React.Component {
   }
   render() {
     if (this.state.posts_all.length === 0) {
-      console.log("no post data")
+   //   console.log("no post data")
       return <div />
     }else{
-      console.log("yes post data")
-      console.log(this.state.posts_all)
+   //   console.log("yes post data")
+   //   console.log(this.state.posts_all)
+        console.log(this.state.currentUserline)
     return (
       <>
       <div className="content">
       {this.redirect()}
-      <Col lg="12" md="11" sm="10">
         <Row>
-          
+        <Col lg="12" md="11" sm="10">
           <BioCard currentUserline = {this.state.currentUserline} />
           <Col>
           
           <UserlineFollowCard followExists = {this.state.followExists} currentUser= {this.state.currentUser} currentUserline = {this.state.currentUserline}/>
+          </Col>
           </Col>
         </Row>
         <Row>
@@ -127,14 +128,12 @@ class Userline extends React.Component {
           </Col>
         </Row>
         <Row>
-          <SortablePostTable parent = "userline" posts_all={this.state.posts_all} />
+          <PostRoster posts_all={this.state.posts_all} />
         </Row>
-      </Col>
       </div>
       </>
     );
   }
 }
 }
-
 export default Userline;
