@@ -61,7 +61,7 @@ class CreatePost extends React.Component {
         "author": localStorage.getItem('pk')
       }
     ).then((result) =>{
-      alert("Customer created!");
+      alert("Post created!");
     }).catch(()=>{
       alert("There was an error! Please re-check your form.")
     });
@@ -134,6 +134,12 @@ class CreatePost extends React.Component {
     this.handleTagCreate();
     if(this.state.tags.length > 0){
       if(this.state.tags.length < 4){
+        for(var i=0; i <this.state.tags.length; i++){
+          if(this.state.tags[i].length > 20){
+           // alert("too many characters in a tag!");
+            this.setState({tags_correct : false});
+          } 
+        }
         this.handleCreate();
       }
     }
