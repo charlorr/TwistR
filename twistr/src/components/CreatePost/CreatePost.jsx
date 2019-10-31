@@ -92,7 +92,7 @@ class CreatePost extends React.Component {
           ).then((result) =>{
             alert("Tag created!");
           }).catch(()=>{
-            alert("There was an error! Please re-check your form.")
+            alert("There was an error! Please re-check your tags.")
           });
         }
       }
@@ -132,10 +132,15 @@ class CreatePost extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     this.handleTagCreate();
-    console.log(this.state.tags_correct);
+    if(this.state.tags.length > 0){
+      if(this.state.tags.length < 4){
+        this.handleCreate();
+      }
+    }
+   /* console.log(this.state.tags_correct);
     if(this.state.tags_correct === true){
       this.handleCreate();
-    }else{
+    }*/else{
       alert("Please fix your tags and then resubmit!");
     }
     event.preventDefault();
@@ -194,7 +199,7 @@ class CreatePost extends React.Component {
                            this.updateTagValue(e.target.value);
                            this.setState({tags : this.state.tagsInputValue.split(",")});
                           console.log(this.state.tags);
-                         }} type="text" placeholder="Up to three tags seperated by space" />
+                         }} type="text" placeholder="Up to three tags seperated by commas" />
                    </div>   
                     </FormGroup>
                   </Col>
