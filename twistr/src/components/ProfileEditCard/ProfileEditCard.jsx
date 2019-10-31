@@ -29,8 +29,10 @@ class  ProfileEditCard  extends  Component {
   }
 
     notificationAlert = React.createRef();
+    
     deleteProfile() {
       userService.deleteUser(this.props.currentUser.pk);
+      alert('Account has been deleted!');
       this.logOut();
     }
 
@@ -124,6 +126,7 @@ class  ProfileEditCard  extends  Component {
                           placeholder="example@twistr.com" 
                           ref = "email"
                           type="email"
+                          pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{1,63}$"
                           maxLength="40"
                           defaultValue = {this.props.currentUser.email}
                           required/>

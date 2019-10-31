@@ -43,7 +43,7 @@ class  ProfileSummaryCard  extends  Component {
                 </div>
                 <p className="description text-center"
                   id = "displayBio">
-                  {this.props.currentUser.bio}
+                  {/*this.props.currentUser.bio*/}
                 </p>
               </CardBody>
               <CardFooter>

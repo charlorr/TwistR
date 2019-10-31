@@ -1,12 +1,18 @@
 import React from "react";
 import CreatePost from "components/CreatePost/CreatePost.jsx";
-import {SortablePostTable} from "components/PostRoster/PostRoster.jsx";
+import PostRoster from "components/PostRoster/PostRoster.jsx";
 import {SortableTagTable} from "components/NewTagRoster/NewTagRoster.jsx";
+import PostService from "components/PostService/PostService.jsx"
+import {Redirect} from 'react-router-dom';
 // reactstrap components
 import {
   Row,
-  Col
+  Col, 
+  CardBody
 } from "reactstrap";
+import { SortablePostTable } from "components/PostRoster/PostRoster";
+
+const postService = new PostService();
 
 //hardcoded posts for now, until we have connection to database
 var POSTS_ALL=[{
@@ -45,25 +51,69 @@ var TAGS_ALL=[{
 }]
 
 class Dashboard extends React.Component {
-  render() {
-    return (
-      <>
-      <div className="content">
-        <Row>
-          <CreatePost/>
-        </Row>
-        <Row>
-          <Col lg="12" md="12" sm="12">
-            <SortableTagTable tags_all = {TAGS_ALL}/>
-          </Col>
-        </Row>
-        <Row>
-          <SortablePostTable parent = "dashboard" posts_all={POSTS_ALL} />
-        </Row>
-      </div>
-      </>
-    );
+  constructor(props) {
+    super(props);
+    this.state = {
+      posts_all: [],
+      flag: false
+    };
+    this.getPosts.bind(this);
   }
+
+componentDidMount() {
+  this.getPosts();
+}
+
+getPosts(){
+  var self = this;
+  postService.getPostByAuthor(localStorage.getItem('pk'))
+  .then(function(response) {
+    console.log(response);
+    self.setState({posts_all : response.data})
+    self.setState({flag: true})
+  })
+  .catch(function(error) {
+    console.log(error);
+  });
+}
+
+redirect() {
+  if (localStorage.getItem('pk') === null) {
+    return <Redirect to="/admin/welcome"/>;
+  }
+}
+
+  render() {
+    if (this.state.posts_all.length === 0) {
+     // console.log("no post data")
+      return <div />
+    }else{
+     // console.log("yes post data")
+     // console.log(this.state.posts_all)
+      return (
+        <>
+        <div className="content">
+          {this.redirect()}
+          <Row>
+            <CreatePost/>
+          </Row>
+          <Row>
+            <Col lg="12" md="12" sm="12">
+              <SortableTagTable tags_all = {TAGS_ALL}/>
+            </Col>
+          </Row>
+          <Row>
+              <PostRoster posts_all = {this.state.posts_all}/>
+          </Row>
+        </div>
+        </>
+      );
+    }
+    }
+
+    //this.getPosts();
+   // console.log(this.state.posts_all)
+    
 }
 
 export default Dashboard;

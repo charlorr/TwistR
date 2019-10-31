@@ -1,9 +1,8 @@
 import React from "react";
 import UserService from "../components/UserService/UserService.jsx";
 import ProfileEditCard from "../components/ProfileEditCard/ProfileEditCard.jsx";
-import FollowerCard from "../components/FollowerCard/FollowerCard.jsx";
+import ProfileFollowerCard from "../components/ProfileFollowerCard/ProfileFollowerCard.jsx";
 import ProfileSummaryCard from "../components/ProfileSummaryCard/ProfileSummaryCard.jsx";
-import UserList from "components/UserList/UserList.jsx";
 
 import {
   Row,
@@ -21,16 +20,6 @@ class Profile extends React.Component {
       currentUser: []
     };
   }
-
-  // componentDidMount() {
-  //   const { match: { params } } =  this.props;
-  //   if (params && params.pk) {
-  //     var self = this;
-  //     userService.getUser(params.pk).then(function(result) {
-  //       self.setState({currentUser: result});
-  //     })
-  //   }
-  // }
 
   componentDidMount() {
     console.log(localStorage.getItem('pk'));
@@ -54,7 +43,7 @@ class Profile extends React.Component {
         <Row>
           <Col md="4">
             <ProfileSummaryCard currentUser = {this.state.currentUser}/>
-            <FollowerCard />
+            <ProfileFollowerCard currentUser = {this.state.currentUser}/>
           </Col>
           <Col md="8">
             <ProfileEditCard currentUser = {this.state.currentUser} />

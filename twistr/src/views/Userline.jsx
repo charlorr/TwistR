@@ -1,14 +1,22 @@
 import React from "react";
 import  UserService  from  'components/UserService/UserService.jsx';
+import FollowUserService from "../components/FollowUserService/FollowUserService.jsx";
+import PostService from "components/PostService/PostService.jsx";
+import UserlineFollowCard from "../components/UserlineFollowCard/UserlineFollowCard.jsx";
 import BioCard from "components/BioCard/BioCard.jsx";
-import {SortablePostTable} from "components/PostRoster/PostRoster.jsx";
+import PostRoster from "components/PostRoster/PostRoster.jsx";
 import {SortableTagTable} from "components/NewTagRoster/NewTagRoster.jsx";
+import { Redirect } from 'react-router-dom';
+
 import {
   Row,
   Col,
   Button
 } from "reactstrap";
+//import FollowerCard from "components/FollowerCard/ProfileFollowerCard.jsx";
 const userService = new UserService();
+const followUserService = new FollowUserService();
+const postService = new PostService();
 
 //hardcoded posts for now, until we have connection to database
 var POSTS_ALL=[{
@@ -40,48 +48,78 @@ class Userline extends React.Component {
     super(props);
     this.state  = {
       users: [],
-      currentUser: []
+      currentUserline: [],
+      currentUser: [],
+      followExists: false,
+      posts_all: []
     };
   }
 
   componentDidMount() {
+    var self = this;
     const { match: { params } } =  this.props;
     if (params && params.pk) {
-      var self = this;
+      
       userService.getUser(params.pk).then(function(result) {
-        self.setState({currentUser: result});
+        self.setState({currentUserline: result});
+       
       })
+
+      //gets the twists to determine if user already follows the userline they are viewing
+      followUserService.getFollowUsers(localStorage.getItem('pk'),params.pk).then((result)=>{
+        if(Object.keys(result.data).length === 0)
+        self.setState({followExists: false})
+        else{
+          self.setState({followExists: true})
+        }
+
+    })
+    this.getPosts();
+    }
+   
+    userService.getUser(localStorage.getItem('pk')).then(function (result) {
+        self.setState({currentUser: result});
+    })
+
+  }
+  getPosts(){
+    var self = this;
+    //postService.getPostByAuthor(this.state.currentUserline)
+    postService.getPostByAuthor(2) //this is hardcoded! will always show userline posts of the second user in the database!
+    .then(function(response) {
+      console.log(response);
+      self.setState({posts_all : response.data})
+      self.setState({flag: true})
+    })
+    .catch(function(error) {
+      console.log(error);
+    });
+  }
+
+  redirect() {
+    if (localStorage.getItem('pk') === null) {
+      return <Redirect to="/admin/welcome"/>;
     }
   }
-
-  followUser(){
-
-  }
-
-  unfollowUser(){
-
-  }
-
   render() {
+    if (this.state.posts_all.length === 0) {
+   //   console.log("no post data")
+      return <div />
+    }else{
+   //   console.log("yes post data")
+   //   console.log(this.state.posts_all)
+        console.log(this.state.currentUserline)
     return (
       <>
       <div className="content">
-      <Col lg="12" md="11" sm="10">
+      {this.redirect()}
         <Row>
-          
-          <BioCard currentUser = {this.state.currentUser} />
+        <Col lg="12" md="11" sm="10">
+          <BioCard currentUserline = {this.state.currentUserline} />
           <Col>
-          <Button 
-          className="btn-round"
-          color="primary"
-          onClick={this.followUser}>
-          Follow User </Button>
-
-          <Button 
-          className="btn-round"
-          color="primary"
-          onClick={this.unfollowUser}>
-          Unfollow User </Button>
+          
+          <UserlineFollowCard followExists = {this.state.followExists} currentUser= {this.state.currentUser} currentUserline = {this.state.currentUserline}/>
+          </Col>
           </Col>
         </Row>
         <Row>
@@ -90,13 +128,12 @@ class Userline extends React.Component {
           </Col>
         </Row>
         <Row>
-          <SortablePostTable parent = "userline" posts_all={POSTS_ALL} />
+          <PostRoster posts_all={this.state.posts_all} />
         </Row>
-      </Col>
       </div>
       </>
     );
   }
 }
-
+}
 export default Userline;

@@ -25,11 +25,11 @@ class BioCard extends React.Component {
       <Col lg="9" md="6" sm="6">
         <Card className="card-stats">
           <CardHeader>
-            <CardTitle tag="h5">{this.props.currentUser.first_name}'s Bio</CardTitle>
+            <CardTitle tag="h5">{this.props.currentUserline.first_name}'s Bio</CardTitle>
              <hr/>
           </CardHeader>
           <CardBody>
-            <h2>{this.props.currentUser.bio}</h2>
+            <h2>{this.props.currentUserline.bio}</h2>
           </CardBody>
         </Card>
       </Col>

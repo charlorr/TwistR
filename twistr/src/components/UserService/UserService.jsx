@@ -22,6 +22,9 @@ export default class UserService{
         return axios.get(url, auth_config).then(response => response.data);
     }
     deleteUser(pk){
+        if (localStorage.getItem('auth_token') === null) {
+            alert('Deletion failed!');
+        }
         //need to have auth_config, copy this line and put it in any request that  requires authorization
         var auth_config = {headers : {
                                 'Authorization' : "token " + localStorage.getItem('auth_token'),
@@ -52,12 +55,13 @@ export default class UserService{
         .then(function (response) {
             localStorage.setItem('pk', response.data.user_pk);
             localStorage.setItem('auth_token', response.data.token);
-            console.log(localStorage.getItem('auth_token'));
-            console.log(localStorage.getItem('pk'));
-            return localStorage.getItem('pk');
+            // console.log(localStorage.getItem('auth_token'));
+            // console.log(localStorage.getItem('pk'));
+            return response.data;
         })
         .catch(function(error){
-            console.log(error);
+            // console.log(error);
+            return error;
         });
         
     }

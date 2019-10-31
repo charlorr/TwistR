@@ -12,7 +12,7 @@ import {
   Col
 } from "reactstrap";
 
-class  FollowerCard  extends  Component {
+class  ProfileFollowerCard  extends  Component {
     render() {
 
         return (
@@ -106,4 +106,4 @@ class  FollowerCard  extends  Component {
 }
         
       
-export  default  FollowerCard;
+export  default  ProfileFollowerCard;
