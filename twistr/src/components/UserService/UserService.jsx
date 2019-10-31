@@ -27,10 +27,8 @@ export default class UserService{
                                 'Authorization' : "token " + localStorage.getItem('auth_token'),
                                 //'Access-Control-Allow-Origin': '*'
                             }};
-        alert(localStorage.getItem('pk'))
         const url = `${API_URL}/api/users/delete/${localStorage.getItem('pk')}`;
         //note you put auth_config as last argument in the actual request
-        alert(url)
         return axios.delete(url, auth_config);
     }
     createUser(user){
@@ -38,7 +36,6 @@ export default class UserService{
         return axios.post(url, user)
     }
     addPassword() {
-        alert("hello sir");
         const url = `${API_URL}/api/password/`;
         return axios.get(url)
     }
