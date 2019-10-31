@@ -13,23 +13,32 @@ export default class TagService{
     }
     
     getTagByAuthor(pk){
+        var auth_config = {headers : {'Authorization' : "token " + localStorage.getItem('auth_token')}};
         const url = `${API_URL}/api/userline/${pk}`;
-        return axios.get(url).then(response  => response.data);
+        return axios.get(url, auth_config).then(response  => response.data);
     }
     getTag(pk) {
+        var auth_config = {headers : {'Authorization' : "token " + localStorage.getItem('auth_token')}};
         const url = `${API_URL}/api/tags/${pk}`;
-        return axios.get(url).then(response => response.data);
+        return axios.get(url, auth_config).then(response => response.data);
     }
     deleteTag(tag){
+        if (localStorage.getItem('auth_token') === null) {
+            alert('Deletion failed!');
+        }
+        //need to have auth_config, copy this line and put it in any request that  requires authorization
+        var auth_config = {headers : {'Authorization' : "token " + localStorage.getItem('auth_token')}};
         const url = `${API_URL}/api/tags/${tag.pk}`;
-        return axios.delete(url);
+        return axios.delete(url,auth_config);
     }
     createTag(tag){
+        var auth_config = {headers : {'Authorization' : "token " + localStorage.getItem('auth_token')}};
         const url = `${API_URL}/api/tags/`;
-        return axios.post(url,tag);
+        return axios.post(url,tag, auth_config);
     }
     updateTag(tag){
+        var auth_config = {headers : {'Authorization' : "token " + localStorage.getItem('auth_token')}};
         const url = `${API_URL}/api/tags/${tag.pk}`;
-        return axios.put(url,tag);
+        return axios.put(url,tag,auth_config);
     }
 }

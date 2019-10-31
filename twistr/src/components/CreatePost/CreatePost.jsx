@@ -6,6 +6,7 @@ import UserService from "components/UserService/UserService.jsx";
 import NotificationAlert from "react-notification-alert";
 import InputTag from "components/InputTag/InputTag.jsx";
 import TagService from "components/TagService/TagService.jsx";
+import onEvent from "react-onevent";
 
 import {
   Button,
@@ -17,7 +18,8 @@ import {
   Col,
   Input,
   FormGroup,
-  Row
+  Row,
+  Badge
 } from "reactstrap";
 import { Redirect } from 'react-router-dom';
 
@@ -34,6 +36,8 @@ class CreatePost extends React.Component {
       currentPost: [],
       currentUser: [],
       tags: [],
+      tagsInputValue:'',
+      tags_correct:true,
       chars_left: 280, max_chars: 280,
       tag_chars_left:20, max_tag_chars: 20,
     };
@@ -65,12 +69,20 @@ class CreatePost extends React.Component {
 
   handleTagCreate(){
     if(this.state.tags.length > 3){
+      this.setState({tags_correct : false});
       alert("too many tags!");
     }
+    else if(this.state.tags.length < 1){
+      this.setState({tags_correct : false});
+      alert("too few tags!");
+    }
     else{
+      //this.setState({tags_correct : true});
+      console.log(this.state.tags_correct);
       for(var i=0; i <this.state.tags.length; i++){
         if(this.state.tags[i].length > 20){
-          alert("too many characters in a tag!")
+          alert("too many characters in a tag!");
+          this.setState({tags_correct : false});
         }else{
           tagService.createTag(
             {
@@ -78,7 +90,7 @@ class CreatePost extends React.Component {
               "name": this.state.tags[i]
             }
           ).then((result) =>{
-            alert("Customer created!");
+            alert("Tag created!");
           }).catch(()=>{
             alert("There was an error! Please re-check your form.")
           });
@@ -87,10 +99,45 @@ class CreatePost extends React.Component {
     }  
   }
 
+  addTag = (tag) => {
+    console.log("add tag time")
+    tag = tag.trim();
+    if(!(this.state.tags.indexOf(tag) >-1)) {
+      let tags = this.state.tags.concat([tag]);
+      this.updateTags(tags);
+    }
+    this.updateTagValue('');
+  }
+
+  updateTagValue = (value) => {
+    if(value === ' '){
+      return;
+    }
+    this.setState({
+      tagsInputValue: value
+    })
+  }
+
+  removeTag = (removeTag) => {
+    let tags = this.state.tags.filter((tag) => tag !== removeTag);
+    this.updateTags(tags);
+  }
+
+  updateTags = (tags) => {
+    this.setState({
+      tags
+    })
+  }
+
   handleSubmit(event) {
     event.preventDefault();
-    this.handleCreate();
     this.handleTagCreate();
+    console.log(this.state.tags_correct);
+    if(this.state.tags_correct === true){
+      this.handleCreate();
+    }else{
+      alert("Please fix your tags and then resubmit!");
+    }
     event.preventDefault();
   }
 
@@ -104,6 +151,8 @@ class CreatePost extends React.Component {
   }
  
   render() {
+    const {tagsInputValue} = this.state;
+    console.log(this.state.tagsInputValue)
     return (
       <>
       <div className="content" >
@@ -140,8 +189,13 @@ class CreatePost extends React.Component {
                 <Row>
                   <Col>
                     <FormGroup>
-                      <InputTag parentCallback = {this.callBack}/>
-                      <p>{this.state.tags}</p>
+                    <div className="input-tag">
+                        <Input value={tagsInputValue} onChange={(e) =>{
+                           this.updateTagValue(e.target.value);
+                           this.setState({tags : this.state.tagsInputValue.split(",")});
+                          console.log(this.state.tags);
+                         }} type="text" placeholder="Up to three tags seperated by space" />
+                   </div>   
                     </FormGroup>
                   </Col>
                 </Row>
