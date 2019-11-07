@@ -7,7 +7,7 @@ import BioCard from "components/BioCard/BioCard.jsx";
 import PostRoster from "components/PostRoster/PostRoster.jsx";
 import {SortableTagTable} from "components/NewTagRoster/NewTagRoster.jsx";
 import { Redirect } from 'react-router-dom';
-
+import TagUserlineCard from "components/TagUserlineCard/TagUserlineCard.jsx";
 import {
   Row,
   Col,
@@ -51,7 +51,7 @@ class Userline extends React.Component {
       currentUserline: [],
       currentUser: [],
       followExists: false,
-      posts_all: []
+      posts_all: [],
     };
 
     this.getPosts = this.getPosts.bind(this);
@@ -85,7 +85,7 @@ class Userline extends React.Component {
   getPosts(){
     var self = this;
     //postService.getPostByAuthor(this.state.currentUserline)
-    postService.getPostByAuthor(this.state.currentUserline.pk) //this is hardcoded! will always show userline posts of the second user in the database!
+    postService.getPostByAuthor(this.state.currentUserline.pk)
     .then(function(response) {
       console.log(response);
       self.setState({posts_all : response.data})
@@ -95,6 +95,7 @@ class Userline extends React.Component {
       console.log(error);
     });
   }
+
 
   redirect() {
     if (localStorage.getItem('pk') === null) {
@@ -111,11 +112,8 @@ class Userline extends React.Component {
           <Row>
           <Col lg="12" md="11" sm="10">
             <BioCard currentUserline = {this.state.currentUserline} />
-            <Col>
-            
             <UserlineFollowCard followExists = {this.state.followExists} currentUser= {this.state.currentUser} currentUserline = {this.state.currentUserline}/>
-            </Col>
-            </Col>
+           </Col>
           </Row>
           </div>
       </>
@@ -134,12 +132,14 @@ class Userline extends React.Component {
           <Col>
           
           <UserlineFollowCard followExists = {this.state.followExists} currentUser= {this.state.currentUser} currentUserline = {this.state.currentUserline}/>
+          <TagUserlineCard currentUserline = {this.state.currentUserline}/>
+          
           </Col>
           </Col>
         </Row>
         <Row>
           <Col lg="12" md="12" sm="12">
-            <SortableTagTable tags_all = {TAGS_ALL}/>
+            {/* <SortableTagTable tags_all = {TAGS_ALL}/> */}
           </Col>
         </Row>
         <Row>

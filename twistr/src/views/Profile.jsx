@@ -42,7 +42,7 @@ class Profile extends React.Component {
         {this.redirect()}
         <Row>
           <Col md="4">
-            <ProfileSummaryCard currentUser = {this.state.currentUser}/>
+            {/* <ProfileSummaryCard currentUser = {this.state.currentUser}/> */}
             <ProfileFollowerCard currentUser = {this.state.currentUser}/>
           </Col>
           <Col md="8">

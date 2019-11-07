@@ -14,7 +14,7 @@ export default class TagService{
     
     getTagByAuthor(pk){
         var auth_config = {headers : {'Authorization' : "token " + localStorage.getItem('auth_token')}};
-        const url = `${API_URL}/api/userline/${pk}`;
+        const url = `${API_URL}/api/usertags/${pk}`;
         return axios.get(url, auth_config).then(response  => response.data);
     }
     getTag(pk) {
