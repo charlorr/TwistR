@@ -49,4 +49,12 @@
     "file-loader": "^4.2.0",
     "url-loader": "^2.2.0"
   }
+},
+{
+  "name": "twistr-307",
+  "description": "a very nice app",
+  "version": "32042.0.0",
+  "engines": {
+    "node": "10.16.3"
+  }
 }
