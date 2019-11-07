@@ -104,7 +104,22 @@ class Userline extends React.Component {
   render() {
     if (this.state.posts_all.length === 0) {
    //   console.log("no post data")
-      return <div />
+      return (
+        <>
+        <div className="content">
+        {this.redirect()}
+          <Row>
+          <Col lg="12" md="11" sm="10">
+            <BioCard currentUserline = {this.state.currentUserline} />
+            <Col>
+            
+            <UserlineFollowCard followExists = {this.state.followExists} currentUser= {this.state.currentUser} currentUserline = {this.state.currentUserline}/>
+            </Col>
+            </Col>
+          </Row>
+          </div>
+      </>
+      );
     }else{
    //   console.log("yes post data")
    //   console.log(this.state.posts_all)
