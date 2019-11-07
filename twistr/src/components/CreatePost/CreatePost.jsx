@@ -62,6 +62,9 @@ class CreatePost extends React.Component {
       }
     ).then((result) =>{
       alert("Post created!");
+      this.setState({currentPostPk : result.data.pk});
+      console.log(this.currentPostPk);
+      this.handleTagCreate();
     }).catch(()=>{
       alert("There was an error! Please re-check your form.")
     });
@@ -86,7 +89,7 @@ class CreatePost extends React.Component {
         }else{
           tagService.createTag(
             {
-              "post": localStorage.getItem('pk'),
+              "post": this.state.currentPostPk,
               "name": this.state.tags[i]
             }
           ).then((result) =>{
@@ -129,10 +132,38 @@ class CreatePost extends React.Component {
     })
   }
 
+  checkTagValidity(){
+    if(this.state.tags.length > 3){
+      this.setState({tags_correct : false});
+      alert("too many tags!");
+    }
+    else if(this.state.tags.length < 1){
+      this.setState({tags_correct : false});
+      alert("too few tags!");
+    }
+    else{
+      console.log(this.state.tags_correct);
+      for(var i=0; i <this.state.tags.length; i++){
+        if(this.state.tags[i].length > 20){
+          alert("too many characters in a tag!");
+          this.setState({tags_correct : false});
+        }
+      }
+      this.setState({tags_correct : true});
+    }  
+  }
+
   handleSubmit(event) {
     event.preventDefault();
-    this.handleTagCreate();
-    if(this.state.tags.length > 0){
+    this.checkTagValidity();
+    if(this.state.tags_correct === true){
+      this.handleCreate();
+      //this.handleTagCreate();
+    }else {
+      alert("Please fix your tags and then resubmit!");
+    }
+    //this.handleTagCreate();
+   /* if(this.state.tags.length > 0){
       if(this.state.tags.length < 4){
         for(var i=0; i <this.state.tags.length; i++){
           if(this.state.tags[i].length > 20){
@@ -142,13 +173,11 @@ class CreatePost extends React.Component {
         }
         this.handleCreate();
       }
-    }
+    }*/
    /* console.log(this.state.tags_correct);
     if(this.state.tags_correct === true){
       this.handleCreate();
-    }*/else{
-      alert("Please fix your tags and then resubmit!");
-    }
+    }*/
     event.preventDefault();
   }
 
