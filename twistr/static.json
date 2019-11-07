@@ -1,6 +1,6 @@
-{
-    "root": "/paper-dashboard-react/",
-    "routes": {
-        "/**": "index.html"
-    }
-}
+// {
+//     "root": "/paper-dashboard-react/",
+//     "routes": {
+//         "/**": "index.html"
+//     }
+// }
