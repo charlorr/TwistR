@@ -1,5 +1,5 @@
 {
-    "root": "dist/",
+    "root": "/paper-dashboard-react/",
     "routes": {
         "/**": "index.html"
     }

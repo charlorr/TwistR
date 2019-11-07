@@ -21,7 +21,7 @@
     "reactstrap": "8.0.0"
   },
   "scripts": {
-    "postinstall": "react-scripts build",
+    "heroku-postbuild": "react-scripts build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
