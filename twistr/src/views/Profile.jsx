@@ -2,7 +2,6 @@ import React from "react";
 import UserService from "../components/UserService/UserService.jsx";
 import ProfileEditCard from "../components/ProfileEditCard/ProfileEditCard.jsx";
 import ProfileFollowerCard from "../components/ProfileFollowerCard/ProfileFollowerCard.jsx";
-import ProfileSummaryCard from "../components/ProfileSummaryCard/ProfileSummaryCard.jsx";
 
 import {
   Row,
@@ -41,13 +40,11 @@ class Profile extends React.Component {
       <div className="content">
         {this.redirect()}
         <Row>
-          <Col md="4">
-            {/* <ProfileSummaryCard currentUser = {this.state.currentUser}/> */}
+          <Col lg="4" md="4" sm="4">
             <ProfileFollowerCard currentUser = {this.state.currentUser}/>
           </Col>
-          <Col md="8">
+          <Col lg="8" md="8" sm="8">
             <ProfileEditCard currentUser = {this.state.currentUser} />
-           
           </Col>
         </Row>
       </div>
