@@ -18,8 +18,7 @@ import {
   Col,
   Input,
   FormGroup,
-  Row,
-  Badge
+  Row
 } from "reactstrap";
 import { Redirect } from 'react-router-dom';
 
@@ -274,7 +273,7 @@ class CreatePost extends React.Component {
             {/*<NameCard />*/}
           </Col>
         </Row>
-        </Col>
+      </Col>
       </div>
       </>
     );
