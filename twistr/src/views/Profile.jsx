@@ -2,6 +2,7 @@ import React from "react";
 import UserService from "../components/UserService/UserService.jsx";
 import ProfileEditCard from "../components/ProfileEditCard/ProfileEditCard.jsx";
 import ProfileFollowerCard from "../components/ProfileFollowerCard/ProfileFollowerCard.jsx";
+import ThemeCard from "../components/ThemeCard/ThemeCard.jsx";
 
 import {
   Row,
@@ -45,6 +46,7 @@ class Profile extends React.Component {
           </Col>
           <Col lg="8" md="8" sm="8">
             <ProfileEditCard currentUser = {this.state.currentUser} />
+            <ThemeCard currentUser = {this.state.currentUser} />
           </Col>
         </Row>
       </div>
