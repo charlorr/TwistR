@@ -24,49 +24,55 @@ class  ThemeCard  extends  Component {
     };
   }
 
-    render() { 
-      return (
-        <div >
-          <Card className="card-user">
-            <CardHeader>
-              <CardTitle tag="h5">Change Your Theme</CardTitle>
-            </CardHeader>
-            <Row>
-              <div className="update ml-auto mr-auto">
-                <Button 
-                  className="btn-round" 
-                  size="lg" 
-                  color="secondary"
-                  type="submit"
-                  onClick={() => this.showLogin()}>
-                  Default
-                </Button>
-              </div>
-              <div className="update ml-auto mr-auto">
-                <Button 
-                  className="btn-round" 
-                  size="lg" 
-                  color="secondary"
-                  type="submit"
-                  onClick={() => this.showForgotPass()}>
-                  Dark Mode
-                </Button>
-              </div>
-              <div className="update ml-auto mr-auto">
-                <Button 
-                  className="btn-round" 
-                  size="lg" 
-                  color="secondary"
-                  type="submit"
-                  onClick={() => this.showReg()}>
-                  Inverted
-                </Button>
-              </div>
-            </Row>
-          </Card>
-        </div>
-      );
-    }
+  themeDark() {
+    this.setState({
+      
+    })
+  }
+
+  render() { 
+    return (
+      <div >
+        <Card className="card-user">
+          <CardHeader>
+            <CardTitle tag="h5">Change Your Theme</CardTitle>
+          </CardHeader>
+          <Row>
+            <div className="update ml-auto mr-auto">
+              <Button 
+                className="btn-round" 
+                size="lg" 
+                color="secondary"
+                type="submit"
+                onClick={() => this.themeDefault()}>
+                Default
+              </Button>
+            </div>
+            <div className="update ml-auto mr-auto">
+              <Button 
+                className="btn-round" 
+                size="lg" 
+                color="secondary"
+                type="submit"
+                onClick={() => this.themeDark()}>
+                Dark Mode
+              </Button>
+            </div>
+            <div className="update ml-auto mr-auto">
+              <Button 
+                className="btn-round" 
+                size="lg" 
+                color="secondary"
+                type="submit"
+                onClick={() => this.themeInverted()}>
+                Inverted
+              </Button>
+            </div>
+          </Row>
+        </Card>
+      </div>
+    );
+  }
 } 
       
 export  default  ThemeCard;
