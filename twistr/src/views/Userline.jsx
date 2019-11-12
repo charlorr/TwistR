@@ -3,44 +3,20 @@ import  UserService  from  'components/UserService/UserService.jsx';
 import FollowUserService from "../components/FollowUserService/FollowUserService.jsx";
 import PostService from "components/PostService/PostService.jsx";
 import UserlineFollowCard from "../components/UserlineFollowCard/UserlineFollowCard.jsx";
+import UserlineViewTagsCard from "../components/UserlineViewTagsCard/UserlineViewTagsCard.jsx";
 import BioCard from "components/BioCard/BioCard.jsx";
 import PostRoster from "components/PostRoster/PostRoster.jsx";
 import {SortableTagTable} from "components/NewTagRoster/NewTagRoster.jsx";
 import { Redirect } from 'react-router-dom';
-
+import TagUserlineCard from "components/TagUserlineCard/TagUserlineCard.jsx";
 import {
   Row,
-  Col,
-  Button
+  Col
 } from "reactstrap";
-//import FollowerCard from "components/FollowerCard/ProfileFollowerCard.jsx";
+
 const userService = new UserService();
 const followUserService = new FollowUserService();
 const postService = new PostService();
-
-//hardcoded posts for now, until we have connection to database
-var POSTS_ALL=[{
-  author: "Cookie Monster",
-  tags: ["cookies ", "trashcan ", ""],
-  content: "I just ate 49 cookies. I had some chocolate chip, triple chocolate, and peanut butter",
-  timestamp: 30,
-  picture: require("assets/img/CookieMonster.jpg"),
-}, {
-  author: "Cookie Monster",
-  tags: ["ouch ", "regrets "],
-  content: "Update: I have a stomach ache.",
-  timestamp: 10,
-  picture: require("assets/img/CookieMonster.jpg"),
-}]
-var TAGS_ALL=[{
-  author: "Cookie Monster",
-  content: "ouch",
-  timestamp: 10
-}, {
-  author: "Cookie Monster",
-  content: "regrets",
-  timestamp: 15
-}]
 
 class Userline extends React.Component {
 
@@ -51,7 +27,7 @@ class Userline extends React.Component {
       currentUserline: [],
       currentUser: [],
       followExists: false,
-      posts_all: []
+      posts_all: [],
     };
 
     this.getPosts = this.getPosts.bind(this);
@@ -85,7 +61,7 @@ class Userline extends React.Component {
   getPosts(){
     var self = this;
     //postService.getPostByAuthor(this.state.currentUserline)
-    postService.getPostByAuthor(this.state.currentUserline.pk) //this is hardcoded! will always show userline posts of the second user in the database!
+    postService.getPostByAuthor(this.state.currentUserline.pk)
     .then(function(response) {
       console.log(response);
       self.setState({posts_all : response.data})
@@ -95,6 +71,7 @@ class Userline extends React.Component {
       console.log(error);
     });
   }
+
 
   redirect() {
     if (localStorage.getItem('pk') === null) {
@@ -109,15 +86,17 @@ class Userline extends React.Component {
         <div className="content">
         {this.redirect()}
           <Row>
-          <Col lg="12" md="11" sm="10">
-            <BioCard currentUserline = {this.state.currentUserline} />
-            <Col>
-            
-            <UserlineFollowCard followExists = {this.state.followExists} currentUser= {this.state.currentUser} currentUserline = {this.state.currentUserline}/>
-            </Col>
+            <Col lg="12" md="11" sm="10">
+              <Row>
+              <BioCard currentUserline = {this.state.currentUserline} />
+              <Col lg="3" md="3" sm="3">
+                <UserlineFollowCard followExists = {this.state.followExists} currentUser= {this.state.currentUser} currentUserline = {this.state.currentUserline}/>
+                <UserlineViewTagsCard />
+              </Col>
+              </Row>
             </Col>
           </Row>
-          </div>
+        </div>
       </>
       );
     }else{
@@ -129,17 +108,22 @@ class Userline extends React.Component {
       <div className="content">
       {this.redirect()}
         <Row>
-        <Col lg="12" md="11" sm="10">
-          <BioCard currentUserline = {this.state.currentUserline} />
-          <Col>
-          
-          <UserlineFollowCard followExists = {this.state.followExists} currentUser= {this.state.currentUser} currentUserline = {this.state.currentUserline}/>
-          </Col>
+          <Col lg="12" md="11" sm="10">
+            <Row>
+              <BioCard currentUserline = {this.state.currentUserline} />
+              <Col lg="3" md="3" sm="3">
+                <UserlineFollowCard followExists = {this.state.followExists} currentUser= {this.state.currentUser} currentUserline = {this.state.currentUserline}/>
+                <UserlineViewTagsCard />
+              </Col>
+            </Row>
           </Col>
         </Row>
         <Row>
+          <TagUserlineCard currentUserline = {this.state.currentUserline}/>
+        </Row>
+        <Row>
           <Col lg="12" md="12" sm="12">
-            <SortableTagTable tags_all = {TAGS_ALL}/>
+            {/* <SortableTagTable tags_all = {TAGS_ALL}/> */}
           </Col>
         </Row>
         <Row>

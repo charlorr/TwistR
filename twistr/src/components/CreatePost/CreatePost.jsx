@@ -18,8 +18,7 @@ import {
   Col,
   Input,
   FormGroup,
-  Row,
-  Badge
+  Row
 } from "reactstrap";
 import { Redirect } from 'react-router-dom';
 
@@ -37,7 +36,7 @@ class CreatePost extends React.Component {
       currentUser: [],
       tags: [],
       tagsInputValue:'',
-      tags_correct:true,
+      tags_correct:0,
       chars_left: 280, max_chars: 280,
       tag_chars_left:20, max_tag_chars: 20,
     };
@@ -71,7 +70,7 @@ class CreatePost extends React.Component {
   }
 
   handleTagCreate(){
-    if(this.state.tags.length > 3){
+    /*if(this.state.tags.length > 3){
       this.setState({tags_correct : false});
       alert("too many tags!");
     }
@@ -79,7 +78,7 @@ class CreatePost extends React.Component {
       this.setState({tags_correct : false});
       alert("too few tags!");
     }
-    else{
+    else{*/
       //this.setState({tags_correct : true});
       console.log(this.state.tags_correct);
       for(var i=0; i <this.state.tags.length; i++){
@@ -99,7 +98,7 @@ class CreatePost extends React.Component {
           });
         }
       }
-    }  
+    //}  
   }
 
   addTag = (tag) => {
@@ -134,11 +133,15 @@ class CreatePost extends React.Component {
 
   checkTagValidity(){
     if(this.state.tags.length > 3){
-      this.setState({tags_correct : false});
+      this.setState(prevState => ({
+        tags_correct: !prevState.tags_correct
+      }));
       alert("too many tags!");
     }
     else if(this.state.tags.length < 1){
-      this.setState({tags_correct : false});
+      this.setState(prevState => ({
+        tags_correct: !prevState.tags_correct
+      }));
       alert("too few tags!");
     }
     else{
@@ -146,20 +149,25 @@ class CreatePost extends React.Component {
       for(var i=0; i <this.state.tags.length; i++){
         if(this.state.tags[i].length > 20){
           alert("too many characters in a tag!");
-          this.setState({tags_correct : false});
+          this.setState(prevState => ({
+            tags_correct: !prevState.tags_correct
+          }));
         }
       }
-      this.setState({tags_correct : true});
     }  
   }
 
   handleSubmit(event) {
     event.preventDefault();
     this.checkTagValidity();
+    console.log(this.state.tags_correct);
     if(this.state.tags_correct === true){
       this.handleCreate();
       //this.handleTagCreate();
     }else {
+      this.setState(prevState => ({
+        tags_correct: !prevState.tags_correct
+      }));
       alert("Please fix your tags and then resubmit!");
     }
     //this.handleTagCreate();
@@ -265,7 +273,7 @@ class CreatePost extends React.Component {
             {/*<NameCard />*/}
           </Col>
         </Row>
-        </Col>
+      </Col>
       </div>
       </>
     );

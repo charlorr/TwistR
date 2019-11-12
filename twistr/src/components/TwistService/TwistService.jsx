@@ -3,42 +3,53 @@ const API_URL = 'http://localhost:8000';
 
 export default class TagService{
 
-    getTags() {
-        const url = `${API_URL}/api/tags/`;
+    getTwists() {
+        const url = `${API_URL}/api/twists/`;
         return axios.get(url).then(response => response.data);
     }  
-    getTagsByURL(link){
+    getTwistsByURL(link){
         const url = `${API_URL}${link}`;
         return axios.get(url).then(response => response.data);
     }
     
-    getTagByAuthor(pk){
-        var auth_config = {headers : {'Authorization' : "token " + localStorage.getItem('auth_token')}};
-        const url = `${API_URL}/api/usertags/${pk}`;
-        return axios.get(url, auth_config).then(response  => response.data);
+    getTwistbyAuthor(authorPK){
+        const url = `${API_URL}/api/twists/?author=${authorPK}`;
+        return axios.get(url).then(response => response.data);
     }
-    getTag(pk) {
+
+    getTwistbyUser(userPK){
+        const url = `${API_URL}/api/twists/?user=${userPK}`;
+        return axios.get(url).then(response => response.data);
+    }
+
+    getTwistbyUserAuthor(userPK,authorPK){
+        const url = `${API_URL}/api/twists/?user=${userPK}&author=${authorPK}`;
+        return axios.get(url).then(response => response.data);
+    }
+    
+    getTwist(pk) {
         var auth_config = {headers : {'Authorization' : "token " + localStorage.getItem('auth_token')}};
-        const url = `${API_URL}/api/tags/${pk}`;
+        const url = `${API_URL}/api/twists/${pk}`;
         return axios.get(url, auth_config).then(response => response.data);
     }
-    deleteTag(tag){
+
+    deleteTwist(twist){
         if (localStorage.getItem('auth_token') === null) {
             alert('Deletion failed!');
         }
         //need to have auth_config, copy this line and put it in any request that  requires authorization
         var auth_config = {headers : {'Authorization' : "token " + localStorage.getItem('auth_token')}};
-        const url = `${API_URL}/api/tags/${tag.pk}`;
+        const url = `${API_URL}/api/twists/${twist.pk}`;
         return axios.delete(url,auth_config);
     }
-    createTag(tag){
+    createTwist(twist){
         var auth_config = {headers : {'Authorization' : "token " + localStorage.getItem('auth_token')}};
-        const url = `${API_URL}/api/tags/`;
-        return axios.post(url,tag, auth_config);
+        const url = `${API_URL}/api/twists/`;
+        return axios.post(url,twist, auth_config);
     }
-    updateTag(tag){
+    updateTag(twist){
         var auth_config = {headers : {'Authorization' : "token " + localStorage.getItem('auth_token')}};
-        const url = `${API_URL}/api/tags/${tag.pk}`;
-        return axios.put(url,tag,auth_config);
+        const url = `${API_URL}/api/tags/${twist.pk}`;
+        return axios.put(url,twist,auth_config);
     }
 }

@@ -13,7 +13,6 @@ import {
 } from "reactstrap";
 import FollowUserService from "components/FollowUserService/FollowUserService";
 
-
 const followUserService = new FollowUserService();
 
 class  UserlineFollowCard  extends  Component {
@@ -39,7 +38,6 @@ class  UserlineFollowCard  extends  Component {
         //     })
         //     this.setState({followed: true})
         // }
-        
         
         followUser(){
         followUserService.createFollowUser({
@@ -73,34 +71,42 @@ class  UserlineFollowCard  extends  Component {
 
             });
             window.location.reload();
+    }
 
-      }
     render() {
+
         let but; //determines whether button is follow or unfollow
 
-        if(this.props.followExists){
-            but=  <Button 
+        if(this.props.followExists) { but = 
+            <Button 
             className="btn-round"
             color="primary"
             onClick={this.unfollowUser}>
-            Unfollow User </Button>
-            
+            Unfollow User 
+            </Button>
         }
-        else{but = <Button 
+        else { but = 
+            <Button 
             className="btn-round"
             color="primary"
             onClick={this.followUser}>
-            Follow User </Button>
+            Follow User 
+            </Button>
         }
-        
-        return(
-            <Card>
-                {but}
+        return (
+          <>
+          <Col lg="12" md="6" sm="6">
+            <Card className="card-stats">
+              <div className="ml-auto mr-auto">
+                <Col lg="12" md="12" sm="12">
+                  {but}
+                </Col>
+              </div>
             </Card>
-            )
-            };
-}
-
-       
+          </Col>
+          </>
+        );
+    }
+}      
       
 export  default  UserlineFollowCard;
