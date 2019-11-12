@@ -34,7 +34,7 @@ class  ProfileFollowerCard  extends  Component {
                       </div>
                     </Col>
                     <Col md="7" xs="7">
-                    <a className = "blackHref" href = {"../userline/1"} >DJ Khaled <br /> </a>
+                    <a className = "blackHref" href = {"../userline/2"} >DJ Khaled <br /> </a>
                       
                     </Col>
                     <Col className="text-right" md="3" xs="3">
@@ -60,7 +60,7 @@ class  ProfileFollowerCard  extends  Component {
                     </Col>
                     <Col md="7" xs="7">
                       
-                      <a className = "blackHref" href = {"../userline/1"} >Ashwin Gokhale <br /> </a>
+                      <a className = "blackHref" href = {"../userline/3"} >Ashwin Gokhale <br /> </a>
                       
                       </Col>
                     <Col className="text-right" md="3" xs="3">
@@ -85,7 +85,7 @@ class  ProfileFollowerCard  extends  Component {
                       </div>
                     </Col>
                     <Col className="col-ms-7" xs="7">
-                    <a className = "blackHref" href = {"../userline/2"} > Ashwin2 <br /> </a>
+                    <a className = "blackHref" href = {"../userline/4"} > Ashwin2 <br /> </a>
                       
                     </Col>
                     <Col className="text-right" md="3" xs="3">
