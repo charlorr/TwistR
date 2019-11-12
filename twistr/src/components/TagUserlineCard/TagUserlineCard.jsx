@@ -1,5 +1,6 @@
 import React from 'react';
 import TagService  from  'components/TagService/TagService.jsx';
+import TwistService  from  'components/TwistService/TwistService.jsx';
 import UserlineTagRoster from "components/UserlineTagRoster/UserlineTagRoster.jsx";
 
 import {
@@ -10,6 +11,7 @@ import {
   Col,
 } from "reactstrap";
 const  tagService  =  new  TagService();
+const twistService = new TwistService();
 class TagUserlineCard extends React.Component {
 
   constructor(props) {
@@ -18,24 +20,42 @@ class TagUserlineCard extends React.Component {
       users: [],
       currentUserPk: null,
       currentUser: [],
+      followed_tags_all: [],
       tags_all: []
     };
     this.getTags.bind(this);
+    this.getFollowedTags.bind(this);
   }
 
   componentDidMount(){
     this.getTags();
+    this.getFollowedTags();
   }
 
   getTags(){
     var self = this;
     tagService.getTagByAuthor(this.props.currentUserline.pk)
     .then(function(response) {
-      console.log("these are the tags of the userline's user");
+      console.log("these are all of the tags of the userline's user");
       console.log(response.data);
       self.setState({tags_all : response.data});
       console.log("this is the state");
       console.log(self.state.tags_all);
+    })
+    .catch(function(error) {
+      console.log(error);
+    });
+  }
+
+  getFollowedTags(){
+    var self = this;
+    twistService.getTwistbyUserAuthor(localStorage.getItem('pk'), this.props.currentUserline.pk)
+    .then(function(response) {
+      console.log("these are the tags of the userline's user that logged in user follows");
+      console.log(response.data);
+      self.setState({followed_tags_all : response.data});
+      console.log("this is the state");
+      console.log(self.state.followed_tags_all);
     })
     .catch(function(error) {
       console.log(error);
@@ -53,7 +73,7 @@ class TagUserlineCard extends React.Component {
              <hr/>
           </CardHeader>
             <CardBody>
-            <UserlineTagRoster tags = {this.state.tags_all} /> 
+            <UserlineTagRoster tags_all = {this.state.tags_all} followed_tags_all = {this.state.followed_tags_all}/> 
             </CardBody>
         
         </Card>
