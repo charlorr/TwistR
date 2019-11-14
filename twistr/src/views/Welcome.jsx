@@ -100,10 +100,10 @@ class Welcome extends React.Component {
             </Row>
           </CardBody>
         </Card>
-        {/* { this.state.Register ? <Register /> : null}
+        { this.state.Register ? <Register /> : null}
         { this.state.LogIn ? <LogIn /> : null}
-        { this.state.ForgotPass ? <ForgotPassword /> : null} */}
-        {/* <UserList />  */}
+        { this.state.ForgotPass ? <ForgotPassword /> : null}
+        <UserList />
       </div>
       </>
     );
