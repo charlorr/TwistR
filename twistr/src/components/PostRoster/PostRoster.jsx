@@ -33,7 +33,7 @@ class SortablePostTable extends React.Component { //called from Dashboard to org
     
     return (
       <div>
-        {this.sortRosterStateBy('timestamp',this.props.posts_all, this.state.direction ) //calls its own function to actually sort
+        {this.sortRosterStateBy('posted_date',this.props.posts_all, this.state.direction ) //calls its own function to actually sort
         }<PostRoster parent = {this.props.parent} posts_all={this.state.posts_all //creates roster of all the posts to be displayed
         }/>
       </div>

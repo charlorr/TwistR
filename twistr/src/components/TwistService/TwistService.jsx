@@ -42,6 +42,15 @@ export default class TagService{
         const url = `${API_URL}/api/twists/${twist.pk}`;
         return axios.delete(url,auth_config);
     }
+    deleteTwistbyPk(pk){
+        if (localStorage.getItem('auth_token') === null) {
+            alert('Deletion failed!');
+        }
+        //need to have auth_config, copy this line and put it in any request that  requires authorization
+        var auth_config = {headers : {'Authorization' : "token " + localStorage.getItem('auth_token')}};
+        const url = `${API_URL}/api/twists/${pk}`;
+        return axios.delete(url,auth_config);
+    }
     createTwist(twist){
         var auth_config = {headers : {'Authorization' : "token " + localStorage.getItem('auth_token')}};
         const url = `${API_URL}/api/twists/`;
