@@ -8,33 +8,36 @@ import {
 } from "reactstrap";
 
 class UserlineTagRoster extends React.Component {
-
-  //conditionally render whether tag is within list of followed tags. if yes, render button as primary color.
-  //else render it as secondary button color
   render() {
-    // Create tags
-
-    // let tagButton;
-    // if (){
-    //   tagButton = <Button className = "btn-round" size="lg" color="primary"/>
-    // }
-    // else{
-    //   tagButton = <Button className ="btn-round" size="lg" color="secondary"/>
-    // }
-		
+    console.log(this.props.tags_all);
+    console.log(this.props.followed_tags_all);
+    console.log(this.props.unfollowed_tags_all);
     var cards = [];
-    this.props.tags_all.forEach(function(tag) { //currently displaying all tags regardless of follow or not
+    this.props.followed_tags_all.forEach(function(tag) { //currently displaying all tags regardless of follow or not
         cards.push(
           <Col lg="3" md="3" sm="3">
             <Button
             className="btn-round" 
             size="lg" 
             color="primary">
-                {tag.pk}
+                {tag.tag}
             </Button>
           </Col>
         );
     });
+
+    this.props.unfollowed_tags_all.forEach(function(tag){
+      cards.push(
+        <Col lg="3" md="3" sm="3">
+          <Button
+          className="btn-round" 
+          size="lg" 
+          color="secondary">
+              {tag.name}
+          </Button>
+        </Col>
+      );
+  });
     return (cards);
   }
 }

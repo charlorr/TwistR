@@ -39,10 +39,11 @@ class  UserlineFollowCard  extends  Component {
         //     this.setState({followed: true})
         // }
         
-        followUser(){
+        followUser(){ //this doesn't work anymore because twists have been redefined in the database
         followUserService.createFollowUser({
             "user": this.props.currentUser.pk,
-            "author":this.props.currentUserline.pk
+            "author":this.props.currentUserline.pk,
+            "twist": 0
         }).then((result)=>{
             if(result.data.user==="something went wrong"){
                 alert("there was an error")
@@ -57,7 +58,7 @@ class  UserlineFollowCard  extends  Component {
             window.location.reload();
         }
 
-      unfollowUser(){
+      unfollowUser(){ //this doesn't work right now because twists have redefined in the database
         followUserService.deleteFollowUser(this.props.currentUser.pk, this.props.currentUserline.pk).then((result)=>{
             if(result.data.user==="something went wrong"){
                 alert("there was an error")
