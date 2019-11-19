@@ -36,4 +36,40 @@ export default class PostService{
         const url = `${API_URL}/api/posts/${post.pk}`;
         return axios.put(url,post);
     }
+
+    addPostTags(posts){
+        var promises = [];
+    for (var i = 0; i < posts.length; i++) {
+      promises.push(this.addTags(posts[i]));
+    }
+    return Promise.all(promises).then(() => {
+      //console.log(posts);
+      return posts;
+    })
+    }
+
+    addTags(post) {
+        return this.getTags(post.pk).then(function (tags) {
+            post.tag1=tags[0];
+            post.tag2=tags[1];
+            post.tag3=tags[2];
+            return post;
+        }).catch(function (error) {
+            console.log(error);
+            return error;
+        });
+    }
+
+    getTags(pk) {
+        return this.getPostTags(pk).then(function (result){
+            var tags = [];
+            for(var i = 0; i < result.data.length; i++) {
+            tags.push(result.data[i].name.toString());
+            }
+            return tags;
+        }).catch(function (error) {
+            console.log(error);
+            return error;
+        });
+    }
 }
