@@ -49,7 +49,6 @@ redirect() {
 
   render() {
     if (this.state.posts_all.length === 0) {
-     // console.log("no post data")
      return (
       <>
       <div className="content">
@@ -60,9 +59,8 @@ redirect() {
       </div>
       </>
     );
-    }else{
-     // console.log("yes post data")
-     // console.log(this.state.posts_all)
+    }
+    else{
       return (
         <>
         <div className="content">
@@ -83,9 +81,6 @@ redirect() {
       );
     }
     }
-
-    //this.getPosts();
-   // console.log(this.state.posts_all)
     
 }
 

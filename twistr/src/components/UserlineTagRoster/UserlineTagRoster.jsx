@@ -9,9 +9,6 @@ import {
 
 class UserlineTagRoster extends React.Component {
   render() {
-    console.log(this.props.tags_all);
-    console.log(this.props.followed_tags_all);
-    console.log(this.props.unfollowed_tags_all);
     var cards = [];
     this.props.followed_tags_all.forEach(function(tag) { //currently displaying all tags regardless of follow or not
         cards.push(
@@ -25,7 +22,8 @@ class UserlineTagRoster extends React.Component {
           </Col>
         );
     });
-
+    
+    
     this.props.unfollowed_tags_all.forEach(function(tag){
       cards.push(
         <Col lg="3" md="3" sm="3">
@@ -38,7 +36,9 @@ class UserlineTagRoster extends React.Component {
         </Col>
       );
   });
-    return (cards);
+    return (
+      cards
+      );
   }
 }
 

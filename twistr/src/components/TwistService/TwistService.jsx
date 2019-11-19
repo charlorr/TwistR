@@ -27,6 +27,14 @@ export default class TagService{
         return axios.get(url).then(response => response.data);
     }
 
+<<<<<<< HEAD
+=======
+    getTwistExists(userPK, authorPK, tag){
+        const url = `${API_URL}/api/twists/?user=${userPK}&author=${authorPK}&tag=${tag}`;
+        return axios.get(url).then(response => response.data);
+    }
+    
+>>>>>>> c7ac51d6f159bc94cd6b433e3e3dceaf1cc36a35
     getTwist(pk) {
         var auth_config = {headers : {'Authorization' : "token " + localStorage.getItem('auth_token')}};
         const url = `${API_URL}/api/twists/${pk}`;

@@ -1,4 +1,6 @@
 import React from 'react';
+import TwistService from "components/TwistService/TwistService.jsx";
+import TagButton from "components/TagButton/TagButton.jsx";
 
 
 import {
@@ -10,29 +12,40 @@ import {
   CardTitle,
 } from "reactstrap";
 
+const twistService = new TwistService();
+
 class PostCard extends React.Component {
 //figure out who the parent is so that href of name can be properly assigned
 
+
   componentDidMount(){
-    console.log(this.props.post);
-    console.log(JSON.stringify(this.props.post));
-    console.log(this.props.post["tag1"]);
   }
 
-  tagButton(tag) {
+
+  displayButton(tag){
     if (tag !== undefined) {
       return(
         <Button
           className="btn-round"
-          color="success"
+          color="danger"
           >
           {tag}
         </Button>
       )
     }
-    else {
-      return
-    }
+  }
+
+  twistStatus(tag) {
+    var self = this;
+    const user = localStorage.getItem('pk');
+    const author = this.props.post.author;
+    //console.log(user + " " + author + " " + tag);
+    return twistService.getTwistExists(user,author,tag).then(function (result){
+      return result.data.length !== 0 ? "success" : "danger";
+    }).catch(function (error){
+      console.log(error);
+      return "";
+    });
   }
 
   getTimeFormat(posted_date){
@@ -59,9 +72,9 @@ class PostCard extends React.Component {
       <CardHeader>
         
         <CardTitle tag="h5">   {redirectA} </CardTitle>
-        {this.tagButton(this.props.post.tag1)}
-        {this.tagButton(this.props.post.tag2)}
-        {this.tagButton(this.props.post.tag3)}
+        <TagButton user = {localStorage.getItem('pk')} author = {this.props.post.author} tag = {this.props.post.tag1}/>
+        <TagButton user = {localStorage.getItem('pk')} author = {this.props.post.author} tag = {this.props.post.tag2}/>
+        <TagButton user = {localStorage.getItem('pk')} author = {this.props.post.author} tag = {this.props.post.tag3}/>
         {/*<p className="card-category">{this.props.post.tags}</p>*/}
       </CardHeader>
       <CardBody>
