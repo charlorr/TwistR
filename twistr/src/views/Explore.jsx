@@ -1,5 +1,4 @@
 import React from "react";
-import {SortablePostTable} from "components/PostRoster/PostRoster.jsx";
 
 // reactstrap components
 import {
@@ -23,7 +22,6 @@ class Tables extends React.Component {
     };
 
     this.getAllPosts = this.getAllPosts.bind(this);
-    this.addAllTags = this.addAllTags.bind(this);
     this.addTestTags = this.addTestTags.bind(this);
     this.addTags = this.addTags.bind(this);
   }
@@ -46,7 +44,7 @@ class Tables extends React.Component {
       promises.push(this.addTags(posts[i]));
     }
     return Promise.all(promises).then(() => {
-      console.log(posts);
+      //console.log(posts);
       this.setState({posts: posts});
     })
   }
@@ -74,33 +72,6 @@ class Tables extends React.Component {
       console.log(error);
       return error;
     });
-  }
-
-  addAllTags(posts) {
-    var tagTEST = "TEST";
-    var post = posts[0];
-    var tags = [];
-    postService.getPostTags(post.pk).then(function (result){
-      for(var i = 0; i < result.data.length; i++) {
-        tags.push(result.data[i].name.toString());
-        post["tag"+(i+1)] = result.data[i].name.toString();
-      }
-      console.log(tags);
-      console.log(post);
-      tags = [...Array(3)].map((_,i) => i);
-    }).catch(function (error){
-      console.log(error);
-      return error;
-    });
-
-    console.log(tags);
-    console.log(tags[0]);
-    posts[0].tag1=tags[0];
-    posts[0].tag2=tags[1];
-    posts[0].tag3=tags[2];
-    // }
-    this.setState({posts: posts});
-    // console.log(this.state.posts);
   }
 
   render() {
