@@ -1,12 +1,11 @@
 import React from "react";
 import CreatePost from "components/CreatePost/CreatePost.jsx";
-import {SortableTagTable} from "components/NewTagRoster/NewTagRoster.jsx";
+//import {SortableTagTable} from "components/NewTagRoster/NewTagRoster.jsx";
 import {SortablePostTable} from "components/PostRoster/PostRoster.jsx";
-import PostService from "components/PostService/PostService.jsx";
+//import PostService from "components/PostService/PostService.jsx";
 // reactstrap components
 import {
   Row,
-  Col
 } from "reactstrap";
 
 // //hardcoded posts for now, until we have connection to database
@@ -44,7 +43,7 @@ import {
 //   timestamp: 40
 // }]
 
-const postService = new PostService();
+//const postService = new PostService();
 class Timeline extends React.Component {
   constructor(props) {
     super(props);

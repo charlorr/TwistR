@@ -2,7 +2,6 @@ import React from "react";
 //import Post from "components/Post/Post.jsx";
 
 import {
-  Row,
   Col,
   Button
 } from "reactstrap";

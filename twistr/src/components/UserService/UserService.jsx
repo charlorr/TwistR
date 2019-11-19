@@ -1,7 +1,7 @@
 import axios from 'axios';
-import { resolveModuleName } from 'typescript';
-import { resolve } from 'path';
-import { reject } from 'q';
+// import { resolveModuleName } from 'typescript';
+// import { resolve } from 'path';
+// import { reject } from 'q';
 const API_URL = 'http://localhost:8000';
 
 
