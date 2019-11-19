@@ -2,7 +2,7 @@ import axios from 'axios';
 import { resolveModuleName } from 'typescript';
 import { resolve } from 'path';
 import { reject } from 'q';
-const API_URL = 'http://localhost:8000';
+const API_URL = 'https://twistr-backend.herokuapp.com';
 
 
 export default class UserService{
