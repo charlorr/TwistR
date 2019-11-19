@@ -19,7 +19,7 @@ class Post extends React.Component {
             {/*<UserCard picture={this.props.post.picture/>
             <ReactCard />*/}
             <UserCard picture={require("assets/img/default-avatar.png")}/>
-            <ReactCard />
+            <ReactCard parent = {this.props.parent} post={this.props.post} />
             <hr />
           </Col>
           <Col lg="10" md="9" sm="9">

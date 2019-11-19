@@ -1,12 +1,8 @@
 import React from 'react';
 import UserCard from "components/UserCard/UserCard.jsx";
-import NameCard from "components/NameCard/NameCard.jsx";
 import PostService from "components/PostService/PostService.jsx";
-import UserService from "components/UserService/UserService.jsx";
 import NotificationAlert from "react-notification-alert";
-import InputTag from "components/InputTag/InputTag.jsx";
 import TagService from "components/TagService/TagService.jsx";
-import onEvent from "react-onevent";
 
 import {
   Button,
@@ -36,7 +32,6 @@ class CreatePost extends React.Component {
       currentUser: [],
       tags: [],
       tagsInputValue:'',
-      like_count:0,
       tags_correct:true,
       chars_left: 280, max_chars: 280,
       tag_chars_left:20, max_tag_chars: 20,
@@ -46,7 +41,7 @@ class CreatePost extends React.Component {
 
   redirect() {
     if (localStorage.getItem('pk') === null) {
-      return <Redirect to="/admin/welcom"/>;
+      return <Redirect to="/admin/welcome"/>;
     }
   }
 
@@ -88,8 +83,7 @@ class CreatePost extends React.Component {
             alert("There was an error! Please re-check your tags.")
           });
         }
-      }
-    //}  
+      } 
   }
 
   addTag = (tag) => {
