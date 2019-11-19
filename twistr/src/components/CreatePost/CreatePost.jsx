@@ -36,7 +36,8 @@ class CreatePost extends React.Component {
       currentUser: [],
       tags: [],
       tagsInputValue:'',
-      tags_correct:0,
+      like_count:0,
+      tags_correct:true,
       chars_left: 280, max_chars: 280,
       tag_chars_left:20, max_tag_chars: 20,
     };
@@ -70,16 +71,6 @@ class CreatePost extends React.Component {
   }
 
   handleTagCreate(){
-    /*if(this.state.tags.length > 3){
-      this.setState({tags_correct : false});
-      alert("too many tags!");
-    }
-    else if(this.state.tags.length < 1){
-      this.setState({tags_correct : false});
-      alert("too few tags!");
-    }
-    else{*/
-      //this.setState({tags_correct : true});
       console.log(this.state.tags_correct);
       for(var i=0; i <this.state.tags.length; i++){
         if(this.state.tags[i].length > 20){
@@ -102,7 +93,6 @@ class CreatePost extends React.Component {
   }
 
   addTag = (tag) => {
-    console.log("add tag time")
     tag = tag.trim();
     if(!(this.state.tags.indexOf(tag) >-1)) {
       let tags = this.state.tags.concat([tag]);
@@ -112,7 +102,7 @@ class CreatePost extends React.Component {
   }
 
   updateTagValue = (value) => {
-    if(value === ' '){
+    if(value === ','){
       return;
     }
     this.setState({
@@ -131,17 +121,29 @@ class CreatePost extends React.Component {
     })
   }
 
-  checkTagValidity(){
-    if(this.state.tags.length > 3){
+  setFalse(){
+    if(this.state.tags_correct === true){
       this.setState(prevState => ({
         tags_correct: !prevState.tags_correct
       }));
+    }
+  }
+
+  setTrue(){
+    if(this.state.tags_correct === false){
+      this.setState(prevState => ({
+        tags_correct: !prevState.tags_correct
+      }));
+    }
+  }
+
+  checkTagValidity(){
+    if(this.state.tags.length > 3){
+      this.setFalse();
       alert("too many tags!");
     }
     else if(this.state.tags.length < 1){
-      this.setState(prevState => ({
-        tags_correct: !prevState.tags_correct
-      }));
+      this.setFalse();
       alert("too few tags!");
     }
     else{
@@ -149,43 +151,22 @@ class CreatePost extends React.Component {
       for(var i=0; i <this.state.tags.length; i++){
         if(this.state.tags[i].length > 20){
           alert("too many characters in a tag!");
-          this.setState(prevState => ({
-            tags_correct: !prevState.tags_correct
-          }));
+          this.setFalse();
         }
       }
     }  
   }
 
-  handleSubmit(event) {
+  handleSubmit = async function (event){
     event.preventDefault();
-    this.checkTagValidity();
+    await this.checkTagValidity();
     console.log(this.state.tags_correct);
     if(this.state.tags_correct === true){
       this.handleCreate();
-      //this.handleTagCreate();
     }else {
-      this.setState(prevState => ({
-        tags_correct: !prevState.tags_correct
-      }));
+      this.setTrue();
       alert("Please fix your tags and then resubmit!");
     }
-    //this.handleTagCreate();
-   /* if(this.state.tags.length > 0){
-      if(this.state.tags.length < 4){
-        for(var i=0; i <this.state.tags.length; i++){
-          if(this.state.tags[i].length > 20){
-           // alert("too many characters in a tag!");
-            this.setState({tags_correct : false});
-          } 
-        }
-        this.handleCreate();
-      }
-    }*/
-   /* console.log(this.state.tags_correct);
-    if(this.state.tags_correct === true){
-      this.handleCreate();
-    }*/
     event.preventDefault();
   }
 
@@ -196,6 +177,12 @@ class CreatePost extends React.Component {
     const maxChar = this.state.max_chars;
     const charLength = maxChar - charCount;
     this.setState({chars_left: charLength});
+  }
+
+  handleTagChange = async function(event) {
+    await this.updateTagValue(event.target.value);
+    await this.setState({tags : this.state.tagsInputValue.split(",")});
+    console.log(this.state.tags);
   }
  
   render() {
@@ -238,11 +225,9 @@ class CreatePost extends React.Component {
                   <Col>
                     <FormGroup>
                     <div className="input-tag">
-                        <Input value={tagsInputValue} onChange={(e) =>{
-                           this.updateTagValue(e.target.value);
-                           this.setState({tags : this.state.tagsInputValue.split(",")});
-                          console.log(this.state.tags);
-                         }} type="text" placeholder="Up to three tags seperated by commas" />
+                        <Input value={tagsInputValue} onChange={(e) => {this.handleTagChange(e)}}
+                          type="text" 
+                          placeholder="Up to three tags seperated by commas" />
                    </div>   
                     </FormGroup>
                   </Col>

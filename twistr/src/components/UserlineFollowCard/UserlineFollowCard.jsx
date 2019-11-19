@@ -43,7 +43,7 @@ class  UserlineFollowCard  extends  Component {
         followUserService.createFollowUser({
             "user": this.props.currentUser.pk,
             "author":this.props.currentUserline.pk,
-            "twist": 0
+            "tag":37 //TODO: not hard code
         }).then((result)=>{
             if(result.data.user==="something went wrong"){
                 alert("there was an error")
