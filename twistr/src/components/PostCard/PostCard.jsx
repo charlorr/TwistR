@@ -1,5 +1,4 @@
 import React from 'react';
-import TwistService from "components/TwistService/TwistService.jsx";
 import TagButton from "components/TagButton/TagButton.jsx";
 
 
@@ -11,8 +10,6 @@ import {
   CardFooter,
   CardTitle,
 } from "reactstrap";
-
-const twistService = new TwistService();
 
 class PostCard extends React.Component {
 //figure out who the parent is so that href of name can be properly assigned
@@ -33,19 +30,6 @@ class PostCard extends React.Component {
         </Button>
       )
     }
-  }
-
-  twistStatus(tag) {
-    var self = this;
-    const user = localStorage.getItem('pk');
-    const author = this.props.post.author;
-    //console.log(user + " " + author + " " + tag);
-    return twistService.getTwistExists(user,author,tag).then(function (result){
-      return result.data.length !== 0 ? "success" : "danger";
-    }).catch(function (error){
-      console.log(error);
-      return "";
-    });
   }
 
   getTimeFormat(posted_date){

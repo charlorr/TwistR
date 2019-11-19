@@ -33,8 +33,11 @@ getPosts(){
   postService.getPostByAuthor(localStorage.getItem('pk'))
   .then(function(response) {
     console.log(response);
-    self.setState({posts_all : response.data})
-    self.setState({flag: true})
+    postService.addPostTags(response.data).then(function (response){
+      self.setState({posts_all : response})
+      self.setState({flag: true})
+    })
+    
   })
   .catch(function(error) {
     console.log(error);
