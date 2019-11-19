@@ -1,6 +1,10 @@
 import React from 'react';
+import TwistService from "components/TwistService/TwistService.jsx";
+import TagButton from "components/TagButton/TagButton.jsx";
+
 
 import {
+  Button,
   Card,
   CardHeader,
   CardBody,
@@ -8,8 +12,47 @@ import {
   CardTitle,
 } from "reactstrap";
 
+const twistService = new TwistService();
+
 class PostCard extends React.Component {
 //figure out who the parent is so that href of name can be properly assigned
+
+
+  componentDidMount(){
+  }
+
+
+  displayButton(tag){
+    if (tag !== undefined) {
+      return(
+        <Button
+          className="btn-round"
+          color="danger"
+          >
+          {tag}
+        </Button>
+      )
+    }
+  }
+
+  twistStatus(tag) {
+    var self = this;
+    const user = localStorage.getItem('pk');
+    const author = this.props.post.author;
+    //console.log(user + " " + author + " " + tag);
+    return twistService.getTwistExists(user,author,tag).then(function (result){
+      return result.data.length !== 0 ? "success" : "danger";
+    }).catch(function (error){
+      console.log(error);
+      return "";
+    });
+  }
+
+  getTimeFormat(posted_date){
+    var str = posted_date.toString().substring(0,16);
+    str = str.substring(11,16) + " on " + str.substring(0,10);
+    return str;
+  }
 
   render() {
     const parent = this.props.parent;
@@ -29,8 +72,10 @@ class PostCard extends React.Component {
       <CardHeader>
         
         <CardTitle tag="h5">   {redirectA} </CardTitle>
-        
-        <p className="card-category">{this.props.post.tags}</p>
+        <TagButton user = {localStorage.getItem('pk')} author = {this.props.post.author} tag = {this.props.post.tag1}/>
+        <TagButton user = {localStorage.getItem('pk')} author = {this.props.post.author} tag = {this.props.post.tag2}/>
+        <TagButton user = {localStorage.getItem('pk')} author = {this.props.post.author} tag = {this.props.post.tag3}/>
+        {/*<p className="card-category">{this.props.post.tags}</p>*/}
       </CardHeader>
       <CardBody>
         <h1>{this.props.post.text_body}</h1>
@@ -38,7 +83,7 @@ class PostCard extends React.Component {
       <CardFooter>
         <hr />
         <div className="stats">
-            <i className="fa fa-history" /> Posted at {this.props.post.posted_date}
+            <i className="fa fa-history" /> User {this.props.post.author} Posted at {this.getTimeFormat(this.props.post.posted_date)}
         </div>
       </CardFooter>
     </Card>
