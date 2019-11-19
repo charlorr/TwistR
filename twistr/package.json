@@ -1,8 +1,8 @@
 {
-  "name": "paper-dashboard-react",
+  "name": "twistr",
   "version": "1.1.0",
   "private": true,
-  "homepage": "https://demos.creative-tim.com/paper-dashboard-react/#/dashboard",
+  "homepage": "http://34.69.129.198/#/dashboard",
   "dependencies": {
     "axios": "^0.19.0",
     "bootstrap": "4.3.1",
