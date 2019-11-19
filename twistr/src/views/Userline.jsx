@@ -6,7 +6,7 @@ import UserlineFollowCard from "../components/UserlineFollowCard/UserlineFollowC
 import UserlineViewTagsCard from "../components/UserlineViewTagsCard/UserlineViewTagsCard.jsx";
 import BioCard from "components/BioCard/BioCard.jsx";
 import PostRoster from "components/PostRoster/PostRoster.jsx";
-import {SortableTagTable} from "components/NewTagRoster/NewTagRoster.jsx";
+//import {SortableTagTable} from "components/NewTagRoster/NewTagRoster.jsx";
 import { Redirect } from 'react-router-dom';
 import TagUserlineCard from "components/TagUserlineCard/TagUserlineCard.jsx";
 import {

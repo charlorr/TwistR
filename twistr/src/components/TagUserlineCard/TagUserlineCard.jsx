@@ -9,6 +9,7 @@ import {
   CardBody,
   CardTitle,
   Col,
+  Button
 } from "reactstrap";
 const twistService = new TwistService();
 class TagUserlineCard extends React.Component {
@@ -20,12 +21,14 @@ class TagUserlineCard extends React.Component {
       currentUserPk: null,
       currentUser: [],
       followed_tags_all: [],
-      tags_all: [],
+      tags_all: [], //all the tags for the user who's userline it is
       unfollowed_tags_all :[]
     };
     //this.getTags.bind(this);
     //this.getFollowedTags.bind(this);
     //this.getUnfollowedTags.bind(this);
+    this.handleFollowAllTags = this.handleFollowAllTags.bind(this);
+    this.handleUnfollowAllTags = this.handleUnfollowAllTags.bind(this);
   }
 
   componentDidMount(){
@@ -92,17 +95,22 @@ class TagUserlineCard extends React.Component {
 
     var test_followed_tags_all = [
       {
-        "pk":1,
+        "pk":10,
         "user": 1,
         "author": 3,
-        "tag" : "test4"
+        "tag" : "test3"
       },
       {
-        "pk":2,
+        "pk":12,
         "user": 1,
         "author": 3,
-        "tag" : "test1"
-
+        "tag" : "test2"
+      }
+      ,
+      {"pk":14,
+        "user": 1,
+        "author":3,
+        "tag": "test5"
       }
     ]
     // self.state.tags_all.forEach(function(tag){
@@ -113,6 +121,8 @@ class TagUserlineCard extends React.Component {
     // console.log(self.state.unfollowed_tags_all);
     self.setState({tags_all: test_tags_all});
     self.setState({followed_tags_all: test_followed_tags_all});
+    // console.log(test_followed_tags_all);
+    // console.log(self.state.followed_tags_all);
   
     // test_followed_tags_all.forEach(function(ftag){
     //   test_tags_all.forEach(function(tag){
@@ -148,6 +158,28 @@ class TagUserlineCard extends React.Component {
       }
     });
       self.setState({unfollowed_tags_all: unfollowed_tags_all});
+
+  }
+
+  handleFollowAllTags(){
+    this.state.tags_all.forEach(function(tag) {
+      twistService.createTwist(
+        {
+          "user": localStorage.getItem('pk'),
+          "author": this.props.currentUserline.pk,
+          "tag": tag.name
+        }
+      )
+    });
+
+   // window.location.reload();
+  }
+
+  handleUnfollowAllTags(){
+    this.state.followed_tags_all.forEach(function(twist){
+      twistService.deleteTwist(twist)
+    });
+
   }
 
   render() {
@@ -161,6 +193,14 @@ class TagUserlineCard extends React.Component {
              <hr/>
           </CardHeader>
             <CardBody>
+            
+              <Button className="btn-round"
+                      color = "primary"
+                      onClick = {this.handleFollowAllTags}> Follow All Tags </Button>
+              <Button color = "secondary"
+                      className="btn-round"
+                      onClick = {this.handleUnfollowAllTags}> Unfollow All Tags</Button>
+
             {/* <UserlineTagRoster tags_all = {this.state.tags_all} followed_tags_all = {this.state.followed_tags_all} unfollowed_tags_all = {this.state.unfollowed_tags_all}/>  */}
             <UserlineTagRoster tags_all = {this.state.tags_all} followed_tags_all = {this.state.followed_tags_all} unfollowed_tags_all = {this.state.unfollowed_tags_all}/>
             </CardBody>
