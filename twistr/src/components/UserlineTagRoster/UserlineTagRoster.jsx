@@ -1,23 +1,48 @@
 import React from "react";
-//import Post from "components/Post/Post.jsx";
+import TwistService  from  'components/TwistService/TwistService.jsx';
 
 import {
-  Row,
   Col,
   Button
 } from "reactstrap";
 
+const twistService = new TwistService();
 class UserlineTagRoster extends React.Component {
+  
+  constructor(props) {
+    super(props);    
+    this.state = {}
+    this.handleFollowTag = this.handleFollowTag.bind(this);
+    this.handleUnfollowTag = this.handleUnfollowTag.bind(this);
+  }
+
+  handleFollowTag(clickedTag){
+    var self = this;
+    twistService.createTwist(
+      {
+        "user": localStorage.getItem('pk'),
+        "author": self.props.currentUserline.pk,
+        "tag": clickedTag.name
+      }
+    )
+  }
+
+  handleUnfollowTag(twist){
+    twistService.deleteTwist(twist);
+  }
   render() {
+    var self = this;
     var cards = [];
-    this.props.followed_tags_all.forEach(function(tag) { //currently displaying all tags regardless of follow or not
+    this.props.followed_tags_all.forEach(function(twist) { //currently displaying all tags regardless of follow or not
         cards.push(
           <Col lg="3" md="3" sm="3">
             <Button
             className="btn-round" 
             size="lg" 
-            color="primary">
-                {tag.tag}
+            color="primary"
+            onClick = {() => self.handleUnfollowTag(twist)}
+            >
+                {twist.tag} 
             </Button>
           </Col>
         );
@@ -30,7 +55,10 @@ class UserlineTagRoster extends React.Component {
           <Button
           className="btn-round" 
           size="lg" 
-          color="secondary">
+          color="secondary"
+          value = {tag}
+          onClick = {() => self.handleFollowTag(tag)}
+          >
               {tag.name}
           </Button>
         </Col>

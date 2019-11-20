@@ -1,17 +1,12 @@
 import React from 'react';
 import PostService from "components/PostService/PostService.jsx";
-import NotificationAlert from "react-notification-alert";
+//import NotificationAlert from "react-notification-alert";
 
 import {
   Button,
   Card,
   CardBody,
   Col,
-  CardFooter,
-  CardTitle,
-  Form,
-  Input,
-  FormGroup,
   Row
 } from "reactstrap";
 
