@@ -16,16 +16,18 @@ class TagButton extends React.Component {
     }
 
     componentDidMount(){
-        this.setStatus(this.props.user.toString(), this.props.author.toString());
+        this.setStatus(this.props.user.toString(), this.props.author.toString(), this.props.tag);
+        this.setState({selfTag: this.props.user.toString() === this.props.author.toString()});
     }
 
-    setStatus(user, author){
-        if (this.props.tag !== undefined & user !== author) {
+    setStatus(user, author, tag){
+        if (tag !== undefined & user !== author) {
             var self = this;
-            twistService.getTwistExists(this.props.user,this.props.author,this.props.tag).then(function (result){
+            twistService.getTwistExists(user, author, tag).then(function (result){
                 if (result.data.length !== 0) {
                     self.setState({status: "success"});
                     self.setState({twistPk: result.data[0].pk});
+                    console.log(result.data);
                 }
                 else {
                     self.setState({status: "danger"})
@@ -44,7 +46,6 @@ class TagButton extends React.Component {
         if (!this.state.selfTag) {
             var self = this;
             if (self.state.status === "danger") {
-                //create twist
                 twistService.createTwist({
                     "user": this.props.user,
                     "author": this.props.author,
@@ -57,8 +58,6 @@ class TagButton extends React.Component {
                 });
             }
             else if (this.state.status === "success") {
-                //delete twist
-                alert("Here!");
                 twistService.deleteTwistbyPk(self.state.twistPk).then(function (result){
                     self.setState({status: "danger"});
                 }).catch(function (error){
@@ -72,13 +71,16 @@ class TagButton extends React.Component {
         if (this.props.tag !== undefined) {
             return(
               <Button
+                uppercase={false}
                 className="btn-round"
                 color={this.state.status}
                 type="button"
+                disabled={this.state.selfTag}
                 onClick={() => this.clickTag()}
                 >
                 {this.props.tag}
               </Button>
+              
             )
         }
         else {

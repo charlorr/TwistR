@@ -112,7 +112,7 @@ class ReactCard extends React.Component {
   }
 
   render() {
-    console.log(this.state.liked);
+    //console.log(this.state.liked);
 
     let but; //determines whether button is like or unlike
 

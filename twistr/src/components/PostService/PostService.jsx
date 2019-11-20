@@ -11,6 +11,10 @@ export default class PostService{
         const url = `${API_URL}/api/posttags/${pk}`;
         return axios.get(url).then(response => response.data);
     }
+    getTimelinePosts() {
+        const url = `${API_URL}/api/timeline/${localStorage.getItem('pk')}`;
+        return axios.get(url).then(response => response.data);
+    }
     getPostsByURL(link){
         const url = `${API_URL}${link}`;
         return axios.get(url).then(response => response.data);
