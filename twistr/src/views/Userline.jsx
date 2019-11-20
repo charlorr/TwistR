@@ -63,9 +63,12 @@ class Userline extends React.Component {
     //postService.getPostByAuthor(this.state.currentUserline)
     postService.getPostByAuthor(this.state.currentUserline.pk)
     .then(function(response) {
-      console.log(response);
-      self.setState({posts_all : response.data})
-      self.setState({flag: true})
+      //console.log(response);
+      postService.addPostTags(response.data).then(function (result){
+        self.setState({posts_all : result})
+        self.setState({flag: true})
+      })
+      
     })
     .catch(function(error) {
       console.log(error);
