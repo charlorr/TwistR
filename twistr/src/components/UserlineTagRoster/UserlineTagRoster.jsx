@@ -48,7 +48,6 @@ class UserlineTagRoster extends React.Component {
         );
     });
     
-    
     this.props.unfollowed_tags_all.forEach(function(tag){
       cards.push(
         <Col lg="3" md="3" sm="3">
