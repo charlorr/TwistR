@@ -59,6 +59,7 @@ class TagButton extends React.Component {
                 }).then(function (result) {
                     self.setState({status: "success"});
                     self.setState({twistPk: result.data.pk})
+                    window.location.reload();
                 }).catch(function (error) {
                     console.log(error);
                 });
@@ -66,6 +67,7 @@ class TagButton extends React.Component {
             else if (this.state.status === "success") {
                 twistService.deleteTwistbyPk(self.state.twistPk).then(function (result){
                     self.setState({status: "danger"});
+                    window.location.reload();
                 }).catch(function (error){
                     console.log(error);
                 });
@@ -77,7 +79,6 @@ class TagButton extends React.Component {
         if (this.props.tag !== undefined) {
             return(
               <Button
-                uppercase={false}
                 className="btn-round"
                 color={this.state.status}
                 type="button"

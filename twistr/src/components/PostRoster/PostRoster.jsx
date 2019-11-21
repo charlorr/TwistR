@@ -2,16 +2,27 @@ import React from "react";
 import Post from "components/Post/Post.jsx";
 
 class PostRoster extends React.Component {
+  constructor(props) {
+    super(props);
+    this.rerenderParentCallback = this.rerenderParentCallback.bind(this);
+  }
+
+  rerenderParentCallback() {
+    console.log("Updated?");
+    this.forceUpdate();
+  }
+
   render() {
     // Create posts from sorted, dynamic JSON collection
     var cards = [];
     var posts_all = this.props.posts_all;
+    var self = this;
     /*if(this.props.posts_all === undefined){
       return null;
     }*/
-    console.log(this.props.posts_all)
+    //console.log(this.props.posts_all)
     this.props.posts_all.forEach(function(post) { 
-        cards.push(<Post parent = {posts_all} post={post} />);
+        cards.push(<Post parent = {posts_all} post={post}/>);
     });
     return (cards);
   }
