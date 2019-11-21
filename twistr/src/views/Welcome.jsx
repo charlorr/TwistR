@@ -2,7 +2,7 @@ import React from "react";
 import logo from '../Welcome_to_TwistR.png';
 import Register from "components/Register/Register.jsx";
 import LogIn from "components/LogIn/LogIn.jsx";
-import ForgotPassword from "components/ForgotPassword/ForgotPassword.jsx";
+//import ForgotPassword from "components/ForgotPassword/ForgotPassword.jsx";
 import UserList from "components/UserList/UserList.jsx";
 import { Redirect } from 'react-router-dom';
 
@@ -21,7 +21,7 @@ class Welcome extends React.Component {
     this.state = {
       LogIn: false,
       Register: false,
-      ForgotPass: false,
+      //ForgotPass: false,
     }
   }
 
@@ -35,7 +35,7 @@ class Welcome extends React.Component {
     this.setState({
       LogIn: true,
       Register: false,
-      ForgotPass: false,
+      //ForgotPass: false,
     })
   }
 
@@ -43,17 +43,17 @@ class Welcome extends React.Component {
     this.setState({
       LogIn: false,
       Register: true,
-      ForgotPass: false,
+      //ForgotPass: false,
     })
   }
 
-  showForgotPass() {
+  /*showForgotPass() {
     this.setState({
       LogIn: false,
       Register: false,
       ForgotPass: true,
     })
-  }
+  }*/
 
   render() {
     return (
@@ -77,6 +77,7 @@ class Welcome extends React.Component {
                   Log In
                 </Button>
               </div>
+              {/*
               <div className="update ml-auto mr-auto">
                 <Button 
                   className="btn-round" 
@@ -87,6 +88,7 @@ class Welcome extends React.Component {
                   Forgot Password
                 </Button>
               </div>
+              */}
               <div className="update ml-auto mr-auto">
                 <Button 
                   className="btn-round" 
@@ -102,7 +104,7 @@ class Welcome extends React.Component {
         </Card>
         { this.state.Register ? <Register /> : null}
         { this.state.LogIn ? <LogIn /> : null}
-        { this.state.ForgotPass ? <ForgotPassword /> : null}
+        {/* this.state.ForgotPass ? <ForgotPassword /> : null*/}
         <UserList /> {/*remove before presenting*/}
       </div>
       </>
