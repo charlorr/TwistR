@@ -16,8 +16,14 @@ class TagButton extends React.Component {
     }
 
     componentDidMount(){
-        this.setStatus(this.props.user.toString(), this.props.author.toString(), this.props.tag);
-        this.setState({selfTag: this.props.user.toString() === this.props.author.toString()});
+        if (this.props.user === null) {
+            this.setState({status: "info"});
+            this.setState({selfTag: true});
+        }
+        else {
+            this.setStatus(this.props.user.toString(), this.props.author.toString(), this.props.tag);
+            this.setState({selfTag: this.props.user.toString() === this.props.author.toString()});
+        }
     }
 
     setStatus(user, author, tag){
