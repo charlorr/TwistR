@@ -37,6 +37,7 @@ class CreatePost extends React.Component {
       tag_chars_left:20, max_tag_chars: 20,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+    //this.handleCreate = this.handleCreate.bind(this);
   }
 
   redirect() {
@@ -57,8 +58,9 @@ class CreatePost extends React.Component {
       }
     ).then((result) =>{
       alert("Post created!");
+      console.log(result.data.pk);
       this.setState({currentPostPk : result.data.pk});
-      console.log(this.currentPostPk);
+      console.log(this.state.currentPostPk);
       this.handleTagCreate();
     }).catch(()=>{
       alert("There was an error! Please re-check your form.")
@@ -66,12 +68,10 @@ class CreatePost extends React.Component {
   }
 
   handleTagCreate(){
-      console.log(this.state.tags_correct);
+     // console.log(this.state.tags_correct);
       for(var i=0; i <this.state.tags.length; i++){
-        if(this.state.tags[i].length > 20){
-          alert("too many characters in a tag!");
-          this.setState({tags_correct : false});
-        }else{
+     //   console.log(this.state.currentPostPk);
+       // console.log(this.state.tags[i]);
           tagService.createTag(
             {
               "post": this.state.currentPostPk,
@@ -82,7 +82,6 @@ class CreatePost extends React.Component {
           }).catch(()=>{
             alert("There was an error! Please re-check your tags.")
           });
-        }
       } 
   }
 
