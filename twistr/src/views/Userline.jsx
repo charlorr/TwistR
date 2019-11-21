@@ -6,7 +6,7 @@ import UserlineFollowCard from "../components/UserlineFollowCard/UserlineFollowC
 import UserlineViewTagsCard from "../components/UserlineViewTagsCard/UserlineViewTagsCard.jsx";
 import BioCard from "components/BioCard/BioCard.jsx";
 import PostRoster from "components/PostRoster/PostRoster.jsx";
-import {SortableTagTable} from "components/NewTagRoster/NewTagRoster.jsx";
+//import {SortableTagTable} from "components/NewTagRoster/NewTagRoster.jsx";
 import { Redirect } from 'react-router-dom';
 import TagUserlineCard from "components/TagUserlineCard/TagUserlineCard.jsx";
 import {
@@ -63,9 +63,12 @@ class Userline extends React.Component {
     //postService.getPostByAuthor(this.state.currentUserline)
     postService.getPostByAuthor(this.state.currentUserline.pk)
     .then(function(response) {
-      console.log(response);
-      self.setState({posts_all : response.data})
-      self.setState({flag: true})
+      //console.log(response);
+      postService.addPostTags(response.data).then(function (result){
+        self.setState({posts_all : result})
+        self.setState({flag: true})
+      })
+      
     })
     .catch(function(error) {
       console.log(error);

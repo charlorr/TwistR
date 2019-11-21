@@ -1,8 +1,8 @@
 import React from "react";
 import CreatePost from "components/CreatePost/CreatePost.jsx";
 import PostRoster from "components/PostRoster/PostRoster.jsx";
-import {SortableTagTable} from "components/NewTagRoster/NewTagRoster.jsx";
-import { SortablePostTable } from "components/PostRoster/PostRoster";
+// import {SortableTagTable} from "components/NewTagRoster/NewTagRoster.jsx";
+// import { SortablePostTable } from "components/PostRoster/PostRoster";
 import PostService from "components/PostService/PostService.jsx"
 import {Redirect} from 'react-router-dom';
 
@@ -33,8 +33,11 @@ getPosts(){
   postService.getPostByAuthor(localStorage.getItem('pk'))
   .then(function(response) {
     console.log(response);
-    self.setState({posts_all : response.data})
-    self.setState({flag: true})
+    postService.addPostTags(response.data).then(function (response){
+      self.setState({posts_all : response})
+      self.setState({flag: true})
+    })
+    
   })
   .catch(function(error) {
     console.log(error);

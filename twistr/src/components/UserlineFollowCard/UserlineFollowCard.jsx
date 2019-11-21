@@ -5,10 +5,6 @@ import React , { Component }from "react";
 import {
   Button,
   Card,
-  CardHeader,
-  CardBody,
-  CardTitle,
-  Row,
   Col
 } from "reactstrap";
 import FollowUserService from "components/FollowUserService/FollowUserService";
