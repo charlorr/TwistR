@@ -75,7 +75,7 @@ class CreatePost extends React.Component {
           tagService.createTag(
             {
               "post": this.state.currentPostPk,
-              "name": this.state.tags[i]
+              "name": this.state.tags[i].toUpperCase()
             }
           ).then((result) =>{
             alert("Tag created!");
