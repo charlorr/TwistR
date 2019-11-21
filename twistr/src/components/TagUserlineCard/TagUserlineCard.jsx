@@ -99,7 +99,11 @@ class TagUserlineCard extends React.Component {
       <Col lg="9" md="6" sm="6">
         <Card className="card-stats">
           <CardHeader>
-            <CardTitle tag="h5">{this.props.currentUserline.first_name}'s Tags</CardTitle>
+            <CardTitle tag="h5">{this.props.currentUserline.first_name}'s Tags
+            {/* <Button className = "btn-round btn-icon" color="danger" size="sm" onClick= {()=>this.hideTags()}>
+            <i className = "fas fa-times"> </i>
+            </Button> */}
+            </CardTitle>
              <hr/>
           </CardHeader>
             <CardBody>
