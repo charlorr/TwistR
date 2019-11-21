@@ -42,7 +42,6 @@ class PostCard extends React.Component {
     }
   }
 
-<<<<<<< HEAD
   deletePost(post){
     console.log(post);
     console.log("to delete");
@@ -72,8 +71,6 @@ class PostCard extends React.Component {
     });
   }
 
-=======
->>>>>>> 36e6811d15937799b58b32e64ddd9d92dcc8024f
   getTimeFormat(posted_date){
     var str = posted_date.toString().substring(0,16);
     str = str.substring(11,16) + " on " + str.substring(0,10);
