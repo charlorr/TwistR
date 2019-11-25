@@ -3,6 +3,7 @@ import TwistService  from  'components/TwistService/TwistService.jsx';
 
 import {
   Col,
+  Row,
   Button
 } from "reactstrap";
 
@@ -39,7 +40,7 @@ class UserlineTagRoster extends React.Component {
             <Button
             className="btn-round" 
             size="lg" 
-            color="primary"
+            color="success"
             onClick = {() => self.handleUnfollowTag(twist)}
             >
                 {twist.tag} 
@@ -54,7 +55,7 @@ class UserlineTagRoster extends React.Component {
           <Button
           className="btn-round" 
           size="lg" 
-          color="secondary"
+          color="danger"
           value = {tag}
           onClick = {() => self.handleFollowTag(tag)}
           >
@@ -63,9 +64,11 @@ class UserlineTagRoster extends React.Component {
         </Col>
       );
   });
-    return (
-      cards
-      );
+  return (
+    <>
+    <Row>{cards}</Row>
+    </>
+    );
   }
 }
 
