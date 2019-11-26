@@ -8,7 +8,7 @@ class TagButton extends React.Component {
     constructor(props) {
         super(props);
         this.state  = {
-          status: "warning",
+          status: "",
           twistPk: [],
           selfTag: false
         };
@@ -31,11 +31,16 @@ class TagButton extends React.Component {
             var self = this;
             twistService.getTwistExists(user, author, tag).then(function (result){
                 if (result.data.length !== 0) {
-                    self.setState({status: "success"});
                     self.setState({twistPk: result.data[0].pk});
+                    if (result.data[0].followed === true) {
+                        self.setState({status: "success"});
+                    }
+                    else {
+                        self.setState({status: "danger"});
+                    }
                 }
                 else {
-                    self.setState({status: "danger"})
+                    self.setState({status: "primary"})
                 }
             }).catch(function (error){
                 console.log(error);
@@ -43,7 +48,7 @@ class TagButton extends React.Component {
             });
         }
         else {
-            this.setState({selfTag: true});
+            this.setState({selfTag: true, status: "warning"});
         }
     }
 
@@ -51,24 +56,44 @@ class TagButton extends React.Component {
         if (!this.state.selfTag) {
             var self = this;
             if (self.state.status === "danger") {
-                twistService.createTwist({
+                twistService.updateTwist({
+                    "pk": this.state.twistPk,
                     "user": this.props.user,
                     "author": this.props.author,
                     "tag": this.props.tag,
                     "followed": true
-                }).then(function (result) {
+                }).then(function (result){
                     self.setState({status: "success"});
-                    self.setState({twistPk: result.data.pk})
                     window.location.reload();
-                }).catch(function (error) {
+                }).catch(function (error){
                     console.log(error);
                 });
             }
             else if (this.state.status === "success") {
-                twistService.deleteTwistbyPk(self.state.twistPk).then(function (result){
+                twistService.updateTwist({
+                    "pk": this.state.twistPk,
+                    "user": this.props.user,
+                    "author": this.props.author,
+                    "tag": this.props.tag,
+                    "followed": false
+                }).then(function (result){
                     self.setState({status: "danger"});
                     window.location.reload();
                 }).catch(function (error){
+                    console.log(error);
+                });
+            }
+            else if (this.state.status === "primary") {
+                twistService.createTwist({
+                    "user": this.props.user,
+                    "author": this.props.author,
+                    "tag": this.props.tag,
+                    "followed": false
+                }).then(function (result) {
+                    self.setState({status: "danger"});
+                    self.setState({twistPk: result.data.pk})
+                    window.location.reload();
+                }).catch(function (error) {
                     console.log(error);
                 });
             }
