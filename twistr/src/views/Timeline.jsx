@@ -24,7 +24,9 @@ class Timeline extends React.Component {
   getTimelinePosts() {
     var self = this;
     postService.getTimelinePosts().then(function (result){
+      console.log(result);
       postService.addPostTags(result.data).then(function (result){
+        
         self.setState({posts: result});
       })
     });

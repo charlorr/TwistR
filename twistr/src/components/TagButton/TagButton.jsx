@@ -54,7 +54,8 @@ class TagButton extends React.Component {
                 twistService.createTwist({
                     "user": this.props.user,
                     "author": this.props.author,
-                    "tag": this.props.tag
+                    "tag": this.props.tag,
+                    "followed": true
                 }).then(function (result) {
                     self.setState({status: "success"});
                     self.setState({twistPk: result.data.pk})
