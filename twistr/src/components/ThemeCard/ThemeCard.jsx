@@ -16,12 +16,33 @@ class  ThemeCard  extends  Component {
     this.state  = {
       users: [],
       currentUser: [],
+      themeDefault: true,
+      themeDark: false,
+      themeLight: false,
     };
+  }
+
+  themeDefault() {
+    this.setState({
+      themeDefault: true,
+      themeDark: false,
+      themeLight: false,      
+    })
   }
 
   themeDark() {
     this.setState({
-      
+      themeDefault: false,
+      themeDark: true,
+      themeLight: false,     
+    })
+  }
+
+  themeLight() {
+    this.setState({
+      themeDefault: false,
+      themeDark: false,
+      themeLight: true,      
     })
   }
 
@@ -36,17 +57,17 @@ class  ThemeCard  extends  Component {
             <div className="update ml-auto mr-auto">
               <Button 
                 className="btn-round" 
-                size="lg" 
+                size="md" 
                 color="secondary"
                 type="submit"
                 onClick={() => this.themeDefault()}>
-                Default
+                Default Mode
               </Button>
             </div>
             <div className="update ml-auto mr-auto">
               <Button 
                 className="btn-round" 
-                size="lg" 
+                size="md" 
                 color="secondary"
                 type="submit"
                 onClick={() => this.themeDark()}>
@@ -56,11 +77,11 @@ class  ThemeCard  extends  Component {
             <div className="update ml-auto mr-auto">
               <Button 
                 className="btn-round" 
-                size="lg" 
+                size="md" 
                 color="secondary"
                 type="submit"
-                onClick={() => this.themeInverted()}>
-                Inverted
+                onClick={() => this.themeLight()}>
+                Light Mode
               </Button>
             </div>
           </Row>

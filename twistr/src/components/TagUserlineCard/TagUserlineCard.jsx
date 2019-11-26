@@ -9,6 +9,7 @@ import {
   CardBody,
   CardTitle,
   Col,
+  Row,
   Button
 } from "reactstrap";
 const twistService = new TwistService();
@@ -99,24 +100,38 @@ class TagUserlineCard extends React.Component {
       <Col lg="9" md="6" sm="6">
         <Card className="card-stats">
           <CardHeader>
-            <CardTitle tag="h5">{this.props.currentUserline.first_name}'s Tags
-            {/* <Button className = "btn-round btn-icon" color="danger" size="sm" onClick= {()=>this.hideTags()}>
-            <i className = "fas fa-times"> </i>
-            </Button> */}
-            </CardTitle>
-             <hr/>
+            <Row>
+              <Col lg="6" md="4" sm="4">
+                <CardTitle tag="h5">{this.props.currentUserline.first_name}'s Tags
+                {/* <Button className = "btn-round btn-icon" color="danger" size="sm" onClick= {()=>this.hideTags()}>
+                <i className = "fas fa-times"> </i>
+                </Button> */}
+                </CardTitle>
+              </Col>
+              <Col lg="3" md="2" sm="2">
+                <Button 
+                  className="btn-round"
+                  color = "success"
+                  size = "md"
+                  onClick = {this.handleFollowAllTags}>
+                  Follow All Tags
+                </Button>
+              </Col>
+              <Col lg="3" md="2" sm="2">
+                <Button
+                  className="btn-round"
+                  color = "danger"
+                  size = "md"
+                  onClick = {this.handleUnfollowAllTags}>
+                  Unfollow All Tags
+                </Button>
+              </Col>
+            </Row>
+            <hr/>
           </CardHeader>
-            <CardBody>
-              <Button className="btn-round"
-                      color = "primary"
-                      onClick = {this.handleFollowAllTags}> Follow All Tags </Button>
-              <Button color = "secondary"
-                      className="btn-round"
-                      onClick = {this.handleUnfollowAllTags}> Unfollow All Tags</Button>
-
-             <UserlineTagRoster currentUserline = {this.props.currentUserline} followed_tags_all = {this.state.followed_tags_all} unfollowed_tags_all = {this.state.unfollowed_tags_all}/>
-            </CardBody>
-        
+          <CardBody>
+            <UserlineTagRoster currentUserline = {this.props.currentUserline} followed_tags_all = {this.state.followed_tags_all} unfollowed_tags_all = {this.state.unfollowed_tags_all}/>
+          </CardBody>
         </Card>
       </Col>
       </>
