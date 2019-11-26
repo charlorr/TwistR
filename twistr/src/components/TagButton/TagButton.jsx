@@ -33,7 +33,6 @@ class TagButton extends React.Component {
                 if (result.data.length !== 0) {
                     self.setState({status: "success"});
                     self.setState({twistPk: result.data[0].pk});
-                    console.log(result.data);
                 }
                 else {
                     self.setState({status: "danger"})

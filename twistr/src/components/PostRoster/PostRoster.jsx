@@ -16,11 +16,6 @@ class PostRoster extends React.Component {
     // Create posts from sorted, dynamic JSON collection
     var cards = [];
     var posts_all = this.props.posts_all;
-    var self = this;
-    /*if(this.props.posts_all === undefined){
-      return null;
-    }*/
-    //console.log(this.props.posts_all)
     this.props.posts_all.forEach(function(post) { 
         cards.push(<Post parent = {posts_all} post={post}/>);
     });
