@@ -148,8 +148,6 @@ class TagUserlineCard extends React.Component {
 });
   }
 
-
-  //TODO
   handleUnfollowAllTags(){
     var self = this;
     self.state.followed_twists_all.forEach(function(twist){

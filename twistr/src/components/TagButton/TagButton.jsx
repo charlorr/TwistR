@@ -88,9 +88,9 @@ class TagButton extends React.Component {
                     "user": this.props.user,
                     "author": this.props.author,
                     "tag": this.props.tag,
-                    "followed": false
+                    "followed": true
                 }).then(function (result) {
-                    self.setState({status: "danger"});
+                    self.setState({status: "success"});
                     self.setState({twistPk: result.data.pk})
                     window.location.reload();
                 }).catch(function (error) {
