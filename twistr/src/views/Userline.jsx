@@ -91,6 +91,7 @@ class Userline extends React.Component {
             <Col lg="12" md="11" sm="10">
               <Row>
               <BioCard currentUserline = {this.state.currentUserline} />
+              {/*Chiranth is debugging this weird button coloring issue*/}
               <Col lg="3" md="3" sm="3">
                  <Col lg="12" md="6" sm="6">
                   <Card className="card-stats">

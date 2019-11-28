@@ -23,7 +23,7 @@ class BioCard extends React.Component {
     return (
       <>
       <Col lg="9" md="6" sm="6">
-        <Card className="card-stats">
+        <Card className="card-stats theme-card-bg">
           <CardHeader>
             <CardTitle tag="h5">{this.props.currentUserline.first_name} {this.props.currentUserline.last_name}'s Bio</CardTitle>
              <hr/>

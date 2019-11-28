@@ -166,8 +166,8 @@ class TagUserlineCard extends React.Component {
   render() {
     return (
       <>
-      <Col lg="9" md="6" sm="6">
-        <Card className="card-stats">
+      <Col lg="12" md="12" sm="12">
+        <Card className="card-stats theme-card-bg">
           <CardHeader>
             <Row>
               <Col lg="6" md="4" sm="4">

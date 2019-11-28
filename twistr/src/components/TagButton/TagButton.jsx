@@ -83,7 +83,7 @@ class TagButton extends React.Component {
                     console.log(error);
                 });
             }
-            else if (this.state.status === "primary") {
+            else if (this.state.status === "secondary") {
                 twistService.createTwist({
                     "user": this.props.user,
                     "author": this.props.author,
