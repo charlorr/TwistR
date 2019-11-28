@@ -1,5 +1,5 @@
 import React from "react";
-import UserService  from  'components/UserService/UserService.jsx';
+//import UserService  from  'components/UserService/UserService.jsx';
 
 import {
     Row,
@@ -7,7 +7,7 @@ import {
     Button
 } from "reactstrap";
 
-const userService = new UserService();
+//const userService = new UserService();
 class ProfileFollowerRoster extends React.Component {
   
   constructor(props) {

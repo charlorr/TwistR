@@ -1,5 +1,5 @@
 import React from 'react';
-import UserCard from "components/UserCard/UserCard.jsx";
+//import UserCard from "components/UserCard/UserCard.jsx";
 import PostService from "components/PostService/PostService.jsx";
 import NotificationAlert from "react-notification-alert";
 import TagService from "components/TagService/TagService.jsx";

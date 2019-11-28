@@ -76,7 +76,7 @@ class PostCard extends React.Component {
   }
 
   twistStatus(tag) {
-    var self = this;
+    //var self = this;
     const user = localStorage.getItem('pk');
     const author = this.props.post.author;
     //console.log(user + " " + author + " " + tag);

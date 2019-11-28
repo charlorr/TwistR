@@ -1,5 +1,5 @@
 import React from 'react';
-import UserCard from "components/UserCard/UserCard.jsx";
+//import UserCard from "components/UserCard/UserCard.jsx";
 import PostCard from "components/PostCard/PostCard.jsx";
 import ReactCard from "components/ReactCard/ReactCard.jsx";
 

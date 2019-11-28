@@ -4,7 +4,6 @@ import ProfileFollowerRoster from 'components/ProfileFollowerRoster/ProfileFollo
 // reactstrap components
 
 import {
-  Button,
   Card,
   CardHeader,
   CardBody,
