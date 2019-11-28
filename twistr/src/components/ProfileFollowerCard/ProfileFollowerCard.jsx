@@ -72,40 +72,13 @@ class  ProfileFollowerCard  extends  Component {
   render() {
 
         return (
-            <Card>
+          <Card className="theme-card-bg">
             <CardHeader>
               <CardTitle tag="h4">Who You Follow</CardTitle>
             </CardHeader>
             <CardBody>
               {/* <ul className="list-unstyled team-members">  */}
                 <ProfileFollowerRoster followeePKs = {this.state.followeePKs_all } users = {this.state.users_all}/>
-
-                {/* <li>
-                  <Row>
-                    <Col md="2" xs="2">
-                      <div className="avatar">
-                        <img
-                          alt="..."
-                          className="img-circle img-no-padding img-responsive"
-                          src={require("assets/img/Train.png")}
-                        />
-                      </div>
-                    </Col>
-                    <Col md="7" xs="7">
-                    <a className = "blackHref" href = {"../userline/2"} >DJ Khaled <br /> </a>
-                      
-                    </Col>
-                    <Col className="text-right" md="3" xs="3">
-                    <Button className = "follow-icons btn-round btn-icon"
-                            color = "success"
-                            size="sm">
-                            <i className = "fa fa-check follow-check"></i>
-                            <i className = "fa fa-times follow-uncheck"></i>
-                        </Button>
-                    </Col>
-                  </Row>
-                </li> 
-                </ul> */}
             </CardBody>
           </Card> 
         );

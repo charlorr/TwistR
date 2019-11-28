@@ -43,7 +43,7 @@ class Tables extends React.Component {
       <div className="content">
         <Row>
           <Col lg="12" md="12" sm="12">
-            <Card align="center">
+            <Card align="center" className="theme-card-bg">
               <CardHeader>
                 <CardTitle tag="h2">
                   <h2>

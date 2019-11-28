@@ -11,6 +11,8 @@ import {
   CardBody,
   CardFooter,
   CardTitle,
+  Row,
+  Col
 } from "reactstrap";
 
 
@@ -108,9 +110,9 @@ class PostCard extends React.Component {
     }
     return (
     <>
-    <Card>
-      <CardHeader>
+    <Card className="theme-card-bg">
         <CardTitle tag="h5">   {redirectA} </CardTitle>
+      <CardHeader>
         <TagButton user = {localStorage.getItem('pk')} author = {this.props.post.author} tag = {this.props.post.tag1}/>
         <TagButton user = {localStorage.getItem('pk')} author = {this.props.post.author} tag = {this.props.post.tag2}/>
         <TagButton user = {localStorage.getItem('pk')} author = {this.props.post.author} tag = {this.props.post.tag3}/>
@@ -118,25 +120,33 @@ class PostCard extends React.Component {
       </CardHeader>
       <CardBody>
         <h3>{this.props.post.text_body}</h3>
-        <Button
-        className="fas fa-trash" 
-        size="sm"
-        type="submit" 
-        onClick={() => { this.deletePost(this.props.post) }}>
-        </Button>
       </CardBody>
       <CardFooter>
         <hr />
-        <div className="stats">
-            <i className="fa fa-history"/> 
-            <a href = {"../admin/userline/"+this.props.post.author} >
-              <font color="#000000"><b>{this.state.username}</b></font>
-            </a>
-        {" "}posted at {this.getTimeFormat(this.props.post.posted_date)}
-        </div>
-        <div className="ml-auto">
-            <i className="likes float-right"/> Likes: {this.props.post.like_count}
-        </div>
+        <Row>
+          <Col lg="8" md="8">
+          <div className="stats">
+              <i className="fa fa-history"/> 
+              <a href = {"../admin/userline/"+this.props.post.author} >
+                <font color="#000000"><b>{this.state.username}</b></font>
+              </a>
+          {" "}posted at {this.getTimeFormat(this.props.post.posted_date)}
+          </div>
+          </Col>
+          <Col lg="3" md="3">
+          <div className="ml-auto">
+              <i className="likes float-right"/> Likes: {this.props.post.like_count}
+          </div>
+          </Col>
+          <Col lg="1" md="1">
+            <Button
+            className="fas fa-trash" 
+            size="sm"
+            type="submit" 
+            onClick={() => { this.deletePost(this.props.post) }}>
+            </Button>
+          </Col>
+        </Row>
       </CardFooter>
     </Card>
     </>

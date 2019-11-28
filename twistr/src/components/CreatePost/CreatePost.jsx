@@ -183,22 +183,21 @@ class CreatePost extends React.Component {
     console.log(this.state.tagsInputValue)
     return (
       <>
-      <div className="content" >
-        {this.redirect()}
-      <Col lg="12" md="12" sm="12">
+      {this.redirect()}
+      <Col lg="8" md="8" sm="8">
         <Row>
-          <Col lg="9" md="6" sm="6">
-            <Card className="card-stats">
+          <Col lg="12" md="12" sm="12">
+            <Card className="card-stats theme-card-bg">
               <NotificationAlert ref ={this.notificationAlert} />
               <CardBody>
                 <Form onSubmit={this.handleSubmit}>
                 <Row>
-                  <Col lg="12" md="12" sm="12">
+                  <Col>
                     <CardTitle tag="h5">Write a new post here.</CardTitle>
                   </Col>
                 </Row>
                 <Row>
-                  <Col lg="12" md="12" sm="12">
+                  <Col>
                     <FormGroup>
                       <label>Be creative! Remember to use at least one tag.</label>
                       <Input
@@ -216,20 +215,20 @@ class CreatePost extends React.Component {
                 </Row>
                 <Row>
                   <Col>
-                    <FormGroup>
+                  <FormGroup>
                     <div className="input-tag">
                         <Input value={tagsInputValue} onChange={(e) => {this.handleTagChange(e)}}
                           type="text" 
                           placeholder="Up to three tags seperated by commas" />
                    </div>   
-                    </FormGroup>
+                  </FormGroup>
                   </Col>
                 </Row>
                 <Row>
                   <div className="update ml-auto mr-auto">
                     <Button
                     className="btn-round"
-                    color="primary"
+                    color="secondary"
                     type="submit"
                     >
                       Create Post
@@ -239,20 +238,15 @@ class CreatePost extends React.Component {
                 </Form>
               </CardBody>
               <CardFooter>
-                <hr />
                 <div className="stats">
                   <i className="fas fa-sync-alt" /> {this.state.chars_left} / 280 characters left
+                <hr />
                 </div>
               </CardFooter>
             </Card>
           </Col>
-          <Col lg="2" md="2" sm="1">
-            <UserCard picture={require("assets/img/PurduePete.jpg")} />
-            {/*<NameCard />*/}
-          </Col>
         </Row>
       </Col>
-      </div>
       </>
     );
   }

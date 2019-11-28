@@ -55,13 +55,5 @@ var routes = [
     layout: "/admin",
     auth: false //Authenticated or Unauthenticated
   },
-  {
-    path: "/notifications",
-    name: "Notifications",
-    icon: "fas fa-bell",
-    component: Notifications,
-    layout: "/admin",
-    auth: true
-  },
 ];
 export default routes;

@@ -1,5 +1,6 @@
 import  React, { Component } from  'react';
 //import  UserService  from  'components/UserService/UserService.jsx';
+
 import {
     Button,
     Card,
@@ -49,7 +50,7 @@ class  ThemeCard  extends  Component {
   render() { 
     return (
       <div >
-        <Card className="card-user">
+        <Card className="card-user theme-card-bg">
           <CardHeader>
             <CardTitle tag="h5">Change Your Theme</CardTitle>
           </CardHeader>

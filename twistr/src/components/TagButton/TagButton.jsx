@@ -40,7 +40,7 @@ class TagButton extends React.Component {
                     }
                 }
                 else {
-                    self.setState({status: "primary"})
+                    self.setState({status: "secondary"})
                 }
             }).catch(function (error){
                 console.log(error);

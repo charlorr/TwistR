@@ -48,21 +48,8 @@ class ProfileFollowerRoster extends React.Component {
     self.props.users.forEach(function(user) { //currently displaying all tags regardless of follow or not
         cards.push(
             
-            <Row>
-            <Col md="2" xs="2">
-              <div className="avatar">
-                <img
-                  alt="..."
-                  className="img-circle img-no-padding img-responsive"
-                  src={require("assets/img/Train.png")}
-                />
-              </div>
-            </Col>
-            <Col md="7" xs="7">
-            <a className = "blackHref" href = {"../userline/"+user.pk} >{user.first_name} {user.last_name} <br /> </a>
-              
-            </Col>
-            <Col className="text-right" md="3" xs="3">
+          <Row>
+            <Col md="3" xs="3">
               <Button className = "btn-round btn-icon" color = "success" size = "sm">
               <i className = "fa fa-check"></i>
               </Button>
@@ -73,6 +60,9 @@ class ProfileFollowerRoster extends React.Component {
                     <i className = "fa fa-check follow-check"></i> 
                     <i className = "fa fa-times follow-uncheck"></i>
                 </Button> */}
+            </Col>
+            <Col md="9" xs="9">
+              <a className = "blackHref" href = {"../userline/"+user.pk} > <br /> {user.first_name} {user.last_name}</a>
             </Col>
           </Row>
           
