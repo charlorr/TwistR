@@ -1,66 +1,34 @@
 import React from "react";
 import CreatePost from "components/CreatePost/CreatePost.jsx";
 import PostRoster from "components/PostRoster/PostRoster.jsx";
-import {SortableTagTable} from "components/NewTagRoster/NewTagRoster.jsx";
+// import {SortableTagTable} from "components/NewTagRoster/NewTagRoster.jsx";
+// import { SortablePostTable } from "components/PostRoster/PostRoster";
 import PostService from "components/PostService/PostService.jsx"
+import UserService from "components/UserService/UserService.jsx"
 import {Redirect} from 'react-router-dom';
+
 // reactstrap components
 import {
   Row,
-  Col, 
-  CardBody
+  Col,
 } from "reactstrap";
-import { SortablePostTable } from "components/PostRoster/PostRoster";
 
 const postService = new PostService();
-
-//hardcoded posts for now, until we have connection to database
-var POSTS_ALL=[{
-  author: "Purdue Pete",
-  tags: ["boiler ", "maker ", ""],
-  content: "I love TwistR",
-  timestamp: 8,
-  picture: require("assets/img/PurduePete.jpg"),
-}, {
-  author: "Purdue Pete",
-  tags: ["choo ", "choochoo "],
-  content: "Update: I have a stomach ache.",
-  timestamp: 15,
-  picture: require("assets/img/PurduePete.jpg"),
-}, {
-  author: "Purdue Pete",
-  tags: ["black ", "gold ", "cs307 "],
-  content: "First Post! Woooo!",
-  timestamp: 400,
-  picture: require("assets/img/PurduePete.jpg"),
-}]
-
-
-var TAGS_ALL=[{
-  author: "Cookie Monster",
-  content: "ouch",
-  timestamp: 15
-}, {
-  author: "Cookie Monster",
-  content: "regrets",
-  timestamp: 15
-}, {
-  author: "Elmo",
-  content: "tickle me",
-  timestamp: 40
-}]
+const userService = new UserService();
 
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       posts_all: [],
-      flag: false
+      flag: false,
+      redirect_text: [],
     };
     this.getPosts.bind(this);
   }
 
 componentDidMount() {
+  this.check_auth();
   this.getPosts();
 }
 
@@ -69,40 +37,51 @@ getPosts(){
   postService.getPostByAuthor(localStorage.getItem('pk'))
   .then(function(response) {
     console.log(response);
-    self.setState({posts_all : response.data})
-    self.setState({flag: true})
+    postService.addPostTags(response.data).then(function (response){
+      self.setState({posts_all : response})
+      self.setState({flag: true})
+    })
+    
   })
   .catch(function(error) {
     console.log(error);
   });
 }
 
-redirect() {
-  if (localStorage.getItem('pk') === null) {
-    return <Redirect to="/admin/welcome"/>;
+check_auth() {
+  var that = this;
+  if (localStorage.getItem('auth_token') === null) {
+    that.setState({redirect_text: <Redirect to="/admin/welcome"/>})
+  }
+  else {
+    userService.check_auth()
+    .catch(function (error) {
+      //if the token has expired then clear local storage and return to login page
+      localStorage.clear();
+      that.setState({redirect_text: <Redirect to="/admin/welcome"/>})
+      window.location.reload();
+    })
   }
 }
 
   render() {
     if (this.state.posts_all.length === 0) {
-     // console.log("no post data")
      return (
       <>
       <div className="content">
-        {this.redirect()}
+      {this.state.redirect_text}
         <Row>
           <CreatePost/>
         </Row>
       </div>
       </>
     );
-    }else{
-     // console.log("yes post data")
-     // console.log(this.state.posts_all)
+    }
+    else{
       return (
         <>
         <div className="content">
-          {this.redirect()}
+        {this.state.redirect_text}
           <Row>
             <CreatePost/>
           </Row>
@@ -119,9 +98,6 @@ redirect() {
       );
     }
     }
-
-    //this.getPosts();
-   // console.log(this.state.posts_all)
     
 }
 

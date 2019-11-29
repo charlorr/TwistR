@@ -1,104 +1,83 @@
 import React , { Component }from "react";
-
+import TwistService  from  'components/TwistService/TwistService.jsx';
+import ProfileFollowerRoster from 'components/ProfileFollowerRoster/ProfileFollowerRoster.jsx';
 // reactstrap components
 
 import {
-  Button,
   Card,
   CardHeader,
   CardBody,
   CardTitle,
-  Row,
-  Col
-} from "reactstrap";
 
+} from "reactstrap";
+import UserService from "components/UserService/UserService";
+
+const twistService = new TwistService();
+const userService = new UserService();
 class  ProfileFollowerCard  extends  Component {
-    render() {
+    
+  constructor(props) {
+    super(props);
+    this.state  = {
+      users_all: []
+      };
+    this.getTwists.bind(this);
+   // this.getFollowees.bind(this);
+    this.getUsers.bind(this);
+    }
+
+  componentDidMount(){
+    this.getTwists();
+  }
+
+  getTwists(){
+    var self = this;
+    var followeePKs = [];
+    twistService.getTwistbyUser(localStorage.getItem('pk'))
+    .then(function(response) {
+      //self.setState({twists_all : response.data});
+      //self.getFollowees(response.data);
+      response.data.forEach(function (twist){
+        if(followeePKs.findIndex(f1 => f1 === twist.author) <0){
+            followeePKs.push(twist.author);
+        }
+      });
+      //self.setState({followeePKs_all: followeePKs});
+      self.getUsers(followeePKs);
+
+    })
+    .catch(function(error) {
+      console.log(error);
+    });
+  }
+
+  
+  getUsers(followeePKs){
+    var self = this;
+    var users = [];
+
+      followeePKs.forEach(function(userPK){
+        userService.getUser(userPK).then(function(response) {
+            users.push(response);
+            console.log(users);
+            self.setState({users_all: users});
+          })
+          .catch(function(error) {
+            console.log(error);
+          });
+      })
+  }
+
+  render() {
 
         return (
-            <Card>
+          <Card className="theme-card-bg">
             <CardHeader>
               <CardTitle tag="h4">Who You Follow</CardTitle>
             </CardHeader>
             <CardBody>
-              <ul className="list-unstyled team-members">
-                <li>
-                  <Row>
-                    <Col md="2" xs="2">
-                      <div className="avatar">
-                        <img
-                          alt="..."
-                          className="img-circle img-no-padding img-responsive"
-                          src={require("assets/img/Train.png")}
-                        />
-                      </div>
-                    </Col>
-                    <Col md="7" xs="7">
-                    <a className = "blackHref" href = {"../userline/1"} >DJ Khaled <br /> </a>
-                      
-                    </Col>
-                    <Col className="text-right" md="3" xs="3">
-                    <Button className = "follow-icons btn-round btn-icon"
-                            color = "success"
-                            size="sm">
-                            <i className = "fa fa-check follow-check"></i>
-                            <i className = "fa fa-times follow-uncheck"></i>
-                        </Button>
-                    </Col>
-                  </Row>
-                </li>
-                <li>
-                  <Row>
-                    <Col md="2" xs="2">
-                      <div className="avatar">
-                        <img
-                          alt="..."
-                          className="img-circle img-no-padding img-responsive"
-                          src={require("assets/img/BoilermakerSpecial.jpg")}
-                        />
-                      </div>
-                    </Col>
-                    <Col md="7" xs="7">
-                      
-                      <a className = "blackHref" href = {"../userline/1"} >Ashwin Gokhale <br /> </a>
-                      
-                      </Col>
-                    <Col className="text-right" md="3" xs="3">
-                        <Button className = "follow-icons btn-round btn-icon"
-                            color = "success"
-                            size="sm">
-                            <i className = "fa fa-check follow-check"></i>
-                            <i className = "fa fa-times follow-uncheck"></i>
-                        </Button>
-                    </Col>
-                  </Row>
-                </li>
-                <li>
-                  <Row>
-                    <Col md="2" xs="2">
-                      <div className="avatar">
-                        <img
-                          alt="..."
-                          className="img-circle img-no-padding img-responsive"
-                          src={require("assets/img/Fountain.jpg")}
-                        />
-                      </div>
-                    </Col>
-                    <Col className="col-ms-7" xs="7">
-                    <a className = "blackHref" href = {"../userline/2"} > Ashwin2 <br /> </a>
-                      
-                    </Col>
-                    <Col className="text-right" md="3" xs="3">
-                    <Button className = "follow-icons btn-round btn-icon"
-                            color = "success"
-                            size="sm">
-                            <i className = "fa fa-check follow-check"></i>
-                            <i className = "fa fa-times follow-uncheck"></i>
-                        </Button>
-                    </Col>
-                  </Row>
-                </li>
-              </ul>
+              {/* <ul className="list-unstyled team-members">  */}
+                <ProfileFollowerRoster followeePKs = {this.state.followeePKs_all } users = {this.state.users_all}/>
             </CardBody>
           </Card> 
         );

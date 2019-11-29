@@ -5,14 +5,9 @@ import React , { Component }from "react";
 import {
   Button,
   Card,
-  CardHeader,
-  CardBody,
-  CardTitle,
-  Row,
   Col
 } from "reactstrap";
 import FollowUserService from "components/FollowUserService/FollowUserService";
-
 
 const followUserService = new FollowUserService();
 
@@ -40,11 +35,11 @@ class  UserlineFollowCard  extends  Component {
         //     this.setState({followed: true})
         // }
         
-        
-        followUser(){
+        followUser(){ //this doesn't work anymore because twists have been redefined in the database
         followUserService.createFollowUser({
             "user": this.props.currentUser.pk,
-            "author":this.props.currentUserline.pk
+            "author":this.props.currentUserline.pk,
+            "tag":37 //TODO: not hard code
         }).then((result)=>{
             if(result.data.user==="something went wrong"){
                 alert("there was an error")
@@ -59,7 +54,7 @@ class  UserlineFollowCard  extends  Component {
             window.location.reload();
         }
 
-      unfollowUser(){
+      unfollowUser(){ //this doesn't work right now because twists have redefined in the database
         followUserService.deleteFollowUser(this.props.currentUser.pk, this.props.currentUserline.pk).then((result)=>{
             if(result.data.user==="something went wrong"){
                 alert("there was an error")
@@ -72,34 +67,42 @@ class  UserlineFollowCard  extends  Component {
 
             });
             window.location.reload();
+    }
 
-      }
     render() {
+
         let but; //determines whether button is follow or unfollow
 
-        if(this.props.followExists){
-            but=  <Button 
+        if(this.props.followExists) { but = 
+            <Button 
             className="btn-round"
             color="primary"
             onClick={this.unfollowUser}>
-            Unfollow User </Button>
-            
+            Unfollow User 
+            </Button>
         }
-        else{but = <Button 
+        else { but = 
+            <Button 
             className="btn-round"
             color="primary"
             onClick={this.followUser}>
-            Follow User </Button>
+            Follow User 
+            </Button>
         }
-        
-        return(
-            <Card>
-                {but}
+        return (
+          <>
+          <Col lg="12" md="6" sm="6">
+            <Card className="card-stats">
+              <div className="ml-auto mr-auto">
+                <Col lg="12" md="12" sm="12">
+                  {but}
+                </Col>
+              </div>
             </Card>
-            )
-            };
-}
-
-       
+          </Col>
+          </>
+        );
+    }
+}      
       
 export  default  UserlineFollowCard;

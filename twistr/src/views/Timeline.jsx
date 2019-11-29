@@ -1,63 +1,139 @@
 import React from "react";
 import CreatePost from "components/CreatePost/CreatePost.jsx";
-import {SortableTagTable} from "components/NewTagRoster/NewTagRoster.jsx";
-import {SortablePostTable} from "components/PostRoster/PostRoster.jsx";
+import PostRoster from "components/PostRoster/PostRoster.jsx";
+import PostService from "components/PostService/PostService.jsx";
+import  UserService  from  'components/UserService/UserService.jsx';
+import {Redirect} from 'react-router-dom';
+
+import TwistService from "components/TwistService/TwistService.jsx";
 // reactstrap components
 import {
   Row,
-  Col
 } from "reactstrap";
 
-//hardcoded posts for now, until we have connection to database
-var POSTS_ALL=[{
-  author: "Cookie Monster",
-  tags: ["cookies ", "trashcan ", ""],
-  content: "I just ate 49 cookies. I had some chocolate chip, triple chocolate, and peanut butter",
-  timestamp: 30,
-  picture: require("assets/img/CookieMonster.jpg"),
-}, {
-  author: "Cookie Monster",
-  tags: ["ouch ", "regrets "],
-  content: "Update: I have a stomach ache.",
-  timestamp: 15,
-  picture: require("assets/img/CookieMonster.jpg"),
-}, {
-  author: "Elmo",
-  tags: ["red ", "tickle me ", "seseame street"],
-  content: "First Post! #like4like",
-  timestamp: 40,
-  picture: require("assets/img/Elmo.jpg"),
-}]
+const postService = new PostService();
+const userService = new UserService();
 
-var TAGS_ALL=[{
-  author: "Cookie Monster",
-  content: "ouch",
-  timestamp: 15
-}, {
-  author: "Cookie Monster",
-  content: "regrets",
-  timestamp: 15
-}, {
-  author: "Elmo",
-  content: "tickleMe",
-  timestamp: 40
-}]
-
+const twistService = new TwistService();
 class Timeline extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state  = {
+      posts: [],
+      redirect_text: [],
+    };
+    this.getTimelinePosts = this.getTimelinePosts.bind(this);
+    this.filterSeen = this.filterSeen.bind(this);
+  }
+
+  componentDidMount(){
+    this.getTimelinePosts();
+  }
+
+  getTimelinePosts() {
+    this.check_auth();
+    var self = this;
+    postService.getTimelinePosts().then(function (result){
+      console.log(result);
+      postService.addPostTags(result.data).then(function (result){
+        self.filterSeen(result);
+      })
+    });
+  }
+
+  check_auth() {
+    var that = this;
+    if (localStorage.getItem('auth_token') === null) {
+      that.setState({redirect_text: <Redirect to="/admin/welcome"/>})
+    }
+    else {
+      userService.check_auth()
+      .catch(function (error) {
+        //if the token has expired then clear local storage and return to login page
+        localStorage.clear();
+        that.setState({redirect_text: <Redirect to="/admin/welcome"/>})
+        window.location.reload();
+      })
+    }
+  }
+  filterSeen(posts) {
+    console.log(posts);
+    var self = this;
+    var promises = [];
+    for (var i = 0; i < posts.length; i++) {
+      promises.push(self.nullifyUnfollowed(posts[i]));
+    }
+    console.log(promises);
+    return Promise.all(promises).then(function (values){
+      console.log(values);
+      self.setState({posts: values});
+    })
+  }
+
+  nullifyUnfollowed(post){
+    return twistService.getTwistExists(localStorage.getItem('pk'),post.author, post.tag1)
+    .then(function (result){
+      console.log(result);
+      if (result.data.length === 0){ //unseen
+        return post;
+      }
+      else if (result.data[0].followed === true){ //seen and followed
+        return post;
+      }
+      else if (post.tag2 === null || post.tag2 === undefined){
+        post = null;
+        return post;
+      }
+      else {
+        return twistService.getTwistExists(localStorage.getItem('pk'),post.author, post.tag2)
+        .then(function (result){
+          if (result.data.length === 0){
+            return post;
+          }
+          else if (result.data[0].followed === true){ 
+            return post;
+          }
+          else if (post.tag3 === null || post.tag3 === undefined){
+            post = null;
+            return post;
+          }
+          else {
+            return twistService.getTwistExists(localStorage.getItem('pk'),post.author, post.tag3)
+            .then(function (result){
+              if (result.data.length === 0){
+                return post;
+              }
+              else if (result.data[0].followed === true){ 
+                return post;
+              }
+              else {
+                post = null;
+                return post;
+              }
+            })
+          }
+        })
+      }
+    }).catch(function (error){
+      console.log(error);
+    })
+  }
+
   render() {
     return (
       <>
       <div className="content">
+      {this.state.redirect_text}
         <Row>
           <CreatePost />
         </Row>
         <Row>
-          <Col lg="12" md="12" sm="12">
+          {/* <Col lg="12" md="12" sm="12">
             <SortableTagTable tags_all = {TAGS_ALL}/>
-          </Col>
+          </Col> */}
         </Row>
         <Row>
-          <SortablePostTable parent = "timeline" posts_all={POSTS_ALL} />
+          <PostRoster parent = "timeline" posts_all={this.state.posts} />
         </Row>
       </div>
       </>
