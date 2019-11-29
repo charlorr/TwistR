@@ -1,6 +1,7 @@
 import React from 'react';
 import TwistService from "components/TwistService/TwistService.jsx";
 import PostService from 'components/PostService/PostService';
+import UserService from 'components/UserService/UserService';
 import TagButton from "components/TagButton/TagButton.jsx";
 
 import {
@@ -10,11 +11,14 @@ import {
   CardBody,
   CardFooter,
   CardTitle,
+  Row,
+  Col
 } from "reactstrap";
 
 
 const twistService = new TwistService();
 const postService = new PostService();
+const userService = new UserService();
 
 class PostCard extends React.Component {
 
@@ -22,11 +26,24 @@ class PostCard extends React.Component {
     super(props);
     this.state = {
       currentPost: [],
-      flag:false
+      username: null
     };
     this.deletePost = this.deletePost.bind(this);
   }
 //figure out who the parent is so that href of name can be properly assigned
+
+  componentDidMount(){
+    this.getAuthorUsername(this.props.post.author);
+  }
+
+  getAuthorUsername(pk){
+    var self = this;
+    userService.getUser(pk).then(function (result){
+      self.setState({username: result.username});
+    }).catch(function (error){
+      console.log(error);
+    })
+  }
 
 
   displayButton(tag){
@@ -59,7 +76,7 @@ class PostCard extends React.Component {
   }
 
   twistStatus(tag) {
-    var self = this;
+    //var self = this;
     const user = localStorage.getItem('pk');
     const author = this.props.post.author;
     //console.log(user + " " + author + " " + tag);
@@ -93,32 +110,43 @@ class PostCard extends React.Component {
     }
     return (
     <>
-    <Card>
-      <CardHeader>
-        
+    <Card className="theme-card-bg">
         <CardTitle tag="h5">   {redirectA} </CardTitle>
+      <CardHeader>
         <TagButton user = {localStorage.getItem('pk')} author = {this.props.post.author} tag = {this.props.post.tag1}/>
         <TagButton user = {localStorage.getItem('pk')} author = {this.props.post.author} tag = {this.props.post.tag2}/>
         <TagButton user = {localStorage.getItem('pk')} author = {this.props.post.author} tag = {this.props.post.tag3}/>
         {/*<p className="card-category">{this.props.post.tags}</p>*/}
       </CardHeader>
       <CardBody>
-        <h1>{this.props.post.text_body}</h1>
-        <Button
-        className="fas fa-trash" 
-        size="sm"
-        type="submit" 
-        onClick={() => { this.deletePost(this.props.post) }}>
-        </Button>
+        <h3>{this.props.post.text_body}</h3>
       </CardBody>
       <CardFooter>
         <hr />
-        <div className="stats">
-            <i className="fa fa-history" /> User {this.props.post.author}  Posted at {this.getTimeFormat(this.props.post.posted_date)}
-        </div>
-        <div class="ml-auto">
-            <i className="likes float-right"/> Likes: {this.props.post.like_count}
-        </div>
+        <Row>
+          <Col lg="8" md="8">
+          <div className="stats">
+              <i className="fa fa-history"/> 
+              <a href = {"../admin/userline/"+this.props.post.author} >
+                <font color="#000000"><b>{this.state.username}</b></font>
+              </a>
+          {" "}posted at {this.getTimeFormat(this.props.post.posted_date)}
+          </div>
+          </Col>
+          <Col lg="3" md="3">
+          <div className="ml-auto">
+              <i className="likes float-right"/> Likes: {this.props.post.like_count}
+          </div>
+          </Col>
+          <Col lg="1" md="1">
+            <Button
+            className="fas fa-trash" 
+            size="sm"
+            type="submit" 
+            onClick={() => { this.deletePost(this.props.post) }}>
+            </Button>
+          </Col>
+        </Row>
       </CardFooter>
     </Card>
     </>

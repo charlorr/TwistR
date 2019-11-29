@@ -1,5 +1,5 @@
 import React from 'react';
-import UserCard from "components/UserCard/UserCard.jsx";
+//import UserCard from "components/UserCard/UserCard.jsx";
 import PostCard from "components/PostCard/PostCard.jsx";
 import ReactCard from "components/ReactCard/ReactCard.jsx";
 
@@ -18,8 +18,14 @@ class Post extends React.Component {
           <Col lg="2" md="2" sm="1">
             {/*<UserCard picture={this.props.post.picture/>
             <ReactCard />*/}
-            <UserCard picture={require("assets/img/default-avatar.png")}/>
+            <hr />
+            <hr />
+            <hr />
+            <hr />
             <ReactCard parent = {this.props.parent} post={this.props.post} />
+            <hr />
+            <hr />
+            <hr />
             <hr />
           </Col>
           <Col lg="10" md="9" sm="9">

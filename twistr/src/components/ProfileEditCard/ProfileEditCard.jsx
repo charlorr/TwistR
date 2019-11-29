@@ -92,7 +92,7 @@ class  ProfileEditCard  extends  Component {
             {/* <p>this is the {this.props.currentUser} </p> */}
             {/* <p> this is the username: {this.props.currentUser.username}</p> */}
             {/*this.redirect()*/}
-          <Card className="card-user">
+          <Card className="card-user theme-card-bg">
               <NotificationAlert ref={this.notificationAlert} />
               <CardHeader>
                 <CardTitle tag="h5">Edit Profile</CardTitle>
@@ -193,7 +193,7 @@ class  ProfileEditCard  extends  Component {
                     <div className="update ml-auto mr-auto ">
                       <Button
                         className="btn-round"
-                        color="primary"
+                        color="secondary"
                         type="submit"
                       >
                         Update Profile
@@ -202,7 +202,7 @@ class  ProfileEditCard  extends  Component {
                       <div className="update ml-auto mr-auto">
                       <Button
                         className="btn-round"
-                        color="primary"
+                        color="secondary"
                         onClick={this.deleteProfile}
                       >
                         Delete Profile
@@ -211,7 +211,7 @@ class  ProfileEditCard  extends  Component {
                       <div className="update ml-auto mr-auto">
                       <Button
                         className="btn-round"
-                        color="primary"
+                        color="secondary"
                         onClick={this.logOut}
                       >
                         Log out

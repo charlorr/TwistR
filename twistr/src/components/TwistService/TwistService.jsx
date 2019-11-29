@@ -61,9 +61,9 @@ export default class TagService{
         const url = `${API_URL}/api/twists/`;
         return axios.post(url,twist, auth_config);
     }
-    updateTag(twist){
+    updateTwist(twist){
         var auth_config = {headers : {'Authorization' : "token " + localStorage.getItem('auth_token')}};
-        const url = `${API_URL}/api/tags/${twist.pk}`;
+        const url = `${API_URL}/api/twists/${twist.pk}`;
         return axios.put(url,twist,auth_config);
     }
 

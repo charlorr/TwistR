@@ -133,16 +133,18 @@ class ReactCard extends React.Component {
     }
     return (
       <>
-      <Card>
+      <Card className="theme-card-bg">
         <CardBody>
           <Row>
             <Col lg="6" md="6" sm="6">
               {but}
             </Col>
             <Col lg="6" md="6" sm="6">
-              <div className="icon-big text-center reactedShare icon-warning">
-                <i className="fas fa-share colored-share"  />
-              </div>
+              <Button 
+              size="sm"
+              className="icon-big text-center reactedHeart icon-warning">
+              <i className="fas fa-share colored-share"></i>
+              </Button>
             </Col>
           </Row>
         </CardBody>
