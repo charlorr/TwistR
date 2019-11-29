@@ -4,7 +4,7 @@ import { resolve, reject } from 'q';
 // import { resolve } from 'path';
 // import { reject } from 'q';
 import { BrowserRouter} from 'react-router-dom';
-const API_URL = 'http://localhost:8000';
+const API_URL = 'https://twistr-backend.herokuapp.com';
 
 
 
