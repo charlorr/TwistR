@@ -17,11 +17,13 @@ class Profile extends React.Component {
     super(props);
     this.state  = {
       users: [],
-      currentUser: []
+      currentUser: [],
+      redirect_text: [],
     };
   }
 
   componentDidMount() {
+    this.check_auth()
     console.log(localStorage.getItem('pk'));
     var self = this;
     userService.getUser(localStorage.getItem('pk')).then(function (result) {
@@ -29,9 +31,19 @@ class Profile extends React.Component {
     })
   }
 
-  redirect() {
-    if (localStorage.getItem('pk') === null) {
-      return <Redirect to="/admin/welcome"/>;
+  check_auth() {
+    var that = this;
+    if (localStorage.getItem('auth_token') === null) {
+      that.setState({redirect_text: <Redirect to="/admin/welcome"/>})
+    }
+    else {
+      userService.check_auth()
+      .catch(function (error) {
+        //if the token has expired then clear local storage and return to login page
+        localStorage.clear();
+        that.setState({redirect_text: <Redirect to="/admin/welcome"/>})
+        window.location.reload();
+      })
     }
   }
   
@@ -39,7 +51,7 @@ class Profile extends React.Component {
     return (
       <>
       <div className="content">
-        {this.redirect()}
+        {this.state.redirect_text}
         <Row>
           <Col lg="4" md="4" sm="4">
             <ProfileFollowerCard currentUser = {this.state.currentUser}/>

@@ -29,13 +29,15 @@ class Userline extends React.Component {
       posts_all: [],
       showTags: false,
       viewTag: "View Tags",
-      closeTag: "Hide Tags"
+      closeTag: "Hide Tags",
+      redirect_text: [],
     };
 
     this.getPosts = this.getPosts.bind(this);
   }
 
   componentDidMount() {
+    this.check_auth();
     var self = this;
     const { match: { params } } =  this.props;
     if (params && params.pk) {
@@ -75,18 +77,29 @@ class Userline extends React.Component {
     self.setState({showTags: !this.state.showTags})
   }
 
-  redirect() {
-    if (localStorage.getItem('pk') === null) {
-      return <Redirect to="/admin/welcome"/>;
+  check_auth() {
+    var that = this;
+    if (localStorage.getItem('auth_token') === null) {
+      that.setState({redirect_text: <Redirect to="/admin/welcome"/>})
+    }
+    else {
+      userService.check_auth()
+      .catch(function (error) {
+        //if the token has expired then clear local storage and return to login page
+        localStorage.clear();
+        that.setState({redirect_text: <Redirect to="/admin/welcome"/>})
+        window.location.reload();
+      })
     }
   }
+
   render() {
     if (this.state.posts_all.length === 0) {
 
       return (
         <>
         <div className="content">
-        {this.redirect()}
+        {this.state.redirect_text}
           <Row>
             <Col lg="12" md="11" sm="10">
               <Row>
@@ -119,7 +132,7 @@ class Userline extends React.Component {
     return (
       <>
       <div className="content">
-      {this.redirect()}
+      {this.state.redirect_text}
         <Row>
           <Col lg="12" md="11" sm="10">
             <Row>

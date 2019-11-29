@@ -3,6 +3,7 @@ import UserCard from "components/UserCard/UserCard.jsx";
 import PostService from "components/PostService/PostService.jsx";
 import NotificationAlert from "react-notification-alert";
 import TagService from "components/TagService/TagService.jsx";
+import UserService from "components/UserService/UserService.jsx"
 
 import {
   Button,
@@ -20,6 +21,7 @@ import { Redirect } from 'react-router-dom';
 
 const postService = new PostService();
 const tagService = new TagService();
+const userService = new UserService();
 
 class CreatePost extends React.Component {
 
@@ -35,14 +37,25 @@ class CreatePost extends React.Component {
       tags_correct:true,
       chars_left: 280, max_chars: 280,
       tag_chars_left:20, max_tag_chars: 20,
+      redirect_text: [],
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     //this.handleCreate = this.handleCreate.bind(this);
   }
 
-  redirect() {
-    if (localStorage.getItem('pk') === null) {
-      return <Redirect to="/admin/welcome"/>;
+  check_auth() {
+    var that = this;
+    if (localStorage.getItem('auth_token') === null) {
+      that.setState({redirect_text: <Redirect to="/admin/welcome"/>})
+    }
+    else {
+      userService.check_auth()
+      .catch(function (error) {
+        //if the token has expired then clear local storage and return to login page
+        localStorage.clear();
+        that.setState({redirect_text: <Redirect to="/admin/welcome"/>})
+        window.location.reload();
+      })
     }
   }
 
@@ -184,7 +197,7 @@ class CreatePost extends React.Component {
     return (
       <>
       <div className="content" >
-        {this.redirect()}
+        {this.state.redirect_text}
       <Col lg="12" md="12" sm="12">
         <Row>
           <Col lg="9" md="6" sm="6">

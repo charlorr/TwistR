@@ -26,7 +26,7 @@ class Welcome extends React.Component {
   }
 
   redirect() {
-    if (localStorage.getItem('pk') !== null) {
+    if (localStorage.getItem('auth_token') !== null) {
       return <Redirect to="/admin/profile/user"/>;
     }
   }

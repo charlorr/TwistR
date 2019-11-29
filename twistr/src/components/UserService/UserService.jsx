@@ -1,8 +1,11 @@
 import axios from 'axios';
+import { resolve, reject } from 'q';
 // import { resolveModuleName } from 'typescript';
 // import { resolve } from 'path';
 // import { reject } from 'q';
+import { BrowserRouter} from 'react-router-dom';
 const API_URL = 'http://localhost:8000';
+
 
 
 export default class UserService{
@@ -65,5 +68,9 @@ export default class UserService{
         });
         
     }
-    
+    check_auth() {
+        const url = `${API_URL}/api/auth_check/`;
+        var auth_config = {headers : {'Authorization' : "token " + localStorage.getItem('auth_token')}};
+        return axios.get(url, auth_config)
+    }
 }
