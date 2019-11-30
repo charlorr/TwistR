@@ -1,0 +1,14 @@
+:root {
+  --background-color: #add6f9;
+  --color: #40806A;
+  --label-color: #9A9A9A;
+}
+
+.theme-card-bg {
+  background-color: var(--background-color);
+  color: var(--color);
+}
+
+.card label {
+  color: var(--label-color);
+}

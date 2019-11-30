@@ -10,6 +10,7 @@ import {
     Row,
   } from "reactstrap";
   //const  userService  =  new  UserService();
+let root = document.documentElement;
   
 class  ThemeCard  extends  Component {
   
@@ -28,24 +29,39 @@ class  ThemeCard  extends  Component {
     this.setState({
       themeDefault: true,
       themeDark: false,
-      themeLight: false,      
-    })
+      themeLight: false,
+    });
+    root.addEventListener("click", e => {
+      root.style.setProperty('--background-color', '#add6f9');
+      root.style.setProperty('--color', '#40806A');
+      root.style.setProperty('--label-color', '#9A9A9A');
+    });
   }
 
   themeDark() {
     this.setState({
       themeDefault: false,
       themeDark: true,
-      themeLight: false,     
-    })
+      themeLight: false,
+    });
+    root.addEventListener("click", e => {
+      root.style.setProperty('--background-color', 'gray');
+      root.style.setProperty('--color', '#FFFFFF');
+      root.style.setProperty('--label-color', 'white');
+    });
   }
 
   themeLight() {
     this.setState({
       themeDefault: false,
       themeDark: false,
-      themeLight: true,      
-    })
+      themeLight: true,
+    });
+    root.addEventListener("click", e => {
+      root.style.setProperty('--background-color', 'white');
+      root.style.setProperty('--color', 'black');
+      root.style.setProperty('--label-color', 'black');
+    });
   }
 
   render() { 
