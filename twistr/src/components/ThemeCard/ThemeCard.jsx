@@ -36,6 +36,7 @@ class  ThemeCard  extends  Component {
       root.style.setProperty('--color', '#40806A');
       root.style.setProperty('--label-color', '#9A9A9A');
       root.style.setProperty('--follow-color', '#40806A');
+      root.style.setProperty('--button-color', '#66615B');
     });
   }
 
@@ -50,6 +51,7 @@ class  ThemeCard  extends  Component {
       root.style.setProperty('--color', '#FFFFFF');
       root.style.setProperty('--label-color', 'white');
       root.style.setProperty('--follow-color', 'white');
+      root.style.setProperty('--button-color', 'black');
     });
   }
 
@@ -64,12 +66,13 @@ class  ThemeCard  extends  Component {
       root.style.setProperty('--color', 'black');
       root.style.setProperty('--label-color', 'black');
       root.style.setProperty('--follow-color', 'black');
+      root.style.setProperty('--button-color', '#add6f9');
     });
   }
 
   render() { 
     return (
-      <div >
+      <div>
         <Card className="card-user theme-card-bg">
           <CardHeader>
             <CardTitle tag="h5">Change Your Theme</CardTitle>
@@ -77,7 +80,7 @@ class  ThemeCard  extends  Component {
           <Row>
             <div className="update ml-auto mr-auto">
               <Button 
-                className="btn-round" 
+                className="btn-round clicks" 
                 size="md" 
                 color="secondary"
                 type="submit"
@@ -87,7 +90,7 @@ class  ThemeCard  extends  Component {
             </div>
             <div className="update ml-auto mr-auto">
               <Button 
-                className="btn-round" 
+                className="btn-round clicks" 
                 size="md" 
                 color="secondary"
                 type="submit"
@@ -97,7 +100,7 @@ class  ThemeCard  extends  Component {
             </div>
             <div className="update ml-auto mr-auto">
               <Button 
-                className="btn-round" 
+                className="btn-round clicks" 
                 size="md" 
                 color="secondary"
                 type="submit"

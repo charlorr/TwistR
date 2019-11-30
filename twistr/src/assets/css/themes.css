@@ -4,6 +4,7 @@
   --label-color: #9A9A9A;
   --navbar-color: ##51bcda;
   --follow-color: black;
+  --button-color: #66615B;
 }
 
 .theme-card-bg {
@@ -21,4 +22,8 @@
 
 .blackHref {
   color: var(--follow-color);
+}
+
+.clicks {
+  background-color: var(--button-color);
 }
