@@ -64,7 +64,7 @@ class  ThemeCard  extends  Component {
     root.style.setProperty('--button-color', '#add6f9');
   }
 
-  componentWillMount() {
+  /*componentWillMount() {
     if (this.state.isDefault) {
       this.themeDefault();
     } else if (this.state.isDark) {
@@ -72,7 +72,7 @@ class  ThemeCard  extends  Component {
     } else if (this.state.isLight) {
       this.themeLight();
     }
-  }
+  }*/
 
   render() { 
     return (

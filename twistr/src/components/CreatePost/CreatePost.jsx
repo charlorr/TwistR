@@ -95,7 +95,8 @@ class CreatePost extends React.Component {
           }).catch(()=>{
             alert("There was an error! Please re-check your tags.")
           });
-      } 
+      }
+    window.location.reload()
   }
 
   addTag = (tag) => {

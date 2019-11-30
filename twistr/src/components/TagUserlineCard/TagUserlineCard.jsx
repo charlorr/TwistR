@@ -179,7 +179,7 @@ class TagUserlineCard extends React.Component {
               </Col>
               <Col lg="3" md="2" sm="2">
                 <Button 
-                  className="btn-round"
+                  className="btn-round clicks"
                   color = "success"
                   size = "md"
                   onClick = {this.handleFollowAllTags}>
@@ -188,7 +188,7 @@ class TagUserlineCard extends React.Component {
               </Col>
               <Col lg="3" md="2" sm="2">
                 <Button
-                  className="btn-round"
+                  className="btn-round clicks"
                   color = "danger"
                   size = "md"
                   onClick = {this.handleUnfollowAllTags}>
@@ -197,6 +197,7 @@ class TagUserlineCard extends React.Component {
               </Col>
             </Row>
             <hr/>
+            <p><i>Green tags are tags you follow, red tags are tags you do not follow!</i></p>
           </CardHeader>
           <CardBody>
             <UserlineTagRoster currentUserline = {this.props.currentUserline} followed_twists_all = {this.state.followed_twists_all} unfollowed_tags_all = {this.state.unfollowed_tags_all}/>
