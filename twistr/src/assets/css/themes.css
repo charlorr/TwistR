@@ -2,6 +2,8 @@
   --background-color: #add6f9;
   --color: #40806A;
   --label-color: #9A9A9A;
+  --navbar-color: ##51bcda;
+  --follow-color: black;
 }
 
 .theme-card-bg {
@@ -11,4 +13,12 @@
 
 .card label {
   color: var(--label-color);
+}
+
+.card-stats .card-footer .stats {
+  color: var(--label-color);
+}
+
+.blackHref {
+  color: var(--follow-color);
 }

@@ -35,6 +35,7 @@ class  ThemeCard  extends  Component {
       root.style.setProperty('--background-color', '#add6f9');
       root.style.setProperty('--color', '#40806A');
       root.style.setProperty('--label-color', '#9A9A9A');
+      root.style.setProperty('--follow-color', '#40806A');
     });
   }
 
@@ -48,6 +49,7 @@ class  ThemeCard  extends  Component {
       root.style.setProperty('--background-color', 'gray');
       root.style.setProperty('--color', '#FFFFFF');
       root.style.setProperty('--label-color', 'white');
+      root.style.setProperty('--follow-color', 'white');
     });
   }
 
@@ -61,6 +63,7 @@ class  ThemeCard  extends  Component {
       root.style.setProperty('--background-color', 'white');
       root.style.setProperty('--color', 'black');
       root.style.setProperty('--label-color', 'black');
+      root.style.setProperty('--follow-color', 'black');
     });
   }
 
