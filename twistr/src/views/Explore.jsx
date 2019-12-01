@@ -10,6 +10,7 @@ import {
 } from "reactstrap";
 import PostService from "components/PostService/PostService";
 import PostRoster from "components/PostRoster/PostRoster";
+import LegendCard from 'components/LegendCard/LegendCard';
 
 const postService = new PostService();
 
@@ -42,7 +43,7 @@ class Tables extends React.Component {
       <>
       <div className="content">
         <Row>
-          <Col lg="12" md="12" sm="12">
+          <Col lg="8" md="8" sm="8">
             <Card align="center" className="theme-card-bg">
               <CardHeader>
                 <CardTitle tag="h2">
@@ -55,6 +56,9 @@ class Tables extends React.Component {
                 <h4><i>See posts from all over the world!</i></h4>
               </CardHeader>
             </Card>
+          </Col>
+          <Col lg="4" md="4" sm="4">
+            <LegendCard />
           </Col>
         </Row>
         <Row>

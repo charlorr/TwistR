@@ -3,7 +3,8 @@ import React from 'react';
 import PostService from "components/PostService/PostService.jsx";
 import NotificationAlert from "react-notification-alert";
 import TagService from "components/TagService/TagService.jsx";
-import UserService from "components/UserService/UserService.jsx"
+import UserService from "components/UserService/UserService.jsx";
+import LegendCard from 'components/LegendCard/LegendCard';
 
 import {
   Button,
@@ -198,9 +199,9 @@ class CreatePost extends React.Component {
     return (
       <>
         {this.state.redirect_text}
-        <Col lg="8" md="8" sm="8">
+        <Col lg="12" md="12" sm="12">
         <Row>
-          <Col lg="12" md="12" sm="12">
+          <Col lg="8" md="8" sm="8">
             <Card className="card-stats theme-card-bg">
               <NotificationAlert ref ={this.notificationAlert} />
               <CardBody>
@@ -258,6 +259,9 @@ class CreatePost extends React.Component {
                 </div>
               </CardFooter>
             </Card>
+          </Col>
+          <Col lg="4" md="4" sm="4">
+            <LegendCard />
           </Col>
         </Row>
       </Col>

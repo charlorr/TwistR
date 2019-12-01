@@ -91,7 +91,7 @@ check_auth() {
             </Col>
           </Row>
           <Row>
-              <PostRoster posts_all = {this.state.posts_all}/>
+            <PostRoster posts_all = {this.state.posts_all}/>
           </Row>
         </div>
         </>
