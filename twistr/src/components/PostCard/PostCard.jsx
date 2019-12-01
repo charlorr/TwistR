@@ -68,6 +68,7 @@ class PostCard extends React.Component {
    postService.deletePost(post)
     .then(function(response){
       alert("Post deleted!")
+      window.location.reload();
     })
     .catch(function(error) {
       console.log(error);

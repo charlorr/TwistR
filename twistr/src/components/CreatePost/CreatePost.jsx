@@ -70,7 +70,7 @@ class CreatePost extends React.Component {
         "author": localStorage.getItem('pk')
       }
     ).then((result) =>{
-      alert("Post created!");
+      //alert("Post created!");
       console.log(result.data.pk);
       this.setState({currentPostPk : result.data.pk});
       console.log(this.state.currentPostPk);
@@ -91,11 +91,12 @@ class CreatePost extends React.Component {
               "name": this.state.tags[i].toUpperCase()
             }
           ).then((result) =>{
-            alert("Tag created!");
+            //alert("Tag created!");
           }).catch(()=>{
             alert("There was an error! Please re-check your tags.")
           });
-      } 
+      }
+    window.location.reload()
   }
 
   addTag = (tag) => {
@@ -240,7 +241,7 @@ class CreatePost extends React.Component {
                 <Row>
                   <div className="update ml-auto mr-auto">
                     <Button
-                    className="btn-round"
+                    className="btn-round clicks"
                     color="secondary"
                     type="submit"
                     >

@@ -104,15 +104,14 @@ class Userline extends React.Component {
             <Col lg="12" md="11" sm="10">
               <Row>
               <BioCard currentUserline = {this.state.currentUserline} />
-              {/*Chiranth is debugging this weird button coloring issue*/}
               <Col lg="3" md="3" sm="3">
                  <Col lg="12" md="6" sm="6">
-                  <Card className="card-stats">
+                  <Card className="theme-card-bg">
                     <div className="ml-auto mr-auto">
                       <Col lg="12" md="12" sm="12">
                         <Button 
                           className="btn-round"
-                          color="primary"
+                          color="secondary"
                           onClick={() => this.showTags()}
                           >
                           { this.state.showTags ? this.state.closeTag : this.state.viewTag}
@@ -141,12 +140,12 @@ class Userline extends React.Component {
               <Col lg="3" md="3" sm="3">
                 
                 <Col lg="12" md="6" sm="6">
-                  <Card className="card-stats">
+                  <Card className="theme-card-bg">
                     <div className="ml-auto mr-auto">
                       <Col lg="12" md="12" sm="12">
                         <Button 
                           className="btn-round"
-                          color="primary"
+                          color="secondary"
                           onClick={() =>this.showTags()}
                           >
                            { this.state.showTags ? this.state.closeTag : this.state.viewTag}

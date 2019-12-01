@@ -1,0 +1,29 @@
+:root {
+  --background-color: #add6f9;
+  --color: black;
+  --label-color: #9A9A9A;
+  --navbar-color: ##51bcda;
+  --follow-color: black;
+  --button-color: #66615B;
+}
+
+.theme-card-bg {
+  background-color: var(--background-color);
+  color: var(--color);
+}
+
+.card label {
+  color: var(--label-color);
+}
+
+.card-stats .card-footer .stats {
+  color: var(--label-color);
+}
+
+.blackHref {
+  color: var(--follow-color);
+}
+
+.clicks {
+  background-color: var(--button-color);
+}

@@ -114,17 +114,15 @@ class ReactCard extends React.Component {
     if(this.state.liked === false) { but = 
         <Button 
         className="icon-big text-center reactedHeart icon-warning"
-        color="success"
         size="sm"
         onClick={this.likePost}>
         <i className="far fa-heart outline-heart"></i>
-        <i className = "fas fa-heart text-primary filled-heart"></i>
+        <i className = "fas fa-heart filled-heart"></i>
         </Button>
     }
     else { but = 
         <Button 
         className="icon-big text-center reactedHeart icon-warning"
-        color="success"
         size="sm"
         onClick={this.unlikePost}>
         <i className="fas fa-heart outline-heart"></i>
