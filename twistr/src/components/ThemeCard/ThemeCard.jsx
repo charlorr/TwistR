@@ -32,7 +32,7 @@ class  ThemeCard  extends  Component {
       isLight: false,
     });
     root.style.setProperty('--background-color', '#add6f9');
-    root.style.setProperty('--color', '#40806A');
+    root.style.setProperty('--color', 'black');
     root.style.setProperty('--label-color', '#9A9A9A');
     root.style.setProperty('--follow-color', '#40806A');
     root.style.setProperty('--button-color', '#66615B');
