@@ -47,12 +47,12 @@ class Tables extends React.Component {
               <CardHeader>
                 <CardTitle tag="h2">
                   <h2>
-                    <b><font color="#54BFEC">Explo</font>
+                    <b><font color="#000000">EXPLO</font>
                     <font color="#FF0005">Я</font>
-                    <font color="#54BFEC">e</font></b>
+                    <font color="#000000">E</font></b>
                   </h2>
                 </CardTitle>
-                <h4><i>See posts from users all over the world!</i></h4>
+                <h4><i>See posts from all over the world!</i></h4>
               </CardHeader>
             </Card>
           </Col>
