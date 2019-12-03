@@ -1,9 +1,8 @@
 import React from "react";
 import  UserService  from  'components/UserService/UserService.jsx';
-import FollowUserService from "../components/FollowUserService/FollowUserService.jsx";
+//import FollowUserService from "../components/FollowUserService/FollowUserService.jsx";
 import PostService from "components/PostService/PostService.jsx";
-import UserlineFollowCard from "../components/UserlineFollowCard/UserlineFollowCard.jsx";
-import UserlineViewTagsCard from "../components/UserlineViewTagsCard/UserlineViewTagsCard.jsx";
+//import UserlineFollowCard from "../components/UserlineFollowCard/UserlineFollowCard.jsx";
 import BioCard from "components/BioCard/BioCard.jsx";
 import PostRoster from "components/PostRoster/PostRoster.jsx";
 //import {SortableTagTable} from "components/NewTagRoster/NewTagRoster.jsx";
@@ -11,11 +10,12 @@ import { Redirect } from 'react-router-dom';
 import TagUserlineCard from "components/TagUserlineCard/TagUserlineCard.jsx";
 import {
   Row,
-  Col
+  Col,
+  Card,
+  Button
 } from "reactstrap";
 
 const userService = new UserService();
-const followUserService = new FollowUserService();
 const postService = new PostService();
 
 class Userline extends React.Component {
@@ -26,14 +26,18 @@ class Userline extends React.Component {
       users: [],
       currentUserline: [],
       currentUser: [],
-      followExists: false,
       posts_all: [],
+      showTags: false,
+      viewTag: "View Tags",
+      closeTag: "Hide Tags",
+      redirect_text: [],
     };
 
     this.getPosts = this.getPosts.bind(this);
   }
 
   componentDidMount() {
+    this.check_auth();
     var self = this;
     const { match: { params } } =  this.props;
     if (params && params.pk) {
@@ -43,14 +47,6 @@ class Userline extends React.Component {
         self.getPosts();
       })
 
-      //gets the twists to determine if user already follows the userline they are viewing
-      followUserService.getFollowUsers(localStorage.getItem('pk'),params.pk).then((result)=>{
-        if(Object.keys(result.data).length === 0)
-        self.setState({followExists: false})
-        else{
-          self.setState({followExists: true})
-        }
-    })
     }
    
     userService.getUser(localStorage.getItem('pk')).then(function (result) {
@@ -58,12 +54,13 @@ class Userline extends React.Component {
     })
 
   }
+
   getPosts(){
     var self = this;
-    //postService.getPostByAuthor(this.state.currentUserline)
+  
     postService.getPostByAuthor(this.state.currentUserline.pk)
     .then(function(response) {
-      //console.log(response);
+    
       postService.addPostTags(response.data).then(function (result){
         self.setState({posts_all : result})
         self.setState({flag: true})
@@ -75,27 +72,56 @@ class Userline extends React.Component {
     });
   }
 
+  showTags(){
+    var self = this;
+    self.setState({showTags: !this.state.showTags})
+  }
 
-  redirect() {
-    if (localStorage.getItem('pk') === null) {
-      return <Redirect to="/admin/welcome"/>;
+  check_auth() {
+    var that = this;
+    if (localStorage.getItem('auth_token') === null) {
+      that.setState({redirect_text: <Redirect to="/admin/welcome"/>})
+    }
+    else {
+      userService.check_auth()
+      .catch(function (error) {
+        //if the token has expired then clear local storage and return to login page
+        localStorage.clear();
+        that.setState({redirect_text: <Redirect to="/admin/welcome"/>})
+        window.location.reload();
+      })
     }
   }
+
   render() {
     if (this.state.posts_all.length === 0) {
-   //   console.log("no post data")
+
       return (
         <>
         <div className="content">
-        {this.redirect()}
+        {this.state.redirect_text}
           <Row>
             <Col lg="12" md="11" sm="10">
               <Row>
               <BioCard currentUserline = {this.state.currentUserline} />
               <Col lg="3" md="3" sm="3">
-                <UserlineFollowCard followExists = {this.state.followExists} currentUser= {this.state.currentUser} currentUserline = {this.state.currentUserline}/>
-                <UserlineViewTagsCard />
+                 <Col lg="12" md="6" sm="6">
+                  <Card className="theme-card-bg">
+                    <div className="ml-auto mr-auto">
+                      <Col lg="12" md="12" sm="12">
+                        <Button 
+                          className="btn-round"
+                          color="secondary"
+                          onClick={() => this.showTags()}
+                          >
+                          { this.state.showTags ? this.state.closeTag : this.state.viewTag}
+                        </Button>
+                      </Col>
+                    </div>
+                  </Card>
+                </Col>
               </Col>
+              { this.state.showTags ? <TagUserlineCard currentUserline = {this.state.currentUserline}/> : null}
               </Row>
             </Col>
           </Row>
@@ -103,32 +129,40 @@ class Userline extends React.Component {
       </>
       );
     }else{
-   //   console.log("yes post data")
-   //   console.log(this.state.posts_all)
-        console.log(this.state.currentUserline)
     return (
       <>
       <div className="content">
-      {this.redirect()}
+      {this.state.redirect_text}
         <Row>
           <Col lg="12" md="11" sm="10">
             <Row>
               <BioCard currentUserline = {this.state.currentUserline} />
               <Col lg="3" md="3" sm="3">
-                <UserlineFollowCard followExists = {this.state.followExists} currentUser= {this.state.currentUser} currentUserline = {this.state.currentUserline}/>
-                <UserlineViewTagsCard />
+                
+                <Col lg="12" md="6" sm="6">
+                  <Card className="theme-card-bg">
+                    <div className="ml-auto mr-auto">
+                      <Col lg="12" md="12" sm="12">
+                        <Button 
+                          className="btn-round"
+                          color="secondary"
+                          onClick={() =>this.showTags()}
+                          >
+                           { this.state.showTags ? this.state.closeTag : this.state.viewTag}
+                        </Button>
+                      </Col>
+                    </div>
+                  </Card>
+                </Col>
               </Col>
             </Row>
           </Col>
         </Row>
         <Row>
-          <TagUserlineCard currentUserline = {this.state.currentUserline}/>
+        { this.state.showTags ? <TagUserlineCard currentUserline = {this.state.currentUserline}/> : null}
+         
         </Row>
-        <Row>
-          <Col lg="12" md="12" sm="12">
-            {/* <SortableTagTable tags_all = {TAGS_ALL}/> */}
-          </Col>
-        </Row>
+       
         <Row>
           <PostRoster posts_all={this.state.posts_all} />
         </Row>

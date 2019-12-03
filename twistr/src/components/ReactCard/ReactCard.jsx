@@ -26,9 +26,9 @@ class ReactCard extends React.Component {
       CreateRetwist: false,
       count: 0,
       currentPost: [],
-      currentLike: [],
+      currentLike: false,
       liked: false,
-      flag:false
+      //flag:false
     };
     this.getPost = this.getPost.bind(this);
     this.likePost = this.likePost.bind(this);
@@ -68,19 +68,17 @@ class ReactCard extends React.Component {
 
   getLike(){
     var self = this;
-    likeService.getLikebyUser(this.props.post.user,this.props.post.pk)
+    likeService.getLikebyUser(this.state.currentPost.author,this.props.post.pk)
     .then(function(response) {
-      self.setState({currentLike : response})
-      self.setState({flag : true})
-    })
-    .catch(function(error) {
-      console.log(error);
+      if(response.data.length !== 0){
+        self.setState({currentLike : true});
+      }else {
+        self.setState({currentLike : false});
+      }
     })
   }
 
   createLike(){
-   // console.log(this.state.currentPost.author);
-    //console.log(this.state.currentPost.pk);
     likeService.createLike(
       {
         "user": this.state.currentPost.author,
@@ -95,11 +93,14 @@ class ReactCard extends React.Component {
   }
 
   deleteLike(like){
-    likeService.deleteLike(like)
-    .then(function(response){
-      alert("like deleted")
+    console.log(this.state.currentPost.author);
+    console.log(this.props.post.pk);
+    likeService.deleteLikebyUser(this.state.currentPost.author,this.props.post.pk)
+    .then(function(response) {
+      alert("like deleted");
     })
-    .catch(function(error){
+    .catch(function(error) {
+      alert("there was an error deleting");
       console.log(error);
     })
   }
@@ -156,10 +157,6 @@ class ReactCard extends React.Component {
     currentPost.like_count = this.state.currentPost.like_count - 1
     this.setState({currentPost})
 
-    this.setState({currentLike : likeService.getLike()})
-    var currentLike = {...this.state.currentLike}
-    this.setState({currentLike})
-
     postService.updatePost(currentPost).then((result) => {
       if(result.data.post==="something went wrong"){
         alert("there was an error")
@@ -176,7 +173,7 @@ class ReactCard extends React.Component {
   }
 
   createRetwist(){
-    console.log("TODO: add entry to retwist table, add entry to post table --> route to createPost? or copy code over.");
+   //console.log("TODO: add entry to retwist table, add entry to post table --> route to createPost? or copy code over.");
     this.showRetwist();
   }
 
@@ -185,20 +182,18 @@ class ReactCard extends React.Component {
     this.checkLike();
     let retwistButton;
     
-    if(this.state.liked === false) { likeButton = 
+    if(this.state.currentLike === false) { likeButton = 
         <Button 
         className="icon-big text-center reactedHeart icon-warning"
-        color="success"
         size="sm"
         onClick={this.likePost}>
         <i className="far fa-heart outline-heart"></i>
-        <i className = "fas fa-heart text-primary filled-heart"></i>
+        <i className = "fas fa-heart filled-heart"></i>
         </Button>
     }
     else { likeButton = 
         <Button 
         className="icon-big text-center reactedHeart icon-warning"
-        color="success"
         size="sm"
         onClick={this.unlikePost}>
         <i className="fas fa-heart outline-heart"></i>
@@ -209,7 +204,6 @@ class ReactCard extends React.Component {
     retwistButton =
     <Button 
     className="icon-big text-center reactedShare icon-warning"
-    color="success"
     size="sm"
     onClick={this.createRetwist}>
     <i className="fas fa-share colored-share"></i>
@@ -217,8 +211,8 @@ class ReactCard extends React.Component {
 
     return (
       <>
-      <Card>
       { this.state.CreateRetwist ? <CreateRetwist post={this.props.post}/> : null}
+      <Card className="theme-card-bg">
         <CardBody>
           <Row>
             <Col lg="6" md="6" sm="6">

@@ -3,6 +3,7 @@ import TwistService  from  'components/TwistService/TwistService.jsx';
 
 import {
   Col,
+  Row,
   Button
 } from "reactstrap";
 
@@ -18,28 +19,54 @@ class UserlineTagRoster extends React.Component {
 
   handleFollowTag(clickedTag){
     var self = this;
-    twistService.createTwist(
-      {
-        "user": localStorage.getItem('pk'),
-        "author": self.props.currentUserline.pk,
-        "tag": clickedTag.name
+    twistService.getTwistExists(localStorage.getItem('pk'), self.props.currentUserline.pk, clickedTag.name)
+    .then(function (result){
+      if(result.data.length !== 0){
+        var current = result.data;
+        twistService.updateTwist(
+          {
+            "pk": current[0].pk,
+            "user": localStorage.getItem('pk'),
+            "author": self.props.currentUserline.pk,
+            "tag": clickedTag.name,
+            "followed": true
+          }
+        )
       }
-    )
+      else{
+        twistService.createTwist({
+          "user": localStorage.getItem('pk'),
+          "author": self.props.currentUserline.pk,
+          "tag": clickedTag.name,
+          "followed": true
+        }
+        )
+      }
+    });
+    
+    
   }
 
   handleUnfollowTag(twist){
-    twistService.deleteTwist(twist);
+    twistService.updateTwist(
+      {
+      "pk": twist.pk,
+      "user": twist.user,
+      "author": twist.author,
+      "tag": twist.tag,
+      "followed": false
+      })
   }
   render() {
     var self = this;
     var cards = [];
-    this.props.followed_tags_all.forEach(function(twist) { //currently displaying all tags regardless of follow or not
+    this.props.followed_twists_all.forEach(function(twist) { //currently displaying all tags regardless of follow or not
         cards.push(
           <Col lg="3" md="3" sm="3">
             <Button
             className="btn-round" 
             size="lg" 
-            color="primary"
+            color="success"
             onClick = {() => self.handleUnfollowTag(twist)}
             >
                 {twist.tag} 
@@ -54,7 +81,7 @@ class UserlineTagRoster extends React.Component {
           <Button
           className="btn-round" 
           size="lg" 
-          color="secondary"
+          color="danger"
           value = {tag}
           onClick = {() => self.handleFollowTag(tag)}
           >
@@ -63,9 +90,11 @@ class UserlineTagRoster extends React.Component {
         </Col>
       );
   });
-    return (
-      cards
-      );
+  return (
+    <>
+    <Row>{cards}</Row>
+    </>
+    );
   }
 }
 

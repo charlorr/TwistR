@@ -1,8 +1,9 @@
 import React from 'react';
-import UserCard from "components/UserCard/UserCard.jsx";
+//import UserCard from "components/UserCard/UserCard.jsx";
 import PostService from "components/PostService/PostService.jsx";
 import NotificationAlert from "react-notification-alert";
 import TagService from "components/TagService/TagService.jsx";
+import UserService from "components/UserService/UserService.jsx"
 
 import {
   Button,
@@ -20,6 +21,7 @@ import { Redirect } from 'react-router-dom';
 
 const postService = new PostService();
 const tagService = new TagService();
+const userService = new UserService();
 
 class CreatePost extends React.Component {
 
@@ -35,13 +37,24 @@ class CreatePost extends React.Component {
       tags_correct:true,
       chars_left: 280, max_chars: 280,
       tag_chars_left:20, max_tag_chars: 20,
+      redirect_text: [],
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  redirect() {
-    if (localStorage.getItem('pk') === null) {
-      return <Redirect to="/admin/welcome"/>;
+  check_auth() {
+    var that = this;
+    if (localStorage.getItem('auth_token') === null) {
+      that.setState({redirect_text: <Redirect to="/admin/welcome"/>})
+    }
+    else {
+      userService.check_auth()
+      .catch(function (error) {
+        //if the token has expired then clear local storage and return to login page
+        localStorage.clear();
+        that.setState({redirect_text: <Redirect to="/admin/welcome"/>})
+        window.location.reload();
+      })
     }
   }
 
@@ -56,10 +69,10 @@ class CreatePost extends React.Component {
         "author": localStorage.getItem('pk')
       }
     ).then((result) =>{
-      alert("Post created!");
-      console.log(result.data.pk);
+      //alert("Post created!");
+     // console.log(result.data.pk);
       this.setState({currentPostPk : result.data.pk});
-      console.log(this.state.currentPostPk);
+      //console.log(this.state.currentPostPk);
       this.handleTagCreate();
     }).catch(()=>{
  // alert("There was an error! Please re-check your form.")
@@ -71,14 +84,15 @@ class CreatePost extends React.Component {
           tagService.createTag(
             {
               "post": this.state.currentPostPk,
-              "name": this.state.tags[i]
+              "name": this.state.tags[i].toUpperCase()
             }
           ).then((result) =>{
             //alert("Tag created!");
           }).catch(()=>{
             //alert("There was an error! Please re-check your tags.")
           });
-      } 
+      }
+    window.location.reload()
   }
 
   addTag = (tag) => {
@@ -136,7 +150,7 @@ class CreatePost extends React.Component {
       alert("too few tags!");
     }
     else{
-      console.log(this.state.tags_correct);
+      //console.log(this.state.tags_correct);
       for(var i=0; i <this.state.tags.length; i++){
         if(this.state.tags[i].length > 20){
           alert("too many characters in a tag!");
@@ -149,7 +163,7 @@ class CreatePost extends React.Component {
   handleSubmit = async function (event){
     event.preventDefault();
     await this.checkTagValidity();
-    console.log(this.state.tags_correct);
+    //console.log(this.state.tags_correct);
     if(this.state.tags_correct === true){
       this.handleCreate();
     }else {
@@ -171,30 +185,29 @@ class CreatePost extends React.Component {
   handleTagChange = async function(event) {
     await this.updateTagValue(event.target.value);
     await this.setState({tags : this.state.tagsInputValue.split(",")});
-    console.log(this.state.tags);
+    //console.log(this.state.tags);
   }
  
   render() {
     const {tagsInputValue} = this.state;
-    console.log(this.state.tagsInputValue)
+   // console.log(this.state.tagsInputValue)
     return (
       <>
-      <div className="content" >
-        {this.redirect()}
-      <Col lg="12" md="12" sm="12">
+        {this.state.redirect_text}
+        <Col lg="8" md="8" sm="8">
         <Row>
-          <Col lg="9" md="6" sm="6">
-            <Card className="card-stats">
+          <Col lg="12" md="12" sm="12">
+            <Card className="card-stats theme-card-bg">
               <NotificationAlert ref ={this.notificationAlert} />
               <CardBody>
                 <Form onSubmit={this.handleSubmit}>
                 <Row>
-                  <Col lg="12" md="12" sm="12">
+                  <Col>
                     <CardTitle tag="h5">Write a new post here.</CardTitle>
                   </Col>
                 </Row>
                 <Row>
-                  <Col lg="12" md="12" sm="12">
+                  <Col>
                     <FormGroup>
                       <label>Be creative! Remember to use at least one tag.</label>
                       <Input
@@ -212,20 +225,20 @@ class CreatePost extends React.Component {
                 </Row>
                 <Row>
                   <Col>
-                    <FormGroup>
+                  <FormGroup>
                     <div className="input-tag">
                         <Input value={tagsInputValue} onChange={(e) => {this.handleTagChange(e)}}
                           type="text" 
                           placeholder="Up to three tags seperated by commas" />
                    </div>   
-                    </FormGroup>
+                  </FormGroup>
                   </Col>
                 </Row>
                 <Row>
                   <div className="update ml-auto mr-auto">
                     <Button
-                    className="btn-round"
-                    color="primary"
+                    className="btn-round clicks"
+                    color="secondary"
                     type="submit"
                     >
                       Create Post
@@ -235,20 +248,15 @@ class CreatePost extends React.Component {
                 </Form>
               </CardBody>
               <CardFooter>
-                <hr />
                 <div className="stats">
                   <i className="fas fa-sync-alt" /> {this.state.chars_left} / 280 characters left
+                <hr />
                 </div>
               </CardFooter>
             </Card>
           </Col>
-          <Col lg="2" md="2" sm="1">
-            <UserCard picture={require("assets/img/PurduePete.jpg")} />
-            {/*<NameCard />*/}
-          </Col>
         </Row>
       </Col>
-      </div>
       </>
     );
   }
