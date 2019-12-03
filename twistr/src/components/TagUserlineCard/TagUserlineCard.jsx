@@ -196,8 +196,8 @@ class TagUserlineCard extends React.Component {
                 </Button>
               </Col>
             </Row>
-            <hr/>
             <p><i>Green tags are tags you follow, red tags are tags you do not follow!</i></p>
+            <hr/>
           </CardHeader>
           <CardBody>
             <UserlineTagRoster currentUserline = {this.props.currentUserline} followed_twists_all = {this.state.followed_twists_all} unfollowed_tags_all = {this.state.unfollowed_tags_all}/>

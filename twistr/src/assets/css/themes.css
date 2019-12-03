@@ -1,6 +1,6 @@
 :root {
   --background-color: #add6f9;
-  --color: #40806A;
+  --color: black;
   --label-color: #9A9A9A;
   --navbar-color: ##51bcda;
   --follow-color: black;
@@ -26,4 +26,8 @@
 
 .clicks {
   background-color: var(--button-color);
+}
+
+.transparent-button {
+  background-color: rgba(34, 34, 73, 0);
 }
