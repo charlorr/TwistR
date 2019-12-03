@@ -134,10 +134,10 @@ class ReactCard extends React.Component {
       <Card className="theme-card-bg">
         <CardBody>
           <Row>
-            <Col lg="6" md="6" sm="6">
+            <Col lg="6" md="6" sm="2">
               {but}
             </Col>
-            <Col lg="6" md="6" sm="6">
+            <Col lg="6" md="6" sm="2">
               <Button 
               size="sm"
               className="icon-big text-center reactedHeart icon-warning">

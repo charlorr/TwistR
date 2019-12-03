@@ -15,6 +15,7 @@ import {
 
 const postService = new PostService();
 const userService = new UserService();
+let root = document.documentElement;
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -30,6 +31,12 @@ class Dashboard extends React.Component {
 componentDidMount() {
   this.check_auth();
   this.getPosts();
+
+  // This is for themes
+  var self = this;
+  userService.getUser(localStorage.getItem("pk")).then(function (result){
+    self.chooseTheme(result.theme);
+  })
 }
 
 getPosts(){
@@ -62,6 +69,43 @@ check_auth() {
       window.location.reload();
     })
   }
+}
+
+chooseTheme(themeChoice) {
+  console.log(themeChoice);
+  if (themeChoice === "default") {
+    this.setThemeDefault();
+  } else if (themeChoice === "dark") {
+    this.setThemeDark();
+  } else if (themeChoice === "light") {
+    this.setThemeLight();
+  } else {
+    this.setThemeDefault();
+  }
+}
+
+setThemeDefault() {
+  root.style.setProperty('--background-color', '#add6f9');
+  root.style.setProperty('--color', 'black');
+  root.style.setProperty('--label-color', '#9A9A9A');
+  root.style.setProperty('--follow-color', '#40806A');
+  root.style.setProperty('--button-color', '#66615B');
+}
+
+setThemeDark() {
+  root.style.setProperty('--background-color', 'gray');
+  root.style.setProperty('--color', '#FFFFFF');
+  root.style.setProperty('--label-color', 'white');
+  root.style.setProperty('--follow-color', 'white');
+  root.style.setProperty('--button-color', 'black');
+}
+
+setThemeLight() {
+  root.style.setProperty('--background-color', 'white');
+  root.style.setProperty('--color', 'black');
+  root.style.setProperty('--label-color', 'black');
+  root.style.setProperty('--follow-color', 'black');
+  root.style.setProperty('--button-color', '#add6f9');
 }
 
   render() {
