@@ -2,9 +2,11 @@ import React from "react";
 import Post from "components/Post/Post.jsx";
 import RetwistService from "components/RetwistService/RetwistService.jsx";
 import PostService from "components/PostService/PostService.jsx";
+import UserService from "../../components/UserService/UserService.jsx";
 
 const retwistService = new RetwistService();
 const postService = new PostService();
+const userService = new UserService();
 
 class PostRoster extends React.Component {
   constructor(props) {
@@ -13,10 +15,34 @@ class PostRoster extends React.Component {
       postPk: null,
       retwistPk: null,
       currentPost: [],
-      currentRetwist: []
+      currentRetwist: [],
+      show_react_card: false,
     };
     this.getRetwist = this.getRetwist.bind(this);
     this.rerenderParentCallback = this.rerenderParentCallback.bind(this);
+  }
+
+  componentWillMount() {
+    this.check_auth();
+  }
+
+  check_auth() {
+    var that = this;
+    if (localStorage.getItem('auth_token') === null) {
+      console.log("No token");
+      that.setState({show_react_card: false})
+    }
+    else {
+      userService.check_auth()
+      .then(function(response){
+        console.log("token");
+        that.setState({show_react_card: true});
+      })
+      .catch(function (error) {
+        console.log("BAD token");
+        that.setState({show_react_card: false});
+      })
+    }
   }
 
   rerenderParentCallback() {
@@ -57,6 +83,7 @@ class PostRoster extends React.Component {
     var posts_all = this.props.posts_all;
     var explore = false;
     var dashboard = false;
+    var show_react_card = this.state.show_react_card;
     if(this.props.explore){
       explore = true;
     }
@@ -70,7 +97,7 @@ class PostRoster extends React.Component {
             self.getRetwist(post);
             //cards.push(<Retwist parent = {posts_all} retwist={post} post={this.state.currentPost}/>);
           }
-          cards.push(<Post parent = {posts_all} post={post} explore={explore} dashboard={dashboard}/>);
+          cards.push(<Post parent = {posts_all} post={post} show_react_card={show_react_card}/>);
         }
     });
     return (cards);

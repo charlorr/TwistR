@@ -8,22 +8,27 @@ import {
   Row
 } from "reactstrap";
 
+
 class Post extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      //show_react_card: false,
+    };
+  }
 
   render() {
     var dashboard = false;
     if(this.props.dashboard){
       dashboard = true;
     }
-    if(!this.props.explore) {
+    if(this.props.show_react_card) {
       //console.log("not on explore");
       return (
         <>
         <Col lg="12" md="11" sm="10">
           <Row>
             <Col lg="2" md="2" sm="1">
-              {/*<UserCard picture={this.props.post.picture/>
-              <ReactCard />*/}
               <hr />
               <hr />
               <hr />
@@ -49,7 +54,7 @@ class Post extends React.Component {
         <Col lg="12" md="11" sm="10">
           <Row>
             <Col lg="10" md="9" sm="9">
-              <PostCard parent = {this.props.parent} post={this.props.post} />
+              <PostCard parent = {this.props.parent} post={this.props.post} dashboard={dashboard}/>
             </Col>
           </Row>
         </Col>
