@@ -15,10 +15,9 @@ class PostRoster extends React.Component {
       retwistPk: null,
       currentPost: [],
       currentRetwist: [],
-      cards: [],
+      retwistExists: [],
       hasRetwist: false
     };
-    this.getRetwist = this.getRetwist.bind(this);
     this.rerenderParentCallback = this.rerenderParentCallback.bind(this);
   }
 
@@ -27,39 +26,13 @@ class PostRoster extends React.Component {
     this.forceUpdate();
   }
 
-  componentDidMount() {
-    this.getAllPosts();
-  }
+  
 
-  getRetwist(post){
+  render() {
     var self = this;
-   // console.log(post);
-    retwistService.getRetwistbyPost(post.pk)
-    .then(function(response) {
-      //console.log(response);
-      //console.log(response.post);
-      self.setState({postPk: response.original_post})
-      self.setState({retwistPk: response.post})
-      self.setState({hasRetwist: true});
-    })
-    .catch(function(error){
-      self.setState({hasRetwist: false});
-    })
-  }
-
-  getOGPost(){
-    var self = this;
-    postService.getPost(this.state.postPk)
-    .then(function(response) {
-      self.setState({currentPost : response})
-      self.setState({flag: true})
-    })
-    .catch(function(error) {
-      console.log(error);
-    });
-  }
-
-  getAllPosts(){
+    // Create posts from sorted, dynamic JSON collection
+    var cards = [];
+    var posts_all = this.props.posts_all;
     var explore = false;
     var dashboard = false;
     if(this.props.explore){
@@ -68,32 +41,13 @@ class PostRoster extends React.Component {
     if(this.props.dashboard){
       dashboard = true;
     }
-
-    var self = this;
-    var temp_cards = [];
-    var posts_all = this.props.posts_all;
     this.props.posts_all.forEach(function(post) {
-      if (post !== undefined && post !== null) { 
-        //console.log(post);
-        self.getRetwist(post);
-        if(self.state.hasRetwist === true){
-          console.log("please get here");
-          temp_cards.push(<Retwist parent = {posts_all} retwist={post} post={self.state.currentPost}/>);
+        if (post !== undefined && post !== null) { 
+          //console.log(post);
+            cards.push(<Post parent = {posts_all} post={post} explore={explore} dashboard={dashboard}/>);
         }
-        else {
-          temp_cards.push(<Post parent = {posts_all} post={post} explore={explore} dashboard={dashboard}/>);
-        }
-      }
     });
-
-   this.setState({cards: temp_cards});
-
-  }
-
-  render() {
-    // Create posts from sorted, dynamic JSON collection
-    console.log(this.state.cards);  
-    return (this.state.cards);
+    return (cards);
   }
 }
         
