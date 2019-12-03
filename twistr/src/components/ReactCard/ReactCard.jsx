@@ -206,7 +206,8 @@ class ReactCard extends React.Component {
     className="icon-big text-center reactedShare icon-warning"
     size="sm"
     onClick={this.createRetwist}>
-    <i className="fas fa-share colored-share"></i>
+    <i className="far fa-share-square outline-share"></i>
+    <i className = "fas fa-share-square filled-share" ></i>
     </Button>
 
     return (

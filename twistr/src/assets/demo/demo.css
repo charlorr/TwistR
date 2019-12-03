@@ -215,23 +215,20 @@ color: red;
   height: 250px;
 }
 
-.heartedTag:hover .outline-heart, .heartedTag .filled-heart{
-  display:none;
-}
-
-.heartedTag:hover .filled-heart{
-  display: inline;
-}
-
 .reactedHeart:hover .outline-heart, .reactedHeart .filled-heart{
   display:none;
 }
 
 .reactedHeart:hover .filled-heart{
   display: inline;
+  color:#60b0f4;
 }
 
-.reactedShare:hover .colored-share{
+.reactedShare:hover .outline-share, .reactedshare .filled-share{
+  display:none;
+}
+
+.reactedShare:hover .filled-share{
   display: inline;
   color:#60b0f4;
 }
