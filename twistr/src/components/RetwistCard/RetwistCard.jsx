@@ -16,22 +16,20 @@ class RetwistCard extends React.Component {
     super(props);
     this.state = {
       currentPost: [],
-      delete_author:false,
       flag:false
     };
-    this.deletePost = this.deletePost.bind(this);
   }
 
  
   render() {
-    console.log("parent");
-    console.log(this.props.parent);
+    //console.log(this.props.post);
 
     return (
     <>
-    <Card>
+    <Card className= "theme-card-bg">
+      <CardTitle tag="h5" > </CardTitle>
       <CardBody>
-        <h1>{this.props.post.text_body}</h1>
+        <h3>{this.props.post.text_body}</h3>
       </CardBody>
     </Card>
     </>

@@ -1,5 +1,6 @@
 import React from "react";
 import Post from "components/Post/Post.jsx";
+import Retwist from "components/Retwist/Retwist.jsx";
 import RetwistService from "components/RetwistService/RetwistService.jsx";
 import PostService from "components/PostService/PostService.jsx";
 
@@ -13,7 +14,9 @@ class PostRoster extends React.Component {
       postPk: null,
       retwistPk: null,
       currentPost: [],
-      currentRetwist: []
+      currentRetwist: [],
+      cards: [],
+      hasRetwist: false
     };
     this.getRetwist = this.getRetwist.bind(this);
     this.rerenderParentCallback = this.rerenderParentCallback.bind(this);
@@ -24,17 +27,23 @@ class PostRoster extends React.Component {
     this.forceUpdate();
   }
 
+  componentDidMount() {
+    this.getAllPosts();
+  }
+
   getRetwist(post){
     var self = this;
-    //console.log(post);
+   // console.log(post);
     retwistService.getRetwistbyPost(post.pk)
     .then(function(response) {
-      console.log(response);
-      self.setState({postPk: response.data.original_post})
-      self.setState({retwistPk: response.data.post})
+      //console.log(response);
+      //console.log(response.post);
+      self.setState({postPk: response.original_post})
+      self.setState({retwistPk: response.post})
+      self.setState({hasRetwist: true});
     })
     .catch(function(error){
-      console.log(error);
+      self.setState({hasRetwist: false});
     })
   }
 
@@ -50,11 +59,7 @@ class PostRoster extends React.Component {
     });
   }
 
-  render() {
-    var self = this;
-    // Create posts from sorted, dynamic JSON collection
-    var cards = [];
-    var posts_all = this.props.posts_all;
+  getAllPosts(){
     var explore = false;
     var dashboard = false;
     if(this.props.explore){
@@ -63,17 +68,32 @@ class PostRoster extends React.Component {
     if(this.props.dashboard){
       dashboard = true;
     }
+
+    var self = this;
+    var temp_cards = [];
+    var posts_all = this.props.posts_all;
     this.props.posts_all.forEach(function(post) {
-        if (post !== undefined && post !== null) { 
-          //console.log(post);
-          if(retwistService.getRetwistbyPost(post.pk)){
-            self.getRetwist(post);
-            //cards.push(<Retwist parent = {posts_all} retwist={post} post={this.state.currentPost}/>);
-          }
-          cards.push(<Post parent = {posts_all} post={post} explore={explore} dashboard={dashboard}/>);
+      if (post !== undefined && post !== null) { 
+        //console.log(post);
+        self.getRetwist(post);
+        if(self.state.hasRetwist === true){
+          console.log("please get here");
+          temp_cards.push(<Retwist parent = {posts_all} retwist={post} post={self.state.currentPost}/>);
         }
+        else {
+          temp_cards.push(<Post parent = {posts_all} post={post} explore={explore} dashboard={dashboard}/>);
+        }
+      }
     });
-    return (cards);
+
+   this.setState({cards: temp_cards});
+
+  }
+
+  render() {
+    // Create posts from sorted, dynamic JSON collection
+    console.log(this.state.cards);  
+    return (this.state.cards);
   }
 }
         

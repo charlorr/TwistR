@@ -18,7 +18,7 @@ export default class RetwistService{
         return axios.get(url).then(response => response.data);
     }
     getRetwistbyPost(postPk){
-        const url = `${API_URL}/api/retwists/?post=${postPk}`;
+        const url = `${API_URL}/api/postretwist/${postPk}`;
         return axios.get(url).then(response => response.data);
     }
     deleteRetwist(retwist){

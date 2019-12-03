@@ -52,6 +52,7 @@ class ReactCard extends React.Component {
 
   componentDidMount() {
     this.getPost();
+    this.getLike();
   }
   
   getPost(){
@@ -179,7 +180,7 @@ class ReactCard extends React.Component {
 
   render() {
     let likeButton; //determines whether button is like or unlike
-    this.checkLike();
+    //this.checkLike();
     let retwistButton;
     
     if(this.state.currentLike === false) { likeButton = 
