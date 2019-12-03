@@ -37,7 +37,7 @@ getPosts(){
   var self = this;
   postService.getPostByAuthor(localStorage.getItem('pk'))
   .then(function(response) {
-    console.log(response);
+    
     postService.addPostTags(response.data).then(function (response){
       self.setState({posts_all : response})
       self.setState({post_length : response.length});
