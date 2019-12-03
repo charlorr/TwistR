@@ -188,8 +188,8 @@ class ReactCard extends React.Component {
         className="icon-big text-center reactedHeart icon-warning"
         size="sm"
         onClick={this.likePost}>
-        <i className="far fa-heart outline-heart"></i>
-        <i className = "fas fa-heart filled-heart"></i>
+        <i className="fa-2x far fa-heart outline-heart"></i>
+        <i className = "fa-2x fas fa-heart filled-heart"></i>
         </Button>
     }
     else { likeButton = 
@@ -197,8 +197,8 @@ class ReactCard extends React.Component {
         className="icon-big text-center reactedHeart icon-warning"
         size="sm"
         onClick={this.unlikePost}>
-        <i className="fas fa-heart outline-heart"></i>
-        <i className = "far fa-heart text-primary filled-heart"></i> 
+        <i className="fa-2x fas fa-heart outline-heart"></i>
+        <i className = "fa-2x far fa-heart text-primary filled-heart"></i> 
         </Button>
     }
 
@@ -207,8 +207,8 @@ class ReactCard extends React.Component {
     className="icon-big text-center reactedShare icon-warning"
     size="sm"
     onClick={this.createRetwist}>
-    <i className="far fa-share-square outline-share"></i>
-    <i className = "fas fa-share-square filled-share" ></i>
+    <i className="fa-2x far fa-share-square outline-share"></i>
+    <i className = "fa-2x fas fa-share-square filled-share" ></i>
     </Button>
 
     return (

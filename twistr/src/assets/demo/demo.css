@@ -221,16 +221,20 @@ color: red;
 
 .reactedHeart:hover .filled-heart{
   display: inline;
-  color:#60b0f4;
+  color: red;
 }
 
-.reactedShare:hover .outline-share, .reactedshare .filled-share{
+.reactedHeart, .reactedShare, .reactedHeart:hover, .reactedShare:hover, .reactedHeart:active, .reactedShare:active, .reactedShare:focus, .reactedHeart:focus, .reactedShare:visited, .reactedHeart:visited, .reactedHeart:focus-within, .reactedShare:focus-within{
+    background-color: Transparent !important;
+}
+
+.reactedShare:hover .outline-share, .reactedShare .filled-share{
   display:none;
 }
 
 .reactedShare:hover .filled-share{
   display: inline;
-  color:#60b0f4;
+  color:red;
 }
 
 .blackHref{
