@@ -41,7 +41,7 @@ class Timeline extends React.Component {
     this.check_auth();
     var self = this;
     postService.getTimelinePosts().then(function (result){
-      console.log(result);
+      
       postService.addPostTags(result.data).then(function (result){
         self.filterSeen(result);
       })
@@ -64,15 +64,15 @@ class Timeline extends React.Component {
     }
   }
   filterSeen(posts) {
-    console.log(posts);
+    
     var self = this;
     var promises = [];
     for (var i = 0; i < posts.length; i++) {
       promises.push(self.nullifyUnfollowed(posts[i]));
     }
-    console.log(promises);
+    
     return Promise.all(promises).then(function (values){
-      console.log(values);
+     
       self.setState({posts: values});
     })
   }
@@ -80,7 +80,7 @@ class Timeline extends React.Component {
   nullifyUnfollowed(post){
     return twistService.getTwistExists(localStorage.getItem('pk'),post.author, post.tag1)
     .then(function (result){
-      console.log(result);
+      
       if (result.data.length === 0){ //unseen
         return post;
       }

@@ -85,6 +85,7 @@ class Tables extends React.Component {
   }
 
   render() {
+    var explore = true;
     return (
       <>
       <div className="content">
@@ -108,7 +109,7 @@ class Tables extends React.Component {
           </Col>
         </Row>
         <Row>
-          <PostRoster parent="explore" posts_all={this.state.posts} />
+          <PostRoster parent="explore" posts_all={this.state.posts} explore={explore} />
         </Row>
       </div>
       </>

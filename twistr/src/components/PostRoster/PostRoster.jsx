@@ -1,9 +1,23 @@
 import React from "react";
 import Post from "components/Post/Post.jsx";
+import Retwist from "components/Retwist/Retwist.jsx";
+import RetwistService from "components/RetwistService/RetwistService.jsx";
+import PostService from "components/PostService/PostService.jsx";
+
+const retwistService = new RetwistService();
+const postService = new PostService();
 
 class PostRoster extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      postPk: null,
+      retwistPk: null,
+      currentPost: [],
+      currentRetwist: [],
+      retwistExists: [],
+      hasRetwist: false
+    };
     this.rerenderParentCallback = this.rerenderParentCallback.bind(this);
   }
 
@@ -12,13 +26,25 @@ class PostRoster extends React.Component {
     this.forceUpdate();
   }
 
+  
+
   render() {
+    var self = this;
     // Create posts from sorted, dynamic JSON collection
     var cards = [];
     var posts_all = this.props.posts_all;
+    var explore = false;
+    var dashboard = false;
+    if(this.props.explore){
+      explore = true;
+    }
+    if(this.props.dashboard){
+      dashboard = true;
+    }
     this.props.posts_all.forEach(function(post) {
         if (post !== undefined && post !== null) { 
-          cards.push(<Post parent = {posts_all} post={post}/>);
+          //console.log(post);
+            cards.push(<Post parent = {posts_all} post={post} explore={explore} dashboard={dashboard}/>);
         }
     });
     return (cards);

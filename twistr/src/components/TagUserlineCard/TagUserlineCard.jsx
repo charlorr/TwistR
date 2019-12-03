@@ -8,6 +8,7 @@ import {
   CardHeader,
   CardBody,
   CardTitle,
+  CardFooter,
   Col,
   Row,
   Button
@@ -30,6 +31,7 @@ class TagUserlineCard extends React.Component {
     this.handleFollowAllTags = this.handleFollowAllTags.bind(this);
     this.handleUnfollowAllTags = this.handleUnfollowAllTags.bind(this);
     this.getStatus = this.getStatus.bind(this);
+    this.saveReload = this.saveReload.bind(this);
   }
 
   componentDidMount(){
@@ -44,7 +46,7 @@ class TagUserlineCard extends React.Component {
    
     twistService.getTwistbyUserAuthor(localStorage.getItem('pk'), this.props.currentUserline.pk).then(function(response) {
       response.data.forEach(function(twist){
-        console.log(twist);
+        //console.log(twist);
         if(twist.followed){
           followed_twists_all.push(twist);
         }
@@ -56,7 +58,7 @@ class TagUserlineCard extends React.Component {
       self.setState({unfollowed_twists: unfollowed_twists_all});
       self.setState({followed_twists_all: followed_twists_all});
 
-      //console.log(unfollowed_twists_all);
+      
 
     });
   }
@@ -74,20 +76,6 @@ class TagUserlineCard extends React.Component {
     });
   }
 
- 
-
-  // getFollowedTags(){
-  //   var self = this;
-  //   twistService.getTwistbyUserAuthor(localStorage.getItem('pk'), this.props.currentUserline.pk)
-  //   .then(function(response) {
-  //     self.setState({followed_tags_all : response.data});
-  //     self.getUnfollowedTags();
-  //   })
-  //   .catch(function(error) {
-  //     console.log(error);
-  //   });
-
-  // }
 
   getUnfollowedTags(){
     var self =this;
@@ -118,16 +106,6 @@ class TagUserlineCard extends React.Component {
 
   handleFollowAllTags(){
     var self = this;
-    // self.state.unfollowed_tags_all.forEach(function(tag) {
-    //   twistService.createTwist(
-    //     {
-    //       "user": localStorage.getItem('pk'),
-    //       "author": self.props.currentUserline.pk,
-    //       "tag": tag.name,
-    //       "followed": true
-    //     }
-    //   )
-    // });
     self.state.unfollowed_tags_all.forEach(function(tag) {
     twistService.getTwistExists(localStorage.getItem('pk'), self.props.currentUserline.pk, tag.name)
     .then(function (result){
@@ -143,7 +121,7 @@ class TagUserlineCard extends React.Component {
           }
         )
       }
-     //window.location.reload();
+     
   });
 });
   }
@@ -160,8 +138,13 @@ class TagUserlineCard extends React.Component {
       
     })
   });
-    //window.location.reload();
+    
   }
+
+  saveReload(){
+    window.location.reload();
+  }
+
 
   render() {
     return (
@@ -202,6 +185,14 @@ class TagUserlineCard extends React.Component {
           <CardBody>
             <UserlineTagRoster currentUserline = {this.props.currentUserline} followed_twists_all = {this.state.followed_twists_all} unfollowed_tags_all = {this.state.unfollowed_tags_all}/>
           </CardBody>
+          <CardFooter>
+            <hr/>
+            <Button
+            className = "btn-round"
+              onClick = {() => this.saveReload()}
+            > Save
+            </Button>
+          </CardFooter>
         </Card>
       </Col>
       </>

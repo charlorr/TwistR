@@ -61,7 +61,7 @@ class InputTag extends React.Component {
 
   render() {
     const {tagsInputValue, tags} = this.state;
-    console.log(tags)
+    
 
     return (
       <div className="input-tag">
