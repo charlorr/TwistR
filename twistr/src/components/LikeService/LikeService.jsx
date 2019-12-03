@@ -21,7 +21,7 @@ export default class LikeService{
     }
     deleteLikebyUser(userPK, postPK){
         const url = `${API_URL}/api/likes/?user=${userPK}&post=${postPK}`;
-        console.log(url);
+        
         return axios.delete(url).then(response =>response.data);
     }
     createLike(like){

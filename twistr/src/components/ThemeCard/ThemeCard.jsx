@@ -60,7 +60,7 @@ class  ThemeCard  extends  Component {
     });
 
     this.chooseTheme();
-    console.log(this.props.currentUser);
+    //console.log(this.props.currentUser);
   }
 
   chooseTheme() {

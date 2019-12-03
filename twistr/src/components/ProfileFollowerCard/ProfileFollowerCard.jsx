@@ -59,7 +59,7 @@ class  ProfileFollowerCard  extends  Component {
       followeePKs.forEach(function(userPK){
         userService.getUser(userPK).then(function(response) {
             users.push(response);
-            console.log(users);
+            
             self.setState({users_all: users});
           })
           .catch(function(error) {

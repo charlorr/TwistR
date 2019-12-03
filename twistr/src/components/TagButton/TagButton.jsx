@@ -64,7 +64,10 @@ class TagButton extends React.Component {
                     "followed": true
                 }).then(function (result){
                     self.setState({status: "success"});
-                    window.location.reload();
+                    if(self.props.parent === "PostCard"){
+                        window.location.reload();
+                    }
+                    
                 }).catch(function (error){
                     console.log(error);
                 });
@@ -78,7 +81,9 @@ class TagButton extends React.Component {
                     "followed": false
                 }).then(function (result){
                     self.setState({status: "danger"});
-                    window.location.reload();
+                    if(self.props.parent === "PostCard"){
+                        window.location.reload();
+                    }
                 }).catch(function (error){
                     console.log(error);
                 });
@@ -92,7 +97,9 @@ class TagButton extends React.Component {
                 }).then(function (result) {
                     self.setState({status: "success"});
                     self.setState({twistPk: result.data.pk})
-                    window.location.reload();
+                    if(self.props.parent === "PostCard"){
+                        window.location.reload();
+                    }
                 }).catch(function (error) {
                     console.log(error);
                 });

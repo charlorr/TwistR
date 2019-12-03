@@ -15,30 +15,9 @@ class ProfileFollowerRoster extends React.Component {
     this.state = {
         followees: []
     }
-    //this.handleUnfollow = this.handleUnfollow.bind(this); //will be used to unfollow by clicking on icon
-    //this.getUsers.bind(this);
+    
   }
 
-//   componentDidMount(){
-//       this.getUsers();
-//   }
-
-//   getUsers(){
-//       var self = this;
-//       var users = [];
-//       console.log(self.props.followees);
-//       self.props.followeePKss.forEach(function(userPK){
-//         userService.getUser(userPK).then(function(response) {
-//             users.push(response.data);
-//           })
-//           .catch(function(error) {
-//             console.log(error);
-//           });
-//       })
-
-//       console.log(users);
-      
-//   }
 
   
   render() {
@@ -53,13 +32,7 @@ class ProfileFollowerRoster extends React.Component {
               <Button className = "btn-round btn-icon" color = "success" size = "sm">
               <i className = "fa fa-check"></i>
               </Button>
-            {/* <Button className = "follow-icons btn-round btn-icon"
-                    color = "success"
-                    size="sm">
-                        {/* TODO: add functionality to unfollow 
-                    <i className = "fa fa-check follow-check"></i> 
-                    <i className = "fa fa-times follow-uncheck"></i>
-                </Button> */}
+           
             </Col>
             <Col md="9" xs="9">
               <a className = "blackHref" href = {"../userline/"+user.pk} > <br /> {user.first_name} {user.last_name}</a>

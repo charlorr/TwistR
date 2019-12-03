@@ -42,7 +42,7 @@ class LogIn extends React.Component {
           alert('Username/Password not correct!');
         }
         else {
-          console.log(result);
+         
           window.location.reload();
         }});
   }
