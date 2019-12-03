@@ -27,3 +27,7 @@
 .clicks {
   background-color: var(--button-color);
 }
+
+.transparent-button {
+  background-color: rgba(34, 34, 73, 0);
+}

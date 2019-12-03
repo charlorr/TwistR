@@ -3,7 +3,8 @@ import React from 'react';
 import PostService from "components/PostService/PostService.jsx";
 import NotificationAlert from "react-notification-alert";
 import TagService from "components/TagService/TagService.jsx";
-import UserService from "components/UserService/UserService.jsx"
+import UserService from "components/UserService/UserService.jsx";
+import LegendCard from 'components/LegendCard/LegendCard';
 
 import {
   Button,
@@ -40,7 +41,6 @@ class CreatePost extends React.Component {
       redirect_text: [],
     };
     this.handleSubmit = this.handleSubmit.bind(this);
-    //this.handleCreate = this.handleCreate.bind(this);
   }
 
   check_auth() {
@@ -71,20 +71,17 @@ class CreatePost extends React.Component {
       }
     ).then((result) =>{
       //alert("Post created!");
-      console.log(result.data.pk);
+     // console.log(result.data.pk);
       this.setState({currentPostPk : result.data.pk});
-      console.log(this.state.currentPostPk);
+      //console.log(this.state.currentPostPk);
       this.handleTagCreate();
     }).catch(()=>{
-      alert("There was an error! Please re-check your form.")
+ // alert("There was an error! Please re-check your form.")
     });
   }
 
   handleTagCreate(){
-     // console.log(this.state.tags_correct);
       for(var i=0; i <this.state.tags.length; i++){
-     //   console.log(this.state.currentPostPk);
-       // console.log(this.state.tags[i]);
           tagService.createTag(
             {
               "post": this.state.currentPostPk,
@@ -93,7 +90,7 @@ class CreatePost extends React.Component {
           ).then((result) =>{
             //alert("Tag created!");
           }).catch(()=>{
-            alert("There was an error! Please re-check your tags.")
+            //alert("There was an error! Please re-check your tags.")
           });
       }
     window.location.reload()
@@ -154,7 +151,7 @@ class CreatePost extends React.Component {
       alert("too few tags!");
     }
     else{
-      console.log(this.state.tags_correct);
+      //console.log(this.state.tags_correct);
       for(var i=0; i <this.state.tags.length; i++){
         if(this.state.tags[i].length > 20){
           alert("too many characters in a tag!");
@@ -167,7 +164,7 @@ class CreatePost extends React.Component {
   handleSubmit = async function (event){
     event.preventDefault();
     await this.checkTagValidity();
-    console.log(this.state.tags_correct);
+    //console.log(this.state.tags_correct);
     if(this.state.tags_correct === true){
       this.handleCreate();
     }else {
@@ -189,18 +186,18 @@ class CreatePost extends React.Component {
   handleTagChange = async function(event) {
     await this.updateTagValue(event.target.value);
     await this.setState({tags : this.state.tagsInputValue.split(",")});
-    console.log(this.state.tags);
+    //console.log(this.state.tags);
   }
  
   render() {
     const {tagsInputValue} = this.state;
-    console.log(this.state.tagsInputValue)
+   // console.log(this.state.tagsInputValue)
     return (
       <>
         {this.state.redirect_text}
-        <Col lg="8" md="8" sm="8">
+        <Col lg="12" md="12" sm="12">
         <Row>
-          <Col lg="12" md="12" sm="12">
+          <Col lg="8" md="8" sm="8">
             <Card className="card-stats theme-card-bg">
               <NotificationAlert ref ={this.notificationAlert} />
               <CardBody>
@@ -258,6 +255,9 @@ class CreatePost extends React.Component {
                 </div>
               </CardFooter>
             </Card>
+          </Col>
+          <Col lg="4" md="4" sm="4">
+            <LegendCard />
           </Col>
         </Row>
       </Col>

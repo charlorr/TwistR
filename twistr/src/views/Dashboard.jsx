@@ -22,6 +22,7 @@ class Dashboard extends React.Component {
     this.state = {
       posts_all: [],
       flag: false,
+      post_length: 0,
       redirect_text: [],
     };
     this.getPosts.bind(this);
@@ -39,6 +40,7 @@ getPosts(){
     console.log(response);
     postService.addPostTags(response.data).then(function (response){
       self.setState({posts_all : response})
+      self.setState({post_length : response.length});
       self.setState({flag: true})
     })
     
@@ -65,6 +67,7 @@ check_auth() {
 }
 
   render() {
+    var dashboard = true;
     if (this.state.posts_all.length === 0) {
      return (
       <>
@@ -91,7 +94,7 @@ check_auth() {
             </Col>
           </Row>
           <Row>
-              <PostRoster posts_all = {this.state.posts_all}/>
+              <PostRoster posts_all = {this.state.posts_all} dashboard={dashboard}/>
           </Row>
         </div>
         </>
