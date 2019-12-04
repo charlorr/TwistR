@@ -76,19 +76,21 @@ class CreateRetwist extends React.Component {
   handleTagCreate(pk){
     var self = this;
     tagService.getTagsByPost(pk).then(function(response){
+      console.log(response);
+      var promises = [];
       for(var i=0; i <response.data.length; i++){
-        tagService.createTag(
+        console.log(response.data[i].name);
+        promises.push(  tagService.createTag(
           {
             "post": self.state.currentPostPk,
             "name": response.data[i].name.toUpperCase()
           }
-        ).then((result) =>{
-        }).catch(()=>{
-          alert("There was an error! Please re-check your tags.")
-        });
+        ))
     }
+    Promise.all(promises).then(() =>{
+      window.location.reload();
     })
-    window.location.reload()
+  })
 }
 
   handleRetwistCreate(newPostPk) {
@@ -99,7 +101,6 @@ class CreateRetwist extends React.Component {
       })
       .then(result => {
         this.handleTagCreate(this.props.post.pk);
-        //alert("retwist created!");
       })
       .catch(() => {
         var options = {};
