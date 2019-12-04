@@ -50,7 +50,7 @@
 }
 
 @media all and (min-width: 992px) {
-  .sidebar .nav>li.active-pro {
+  .sidebar .nav > li.active-pro {
     position: absolute;
     width: 100%;
     bottom: 10px;
@@ -71,7 +71,7 @@
 }
 
 .demo-icons a {
-  color: #608CEE;
+  color: #608cee;
   text-decoration: none;
 }
 
@@ -99,7 +99,7 @@
 
 .demo-icons section h2 {
   border-bottom: 1px solid #e2e2e2;
-  padding: 0 0 1em .2em;
+  padding: 0 0 1em 0.2em;
   margin-bottom: 1em;
 }
 
@@ -118,7 +118,7 @@
   float: left;
   padding: 16px 0;
   text-align: center;
-  border-radius: .25em;
+  border-radius: 0.25em;
   -webkit-transition: background 0.2s;
   -moz-transition: background 0.2s;
   transition: background 0.2s;
@@ -158,7 +158,7 @@
 
 .demo-icons ul p::selection,
 .demo-icons ul em::selection {
-  background: #608CEE;
+  background: #608cee;
   color: #efefef;
 }
 
@@ -167,11 +167,11 @@
 }
 
 .demo-icons ul em::before {
-  content: '[';
+  content: "[";
 }
 
 .demo-icons ul em::after {
-  content: ']';
+  content: "]";
 }
 
 .demo-icons ul input {
@@ -183,60 +183,74 @@
   display: none;
 }
 
-.follow-icons:hover .follow-check, .follow-icons .follow-uncheck{
-  display:none;
+.follow-icons:hover .follow-check,
+.follow-icons .follow-uncheck {
+  display: none;
 }
 
-.follow-icons:hover .follow-uncheck{
+.follow-icons:hover .follow-uncheck {
   border-radius: 30px;
   display: inline;
   background-color: #ef8157;
-  color: #FFFFFF;
+  color: #ffffff;
   outline-color: #ef8157;
 }
 
-.reg-status-red{
-color: red;
+.reg-status-red {
+  color: red;
 }
-.reg-status-green{
+.reg-status-green {
   color: green;
 }
 /*Chiranth added this*/
 .main-panel > .content {
-  margin-top: 23px; 
+  margin-top: 50px;
 }
 
 #passwordFormReqs {
   margin-left: 15px;
 }
 
-.welcomeLogo{
+.welcomeLogo {
   width: 1000px;
   height: 250px;
 }
 
-.reactedHeart:hover .outline-heart, .reactedHeart .filled-heart{
-  display:none;
+.reactedHeart:hover .outline-heart,
+.reactedHeart .filled-heart {
+  display: none;
 }
 
-.reactedHeart:hover .filled-heart{
+.reactedHeart:hover .filled-heart {
   display: inline;
   color: red;
 }
 
-.reactedHeart, .reactedShare, .reactedHeart:hover, .reactedShare:hover, .reactedHeart:active, .reactedShare:active, .reactedShare:focus, .reactedHeart:focus, .reactedShare:visited, .reactedHeart:visited, .reactedHeart:focus-within, .reactedShare:focus-within{
-    background-color: Transparent !important;
+.reactedHeart,
+.reactedShare,
+.reactedHeart:hover,
+.reactedShare:hover,
+.reactedHeart:active,
+.reactedShare:active,
+.reactedShare:focus,
+.reactedHeart:focus,
+.reactedShare:visited,
+.reactedHeart:visited,
+.reactedHeart:focus-within,
+.reactedShare:focus-within {
+  background-color: Transparent !important;
 }
 
-.reactedShare:hover .outline-share, .reactedShare .filled-share{
-  display:none;
+.reactedShare:hover .outline-share,
+.reactedShare .filled-share {
+  display: none;
 }
 
-.reactedShare:hover .filled-share{
+.reactedShare:hover .filled-share {
   display: inline;
-  color:red;
+  color: red;
 }
 
-.blackHref{
+.blackHref {
   color: black;
 }
