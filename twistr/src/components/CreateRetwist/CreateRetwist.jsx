@@ -82,7 +82,21 @@ class CreateRetwist extends React.Component {
         //alert("retwist created!");
       })
       .catch(() => {
-        alert("error submitting retwist");
+        var options = {};
+        options = {
+          place: "tr",
+          message: (
+            <div>
+              <div>
+                Error creating retwist!
+              </div>
+            </div>
+          ),
+          type: "warning",
+          icon: "nc-icon nc-bell-55",
+          autoDismiss: 7
+        };
+        this.notificationAlert.current.notificationAlert(options);
       });
   }
 
