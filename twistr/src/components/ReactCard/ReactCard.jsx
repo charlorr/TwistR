@@ -48,7 +48,7 @@ class ReactCard extends React.Component {
 
   componentDidMount() {
     this.getPost();
-    this.getLike();
+    //this.getLike();
   }
   
   getPost(){
@@ -58,6 +58,7 @@ class ReactCard extends React.Component {
       self.setState({currentPost : response})
       self.getLike(localStorage.getItem('pk'))
       self.setState({flag: true})
+      //self.getLike(response.data);
     })
     .catch(function(error) {
       console.log(error);
@@ -66,14 +67,17 @@ class ReactCard extends React.Component {
 
   getLike(currentPost){
     var self = this;
-    likeService.getLikebyUser(currentPost,this.props.post.pk)
+    var postPK = this.props.post.pk;
+    likeService.getLikebyUser(currentPost,postPK)
     .then(function(response) {
       if(response.data.length !== 0){
         self.setState({currentLike : true});
       }else {
         self.setState({currentLike : false});
       }
-    })
+    }).catch(function(error){
+      console.log(error);
+    });
   }
 
   createLike(){
@@ -87,7 +91,6 @@ class ReactCard extends React.Component {
     }).catch(function(error) {
       console.log(error);
     })
-
   }
 
   deleteLike(like){
