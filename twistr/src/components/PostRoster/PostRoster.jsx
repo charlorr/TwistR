@@ -1,5 +1,6 @@
 import React from "react";
 import Post from "components/Post/Post.jsx";
+import Retwist from "components/Retwist/Retwist.jsx";
 import RetwistService from "components/RetwistService/RetwistService.jsx";
 import PostService from "components/PostService/PostService.jsx";
 import UserService from "../../components/UserService/UserService.jsx";
@@ -17,8 +18,9 @@ class PostRoster extends React.Component {
       currentPost: [],
       currentRetwist: [],
       show_react_card: false,
+      retwistExists: [],
+      hasRetwist: false
     };
-    this.getRetwist = this.getRetwist.bind(this);
     this.rerenderParentCallback = this.rerenderParentCallback.bind(this);
   }
 
@@ -50,31 +52,7 @@ class PostRoster extends React.Component {
     this.forceUpdate();
   }
 
-  getRetwist(post){
-    var self = this;
-    //console.log(post);
-    retwistService.getRetwistbyPost(post.pk)
-    .then(function(response) {
-      console.log(response);
-      self.setState({postPk: response.data.original_post})
-      self.setState({retwistPk: response.data.post})
-    })
-    .catch(function(error){
-      console.log(error);
-    })
-  }
-
-  getOGPost(){
-    var self = this;
-    postService.getPost(this.state.postPk)
-    .then(function(response) {
-      self.setState({currentPost : response})
-      self.setState({flag: true})
-    })
-    .catch(function(error) {
-      console.log(error);
-    });
-  }
+  
 
   render() {
     var self = this;

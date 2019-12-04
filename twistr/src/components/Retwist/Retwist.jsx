@@ -13,6 +13,7 @@ class Retwist extends React.Component {
 
 
   render() {
+    console.log(this.props.retwist);
     return (
       <>
       <Col lg="12" md="11" sm="10">
@@ -22,8 +23,9 @@ class Retwist extends React.Component {
             <hr />
           </Col>
           <Col lg="10" md="9" sm="9">
-            <RetwistCard parent = {this.props.parent} post={this.props.post} />
-            <PostCard parent = {this.props.parent} post={this.props.retwist} />
+            Retwist
+            <RetwistCard parent = {this.props.parent} post={this.props.retwist} />
+            Original Post
           </Col>
         </Row>
       </Col>
