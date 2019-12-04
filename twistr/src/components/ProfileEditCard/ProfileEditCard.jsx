@@ -32,7 +32,7 @@ class  ProfileEditCard  extends  Component {
     
     deleteProfile() {
       userService.deleteUser(this.props.currentUser.pk);
-      alert('Account has been deleted!');
+      //alert('Account has been deleted!');
       this.logOut();
     }
 
