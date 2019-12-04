@@ -2,6 +2,7 @@ import React from 'react';
 import UserCard from "components/UserCard/UserCard.jsx";
 import PostService from "components/PostService/PostService.jsx";
 import RetwistService from "components/RetwistService/RetwistService.jsx";
+import TagService from "components/TagService/TagService.jsx";
 import NotificationAlert from "react-notification-alert";
 
 import {
@@ -20,6 +21,7 @@ import { Redirect } from 'react-router-dom';
 
 const postService = new PostService();
 const retwistService = new RetwistService();
+const tagService = new TagService();
 
 class CreateRetwist extends React.Component {
 
@@ -31,7 +33,8 @@ class CreateRetwist extends React.Component {
       currentPost: [],
       currentUser: [],
       chars_left: 280, max_chars: 280,
-      text: ""
+      text: "",
+      tags_all: [],
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleCreate = this.handleCreate.bind(this);
@@ -50,15 +53,11 @@ class CreateRetwist extends React.Component {
           "author": localStorage.getItem('pk')
         }
       ).then((result) =>{
-<<<<<<< HEAD
-=======
-        //alert("Post created!");
-        //console.log(result.data.pk);
->>>>>>> 4ecfacad5c85545945695b82c297eedbdbc0f0f9
         this.setState({currentPostPk : result.data.pk});
         this.handleRetwistCreate(result.data.pk);
+        this.handleTagCreate(this.props.post.pk);
       }).catch(()=>{
-        alert("There was an error! Please re-check your form.")
+        alert("There was an error! Please re-check your post.")
       });
     }
     else{
@@ -68,18 +67,33 @@ class CreateRetwist extends React.Component {
           "author": localStorage.getItem('pk')
         }
       ).then((result) =>{
-<<<<<<< HEAD
-=======
-        //alert("Post created!");
->>>>>>> 4ecfacad5c85545945695b82c297eedbdbc0f0f9
         this.setState({currentPostPk : result.data.pk});
         this.handleRetwistCreate(result.data.pk);
+        this.handleTagCreate(this.props.post.pk);
       }).catch(()=>{
-        alert("There was an error! Please re-check your form.")
+        alert("There was an error! Please re-check your post.")
       });
     }
     
   }
+
+  handleTagCreate(pk){
+    var self = this;
+    tagService.getTagsByPost(pk).then(function(response){
+      for(var i=0; i <response.data.length; i++){
+        tagService.createTag(
+          {
+            "post": self.state.currentPostPk,
+            "name": response.data[i].name.toUpperCase()
+          }
+        ).then((result) =>{
+        }).catch(()=>{
+          alert("There was an error! Please re-check your tags.")
+        });
+    }
+    })
+    window.location.reload()
+}
   
 
   handleRetwistCreate(newPostPk){
@@ -89,7 +103,6 @@ class CreateRetwist extends React.Component {
               "post": newPostPk
           }
       ).then((result) =>{
-          //alert("retwist created!");
       }).catch(()=>{
           alert("error submitting retwist")
       });

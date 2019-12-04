@@ -18,7 +18,6 @@ constructor(props) {
 componentDidMount() {
     var  self  =  this;
     tagService.getTags().then(function (result) {
-        console.log(result);
         self.setState({ tags:  result.data, nextPageURL:  result.nextlink})
     });
 }
@@ -34,8 +33,7 @@ handleDelete(e,pk){
 }
 
 nextPage(){
-    var  self  =  this;
-    console.log(this.state.nextPageURL);        
+    var  self  =  this;      
     tagService.getTagsByURL(this.state.nextPageURL).then((result) => {
         self.setState({ tags:  result.data, nextPageURL:  result.nextlink})
     });

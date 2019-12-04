@@ -26,7 +26,6 @@ class PostCard extends React.Component {
     super(props);
     this.state = {
       currentPost: [],
-      delete_author:false,
       flag:false,
       username: null
     };
@@ -61,28 +60,8 @@ class PostCard extends React.Component {
     }
   }
 
-  setFalse(){
-    if(this.state.delete_author === true){
-      this.setState(prevState => ({
-        delete_author: !prevState.delete_author
-      }));
-    }
-  }
-
-  setTrue(){
-    if(this.state.delete_author === false){
-      this.setState(prevState => ({
-        delete_author: !prevState.delete_author
-      }));
-    }
-  }
 
   deletePost(post){
-    console.log(post);
-    console.log("to delete");
-    //var currentPost = {...this.state.currentPost}
-    //this.setState({currentPost});
-   // postService.deletePost(currentPost)
    postService.deletePost(post)
     .then(function(response){
       alert("Post deleted!")
@@ -93,14 +72,6 @@ class PostCard extends React.Component {
     })
   }
 
-  selectStatus(user, author){
-    if (user !== author) {
-      this.setTrue();
-    }
-    else {
-        this.setFalse();
-    }
-}
 
   twistStatus(tag) {
     //var self = this;
@@ -124,13 +95,8 @@ class PostCard extends React.Component {
   render() {
     let but;
     const parent = this.props.parent;
-   // console.log("parent");
-    //console.log(this.props.parent);
-    //this.setState({currentPost : this.props.post});
-    //console.log(this.props.post);
     let redirectA;
     if(parent === "dashboard"){
-      console.log("dashboard");
       redirectA = <a className = "blackHref" href = "../admin/dashboard"> {this.props.post.author} </a>
     }
     if(parent === "userline"){
@@ -139,11 +105,6 @@ class PostCard extends React.Component {
     if (parent === "timeline"|| parent === "explore"){
       redirectA = <a className ="blackHref" href = "userline/2"> {this.props.post.author} </a>
     }
-
-    const user = localStorage.getItem('pk');
-    const author = this.props.post.author;
-    this.selectStatus(user, author);
-    //console.log(this.state.delete_author);
 
     if(this.props.dashboard === true){
       but =
@@ -155,51 +116,39 @@ class PostCard extends React.Component {
      </Button>
     }
 
-    if(this.props.tags_author){
+    //console.log(this.props.post);
+    console.log(this.props.post.tag1);
+    if(this.props.tags_post){
       return (
         <>
-        <Card className="theme-card-bg">
-    
-            <CardTitle tag="h5">   {redirectA} </CardTitle>
+        <Card className= "theme-card-bg">
+          <CardTitle tag="h5" > {redirectA} </CardTitle>
           <CardHeader>
-            <TagButton parent = "PostCard" user = {localStorage.getItem('pk')} author = {this.props.tags_author.author} tag = {this.props.post.tag1}/>
-            <TagButton parent = "PostCard" user = {localStorage.getItem('pk')} author = {this.props.tags_author.author} tag = {this.props.post.tag2}/>
-            <TagButton parent = "PostCard" user = {localStorage.getItem('pk')} author = {this.props.tags_author.author} tag = {this.props.post.tag3}/>
-            {/*<p className="card-category">{this.props.post.tags}</p>*/}
+            <TagButton parent = "PostCard" user = {localStorage.getItem('pk')} author = {this.props.post.author} tag = {this.state.tags.tag1}/>
+            <TagButton parent = "PostCard" user = {localStorage.getItem('pk')} author = {this.props.post.author} tag = {this.state.tags.tag2}/>
+            <TagButton parent = "PostCard" user = {localStorage.getItem('pk')} author = {this.props.post.author} tag = {this.state.tags.tag3}/>
           </CardHeader>
           <CardBody>
-    
             <h3>{this.props.post.text_body}</h3>
           </CardBody>
           <CardFooter>
             <hr />
             <Row>
-              <Col lg="8" md="8" sm="6">
+              <Col lg="8" md="8">
               <div className="stats">
                   <i className="fa fa-history"/> 
                   <a href = {"../admin/userline/"+this.props.post.author} >
                     <font color="#000000"><b>{this.state.username}</b></font>
                   </a>
-              {" "}posted at {this.getTimeFormat(this.props.post.posted_date)}
               </div>
-              </Col>
-              <Col lg="3" md="3" sm="3">
-              <div className="ml-auto">
-                  <i className="likes float-right"/> Likes: {this.props.post.like_count}
-              </div>
-              </Col>
-              <Col lg="1" md="1">
-               {but}
               </Col>
             </Row>
           </CardFooter>
         </Card>
         </>
         );
-
-    }
-    else{
-
+    }else{
+    
     return (
     <>
     <Card className="theme-card-bg">
@@ -212,7 +161,6 @@ class PostCard extends React.Component {
         {/*<p className="card-category">{this.props.post.tags}</p>*/}
       </CardHeader>
       <CardBody>
-
         <h3>{this.props.post.text_body}</h3>
       </CardBody>
       <CardFooter>
