@@ -87,7 +87,6 @@ class SortablePostTable extends React.Component { //called from Dashboard to org
   };     
 
   sortRosterStateBy = (field, posts_all, direction) => {
-    console.log(this.props.posts_all)
     // Sorting ...
     posts_all.sort( (a, b) => { if (a[field] > b[field]) { return -direction; } if (a[field] < b[field]) { return direction; } return 0; })
   };

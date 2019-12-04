@@ -32,8 +32,6 @@ class Post extends React.Component {
 
   componentDidMount(){
     this.getRetwist(this.props.post);
-    //this.getRetwistPost();
-    //this.getOGPost();
   }
 
   getRetwist(post){
@@ -62,7 +60,6 @@ class Post extends React.Component {
   }
 
   getRetwistPost(postPk){
-   // console.log(postPk);
     var self = this;
     postService.getPost(postPk)
     .then(function(response) {
@@ -75,7 +72,7 @@ class Post extends React.Component {
   }
 
   render() {
-    //console.log(this.state.hasRetwist);
+    console.log(this.props.post);
     var dashboard = false;
     if(this.props.dashboard){
       dashboard = true;
@@ -84,8 +81,6 @@ class Post extends React.Component {
       if(this.state.hasRetwist === true){
         if(this.state.currentRetwist.text_body){
           if(this.state.currentPost.text_body){
-
-          console.log(this.state.currentPost);
 
         return (
           <>
@@ -106,7 +101,7 @@ class Post extends React.Component {
                 <Card className="theme-card-bg">
                 <CardBody>
                 Retwist
-                <PostCard parent = {this.props.parent} post={this.state.currentRetwist} tags_author={this.state.currentPost} dashboard={dashboard}/>
+                <PostCard parent = {this.props.parent} post={this.props.post} dashboard={dashboard}/>
                 Original Post  
                 <RetwistCard parent = {this.props.parent} post={this.state.currentPost} />
                 </CardBody>
@@ -119,7 +114,6 @@ class Post extends React.Component {
       }
     }
     }
-      //console.log("not on explore");
       return (
         <>
         <Col lg="12" md="11" sm="11" xs="12">
@@ -144,7 +138,28 @@ class Post extends React.Component {
       );
     }
     else {
-      //console.log("on explore page");
+      if(this.state.currentRetwist.text_body){
+        if(this.state.currentPost.text_body){
+      return (
+        <>
+        <Col lg="12" md="11" sm="10">
+          <Row>
+            <Col lg="10" md="9" sm="9">
+              <Card className="theme-card-bg">
+              <CardBody>
+              Retwist
+              <PostCard parent = {this.props.parent} post={this.props.post} dashboard={dashboard}/>
+              Original Post  
+              <RetwistCard parent = {this.props.parent} post={this.state.currentPost} />
+              </CardBody>
+              </Card>
+            </Col>   
+          </Row>
+        </Col>
+        </>
+      );
+    }
+  }
       return (
         <>
         <Col lg="12" md="11" sm="11" xs="12">

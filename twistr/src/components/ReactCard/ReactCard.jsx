@@ -60,9 +60,8 @@ class ReactCard extends React.Component {
     postService.getPost(this.props.post.pk)
     .then(function(response) {
    //   console.log(response);
-   //   console.log(response.author);
       self.setState({currentPost : response})
-      self.getLike(response.author)
+      self.getLike(localStorage.getItem('pk'))
       self.setState({flag: true})
     })
     .catch(function(error) {
@@ -71,16 +70,14 @@ class ReactCard extends React.Component {
   }
 
   getLike(currentPost){
-  //  console.log(currentPost);
-   // console.log(this.props.post.pk);
     var self = this;
     likeService.getLikebyUser(currentPost,this.props.post.pk)
     .then(function(response) {
       if(response.data.length !== 0){
-        console.log("checkone");
+        console.log("yes like");
         self.setState({currentLike : true});
       }else {
-        console.log("checktwo");
+        console.log("no like");
         self.setState({currentLike : false});
       }
     })
@@ -93,22 +90,20 @@ class ReactCard extends React.Component {
         "post": this.state.currentPost.pk
       }
     ).then((response) =>{
-      //alert("like create!");
+      window.location.reload()
     }).catch(function(error) {
-      alert("There was an error with the like table!");
       console.log(error);
     })
+
   }
 
   deleteLike(like){
-    console.log(this.state.currentPost.author);
-    console.log(this.props.post.pk);
+    var self = this;
     likeService.deleteLikebyUser(this.state.currentPost.author,this.props.post.pk)
     .then(function(response) {
-      //alert("like deleted");
+          window.location.reload()
     })
     .catch(function(error) {
-      alert("there was an error deleting");
       console.log(error);
     })
   }
@@ -160,9 +155,7 @@ class ReactCard extends React.Component {
 
   render() {
     let likeButton; //determines whether button is like or unlike
-    //this.checkLike();
     let retwistButton;
-    //console.log(this.state.currentLike);
     
     if(this.state.currentLike === false) { likeButton = 
         <Button 

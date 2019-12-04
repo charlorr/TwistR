@@ -18,7 +18,6 @@ constructor(props) {
 componentDidMount() {
     var  self  =  this;
     postService.getPosts().then(function (result) {
-        console.log(result);
         self.setState({ posts:  result.data, nextPageURL:  result.nextlink})
     });
 }
@@ -34,8 +33,7 @@ handleDelete(e,pk){
 }
 
 nextPage(){
-    var  self  =  this;
-    console.log(this.state.nextPageURL);        
+    var  self  =  this;      
     postService.getPostsByURL(this.state.nextPageURL).then((result) => {
         self.setState({ posts:  result.data, nextPageURL:  result.nextlink})
     });
