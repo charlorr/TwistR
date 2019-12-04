@@ -176,6 +176,7 @@ class  ProfileEditCard  extends  Component {
                     </Col>
                   </Row>
                   <Row>
+                    <Col>
                     <Col className="pl-1" lg="12" md="12" sm="12" xs="12">
                       <FormGroup>
                         <label>Bio<font color="red">*</font></label>
@@ -188,11 +189,12 @@ class  ProfileEditCard  extends  Component {
                           required/>
                       </FormGroup>
                     </Col>
-                    className="btn-round clicks"
+                    </Col>
                   </Row>
                   <Row>
                     <div className="update ml-auto mr-auto ">
                       <Button
+                        className="btn-round clicks"
                         color="secondary"
                         type="submit"
                       >
