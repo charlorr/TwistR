@@ -72,7 +72,6 @@ class PostRoster extends React.Component {
         if (post !== undefined && post !== null) { 
           //console.log(post);
           if(retwistService.getRetwistbyPost(post.pk)){
-            self.getRetwist(post);
             //cards.push(<Retwist parent = {posts_all} retwist={post} post={this.state.currentPost}/>);
           }
           cards.push(<Post parent = {posts_all} post={post} show_react_card={show_react_card}/>);
