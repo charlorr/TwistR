@@ -51,6 +51,7 @@ class Profile extends React.Component {
     return (
       <>
       <div className="content">
+        
         {this.state.redirect_text}
         <Row>
           <Col lg="4" md="4" sm="4">
