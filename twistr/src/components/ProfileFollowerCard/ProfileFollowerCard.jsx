@@ -38,7 +38,7 @@ class  ProfileFollowerCard  extends  Component {
       //self.setState({twists_all : response.data});
       //self.getFollowees(response.data);
       response.data.forEach(function (twist){
-        if(followeePKs.findIndex(f1 => f1 === twist.author) <0){
+        if(followeePKs.findIndex(f1 => f1 === twist.author) <0 && twist.followed){
             followeePKs.push(twist.author);
         }
       });
@@ -59,7 +59,7 @@ class  ProfileFollowerCard  extends  Component {
       followeePKs.forEach(function(userPK){
         userService.getUser(userPK).then(function(response) {
             users.push(response);
-            console.log(users);
+            
             self.setState({users_all: users});
           })
           .catch(function(error) {

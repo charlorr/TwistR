@@ -24,7 +24,7 @@ class Profile extends React.Component {
 
   componentDidMount() {
     this.check_auth()
-    console.log(localStorage.getItem('pk'));
+    //console.log(localStorage.getItem('pk'));
     var self = this;
     userService.getUser(localStorage.getItem('pk')).then(function (result) {
         self.setState({currentUser: result});

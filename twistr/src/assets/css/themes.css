@@ -2,9 +2,9 @@
   --background-color: #add6f9;
   --color: black;
   --label-color: #9A9A9A;
-  --navbar-color: ##51bcda;
   --follow-color: black;
   --button-color: #66615B;
+  --react-color: white;
 }
 
 .theme-card-bg {
@@ -20,10 +20,18 @@
   color: var(--label-color);
 }
 
-.blackHref {
+.blackHref, .blackHref:hover {
   color: var(--follow-color);
 }
 
 .clicks {
   background-color: var(--button-color);
+}
+
+.transparent-card {
+  background-color: rgba(34, 34, 73, 0);
+}
+
+.react-button {
+  color: var(--react-color);
 }

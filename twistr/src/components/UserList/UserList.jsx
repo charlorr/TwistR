@@ -35,7 +35,7 @@ handleDelete(e,pk){
 
 nextPage(){
     var  self  =  this;
-    console.log(this.state.nextPageURL);        
+           
     userService.getUsersByURL(this.state.nextPageURL).then((result) => {
         self.setState({ users:  result.data, nextPageURL:  result.nextlink})
     });

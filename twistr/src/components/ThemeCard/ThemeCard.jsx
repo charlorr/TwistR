@@ -1,6 +1,5 @@
 import  React, { Component } from  'react';
-
-//import  UserService  from  'components/UserService/UserService.jsx';
+import  UserService  from  'components/UserService/UserService.jsx';
 
 import {
     Button,
@@ -9,7 +8,8 @@ import {
     CardTitle,
     Row,
   } from "reactstrap";
-  //const  userService  =  new  UserService();
+
+const  userService  =  new  UserService();
 let root = document.documentElement;
   
 class  ThemeCard  extends  Component {
@@ -19,60 +19,92 @@ class  ThemeCard  extends  Component {
     this.state  = {
       users: [],
       currentUser: [],
-      isDefault: true,
-      isDark: false,
-      isLight: false,
     };
   }
 
   themeDefault() {
-    this.setState({
-      isDefault: true,
-      isDark: false,
-      isLight: false,
-    });
-    root.style.setProperty('--background-color', '#add6f9');
-    root.style.setProperty('--color', 'black');
-    root.style.setProperty('--label-color', '#9A9A9A');
-    root.style.setProperty('--follow-color', '#40806A');
-    root.style.setProperty('--button-color', '#66615B');
+    this.updateProfile(this.props.currentUser.pk, "default");
   }
 
   themeDark() {
-    this.setState({
-      isDefault: false,
-      isDark: true,
-      isLight: false,
+    this.updateProfile(this.props.currentUser.pk, "dark");
+  }
+
+  themeLight() {
+    this.updateProfile(this.props.currentUser.pk, "light");
+  }
+  
+  updateProfile(pk,themeChoice) {
+    var username = this.props.currentUser.username;
+    var first_name = this.props.currentUser.first_name;
+    var last_name = this.props.currentUser.last_name;
+    var email = this.props.currentUser.email;
+    var phone_number = this.props.currentUser.phone_number;
+    var bio = this.props.currentUser.bio;
+    var theme = themeChoice;
+    
+    userService.updateUser({
+      "pk": pk,
+      "username": username,
+      "first_name": first_name,
+      "last_name": last_name,
+      "email": email,
+      "phone_number": phone_number,
+      "bio": bio,
+      "theme": theme,
+    }).then(function (result){
+      console.log(result);
     });
+
+    this.chooseTheme(theme);
+  }
+
+  chooseTheme(themeChoice) {
+    console.log(themeChoice);
+    if (themeChoice === "default") {
+      this.setThemeDefault();
+    } else if (themeChoice === "dark") {
+      this.setThemeDark();
+    } else if (themeChoice === "light") {
+      this.setThemeLight();
+    } else {
+      this.setThemeDefault();
+    }
+  }
+
+  setThemeDefault() {
+    root.style.setProperty('--background-color', '#add6f9');
+    root.style.setProperty('--color', 'black');
+    root.style.setProperty('--label-color', '#9A9A9A');
+    root.style.setProperty('--follow-color', 'black');
+    root.style.setProperty('--button-color', '#66615B');
+    root.style.setProperty('--react-color', 'white');
+  }
+
+  setThemeDark() {
     root.style.setProperty('--background-color', 'gray');
     root.style.setProperty('--color', '#FFFFFF');
     root.style.setProperty('--label-color', 'white');
     root.style.setProperty('--follow-color', 'white');
     root.style.setProperty('--button-color', 'black');
+    root.style.setProperty('--react-color', 'white');
   }
 
-  themeLight() {
-    this.setState({
-      isDefault: false,
-      isthemeDark: false,
-      isLight: true,
-    });
+  setThemeLight() {
     root.style.setProperty('--background-color', 'white');
     root.style.setProperty('--color', 'black');
     root.style.setProperty('--label-color', 'black');
     root.style.setProperty('--follow-color', 'black');
     root.style.setProperty('--button-color', '#add6f9');
+    root.style.setProperty('--react-color', 'black');
   }
 
-  /*componentWillMount() {
-    if (this.state.isDefault) {
-      this.themeDefault();
-    } else if (this.state.isDark) {
-      this.themeDark();
-    } else if (this.state.isLight) {
-      this.themeLight();
-    }
-  }*/
+  componentDidMount() {
+    var self = this;
+    userService.getUser(localStorage.getItem("pk")).then(function (result){
+      self.chooseTheme(result.theme);
+    })
+  }
 
   render() { 
     return (
@@ -87,7 +119,6 @@ class  ThemeCard  extends  Component {
                 className="btn-round clicks" 
                 size="md" 
                 color="secondary"
-                type="submit"
                 onClick={() => this.themeDefault()}>
                 Default Mode
               </Button>
@@ -97,7 +128,6 @@ class  ThemeCard  extends  Component {
                 className="btn-round clicks" 
                 size="md" 
                 color="secondary"
-                type="submit"
                 onClick={() => this.themeDark()}>
                 Dark Mode
               </Button>
@@ -107,7 +137,6 @@ class  ThemeCard  extends  Component {
                 className="btn-round clicks" 
                 size="md" 
                 color="secondary"
-                type="submit"
                 onClick={() => this.themeLight()}>
                 Light Mode
               </Button>

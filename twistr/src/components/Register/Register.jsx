@@ -51,7 +51,8 @@ class Register extends React.Component {
           "phone_number": document.getElementById("phoneNumber").value,
           "username": document.getElementById("username").value,
           "password": document.getElementById("password_reg").value,
-          "bio" : "Hi, I'm new to TwistR!"
+          "bio" : "Hi, I'm new to TwistR!",
+          "theme" : "default",
       }
       ).then((result)=>{
         alert("Account Registered!");

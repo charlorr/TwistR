@@ -6,6 +6,7 @@ import {
   Row,
   Button
 } from "reactstrap";
+import TagButton from "components/TagButton/TagButton";
 
 const twistService = new TwistService();
 class UserlineTagRoster extends React.Component {
@@ -63,14 +64,15 @@ class UserlineTagRoster extends React.Component {
     this.props.followed_twists_all.forEach(function(twist) { //currently displaying all tags regardless of follow or not
         cards.push(
           <Col lg="3" md="3" sm="3">
-            <Button
+            <TagButton parent = "TagRoster" user = {localStorage.getItem('pk')} author = {self.props.currentUserline.pk} tag = {twist.tag}/>
+            {/* <Button
             className="btn-round" 
             size="lg" 
             color="success"
             onClick = {() => self.handleUnfollowTag(twist)}
             >
                 {twist.tag} 
-            </Button>
+            </Button> */}
           </Col>
         );
     });
@@ -78,7 +80,9 @@ class UserlineTagRoster extends React.Component {
     this.props.unfollowed_tags_all.forEach(function(tag){
       cards.push(
         <Col lg="3" md="3" sm="3">
-          <Button
+          <TagButton parent = "TagRoster" user = {localStorage.getItem('pk')} author = {self.props.currentUserline.pk} tag = {tag.name}/>
+            
+          {/* <Button
           className="btn-round" 
           size="lg" 
           color="danger"
@@ -86,7 +90,7 @@ class UserlineTagRoster extends React.Component {
           onClick = {() => self.handleFollowTag(tag)}
           >
               {tag.name}
-          </Button>
+          </Button> */}
         </Col>
       );
   });

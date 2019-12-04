@@ -64,7 +64,7 @@ class  ProfileEditCard  extends  Component {
         "bio": bio
       })
       .then((result) => {
-        console.log(result);
+        
         var options = {};
         options = {
           place: "tr",
