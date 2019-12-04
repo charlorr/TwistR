@@ -1,5 +1,4 @@
 import React from 'react';
-//import UserCard from "components/UserCard/UserCard.jsx";
 import PostCard from "components/PostCard/PostCard.jsx";
 import ReactCard from "components/ReactCard/ReactCard.jsx";
 import Retwist from "components/Retwist/Retwist.jsx";
@@ -72,7 +71,6 @@ class Post extends React.Component {
   }
 
   render() {
-    console.log(this.props.post);
     var dashboard = false;
     if(this.props.dashboard){
       dashboard = true;

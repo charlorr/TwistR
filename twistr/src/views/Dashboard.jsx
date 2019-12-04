@@ -1,8 +1,6 @@
 import React from "react";
 import CreatePost from "components/CreatePost/CreatePost.jsx";
 import PostRoster from "components/PostRoster/PostRoster.jsx";
-// import {SortableTagTable} from "components/NewTagRoster/NewTagRoster.jsx";
-// import { SortablePostTable } from "components/PostRoster/PostRoster";
 import PostService from "components/PostService/PostService.jsx"
 import UserService from "components/UserService/UserService.jsx"
 import {Redirect} from 'react-router-dom';
@@ -74,7 +72,6 @@ check_auth() {
 }
 
 chooseTheme(themeChoice) {
-  console.log(themeChoice);
   if (themeChoice === "default") {
     this.setThemeDefault();
   } else if (themeChoice === "dark") {
@@ -137,7 +134,6 @@ setThemeLight() {
           </Row>
           <Row>
             <Col lg="12" md="12" sm="12">
-              {/*<SortableTagTable tags_all = {TAGS_ALL}/>*/}
             </Col>
           </Row>
           <Row>

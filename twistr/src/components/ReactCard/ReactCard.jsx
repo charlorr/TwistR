@@ -3,7 +3,6 @@ import CreateRetwist from "components/CreateRetwist/CreateRetwist.jsx";
 import RetwistService from "components/RetwistService/RetwistService.jsx";
 import PostService from "components/PostService/PostService.jsx";
 import LikeService from "components/LikeService/LikeService.jsx";
-//import NotificationAlert from "react-notification-alert";
 
 import {
   Button,
@@ -12,11 +11,9 @@ import {
   Col,
   Row
 } from "reactstrap";
-import { thisTypeAnnotation } from '@babel/types';
 
 const postService = new PostService();
 const likeService = new LikeService();
-const retwistService = new RetwistService();
 
 class ReactCard extends React.Component {
 
@@ -28,7 +25,6 @@ class ReactCard extends React.Component {
       currentPost: [],
       currentLike: false,
       liked: false,
-      //flag:false
     };
     this.getPost = this.getPost.bind(this);
     this.likePost = this.likePost.bind(this);
@@ -59,7 +55,6 @@ class ReactCard extends React.Component {
     var self = this;
     postService.getPost(this.props.post.pk)
     .then(function(response) {
-   //   console.log(response);
       self.setState({currentPost : response})
       self.getLike(localStorage.getItem('pk'))
       self.setState({flag: true})
@@ -74,10 +69,8 @@ class ReactCard extends React.Component {
     likeService.getLikebyUser(currentPost,this.props.post.pk)
     .then(function(response) {
       if(response.data.length !== 0){
-        console.log("yes like");
         self.setState({currentLike : true});
       }else {
-        console.log("no like");
         self.setState({currentLike : false});
       }
     })
@@ -118,7 +111,6 @@ class ReactCard extends React.Component {
         alert("there was an error")
     }
     else{
-        //alert("Post liked!")
     }
     window.location.reload();
     }).catch(()=>{
@@ -139,7 +131,6 @@ class ReactCard extends React.Component {
         alert("there was an error")
     }
     else{
-        //alert("Post unliked!")
     }
     window.location.reload();
     }).catch(()=>{

@@ -127,7 +127,6 @@ class Timeline extends React.Component {
   }
 
   chooseTheme(themeChoice) {
-    console.log(themeChoice);
     if (themeChoice === "default") {
       this.setThemeDefault();
     } else if (themeChoice === "dark") {
@@ -173,11 +172,6 @@ class Timeline extends React.Component {
       {this.state.redirect_text}
         <Row>
           <CreatePost />
-        </Row>
-        <Row>
-          {/* <Col lg="12" md="12" sm="12">
-            <SortableTagTable tags_all = {TAGS_ALL}/>
-          </Col> */}
         </Row>
         <Row>
           <PostRoster parent = "timeline" posts_all={this.state.posts} />

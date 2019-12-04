@@ -64,7 +64,6 @@ class PostCard extends React.Component {
   deletePost(post){
    postService.deletePost(post)
     .then(function(response){
-     // alert("Post deleted!")
       window.location.reload();
     })
     .catch(function(error) {
@@ -76,10 +75,8 @@ class PostCard extends React.Component {
 
 
   twistStatus(tag) {
-    //var self = this;
     const user = localStorage.getItem('pk');
     const author = this.props.post.author;
-    //console.log(user + " " + author + " " + tag);
     return twistService.getTwistExists(user,author,tag).then(function (result){
       return result.data.length !== 0 ? "success" : "danger";
     }).catch(function (error){
@@ -117,9 +114,6 @@ class PostCard extends React.Component {
         onClick={() => { this.deletePost(this.props.post) }}>
      </Button>
     }
-
-    //console.log(this.props.post);
-    console.log(this.props.post.tag1);
     if(this.props.tags_post){
       return (
         <>
@@ -160,7 +154,6 @@ class PostCard extends React.Component {
         <TagButton parent = "PostCard" user = {localStorage.getItem('pk')} author = {this.props.post.author} tag = {this.props.post.tag1}/>
         <TagButton parent = "PostCard" user = {localStorage.getItem('pk')} author = {this.props.post.author} tag = {this.props.post.tag2}/>
         <TagButton parent = "PostCard" user = {localStorage.getItem('pk')} author = {this.props.post.author} tag = {this.props.post.tag3}/>
-        {/*<p className="card-category">{this.props.post.tags}</p>*/}
       </CardHeader>
       <CardBody>
         <h3>{this.props.post.text_body}</h3>

@@ -47,7 +47,6 @@ export default class PostService{
       promises.push(this.addTags(posts[i]));
     }
     return Promise.all(promises).then(() => {
-      //console.log(posts);
       return posts;
     })
     }

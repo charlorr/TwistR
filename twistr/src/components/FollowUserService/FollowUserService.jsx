@@ -9,7 +9,6 @@ export default class FollowUserService{
         return axios.get(url).then(response => response.data);
     }  
     getFollowUsersByURL(link){
-        //var auth_config = {headers : {'Authorization' : "token " + localStorage.getItem('auth_token')}};
         const url = `${API_URL}${link}`;
         
         return axios.get(url).then(response => response.data);

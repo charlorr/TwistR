@@ -54,7 +54,6 @@ class CreateRetwist extends React.Component {
       ).then((result) =>{
         this.setState({currentPostPk : result.data.pk});
         this.handleRetwistCreate(result.data.pk);
-        console.log(this.props.post.pk);
       }).catch(()=>{
         alert("There was an error! Please re-check your post.")
       });

@@ -18,7 +18,6 @@ constructor(props) {
 componentDidMount() {
     var  self  =  this;
     userService.getUsers().then(function (result) {
-        //console.log(result);
         self.setState({ users:  result.data, nextPageURL:  result.nextlink})
     });
 }

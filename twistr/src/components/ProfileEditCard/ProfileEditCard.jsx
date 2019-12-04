@@ -32,7 +32,6 @@ class  ProfileEditCard  extends  Component {
     
     deleteProfile() {
       userService.deleteUser(this.props.currentUser.pk);
-      //alert('Account has been deleted!');
       this.logOut();
     }
 
@@ -89,9 +88,6 @@ class  ProfileEditCard  extends  Component {
     render() { 
         return (
           <div >
-            {/* <p>this is the {this.props.currentUser} </p> */}
-            {/* <p> this is the username: {this.props.currentUser.username}</p> */}
-            {/*this.redirect()*/}
           <Card className="card-user theme-card-bg">
               <NotificationAlert ref={this.notificationAlert} />
               <CardHeader>

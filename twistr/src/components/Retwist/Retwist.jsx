@@ -13,7 +13,6 @@ class Retwist extends React.Component {
 
 
   render() {
-    console.log(this.props.retwist);
     return (
       <>
       <Col lg="12" md="11" sm="10">

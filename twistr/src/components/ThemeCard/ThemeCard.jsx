@@ -53,14 +53,12 @@ class  ThemeCard  extends  Component {
       "bio": bio,
       "theme": theme,
     }).then(function (result){
-      console.log(result);
     });
 
     this.chooseTheme(theme);
   }
 
   chooseTheme(themeChoice) {
-    console.log(themeChoice);
     if (themeChoice === "default") {
       this.setThemeDefault();
     } else if (themeChoice === "dark") {
