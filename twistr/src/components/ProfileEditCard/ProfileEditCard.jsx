@@ -187,7 +187,7 @@ class  ProfileEditCard  extends  Component {
                   </Row>
                   <Row>
                     <div className="update ml-auto mr-auto ">
-                      <Button
+                      <Button Update
                         className="btn-round clicks"
                         color="secondary"
                         type="submit"
@@ -196,7 +196,7 @@ class  ProfileEditCard  extends  Component {
                       </Button>
                       </div>
                       <div className="update ml-auto mr-auto">
-                      <Button
+                      <Button Delete
                         className="btn-round clicks"
                         color="secondary"
                         onClick={this.deleteProfile}
@@ -205,7 +205,7 @@ class  ProfileEditCard  extends  Component {
                       </Button>
                       </div>
                       <div className="update ml-auto mr-auto">
-                      <Button
+                      <Button Log Out
                         className="btn-round clicks"
                         color="secondary"
                         onClick={this.logOut}

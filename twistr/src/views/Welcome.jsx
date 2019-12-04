@@ -56,7 +56,7 @@ class Welcome extends React.Component {
             <hr />
             <Row>
               <div className="update ml-auto mr-auto">
-                <Button 
+                <Button Log In
                   className="btn-round" 
                   size="lg" 
                   color="secondary"
@@ -66,7 +66,7 @@ class Welcome extends React.Component {
                 </Button>
               </div>
               <div className="update ml-auto mr-auto">
-                <Button 
+                <Button Register
                   className="btn-round" 
                   size="lg" 
                   color="secondary"

@@ -90,7 +90,7 @@ class LogIn extends React.Component {
               </Row>
               <Row>
                 <div className="update ml-auto mr-auto">
-                  <Button 
+                  <Button Log In
                     className="btn-round" 
                     size="lg" 
                     color="primary"
