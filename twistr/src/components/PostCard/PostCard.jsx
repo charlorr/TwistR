@@ -78,19 +78,20 @@ class PostCard extends React.Component {
   }
 
   deletePost(post){
-    console.log(post);
-    console.log("to delete");
+    
     //var currentPost = {...this.state.currentPost}
     //this.setState({currentPost});
    // postService.deletePost(currentPost)
    postService.deletePost(post)
     .then(function(response){
-      alert("Post deleted!")
+     // alert("Post deleted!")
       window.location.reload();
     })
     .catch(function(error) {
       console.log(error);
     })
+    
+
   }
 
   selectStatus(user, author){
@@ -159,7 +160,7 @@ class PostCard extends React.Component {
       return (
         <>
         <Card className="theme-card-bg">
-    
+        
             <CardTitle tag="h5">   {redirectA} </CardTitle>
           <CardHeader>
             <TagButton parent = "PostCard" user = {localStorage.getItem('pk')} author = {this.props.tags_author.author} tag = {this.props.post.tag1}/>

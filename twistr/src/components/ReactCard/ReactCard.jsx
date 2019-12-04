@@ -177,7 +177,7 @@ class ReactCard extends React.Component {
         size="sm"
         onClick={this.unlikePost}>
         <i className="fa-2x fas fa-heart outline-heart"></i>
-        <i className = "fa-2x far fa-heart text-primary filled-heart"></i> 
+        <i className = "fa-2x far fa-heart filled-heart"></i> 
         </Button>
     }
 
@@ -194,23 +194,21 @@ class ReactCard extends React.Component {
       <>
         <Col>
         <Row>
-          <Card>
-            { this.state.CreateRetwist ? <CreateRetwist post={this.props.post}/> : null}
-          </Card>
+          { this.state.CreateRetwist ? <CreateRetwist post={this.props.post}/> : null}
         </Row>
         <Row>
-        <Card className="theme-card-bg">
-          <CardBody>
-            <Row>
-              <Col lg="6" md="6" sm="6">
-                {likeButton}
-              </Col>
-              <Col lg="6" md="6" sm="6">
-                {retwistButton}
-              </Col>
-            </Row>
-          </CardBody>
-        </Card>
+          <Card className="theme-card-bg">
+            <CardBody>
+              <Row>
+                <Col lg="6" md="6" sm="6">
+                  {likeButton}
+                </Col>
+                <Col lg="6" md="6" sm="6">
+                  {retwistButton}
+                </Col>
+              </Row>
+            </CardBody>
+          </Card>
         </Row>
       </Col>
       </>
