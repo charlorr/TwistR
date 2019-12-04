@@ -164,7 +164,7 @@ class PostCard extends React.Component {
           <Col lg="8" md="8" sm="6">
           <div className="stats">
               <i className="fa fa-history"/> 
-              <a href = {this.props.post.author.toString() === localStorage.getItem('pk').toString() ? "../admin/dashboard" : "../admin/userline/"+this.props.post.author} >
+              <a href = {localStorage.getItem('pk') === null || this.props.post.author.toString() === localStorage.getItem('pk').toString() ? "../admin/dashboard" : "../admin/userline/"+this.props.post.author} >
                 <font color="#000000"><b>{this.state.username}</b></font>
               </a>
           {" "}posted at {this.getTimeFormat(this.props.post.posted_date)}
