@@ -50,6 +50,11 @@ class CreateRetwist extends React.Component {
           "author": localStorage.getItem('pk')
         }
       ).then((result) =>{
+<<<<<<< HEAD
+=======
+        //alert("Post created!");
+        //console.log(result.data.pk);
+>>>>>>> 4ecfacad5c85545945695b82c297eedbdbc0f0f9
         this.setState({currentPostPk : result.data.pk});
         this.handleRetwistCreate(result.data.pk);
       }).catch(()=>{
@@ -63,6 +68,10 @@ class CreateRetwist extends React.Component {
           "author": localStorage.getItem('pk')
         }
       ).then((result) =>{
+<<<<<<< HEAD
+=======
+        //alert("Post created!");
+>>>>>>> 4ecfacad5c85545945695b82c297eedbdbc0f0f9
         this.setState({currentPostPk : result.data.pk});
         this.handleRetwistCreate(result.data.pk);
       }).catch(()=>{
@@ -80,7 +89,7 @@ class CreateRetwist extends React.Component {
               "post": newPostPk
           }
       ).then((result) =>{
-          alert("retwist created!");
+          //alert("retwist created!");
       }).catch(()=>{
           alert("error submitting retwist")
       });

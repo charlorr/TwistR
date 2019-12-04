@@ -93,7 +93,7 @@ class ReactCard extends React.Component {
         "post": this.state.currentPost.pk
       }
     ).then((response) =>{
-      alert("like create!");
+      //alert("like create!");
     }).catch(function(error) {
       alert("There was an error with the like table!");
       console.log(error);
@@ -105,7 +105,7 @@ class ReactCard extends React.Component {
     console.log(this.props.post.pk);
     likeService.deleteLikebyUser(this.state.currentPost.author,this.props.post.pk)
     .then(function(response) {
-      alert("like deleted");
+      //alert("like deleted");
     })
     .catch(function(error) {
       alert("there was an error deleting");
@@ -123,7 +123,7 @@ class ReactCard extends React.Component {
         alert("there was an error")
     }
     else{
-        alert("Post liked!")
+        //alert("Post liked!")
     }
     }).catch(()=>{
         alert('There was an error liking the post!');
@@ -143,7 +143,7 @@ class ReactCard extends React.Component {
         alert("there was an error")
     }
     else{
-        alert("Post unliked!")
+        //alert("Post unliked!")
     }
     }).catch(()=>{
         alert('There was an error unliking the post!');
