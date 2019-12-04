@@ -1,5 +1,7 @@
 import React from "react";
 import  UserService  from  '../UserService/UserService.jsx';
+import NotificationAlert from "react-notification-alert";
+
 import {
   Button,
   Card,
@@ -25,6 +27,7 @@ class LogIn extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleLogIn = this.handleLogIn.bind(this);
   }
+  notificationAlert = React.createRef();
 
 	handleSubmit(event) {
 		event.preventDefault();
@@ -38,8 +41,22 @@ class LogIn extends React.Component {
           "password": document.getElementById("password").value,
       }
       ).then((result) => {
-        if (result.toString().includes("401")) {
-          alert('Username/Password not correct!');
+        if (result.toString().includes("401")){
+          var options = {};
+          options = {
+            place: "tr",
+            message: (
+              <div>
+                <div>
+                Username/Password not correct!
+                </div>
+              </div>
+            ),
+            type: "danger",
+            icon: "nc-icon nc-bell-55",
+            autoDismiss: 7
+          };
+          this.notificationAlert.current.notificationAlert(options);
         }
         else {
          
@@ -51,7 +68,9 @@ class LogIn extends React.Component {
     return (
       <>
       <div className="content" >
-        <Card className="card-user">
+      <NotificationAlert ref={this.notificationAlert} />
+      <Card className="card-user">
+        
           <CardHeader>
             <CardTitle tag="h5">Log In</CardTitle>
           </CardHeader>

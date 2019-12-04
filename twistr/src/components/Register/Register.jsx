@@ -2,6 +2,8 @@ import React from "react";
 //import PasswordForm from "components/PasswordForm/PasswordForm.jsx";
 import PasswordFormReqs from "components/PasswordFormReqs/PasswordFormReqs.jsx";
 import  UserService  from  '../UserService/UserService.jsx';
+import NotificationAlert from "react-notification-alert";
+
 import {
   Button,
   Card,
@@ -34,7 +36,7 @@ class Register extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-
+  notificationAlert = React.createRef();
   componentDidMount() {}
 
   handleSubmit(event) {
@@ -60,7 +62,22 @@ class Register extends React.Component {
       }).catch((error)=>{
         console.log(error);
         if (error.toString().includes("406")){
-          alert('Username/Email Not Unique!');
+        
+          var options = {};
+          options = {
+            place: "tr",
+            message: (
+              <div>
+                <div>
+                  Username or Email not Unique!
+                </div>
+              </div>
+            ),
+            type: "danger",
+            icon: "nc-icon nc-bell-55",
+            autoDismiss: 7
+          };
+          this.notificationAlert.current.notificationAlert(options);
         }
         else {
           alert('There was an error! Please re-check your form.');
@@ -122,6 +139,7 @@ class Register extends React.Component {
     return (
       <>
       <div className="content" >
+      <NotificationAlert ref={this.notificationAlert} />
         <Card className="card-user">
           <CardHeader>
             <CardTitle tag="h5">Register</CardTitle>
