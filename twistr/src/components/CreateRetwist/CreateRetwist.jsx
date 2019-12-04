@@ -54,7 +54,7 @@ class CreateRetwist extends React.Component {
       ).then((result) =>{
         this.setState({currentPostPk : result.data.pk});
         this.handleRetwistCreate(result.data.pk);
-        this.handleTagCreate(this.props.post.pk);
+        console.log(this.props.post.pk);
       }).catch(()=>{
         alert("There was an error! Please re-check your post.")
       });
@@ -68,7 +68,6 @@ class CreateRetwist extends React.Component {
       ).then((result) =>{
         this.setState({currentPostPk : result.data.pk});
         this.handleRetwistCreate(result.data.pk);
-        this.handleTagCreate(this.props.post.pk);
       }).catch(()=>{
         alert("There was an error! Please re-check your post.")
       });
@@ -100,6 +99,7 @@ class CreateRetwist extends React.Component {
         post: newPostPk
       })
       .then(result => {
+        this.handleTagCreate(this.props.post.pk);
         //alert("retwist created!");
       })
       .catch(() => {
