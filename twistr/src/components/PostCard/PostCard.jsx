@@ -173,7 +173,7 @@ class PostCard extends React.Component {
       <CardFooter>
         <hr />
         <Row>
-          <Col lg="8" md="8">
+          <Col lg="8" md="8" sm="6">
           <div className="stats">
               <i className="fa fa-history"/> 
               <a href = {"../admin/userline/"+this.props.post.author} >
@@ -182,7 +182,7 @@ class PostCard extends React.Component {
           {" "}posted at {this.getTimeFormat(this.props.post.posted_date)}
           </div>
           </Col>
-          <Col lg="3" md="3">
+          <Col lg="3" md="3" sm="3">
           <div className="ml-auto">
               <i className="likes float-right"/> Likes: {this.props.post.like_count}
           </div>

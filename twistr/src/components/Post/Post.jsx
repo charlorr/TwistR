@@ -18,7 +18,6 @@ const retwistService = new RetwistService();
 const postService = new PostService();
 
 class Post extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -81,7 +80,7 @@ class Post extends React.Component {
     if(this.props.dashboard){
       dashboard = true;
     }
-    if(!this.props.explore) {
+    if(this.props.show_react_card) {
       if(this.state.hasRetwist === true){
         if(this.state.currentRetwist.text_body){
           console.log(this.state.currentPost);
@@ -149,7 +148,7 @@ class Post extends React.Component {
         <Col lg="12" md="11" sm="10">
           <Row>
             <Col lg="10" md="9" sm="9">
-              <PostCard parent = {this.props.parent} post={this.props.post} />
+              <PostCard parent = {this.props.parent} post={this.props.post} dashboard={dashboard}/>
             </Col>
           </Row>
         </Col>

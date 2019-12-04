@@ -13,8 +13,9 @@ import {
 
 const postService = new PostService();
 const userService = new UserService();
-
 const twistService = new TwistService();
+let root = document.documentElement;
+
 class Timeline extends React.Component {
   constructor(props) {
     super(props);
@@ -28,6 +29,12 @@ class Timeline extends React.Component {
 
   componentDidMount(){
     this.getTimelinePosts();
+
+    // This is for themes
+    var self = this;
+    userService.getUser(localStorage.getItem("pk")).then(function (result){
+      self.chooseTheme(result.theme);
+    })
   }
 
   getTimelinePosts() {
@@ -117,6 +124,46 @@ class Timeline extends React.Component {
     }).catch(function (error){
       console.log(error);
     })
+  }
+
+  chooseTheme(themeChoice) {
+    console.log(themeChoice);
+    if (themeChoice === "default") {
+      this.setThemeDefault();
+    } else if (themeChoice === "dark") {
+      this.setThemeDark();
+    } else if (themeChoice === "light") {
+      this.setThemeLight();
+    } else {
+      this.setThemeDefault();
+    }
+  }
+
+  setThemeDefault() {
+    root.style.setProperty('--background-color', '#add6f9');
+    root.style.setProperty('--color', 'black');
+    root.style.setProperty('--label-color', '#9A9A9A');
+    root.style.setProperty('--follow-color', '#40806A');
+    root.style.setProperty('--button-color', '#66615B');
+    root.style.setProperty('--react-color', 'white');
+  }
+
+  setThemeDark() {
+    root.style.setProperty('--background-color', 'gray');
+    root.style.setProperty('--color', '#FFFFFF');
+    root.style.setProperty('--label-color', 'white');
+    root.style.setProperty('--follow-color', 'white');
+    root.style.setProperty('--button-color', 'black');
+    root.style.setProperty('--react-color', 'white');
+  }
+
+  setThemeLight() {
+    root.style.setProperty('--background-color', 'white');
+    root.style.setProperty('--color', 'black');
+    root.style.setProperty('--label-color', 'black');
+    root.style.setProperty('--follow-color', 'black');
+    root.style.setProperty('--button-color', '#add6f9');
+    root.style.setProperty('--react-color', 'black');
   }
 
   render() {

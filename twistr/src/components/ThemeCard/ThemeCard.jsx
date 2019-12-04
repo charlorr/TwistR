@@ -10,7 +10,6 @@ import {
   } from "reactstrap";
 
 const  userService  =  new  UserService();
-let themeChoice;
 let root = document.documentElement;
   
 class  ThemeCard  extends  Component {
@@ -20,26 +19,22 @@ class  ThemeCard  extends  Component {
     this.state  = {
       users: [],
       currentUser: [],
-      themeChoice: this.props.currentUser.theme,
     };
   }
 
   themeDefault() {
-    themeChoice = "default";
-    this.updateProfile(this.props.currentUser.pk);
+    this.updateProfile(this.props.currentUser.pk, "default");
   }
 
   themeDark() {
-    themeChoice = "dark";
-    this.updateProfile(this.props.currentUser.pk);
+    this.updateProfile(this.props.currentUser.pk, "dark");
   }
 
   themeLight() {
-    themeChoice = "light";
-    this.updateProfile(this.props.currentUser.pk);
+    this.updateProfile(this.props.currentUser.pk, "light");
   }
   
-  updateProfile(pk) {
+  updateProfile(pk,themeChoice) {
     var username = this.props.currentUser.username;
     var first_name = this.props.currentUser.first_name;
     var last_name = this.props.currentUser.last_name;
@@ -57,13 +52,15 @@ class  ThemeCard  extends  Component {
       "phone_number": phone_number,
       "bio": bio,
       "theme": theme,
+    }).then(function (result){
+      console.log(result);
     });
 
-    this.chooseTheme();
-    //console.log(this.props.currentUser);
+    this.chooseTheme(theme);
   }
 
-  chooseTheme() {
+  chooseTheme(themeChoice) {
+    console.log(themeChoice);
     if (themeChoice === "default") {
       this.setThemeDefault();
     } else if (themeChoice === "dark") {
@@ -71,7 +68,7 @@ class  ThemeCard  extends  Component {
     } else if (themeChoice === "light") {
       this.setThemeLight();
     } else {
-      this.themeDefault();
+      this.setThemeDefault();
     }
   }
 
@@ -79,8 +76,9 @@ class  ThemeCard  extends  Component {
     root.style.setProperty('--background-color', '#add6f9');
     root.style.setProperty('--color', 'black');
     root.style.setProperty('--label-color', '#9A9A9A');
-    root.style.setProperty('--follow-color', '#40806A');
+    root.style.setProperty('--follow-color', 'black');
     root.style.setProperty('--button-color', '#66615B');
+    root.style.setProperty('--react-color', 'white');
   }
 
   setThemeDark() {
@@ -89,6 +87,7 @@ class  ThemeCard  extends  Component {
     root.style.setProperty('--label-color', 'white');
     root.style.setProperty('--follow-color', 'white');
     root.style.setProperty('--button-color', 'black');
+    root.style.setProperty('--react-color', 'white');
   }
 
   setThemeLight() {
@@ -97,10 +96,14 @@ class  ThemeCard  extends  Component {
     root.style.setProperty('--label-color', 'black');
     root.style.setProperty('--follow-color', 'black');
     root.style.setProperty('--button-color', '#add6f9');
+    root.style.setProperty('--react-color', 'black');
   }
 
-  componentWillMount() {
-    this.chooseTheme();
+  componentDidMount() {
+    var self = this;
+    userService.getUser(localStorage.getItem("pk")).then(function (result){
+      self.chooseTheme(result.theme);
+    })
   }
 
   render() { 
