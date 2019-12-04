@@ -72,10 +72,7 @@ class CreatePost extends React.Component {
         "author": localStorage.getItem('pk')
       }
     ).then((result) =>{
-      //alert("Post created!");
-     // console.log(result.data.pk);
       this.setState({currentPostPk : result.data.pk});
-      //console.log(this.state.currentPostPk);
       this.handleTagCreate();
     }).catch(()=>{
  // alert("There was an error! Please re-check your form.")

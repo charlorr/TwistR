@@ -9,6 +9,8 @@ import PostService from "components/PostService/PostService.jsx";
 
 import {
   Col,
+  Card,
+  CardBody,
   Row
 } from "reactstrap";
 
@@ -16,7 +18,6 @@ const retwistService = new RetwistService();
 const postService = new PostService();
 
 class Post extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -31,17 +32,16 @@ class Post extends React.Component {
 
   componentDidMount(){
     this.getRetwist(this.props.post);
+    //this.getRetwistPost();
+    //this.getOGPost();
   }
 
   getRetwist(post){
     var self = this;
-   // console.log(post);
     retwistService.getRetwistbyPost(post.pk)
     .then(function(response) {
-      //console.log(response);
-      //console.log(response.post);
-      self.setState({postPk: response.original_post})
-      self.setState({retwistPk: response.post})
+      self.getRetwistPost(response.post);
+      self.getOGPost(response.original_post);
       self.setState({hasRetwist: true});
     })
     .catch(function(error){
@@ -49,9 +49,9 @@ class Post extends React.Component {
     })
   }
 
-  getOGPost(){
+  getOGPost(postPk){
     var self = this;
-    postService.getPost(this.state.postPk)
+    postService.getPost(postPk)
     .then(function(response) {
       self.setState({currentPost : response})
       self.setState({flag: true})
@@ -61,9 +61,10 @@ class Post extends React.Component {
     });
   }
 
-  getRetwistPost(){
+  getRetwistPost(postPk){
+   // console.log(postPk);
     var self = this;
-    postService.getPost(this.state.retwistPk)
+    postService.getPost(postPk)
     .then(function(response) {
       self.setState({currentRetwist : response})
       self.setState({flag: true})
@@ -74,37 +75,23 @@ class Post extends React.Component {
   }
 
   render() {
-    console.log(this.state.hasRetwist);
-    console.log(this.state.currentPost);
+    //console.log(this.state.hasRetwist);
     var dashboard = false;
     if(this.props.dashboard){
       dashboard = true;
     }
-    if(!this.props.explore) {
-      if(this.state.hasRetwist){
-        console.log(this.state.currentRetwist);
+    if(this.props.show_react_card) {
+      if(this.state.hasRetwist === true){
+        if(this.state.currentRetwist.text_body){
+          if(this.state.currentPost.text_body){
+
+          console.log(this.state.currentPost);
+
         return (
           <>
           <Col lg="12" md="11" sm="10">
             <Row>
-              <Col lg="10" md="9" sm="9">
-                Retwist
-                <RetwistCard parent = {this.props.parent} post={this.state.currentRetwist} />
-                Original Post
-              </Col>
-            </Row>
-          </Col>
-          </>
-        );
-      }
-      //console.log("not on explore");
-      return (
-        <>
-        <Col lg="12" md="11" sm="10">
-          <Row>
             <Col lg="2" md="2" sm="1">
-              {/*<UserCard picture={this.props.post.picture/>
-              <ReactCard />*/}
               <hr />
               <hr />
               <hr />
@@ -115,7 +102,40 @@ class Post extends React.Component {
               <hr />
               <hr />
             </Col>
-            <Col lg="10" md="9" sm="9">
+              <Col lg="10" md="9" sm="9">
+                <Card className="theme-card-bg">
+                <CardBody>
+                Retwist
+                <PostCard parent = {this.props.parent} post={this.state.currentRetwist} tags_author={this.state.currentPost} dashboard={dashboard}/>
+                Original Post  
+                <RetwistCard parent = {this.props.parent} post={this.state.currentPost} />
+                </CardBody>
+                </Card>
+              </Col>   
+            </Row>
+          </Col>
+          </>
+        );
+      }
+    }
+    }
+      //console.log("not on explore");
+      return (
+        <>
+        <Col lg="12" md="11" sm="11" xs="12">
+          <Row>
+            <Col lg="2" md="2" sm="3" xs="3">
+              <hr />
+              <hr />
+              <hr />
+              <hr />
+              <ReactCard parent = {this.props.parent} post={this.props.post} />
+              <hr />
+              <hr />
+              <hr />
+              <hr />
+            </Col>
+            <Col lg="10" md="9" sm="8" xs="9">
               <PostCard parent = {this.props.parent} post={this.props.post} dashboard={dashboard}/>
             </Col>
           </Row>
@@ -130,7 +150,7 @@ class Post extends React.Component {
         <Col lg="12" md="11" sm="10">
           <Row>
             <Col lg="10" md="9" sm="9">
-              <PostCard parent = {this.props.parent} post={this.props.post} />
+              <PostCard parent = {this.props.parent} post={this.props.post} dashboard={dashboard}/>
             </Col>
           </Row>
         </Col>

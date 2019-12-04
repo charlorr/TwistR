@@ -92,6 +92,7 @@ setThemeDefault() {
   root.style.setProperty('--label-color', '#9A9A9A');
   root.style.setProperty('--follow-color', '#40806A');
   root.style.setProperty('--button-color', '#66615B');
+  root.style.setProperty('--react-color', 'white');
 }
 
 setThemeDark() {
@@ -100,6 +101,7 @@ setThemeDark() {
   root.style.setProperty('--label-color', 'white');
   root.style.setProperty('--follow-color', 'white');
   root.style.setProperty('--button-color', 'black');
+  root.style.setProperty('--react-color', 'white');
 }
 
 setThemeLight() {
