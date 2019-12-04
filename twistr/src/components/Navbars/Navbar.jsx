@@ -129,6 +129,7 @@ class Header extends React.Component {
           <div className="navbar-wrapper">
             <div className="navbar-toggle">
               <button
+                aria-label="NavBar"
                 type="button"
                 ref={this.sidebarToggle}
                 className="navbar-toggler"

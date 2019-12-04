@@ -111,6 +111,7 @@ class TagButton extends React.Component {
         if (this.props.tag !== undefined) {
             return(
               <Button
+                aria-label="Click Tag"
                 className="btn-round"
                 color={this.state.status}
                 type="button"

@@ -54,7 +54,6 @@ class CreateRetwist extends React.Component {
       ).then((result) =>{
         this.setState({currentPostPk : result.data.pk});
         this.handleRetwistCreate(result.data.pk);
-        console.log(this.props.post.pk);
       }).catch(()=>{
         alert("There was an error! Please re-check your post.")
       });
@@ -77,19 +76,19 @@ class CreateRetwist extends React.Component {
   handleTagCreate(pk){
     var self = this;
     tagService.getTagsByPost(pk).then(function(response){
+      var promises = [];
       for(var i=0; i <response.data.length; i++){
-        tagService.createTag(
+        promises.push(  tagService.createTag(
           {
             "post": self.state.currentPostPk,
             "name": response.data[i].name.toUpperCase()
           }
-        ).then((result) =>{
-        }).catch(()=>{
-          alert("There was an error! Please re-check your tags.")
-        });
+        ))
     }
+    Promise.all(promises).then(() =>{
+      window.location.reload();
     })
-    window.location.reload()
+  })
 }
 
   handleRetwistCreate(newPostPk) {
@@ -100,7 +99,6 @@ class CreateRetwist extends React.Component {
       })
       .then(result => {
         this.handleTagCreate(this.props.post.pk);
-        //alert("retwist created!");
       })
       .catch(() => {
         var options = {};
@@ -170,6 +168,7 @@ class CreateRetwist extends React.Component {
                     <Row>
                       <div className="update ml-auto mr-auto">
                         <Button
+                          aria-label="Create Retwist"
                           className="btn-round clicks"
                           color="primary"
                           type="submit"

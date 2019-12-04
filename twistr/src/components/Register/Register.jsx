@@ -1,5 +1,4 @@
 import React from "react";
-//import PasswordForm from "components/PasswordForm/PasswordForm.jsx";
 import PasswordFormReqs from "components/PasswordFormReqs/PasswordFormReqs.jsx";
 import  UserService  from  '../UserService/UserService.jsx';
 import NotificationAlert from "react-notification-alert";
@@ -203,7 +202,8 @@ class Register extends React.Component {
               </Row>
               <Row>
                 <div className="update ml-auto mr-auto">
-                  <Button 
+                  <Button
+                    aria-label="Register"
                     className="btn-round" 
                     size="lg" 
                     color="primary"

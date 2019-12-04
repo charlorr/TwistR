@@ -25,9 +25,6 @@ class TagUserlineCard extends React.Component {
       unfollowed_tags_all :[], //all the tags for the author who's userline you're viewing that you don't follow
       unfollowed_twists: []
     };
-    // this.getTags.bind(this);
-    // this.getFollowedTags.bind(this);
-    // this.getUnfollowedTags = this.getUnfollowedTags.bind(this);
     this.handleFollowAllTags = this.handleFollowAllTags.bind(this);
     this.handleUnfollowAllTags = this.handleUnfollowAllTags.bind(this);
     this.getStatus = this.getStatus.bind(this);
@@ -46,7 +43,6 @@ class TagUserlineCard extends React.Component {
    
     twistService.getTwistbyUserAuthor(localStorage.getItem('pk'), this.props.currentUserline.pk).then(function(response) {
       response.data.forEach(function(twist){
-        //console.log(twist);
         if(twist.followed){
           followed_twists_all.push(twist);
         }
@@ -68,7 +64,6 @@ class TagUserlineCard extends React.Component {
     twistService.getTagByAuthor(this.props.currentUserline.pk)
     .then(function(response) {
       self.setState({tags_all : response.data});
-      //console.log(self.state.tags_all);
       self.getUnfollowedTags();
     })
     .catch(function(error) {
@@ -80,14 +75,12 @@ class TagUserlineCard extends React.Component {
   getUnfollowedTags(){
     var self =this;
     var unfollowed_tags_all = [];
-    //console.log(self.state.followed_twists_all);
 
     self.state.tags_all.forEach(function (tag){
       if(self.state.followed_twists_all.findIndex(ftag => ftag.tag === tag.name)<0){
           unfollowed_tags_all.push(tag);
       }
     });
-   //console.log(unfollowed_tags_all);
    
       self.setState({unfollowed_tags_all: unfollowed_tags_all});
       unfollowed_tags_all.forEach(function (tag){
@@ -155,13 +148,11 @@ class TagUserlineCard extends React.Component {
             <Row>
               <Col lg="6" md="4" sm="4">
                 <CardTitle tag="h5">{this.props.currentUserline.first_name}'s Tags
-                {/* <Button className = "btn-round btn-icon" color="danger" size="sm" onClick= {()=>this.hideTags()}>
-                <i className = "fas fa-times"> </i>
-                </Button> */}
                 </CardTitle>
               </Col>
               <Col lg="3" md="2" sm="2">
-                <Button 
+                <Button
+                  aria-label="Follow All"
                   className="btn-round clicks"
                   color = "success"
                   size = "md"
@@ -171,6 +162,7 @@ class TagUserlineCard extends React.Component {
               </Col>
               <Col lg="3" md="2" sm="2">
                 <Button
+                  aria-label="Unfollow All"
                   className="btn-round clicks"
                   color = "danger"
                   size = "md"
@@ -188,6 +180,7 @@ class TagUserlineCard extends React.Component {
           <CardFooter>
             <hr/>
             <Button
+            aria-label="Save"
             className = "btn-round"
               onClick = {() => this.saveReload()}
             > Save

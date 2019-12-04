@@ -1,11 +1,8 @@
 import React from "react";
 import  UserService  from  'components/UserService/UserService.jsx';
-//import FollowUserService from "../components/FollowUserService/FollowUserService.jsx";
 import PostService from "components/PostService/PostService.jsx";
-//import UserlineFollowCard from "../components/UserlineFollowCard/UserlineFollowCard.jsx";
 import BioCard from "components/BioCard/BioCard.jsx";
 import PostRoster from "components/PostRoster/PostRoster.jsx";
-//import {SortableTagTable} from "components/NewTagRoster/NewTagRoster.jsx";
 import { Redirect } from 'react-router-dom';
 import TagUserlineCard from "components/TagUserlineCard/TagUserlineCard.jsx";
 import {
@@ -99,7 +96,6 @@ class Userline extends React.Component {
   }
 
   chooseTheme(themeChoice) {
-    console.log(themeChoice);
     if (themeChoice === "default") {
       this.setThemeDefault();
     } else if (themeChoice === "dark") {
@@ -154,7 +150,8 @@ class Userline extends React.Component {
                   <Card className="theme-card-bg">
                     <div className="ml-auto mr-auto">
                       <Col lg="12" md="12" sm="12">
-                        <Button 
+                        <Button
+                          aria-label="Show Tags"
                           className="btn-round"
                           color="secondary"
                           onClick={() => this.showTags()}
@@ -188,7 +185,8 @@ class Userline extends React.Component {
                   <Card className="theme-card-bg">
                     <div className="ml-auto mr-auto">
                       <Col lg="12" md="12" sm="12">
-                        <Button 
+                        <Button
+                          aria-label="Show Tags"
                           className="btn-round"
                           color="secondary"
                           onClick={() =>this.showTags()}

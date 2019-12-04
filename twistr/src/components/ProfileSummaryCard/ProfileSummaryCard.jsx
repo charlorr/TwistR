@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 
-// reactstrap components
-
 import {
   Card,
   CardBody,
@@ -43,7 +41,6 @@ class  ProfileSummaryCard  extends  Component {
                 </div>
                 <p className="description text-center"
                   id = "displayBio">
-                  {/*this.props.currentUser.bio*/}
                 </p>
               </CardBody>
               <CardFooter>

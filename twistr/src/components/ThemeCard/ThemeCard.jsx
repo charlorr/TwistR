@@ -53,14 +53,12 @@ class  ThemeCard  extends  Component {
       "bio": bio,
       "theme": theme,
     }).then(function (result){
-      console.log(result);
     });
 
     this.chooseTheme(theme);
   }
 
   chooseTheme(themeChoice) {
-    console.log(themeChoice);
     if (themeChoice === "default") {
       this.setThemeDefault();
     } else if (themeChoice === "dark") {
@@ -115,7 +113,8 @@ class  ThemeCard  extends  Component {
           </CardHeader>
           <Row>
             <div className="update ml-auto mr-auto">
-              <Button 
+              <Button
+                aria-label="Default"
                 className="btn-round clicks" 
                 size="md" 
                 color="secondary"
@@ -124,7 +123,8 @@ class  ThemeCard  extends  Component {
               </Button>
             </div>
             <div className="update ml-auto mr-auto">
-              <Button 
+              <Button
+                aria-label="Dark"
                 className="btn-round clicks" 
                 size="md" 
                 color="secondary"
@@ -133,7 +133,8 @@ class  ThemeCard  extends  Component {
               </Button>
             </div>
             <div className="update ml-auto mr-auto">
-              <Button 
+              <Button
+                aria-label="Light"
                 className="btn-round clicks" 
                 size="md" 
                 color="secondary"

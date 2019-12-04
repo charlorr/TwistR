@@ -1,5 +1,4 @@
 import React from "react";
-//import UserService  from  'components/UserService/UserService.jsx';
 
 import {
     Row,
@@ -7,7 +6,6 @@ import {
     Button
 } from "reactstrap";
 
-//const userService = new UserService();
 class ProfileFollowerRoster extends React.Component {
   
   constructor(props) {
@@ -21,15 +19,14 @@ class ProfileFollowerRoster extends React.Component {
 
   
   render() {
-      //console.log(this.props.users);
     var self = this;
     var cards = [];
-    self.props.users.forEach(function(user) { //currently displaying all tags regardless of follow or not
+    self.props.users.forEach(function(user) {
         cards.push(
             
           <Row>
             <Col md="3" xs="3">
-              <Button className = "btn-round btn-icon" color = "success" size = "sm">
+              <Button aria-label="Profile Follower" className = "btn-round btn-icon" color = "success" size = "sm">
               <i className = "fa fa-check"></i>
               </Button>
            

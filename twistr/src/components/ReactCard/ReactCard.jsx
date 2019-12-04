@@ -3,7 +3,6 @@ import CreateRetwist from "components/CreateRetwist/CreateRetwist.jsx";
 import RetwistService from "components/RetwistService/RetwistService.jsx";
 import PostService from "components/PostService/PostService.jsx";
 import LikeService from "components/LikeService/LikeService.jsx";
-//import NotificationAlert from "react-notification-alert";
 
 import {
   Button,
@@ -12,11 +11,9 @@ import {
   Col,
   Row
 } from "reactstrap";
-import { thisTypeAnnotation } from '@babel/types';
 
 const postService = new PostService();
 const likeService = new LikeService();
-const retwistService = new RetwistService();
 
 class ReactCard extends React.Component {
 
@@ -28,7 +25,6 @@ class ReactCard extends React.Component {
       currentPost: [],
       currentLike: false,
       liked: false,
-      //flag:false
     };
     this.getPost = this.getPost.bind(this);
     this.likePost = this.likePost.bind(this);
@@ -52,17 +48,17 @@ class ReactCard extends React.Component {
 
   componentDidMount() {
     this.getPost();
-    this.getLike();
+    //this.getLike();
   }
   
   getPost(){
     var self = this;
     postService.getPost(this.props.post.pk)
     .then(function(response) {
-   //   console.log(response);
       self.setState({currentPost : response})
       self.getLike(localStorage.getItem('pk'))
       self.setState({flag: true})
+      //self.getLike(response.data);
     })
     .catch(function(error) {
       console.log(error);
@@ -71,22 +67,23 @@ class ReactCard extends React.Component {
 
   getLike(currentPost){
     var self = this;
-    likeService.getLikebyUser(currentPost,this.props.post.pk)
+    var postPK = this.props.post.pk;
+    likeService.getLikebyUser(currentPost,postPK)
     .then(function(response) {
       if(response.data.length !== 0){
-        console.log("yes like");
         self.setState({currentLike : true});
       }else {
-        console.log("no like");
         self.setState({currentLike : false});
       }
-    })
+    }).catch(function(error){
+      console.log(error);
+    });
   }
 
   createLike(){
     likeService.createLike(
       {
-        "user": this.state.currentPost.author,
+        "user": localStorage.getItem('pk'),
         "post": this.state.currentPost.pk
       }
     ).then((response) =>{
@@ -94,7 +91,6 @@ class ReactCard extends React.Component {
     }).catch(function(error) {
       console.log(error);
     })
-
   }
 
   deleteLike(like){
@@ -118,7 +114,6 @@ class ReactCard extends React.Component {
         alert("there was an error")
     }
     else{
-        //alert("Post liked!")
     }
     window.location.reload();
     }).catch(()=>{
@@ -139,7 +134,6 @@ class ReactCard extends React.Component {
         alert("there was an error")
     }
     else{
-        //alert("Post unliked!")
     }
     window.location.reload();
     }).catch(()=>{
@@ -159,6 +153,7 @@ class ReactCard extends React.Component {
     
     if(this.state.currentLike === false) { likeButton = 
         <Button 
+        aria-label="Like Post"
         className="icon-big text-center reactedHeart icon-warning react-button"
         size="sm"
         onClick={this.likePost}>
@@ -168,6 +163,7 @@ class ReactCard extends React.Component {
     }
     else { likeButton = 
         <Button 
+        aria-label="Unlike Post"
         className="icon-big text-center reactedHeart icon-warning react-button"
         size="sm"
         onClick={this.unlikePost}>
@@ -178,6 +174,7 @@ class ReactCard extends React.Component {
 
     retwistButton =
     <Button 
+    aria-label="Retwist Button"
     className="icon-big text-center reactedShare icon-warning react-button"
     size="sm"
     onClick={this.createRetwist}>

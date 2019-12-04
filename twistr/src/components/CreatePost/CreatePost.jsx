@@ -1,5 +1,4 @@
 import React from 'react';
-//import UserCard from "components/UserCard/UserCard.jsx";
 import PostService from "components/PostService/PostService.jsx";
 import NotificationAlert from "react-notification-alert";
 import TagService from "components/TagService/TagService.jsx";
@@ -75,7 +74,6 @@ class CreatePost extends React.Component {
       this.setState({currentPostPk : result.data.pk});
       this.handleTagCreate();
     }).catch(()=>{
- // alert("There was an error! Please re-check your form.")
     });
   }
 
@@ -87,9 +85,7 @@ class CreatePost extends React.Component {
               "name": this.state.tags[i].toUpperCase()
             }
           ).then((result) =>{
-            //alert("Tag created!");
           }).catch(()=>{
-            //alert("There was an error! Please re-check your tags.")
           });
       }
     window.location.reload()
@@ -178,7 +174,6 @@ class CreatePost extends React.Component {
         this.notificationAlert.current.notificationAlert(options);
     }
     else{
-      //console.log(this.state.tags_correct);
       for(var i=0; i <this.state.tags.length; i++){
         if(this.state.tags[i].length > 20){
           alert("too many characters in a tag!");
@@ -191,12 +186,10 @@ class CreatePost extends React.Component {
   handleSubmit = async function (event){
     event.preventDefault();
     await this.checkTagValidity();
-    //console.log(this.state.tags_correct);
     if(this.state.tags_correct === true){
       this.handleCreate();
     }else {
       this.setTrue();
-      //alert("Please fix your tags and then resubmit!");
     }
     event.preventDefault();
   }
@@ -213,12 +206,10 @@ class CreatePost extends React.Component {
   handleTagChange = async function(event) {
     await this.updateTagValue(event.target.value);
     await this.setState({tags : this.state.tagsInputValue.split(",")});
-    //console.log(this.state.tags);
   }
  
   render() {
     const {tagsInputValue} = this.state;
-   // console.log(this.state.tagsInputValue)
     return (
       <>
         {this.state.redirect_text}
@@ -265,6 +256,7 @@ class CreatePost extends React.Component {
                 <Row>
                   <div className="update ml-auto mr-auto">
                     <Button
+                    aria-label="Create Post"
                     className="btn-round clicks"
                     color="secondary"
                     type="submit"

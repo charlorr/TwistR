@@ -61,18 +61,10 @@ class UserlineTagRoster extends React.Component {
   render() {
     var self = this;
     var cards = [];
-    this.props.followed_twists_all.forEach(function(twist) { //currently displaying all tags regardless of follow or not
+    this.props.followed_twists_all.forEach(function(twist) {
         cards.push(
           <Col lg="3" md="3" sm="3">
             <TagButton parent = "TagRoster" user = {localStorage.getItem('pk')} author = {self.props.currentUserline.pk} tag = {twist.tag}/>
-            {/* <Button
-            className="btn-round" 
-            size="lg" 
-            color="success"
-            onClick = {() => self.handleUnfollowTag(twist)}
-            >
-                {twist.tag} 
-            </Button> */}
           </Col>
         );
     });
@@ -82,15 +74,6 @@ class UserlineTagRoster extends React.Component {
         <Col lg="3" md="3" sm="3">
           <TagButton parent = "TagRoster" user = {localStorage.getItem('pk')} author = {self.props.currentUserline.pk} tag = {tag.name}/>
             
-          {/* <Button
-          className="btn-round" 
-          size="lg" 
-          color="danger"
-          value = {tag}
-          onClick = {() => self.handleFollowTag(tag)}
-          >
-              {tag.name}
-          </Button> */}
         </Col>
       );
   });

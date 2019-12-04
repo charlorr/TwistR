@@ -48,7 +48,6 @@ class Tables extends React.Component {
   }
 
   chooseTheme(themeChoice) {
-    console.log(themeChoice);
     if (themeChoice === "default") {
       this.setThemeDefault();
     } else if (themeChoice === "dark") {

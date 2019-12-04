@@ -18,7 +18,6 @@ constructor(props) {
 componentDidMount() {
     var  self  =  this;
     userService.getUsers().then(function (result) {
-        //console.log(result);
         self.setState({ users:  result.data, nextPageURL:  result.nextlink})
     });
 }
@@ -69,13 +68,13 @@ render() {
                 <td>{c.bio}</td>
                 
                 <td>
-                <button  onClick={(e)=>  this.handleDelete(e,c.pk) }> Delete</button>
+                <button  aria-label="Delete" onClick={(e)=>  this.handleDelete(e,c.pk) }> Delete</button>
                 <a  href={"userline/" + c.pk}> Update</a>
                 </td>
             </tr>)}
             </tbody>
             </table>
-            <button  className="btn btn-primary"  onClick=  {  this.nextPage  }>Next</button>
+            <button  aria-label="Next" className="btn btn-primary"  onClick=  {  this.nextPage  }>Next</button>
         </div>
         );
   }

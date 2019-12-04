@@ -1,5 +1,4 @@
 import React from "react";
-//import Post from "components/Post/Post.jsx";
 import NewTag from "components/NewTag/NewTag.jsx"
 
 import {

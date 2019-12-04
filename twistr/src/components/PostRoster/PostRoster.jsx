@@ -31,24 +31,20 @@ class PostRoster extends React.Component {
   check_auth() {
     var that = this;
     if (localStorage.getItem('auth_token') === null) {
-      console.log("No token");
       that.setState({show_react_card: false})
     }
     else {
       userService.check_auth()
       .then(function(response){
-        console.log("token");
         that.setState({show_react_card: true});
       })
       .catch(function (error) {
-        console.log("BAD token");
         that.setState({show_react_card: false});
       })
     }
   }
 
   rerenderParentCallback() {
-    console.log("Updated?");
     this.forceUpdate();
   }
 
@@ -70,7 +66,6 @@ class PostRoster extends React.Component {
     }
     this.props.posts_all.forEach(function(post) {
         if (post !== undefined && post !== null) { 
-          //console.log(post);
 
           cards.push(<Post parent = {posts_all} post={post} show_react_card={show_react_card} dashboard={dashboard}/>);
         }

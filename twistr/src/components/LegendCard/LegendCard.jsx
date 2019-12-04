@@ -16,6 +16,7 @@ class LegendCard extends React.Component {
         <Card className="card-stats transparent-card text-center">
           <CardBody>
             <Button
+              aria-label="Gray Tags"
               className="btn-round"
               size="sm"
               color="secondary"
@@ -23,6 +24,7 @@ class LegendCard extends React.Component {
                 Gray tags are unseen tags
             </Button>
             <Button
+              aria-label="Red Tags"
               className="btn-round"
               size="sm"
               color="danger"
@@ -30,6 +32,7 @@ class LegendCard extends React.Component {
                 Red tags are unfollowed
             </Button>
             <Button
+              aria-label="Green Tags"
               className="btn-round"
               size="sm"
               color="success"
@@ -37,6 +40,7 @@ class LegendCard extends React.Component {
                 Green tags are followed
             </Button>
             <Button
+              aria-label="Yellow Tags"
               className="btn-round"
               size="sm"
               color="warning"

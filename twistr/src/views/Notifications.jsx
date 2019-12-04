@@ -1,4 +1,3 @@
-/*eslint-disable*/
 import React from "react";
 // react plugin for creating notifications over the dashboard
 import NotificationAlert from "react-notification-alert";
@@ -200,6 +199,7 @@ class Notifications extends React.Component {
                         <Row>
                           <Col md="4">
                             <Button
+                              aria-label="Top Left"
                               block
                               color="primary"
                               onClick={() => this.notify("tl")}
@@ -209,6 +209,7 @@ class Notifications extends React.Component {
                           </Col>
                           <Col md="4">
                             <Button
+                             aria-label="Top Center"
                               block
                               color="primary"
                               onClick={() => this.notify("tc")}
@@ -218,6 +219,7 @@ class Notifications extends React.Component {
                           </Col>
                           <Col md="4">
                             <Button
+                              aria-label="Top Right"
                               block
                               color="primary"
                               onClick={() => this.notify("tr")}
@@ -233,6 +235,7 @@ class Notifications extends React.Component {
                         <Row>
                           <Col md="4">
                             <Button
+                              aria-label="Bottom Left"
                               block
                               color="primary"
                               onClick={() => this.notify("bl")}
@@ -242,6 +245,7 @@ class Notifications extends React.Component {
                           </Col>
                           <Col md="4">
                             <Button
+                             aria-label="Bottom Center"
                               block
                               color="primary"
                               onClick={() => this.notify("bc")}
@@ -251,6 +255,7 @@ class Notifications extends React.Component {
                           </Col>
                           <Col md="4">
                             <Button
+                              aria-label="Bottom Right"
                               block
                               color="primary"
                               onClick={() => this.notify("br")}

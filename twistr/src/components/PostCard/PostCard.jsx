@@ -51,6 +51,7 @@ class PostCard extends React.Component {
     if (tag !== undefined) {
       return(
         <Button
+          aria-label="Tag"
           className="btn-round"
           color="danger"
           >
@@ -64,7 +65,6 @@ class PostCard extends React.Component {
   deletePost(post){
    postService.deletePost(post)
     .then(function(response){
-     // alert("Post deleted!")
       window.location.reload();
     })
     .catch(function(error) {
@@ -76,10 +76,8 @@ class PostCard extends React.Component {
 
 
   twistStatus(tag) {
-    //var self = this;
     const user = localStorage.getItem('pk');
     const author = this.props.post.author;
-    //console.log(user + " " + author + " " + tag);
     return twistService.getTwistExists(user,author,tag).then(function (result){
       return result.data.length !== 0 ? "success" : "danger";
     }).catch(function (error){
@@ -111,15 +109,13 @@ class PostCard extends React.Component {
     if(this.props.dashboard === true){
       but =
       <Button
+        aria-label="Delete Post"
         className="fas fa-trash" 
         size="sm"
         type="submit" 
         onClick={() => { this.deletePost(this.props.post) }}>
      </Button>
     }
-
-    //console.log(this.props.post);
-    console.log(this.props.post.tag1);
     if(this.props.tags_post){
       return (
         <>
@@ -160,7 +156,6 @@ class PostCard extends React.Component {
         <TagButton parent = "PostCard" user = {localStorage.getItem('pk')} author = {this.props.post.author} tag = {this.props.post.tag1}/>
         <TagButton parent = "PostCard" user = {localStorage.getItem('pk')} author = {this.props.post.author} tag = {this.props.post.tag2}/>
         <TagButton parent = "PostCard" user = {localStorage.getItem('pk')} author = {this.props.post.author} tag = {this.props.post.tag3}/>
-        {/*<p className="card-category">{this.props.post.tags}</p>*/}
       </CardHeader>
       <CardBody>
         <h3>{this.props.post.text_body}</h3>
@@ -171,7 +166,7 @@ class PostCard extends React.Component {
           <Col lg="8" md="8" sm="6">
           <div className="stats">
               <i className="fa fa-history"/> 
-              <a href = {"../admin/userline/"+this.props.post.author} >
+              <a href = {localStorage.getItem('pk') === null || this.props.post.author.toString() === localStorage.getItem('pk').toString() ? "../admin/dashboard" : "../admin/userline/"+this.props.post.author} >
                 <font color="#000000"><b>{this.state.username}</b></font>
               </a>
           {" "}posted at {this.getTimeFormat(this.props.post.posted_date)}

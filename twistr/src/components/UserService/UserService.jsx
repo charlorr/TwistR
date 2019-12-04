@@ -1,8 +1,5 @@
 import axios from 'axios';
 import { resolve, reject } from 'q';
-// import { resolveModuleName } from 'typescript';
-// import { resolve } from 'path';
-// import { reject } from 'q';
 import { BrowserRouter} from 'react-router-dom';
 const API_URL = 'https://twistr-backend.herokuapp.com';
 
@@ -14,9 +11,7 @@ export default class UserService{
         return axios.get(url).then(response => response.data);
     }  
     getUsersByURL(link){
-        //var auth_config = {headers : {'Authorization' : "token " + localStorage.getItem('auth_token')}};
         const url = `${API_URL}${link}`;
-        console.log(url);
         return axios.get(url).then(response => response.data);
     }
     getUser(pk) {
@@ -58,12 +53,9 @@ export default class UserService{
         .then(function (response) {
             localStorage.setItem('pk', response.data.user_pk);
             localStorage.setItem('auth_token', response.data.token);
-            // console.log(localStorage.getItem('auth_token'));
-            // console.log(localStorage.getItem('pk'));
             return response.data;
         })
         .catch(function(error){
-            // console.log(error);
             return error;
         });
         
