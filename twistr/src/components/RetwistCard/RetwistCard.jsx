@@ -1,5 +1,9 @@
 import React from 'react';
+import TwistService from "components/TwistService/TwistService.jsx";
+import PostService from 'components/PostService/PostService';
 import UserService from 'components/UserService/UserService.jsx';
+import TagButton from "components/TagButton/TagButton.jsx";
+
 
 import {
   Button,
@@ -13,6 +17,8 @@ import {
 } from "reactstrap";
 
 const userService = new UserService();
+const twistService = new TwistService();
+const postService = new PostService();
 
 
 class RetwistCard extends React.Component {
@@ -22,7 +28,7 @@ class RetwistCard extends React.Component {
     this.state = {
       currentPost: [],
       flag:false,
-      username: null
+      username: null,
     };
   }
 
@@ -38,10 +44,8 @@ class RetwistCard extends React.Component {
       console.log(error);
     })
   }
-
  
   render() {
-    console.log(this.state.username);
 
     return (
     <>
@@ -66,7 +70,7 @@ class RetwistCard extends React.Component {
     </Card>
     </>
     );
+    }
   }
-}
 
 export default RetwistCard;

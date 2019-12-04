@@ -17,6 +17,11 @@ export default class TagService{
         const url = `${API_URL}/api/usertags/${pk}`;
         return axios.get(url, auth_config).then(response  => response.data);
     }
+    
+    getTagsByPost(postPk){
+        const url = `${API_URL}/api/posttags/${postPk}`;
+        return axios.get(url).then(response => response.data);
+    }
     getTag(pk) {
         var auth_config = {headers : {'Authorization' : "token " + localStorage.getItem('auth_token')}};
         const url = `${API_URL}/api/tags/${pk}`;
