@@ -68,12 +68,15 @@ class ReactCard extends React.Component {
   }
 
   getLike(){
+    console.log("like time???");
     var self = this;
     likeService.getLikebyUser(this.state.currentPost.author,this.props.post.pk)
     .then(function(response) {
       if(response.data.length !== 0){
+        console.log("checkone");
         self.setState({currentLike : true});
       }else {
+        console.log("checktwo");
         self.setState({currentLike : false});
       }
     })
@@ -106,7 +109,7 @@ class ReactCard extends React.Component {
     })
   }
 
-  checkLike(){
+  /*checkLike(){
     if(this.getLike()){
       this.setTrue();
     }
@@ -129,7 +132,7 @@ class ReactCard extends React.Component {
         liked: !prevState.liked
       }));
     }
-  }
+  }*/
 
   likePost(){
     var currentPost = {...this.state.currentPost}
@@ -148,8 +151,6 @@ class ReactCard extends React.Component {
     });
 
    this.createLike();
-
-    this.setTrue();
   }
 
   unlikePost(){
@@ -170,7 +171,6 @@ class ReactCard extends React.Component {
     });
 
     this.deleteLike(this.state.currentLike);
-    this.setFalse();
   }
 
   createRetwist(){
@@ -182,6 +182,7 @@ class ReactCard extends React.Component {
     let likeButton; //determines whether button is like or unlike
     //this.checkLike();
     let retwistButton;
+    //console.log(this.state.currentLike);
     
     if(this.state.currentLike === false) { likeButton = 
         <Button 
