@@ -167,7 +167,8 @@ class CreateRetwist extends React.Component {
                     </Row>
                     <Row>
                       <div className="update ml-auto mr-auto">
-                        <Button CreateRetwist
+                        <Button
+                          aria-label="Create Retwist"
                           className="btn-round clicks"
                           color="primary"
                           type="submit"

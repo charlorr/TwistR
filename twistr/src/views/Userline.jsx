@@ -150,7 +150,8 @@ class Userline extends React.Component {
                   <Card className="theme-card-bg">
                     <div className="ml-auto mr-auto">
                       <Col lg="12" md="12" sm="12">
-                        <Button Show Tags
+                        <Button
+                          aria-label="Show Tags"
                           className="btn-round"
                           color="secondary"
                           onClick={() => this.showTags()}
@@ -184,7 +185,8 @@ class Userline extends React.Component {
                   <Card className="theme-card-bg">
                     <div className="ml-auto mr-auto">
                       <Col lg="12" md="12" sm="12">
-                        <Button Show Tags
+                        <Button
+                          aria-label="Show Tags"
                           className="btn-round"
                           color="secondary"
                           onClick={() =>this.showTags()}

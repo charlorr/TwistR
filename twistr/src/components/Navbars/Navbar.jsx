@@ -128,7 +128,8 @@ class Header extends React.Component {
         <Container fluid>
           <div className="navbar-wrapper">
             <div className="navbar-toggle">
-              <button navbar
+              <button
+                aria-label="NavBar"
                 type="button"
                 ref={this.sidebarToggle}
                 className="navbar-toggler"

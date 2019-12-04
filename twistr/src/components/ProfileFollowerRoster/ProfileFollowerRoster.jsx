@@ -26,7 +26,7 @@ class ProfileFollowerRoster extends React.Component {
             
           <Row>
             <Col md="3" xs="3">
-              <Button Follow className = "btn-round btn-icon" color = "success" size = "sm">
+              <Button aria-label="Profile Follower" className = "btn-round btn-icon" color = "success" size = "sm">
               <i className = "fa fa-check"></i>
               </Button>
            

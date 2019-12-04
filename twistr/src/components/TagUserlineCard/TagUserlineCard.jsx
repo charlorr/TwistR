@@ -151,7 +151,8 @@ class TagUserlineCard extends React.Component {
                 </CardTitle>
               </Col>
               <Col lg="3" md="2" sm="2">
-                <Button Follow All
+                <Button
+                  aria-label="Follow All"
                   className="btn-round clicks"
                   color = "success"
                   size = "md"
@@ -160,7 +161,8 @@ class TagUserlineCard extends React.Component {
                 </Button>
               </Col>
               <Col lg="3" md="2" sm="2">
-                <Button Unfollow All
+                <Button
+                  aria-label="Unfollow All"
                   className="btn-round clicks"
                   color = "danger"
                   size = "md"
@@ -177,7 +179,8 @@ class TagUserlineCard extends React.Component {
           </CardBody>
           <CardFooter>
             <hr/>
-            <Button Save
+            <Button
+            aria-label="Save"
             className = "btn-round"
               onClick = {() => this.saveReload()}
             > Save
