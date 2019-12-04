@@ -194,23 +194,21 @@ class ReactCard extends React.Component {
       <>
         <Col>
         <Row>
-          <Card>
-            { this.state.CreateRetwist ? <CreateRetwist post={this.props.post}/> : null}
-          </Card>
+          { this.state.CreateRetwist ? <CreateRetwist post={this.props.post}/> : null}
         </Row>
         <Row>
-        <Card className="theme-card-bg">
-          <CardBody>
-            <Row>
-              <Col lg="6" md="6" sm="6">
-                {likeButton}
-              </Col>
-              <Col lg="6" md="6" sm="6">
-                {retwistButton}
-              </Col>
-            </Row>
-          </CardBody>
-        </Card>
+          <Card className="theme-card-bg">
+            <CardBody>
+              <Row>
+                <Col lg="6" md="6" sm="6">
+                  {likeButton}
+                </Col>
+                <Col lg="6" md="6" sm="6">
+                  {retwistButton}
+                </Col>
+              </Row>
+            </CardBody>
+          </Card>
         </Row>
       </Col>
       </>

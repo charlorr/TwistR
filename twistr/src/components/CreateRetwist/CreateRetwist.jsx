@@ -104,61 +104,56 @@ class CreateRetwist extends React.Component {
   render() {
     return (
       <>
-        <div className="content">
-          {this.redirect()}
-          <Col lg="12" md="12" sm="12">
-            <Row>
-              <Col lg="9" md="6" sm="6">
-                <Card className="card-stats">
-                  <NotificationAlert ref={this.notificationAlert} />
-                  <CardBody>
-                    <Form onSubmit={this.handleSubmit}>
-                      <Row>
-                        <Col lg="12" md="12" sm="12">
-                          <CardTitle tag="p">Write the retwist here.</CardTitle>
-                        </Col>
-                      </Row>
-                      <Row>
-                        <Col lg="12" md="12" sm="12">
-                          <FormGroup>
-                            <label>Be creative!</label>
-                            <Input
-                              name="text_body"
-                              id="text_body"
-                              placeholder="Retwist!"
-                              type="text"
-                              maxLength="280"
-                              onChange={this.handleWordCount}
-                              author={this.state.currentUser}
-                            />
-                          </FormGroup>
-                        </Col>
-                      </Row>
-                      <Row>
-                        <div className="update ml-auto mr-auto">
-                          <Button
-                            className="btn-round"
-                            color="primary"
-                            type="submit"
-                          >
-                            Create Retwist
-                          </Button>
-                        </div>
-                      </Row>
-                    </Form>
-                  </CardBody>
-                  <CardFooter>
-                    <hr />
-                    <div className="stats">
-                      <i className="fas fa-sync-alt" /> {this.state.chars_left}
-                      /280
-                    </div>
-                  </CardFooter>
-                </Card>
-              </Col>
-            </Row>
-          </Col>
-        </div>
+        {this.redirect()}
+        <Col lg="12" md="12" sm="12">
+          <Row>
+              <Card className="theme-card-bg">
+                <NotificationAlert ref={this.notificationAlert} />
+                <CardBody>
+                  <Form onSubmit={this.handleSubmit}>
+                    <Row>
+                      <Col lg="12" md="12" sm="12">
+                        <CardTitle tag="p">Write retwist here.</CardTitle>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col lg="12" md="12" sm="12">
+                        <FormGroup>
+                          <Input
+                            name="text_body"
+                            id="text_body"
+                            placeholder="Write here!"
+                            type="text"
+                            maxLength="280"
+                            onChange={this.handleWordCount}
+                            author={this.state.currentUser}
+                          />
+                        </FormGroup>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <div className="update ml-auto mr-auto">
+                        <Button
+                          className="btn-round clicks"
+                          color="primary"
+                          type="submit"
+                        >
+                          Create Retwist
+                        </Button>
+                      </div>
+                    </Row>
+                  </Form>
+                </CardBody>
+                <CardFooter>
+                  <hr />
+                  <div className="stats">
+                    <i className="fas fa-sync-alt" /> {this.state.chars_left}
+                    /280
+                  </div>
+                </CardFooter>
+              </Card>
+          </Row>
+        </Col>
       </>
     );
   }
