@@ -155,6 +155,51 @@ class PostCard extends React.Component {
      </Button>
     }
 
+    if(this.props.tags_author){
+      return (
+        <>
+        <Card className="theme-card-bg">
+    
+            <CardTitle tag="h5">   {redirectA} </CardTitle>
+          <CardHeader>
+            <TagButton parent = "PostCard" user = {localStorage.getItem('pk')} author = {this.props.tags_author.author} tag = {this.props.post.tag1}/>
+            <TagButton parent = "PostCard" user = {localStorage.getItem('pk')} author = {this.props.tags_author.author} tag = {this.props.post.tag2}/>
+            <TagButton parent = "PostCard" user = {localStorage.getItem('pk')} author = {this.props.tags_author.author} tag = {this.props.post.tag3}/>
+            {/*<p className="card-category">{this.props.post.tags}</p>*/}
+          </CardHeader>
+          <CardBody>
+    
+            <h3>{this.props.post.text_body}</h3>
+          </CardBody>
+          <CardFooter>
+            <hr />
+            <Row>
+              <Col lg="8" md="8" sm="6">
+              <div className="stats">
+                  <i className="fa fa-history"/> 
+                  <a href = {"../admin/userline/"+this.props.post.author} >
+                    <font color="#000000"><b>{this.state.username}</b></font>
+                  </a>
+              {" "}posted at {this.getTimeFormat(this.props.post.posted_date)}
+              </div>
+              </Col>
+              <Col lg="3" md="3" sm="3">
+              <div className="ml-auto">
+                  <i className="likes float-right"/> Likes: {this.props.post.like_count}
+              </div>
+              </Col>
+              <Col lg="1" md="1">
+               {but}
+              </Col>
+            </Row>
+          </CardFooter>
+        </Card>
+        </>
+        );
+
+    }
+    else{
+
     return (
     <>
     <Card className="theme-card-bg">
@@ -195,6 +240,7 @@ class PostCard extends React.Component {
     </Card>
     </>
     );
+    }
   }
 }
 
