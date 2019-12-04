@@ -66,6 +66,7 @@ class Tables extends React.Component {
     root.style.setProperty('--label-color', '#9A9A9A');
     root.style.setProperty('--follow-color', '#40806A');
     root.style.setProperty('--button-color', '#66615B');
+    root.style.setProperty('--react-color', 'white');
   }
 
   setThemeDark() {
@@ -74,6 +75,7 @@ class Tables extends React.Component {
     root.style.setProperty('--label-color', 'white');
     root.style.setProperty('--follow-color', 'white');
     root.style.setProperty('--button-color', 'black');
+    root.style.setProperty('--react-color', 'white');
   }
 
   setThemeLight() {
@@ -82,6 +84,7 @@ class Tables extends React.Component {
     root.style.setProperty('--label-color', 'black');
     root.style.setProperty('--follow-color', 'black');
     root.style.setProperty('--button-color', '#add6f9');
+    root.style.setProperty('--react-color', 'black');
   }
 
   render() {
