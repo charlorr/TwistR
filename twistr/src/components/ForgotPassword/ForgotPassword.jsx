@@ -38,7 +38,8 @@ class ForgotPassword extends React.Component {
               </Row>
               <Row>
                 <div className="update ml-auto mr-auto">
-                  <Button Forgot Password
+                  <Button
+                    aria-label="Send Recovery Email"
                     className="btn-round" 
                     size="lg" 
                     color="primary"

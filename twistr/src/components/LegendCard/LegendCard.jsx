@@ -15,28 +15,32 @@ class LegendCard extends React.Component {
       <Col lg="12" md="12" sm="12">
         <Card className="card-stats transparent-card text-center">
           <CardBody>
-            <Button Gray
+            <Button
+              aria-label="Gray Tags"
               className="btn-round"
               size="sm"
               color="secondary"
               disabled="true">
                 Gray tags are unseen tags
             </Button>
-            <Button Red
+            <Button
+              aria-label="Red Tags"
               className="btn-round"
               size="sm"
               color="danger"
               disabled="true">
                 Red tags are unfollowed
             </Button>
-            <Button Green
+            <Button
+              aria-label="Green Tags"
               className="btn-round"
               size="sm"
               color="success"
               disabled="true">
                 Green tags are followed
             </Button>
-            <Button Yellow
+            <Button
+              aria-label="Yellow Tags"
               className="btn-round"
               size="sm"
               color="warning"

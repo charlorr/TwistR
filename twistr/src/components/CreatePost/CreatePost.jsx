@@ -256,6 +256,7 @@ class CreatePost extends React.Component {
                 <Row>
                   <div className="update ml-auto mr-auto">
                     <Button
+                    aria-label="Create Post"
                     className="btn-round clicks"
                     color="secondary"
                     type="submit"

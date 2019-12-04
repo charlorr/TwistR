@@ -59,13 +59,13 @@ render() {
                 <td>{c.text}</td>
                 
                 <td>
-                <button  onClick={(e)=>  this.handleDelete(e,c.pk) }> Delete</button>
+                <button  aria-label="Delete" onClick={(e)=>  this.handleDelete(e,c.pk) }> Delete</button>
                 <a  href={"post/" + c.pk}> Update</a>
                 </td>
             </tr>)}
             </tbody>
             </table>
-            <button  className="btn btn-primary"  onClick=  {  this.nextPage  }>Next</button>
+            <button  aria-label="Next" className="btn btn-primary"  onClick=  {  this.nextPage  }>Next</button>
         </div>
         );
   }

@@ -189,7 +189,8 @@ class  ProfileEditCard  extends  Component {
                   </Row>
                   <Row>
                     <div className="update ml-auto mr-auto ">
-                      <Button Update
+                      <Button
+                        aria-label="Update Profile"
                         className="btn-round clicks"
                         color="secondary"
                         type="submit"
@@ -198,7 +199,8 @@ class  ProfileEditCard  extends  Component {
                       </Button>
                       </div>
                       <div className="update ml-auto mr-auto">
-                      <Button Delete
+                      <Button
+                        aria-label="Delete Profile"
                         className="btn-round clicks"
                         color="secondary"
                         onClick={this.deleteProfile}
@@ -207,7 +209,8 @@ class  ProfileEditCard  extends  Component {
                       </Button>
                       </div>
                       <div className="update ml-auto mr-auto">
-                      <Button Log Out
+                      <Button
+                        aria-label="Log Out"
                         className="btn-round clicks"
                         color="secondary"
                         onClick={this.logOut}

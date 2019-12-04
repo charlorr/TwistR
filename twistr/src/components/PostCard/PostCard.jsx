@@ -50,7 +50,8 @@ class PostCard extends React.Component {
   displayButton(tag){
     if (tag !== undefined) {
       return(
-        <Button Tag
+        <Button
+          aria-label="Tag"
           className="btn-round"
           color="danger"
           >
@@ -107,7 +108,8 @@ class PostCard extends React.Component {
 
     if(this.props.dashboard === true){
       but =
-      <Button Delete
+      <Button
+        aria-label="Delete Post"
         className="fas fa-trash" 
         size="sm"
         type="submit" 
