@@ -43,6 +43,8 @@ class CreatePost extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  notificationAlert = React.createRef();
+
   check_auth() {
     var that = this;
     if (localStorage.getItem('auth_token') === null) {
@@ -141,11 +143,39 @@ class CreatePost extends React.Component {
   checkTagValidity(){
     if(this.state.tags.length > 3){
       this.setFalse();
-      alert("too many tags!");
+      var options = {};
+        options = {
+          place: "tr",
+          message: (
+            <div>
+              <div>
+                Too many tags!
+              </div>
+            </div>
+          ),
+          type: "danger",
+          icon: "nc-icon nc-bell-55",
+          autoDismiss: 4
+        };
+        this.notificationAlert.current.notificationAlert(options);
     }
     else if(this.state.tags.length < 1){
       this.setFalse();
-      alert("too few tags!");
+      var options = {};
+        options = {
+          place: "tr",
+          message: (
+            <div>
+              <div>
+                Too few tags!
+              </div>
+            </div>
+          ),
+          type: "danger",
+          icon: "nc-icon nc-bell-55",
+          autoDismiss: 4
+        };
+        this.notificationAlert.current.notificationAlert(options);
     }
     else{
       //console.log(this.state.tags_correct);
@@ -166,7 +196,7 @@ class CreatePost extends React.Component {
       this.handleCreate();
     }else {
       this.setTrue();
-      alert("Please fix your tags and then resubmit!");
+      //alert("Please fix your tags and then resubmit!");
     }
     event.preventDefault();
   }

@@ -42,33 +42,32 @@ class CreateRetwist extends React.Component {
       return <Redirect to="/admin/welcome" />;
     }
   }
-  handleCreate() {
-    if (this.state.text) {
-      postService
-        .createPost({
-          text_body: this.state.text,
-          author: localStorage.getItem("pk")
-        })
-        .then(result => {
-          this.setState({ currentPostPk: result.data.pk });
-          this.handleRetwistCreate(result.data.pk);
-        })
-        .catch(() => {
-          alert("There was an error! Please re-check your form.");
-        });
-    } else {
-      postService
-        .createPost({
-          text_body: "I retwisted a post!",
-          author: localStorage.getItem("pk")
-        })
-        .then(result => {
-          this.setState({ currentPostPk: result.data.pk });
-          this.handleRetwistCreate(result.data.pk);
-        })
-        .catch(() => {
-          alert("There was an error! Please re-check your form.");
-        });
+  handleCreate(){
+    if(this.state.text){
+      postService.createPost(
+        {
+          "text_body": this.state.text,
+          "author": localStorage.getItem('pk')
+        }
+      ).then((result) =>{
+        this.setState({currentPostPk : result.data.pk});
+        this.handleRetwistCreate(result.data.pk);
+      }).catch(()=>{
+        alert("There was an error! Please re-check your form.")
+      });
+    }
+    else{
+      postService.createPost(
+        {
+          "text_body": "I retwisted a post!",
+          "author": localStorage.getItem('pk')
+        }
+      ).then((result) =>{
+        this.setState({currentPostPk : result.data.pk});
+        this.handleRetwistCreate(result.data.pk);
+      }).catch(()=>{
+        alert("There was an error! Please re-check your form.")
+      });
     }
   }
 

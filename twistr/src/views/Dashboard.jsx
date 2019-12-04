@@ -110,6 +110,7 @@ setThemeLight() {
   root.style.setProperty('--label-color', 'black');
   root.style.setProperty('--follow-color', 'black');
   root.style.setProperty('--button-color', '#add6f9');
+  root.style.setProperty('--react-color', 'black');
 }
 
   render() {
