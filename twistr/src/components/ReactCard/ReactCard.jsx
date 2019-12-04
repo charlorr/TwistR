@@ -120,6 +120,7 @@ class ReactCard extends React.Component {
     else{
         //alert("Post liked!")
     }
+    window.location.reload();
     }).catch(()=>{
         alert('There was an error liking the post!');
     });
@@ -140,6 +141,7 @@ class ReactCard extends React.Component {
     else{
         //alert("Post unliked!")
     }
+    window.location.reload();
     }).catch(()=>{
         alert('There was an error unliking the post!');
     });
@@ -170,7 +172,7 @@ class ReactCard extends React.Component {
         size="sm"
         onClick={this.unlikePost}>
         <i className="fa-2x fas fa-heart outline-heart"></i>
-        <i className = "fa-2x far fa-heart text-primary filled-heart"></i> 
+        <i className = "fa-2x far fa-heart filled-heart"></i> 
         </Button>
     }
 
@@ -185,25 +187,25 @@ class ReactCard extends React.Component {
 
     return (
       <>
-      <Row>
-        <Card>
+        <Col>
+        <Row>
           { this.state.CreateRetwist ? <CreateRetwist post={this.props.post}/> : null}
-        </Card>
-      </Row>
-      <Row>
-      <Card className="theme-card-bg">
-        <CardBody>
-          <Row>
-            <Col lg="6" md="6" sm="6">
-              {likeButton}
-            </Col>
-            <Col lg="6" md="6" sm="6">
-              {retwistButton}
-            </Col>
-          </Row>
-        </CardBody>
-      </Card>
-      </Row>
+        </Row>
+        <Row>
+          <Card className="theme-card-bg">
+            <CardBody>
+              <Row>
+                <Col lg="6" md="6" sm="6">
+                  {likeButton}
+                </Col>
+                <Col lg="6" md="6" sm="6">
+                  {retwistButton}
+                </Col>
+              </Row>
+            </CardBody>
+          </Card>
+        </Row>
+      </Col>
       </>
     );
   }
