@@ -177,7 +177,7 @@ class ReactCard extends React.Component {
         size="sm"
         onClick={this.unlikePost}>
         <i className="fa-2x fas fa-heart outline-heart"></i>
-        <i className = "fa-2x far fa-heart text-primary filled-heart"></i> 
+        <i className = "fa-2x far fa-heart filled-heart"></i> 
         </Button>
     }
 
