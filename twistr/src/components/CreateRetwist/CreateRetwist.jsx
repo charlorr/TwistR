@@ -76,10 +76,8 @@ class CreateRetwist extends React.Component {
   handleTagCreate(pk){
     var self = this;
     tagService.getTagsByPost(pk).then(function(response){
-      console.log(response);
       var promises = [];
       for(var i=0; i <response.data.length; i++){
-        console.log(response.data[i].name);
         promises.push(  tagService.createTag(
           {
             "post": self.state.currentPostPk,
