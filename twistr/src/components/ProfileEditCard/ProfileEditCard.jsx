@@ -98,7 +98,7 @@ class  ProfileEditCard  extends  Component {
                 <Form onSubmit={this.handleSubmit}>
                   <div>
                   <Row>
-                    <Col className="pr-1" md="3">
+                    <Col className="pr-1" lg="3" md="3" sm="12" xs="12">
                       <FormGroup>
                         <label>Username<font color="red">*</font> (disabled)</label>
                         <Input
@@ -112,7 +112,7 @@ class  ProfileEditCard  extends  Component {
                           required/>
                       </FormGroup>
                     </Col>
-                    <Col className="pr-1" md="4">
+                    <Col className="pr-1" lg="4" md="4" sm="12" xs="12">
                       <FormGroup>
                         <label htmlFor="exampleInputEmail1">
                           Email address<font color="red">*</font>
@@ -128,7 +128,7 @@ class  ProfileEditCard  extends  Component {
                           required/>
                       </FormGroup>
                     </Col>
-                    <Col className="pr-1" md="3">
+                    <Col className="pr-1" lg="3" md="3" sm="12" xs="12">
                       <FormGroup>
                         <label>Phone number<font color="red">*</font></label>
                         <Input
@@ -144,7 +144,7 @@ class  ProfileEditCard  extends  Component {
                     </Col>
                   </Row>
                   <Row>
-                    <Col className="pr-1" md="6">
+                    <Col className="pr-1" lg="6" md="6" sm="6" xs="6">
                       <FormGroup>
                         <label>First Name<font color="red">*</font></label>
                         <Input
@@ -157,7 +157,7 @@ class  ProfileEditCard  extends  Component {
                           required/>
                       </FormGroup>
                     </Col>
-                    <Col className="pl-1" md="6">
+                    <Col className="pl-1" lg="6" md="6" sm="6" xs="6">
                       <FormGroup>
                         <label>Last Name<font color="red">*</font></label>
                         <Input
@@ -172,7 +172,8 @@ class  ProfileEditCard  extends  Component {
                     </Col>
                   </Row>
                   <Row>
-                    <Col md="12">
+                    <Col>
+                    <Col className="pl-1" lg="12" md="12" sm="12" xs="12">
                       <FormGroup>
                         <label>Bio<font color="red">*</font></label>
                         <Input
@@ -184,10 +185,11 @@ class  ProfileEditCard  extends  Component {
                           required/>
                       </FormGroup>
                     </Col>
+                    </Col>
                   </Row>
                   <Row>
                     <div className="update ml-auto mr-auto ">
-                      <Button
+                      <Button Update
                         className="btn-round clicks"
                         color="secondary"
                         type="submit"
@@ -196,7 +198,7 @@ class  ProfileEditCard  extends  Component {
                       </Button>
                       </div>
                       <div className="update ml-auto mr-auto">
-                      <Button
+                      <Button Delete
                         className="btn-round clicks"
                         color="secondary"
                         onClick={this.deleteProfile}
@@ -205,7 +207,7 @@ class  ProfileEditCard  extends  Component {
                       </Button>
                       </div>
                       <div className="update ml-auto mr-auto">
-                      <Button
+                      <Button Log Out
                         className="btn-round clicks"
                         color="secondary"
                         onClick={this.logOut}

@@ -110,7 +110,7 @@ class TagButton extends React.Component {
     render() {
         if (this.props.tag !== undefined) {
             return(
-              <Button
+              <Button Tag
                 className="btn-round"
                 color={this.state.status}
                 type="button"

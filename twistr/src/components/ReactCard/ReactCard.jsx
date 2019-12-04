@@ -83,7 +83,7 @@ class ReactCard extends React.Component {
   createLike(){
     likeService.createLike(
       {
-        "user": this.state.currentPost.author,
+        "user": localStorage.getItem('pk'),
         "post": this.state.currentPost.pk
       }
     ).then((response) =>{

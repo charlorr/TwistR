@@ -113,7 +113,7 @@ class  ThemeCard  extends  Component {
           </CardHeader>
           <Row>
             <div className="update ml-auto mr-auto">
-              <Button 
+              <Button Default
                 className="btn-round clicks" 
                 size="md" 
                 color="secondary"
@@ -122,7 +122,7 @@ class  ThemeCard  extends  Component {
               </Button>
             </div>
             <div className="update ml-auto mr-auto">
-              <Button 
+              <Button Dark
                 className="btn-round clicks" 
                 size="md" 
                 color="secondary"
@@ -131,7 +131,7 @@ class  ThemeCard  extends  Component {
               </Button>
             </div>
             <div className="update ml-auto mr-auto">
-              <Button 
+              <Button Light
                 className="btn-round clicks" 
                 size="md" 
                 color="secondary"
