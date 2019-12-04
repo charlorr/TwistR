@@ -89,9 +89,9 @@ class Post extends React.Component {
 
         return (
           <>
-          <Col lg="12" md="11" sm="10">
+          <Col lg="12" md="11" sm="11" xs="12">
             <Row>
-            <Col lg="2" md="2" sm="1">
+            <Col lg="2" md="2" sm="3" xs="3">
               <hr />
               <hr />
               <hr />
@@ -102,7 +102,7 @@ class Post extends React.Component {
               <hr />
               <hr />
             </Col>
-              <Col lg="10" md="9" sm="9">
+              <Col lg="10" md="9" sm="8" xs="9">
                 <Card className="theme-card-bg">
                 <CardBody>
                 Retwist
