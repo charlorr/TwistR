@@ -185,7 +185,7 @@ class ReactCard extends React.Component {
     
     if(this.state.currentLike === false) { likeButton = 
         <Button 
-        className="icon-big text-center reactedHeart icon-warning"
+        className="icon-big text-center reactedHeart icon-warning react-button"
         size="sm"
         onClick={this.likePost}>
         <i className="fa-2x far fa-heart outline-heart"></i>
@@ -194,7 +194,7 @@ class ReactCard extends React.Component {
     }
     else { likeButton = 
         <Button 
-        className="icon-big text-center reactedHeart icon-warning"
+        className="icon-big text-center reactedHeart icon-warning react-button"
         size="sm"
         onClick={this.unlikePost}>
         <i className="fa-2x fas fa-heart outline-heart"></i>
@@ -204,7 +204,7 @@ class ReactCard extends React.Component {
 
     retwistButton =
     <Button 
-    className="icon-big text-center reactedShare icon-warning"
+    className="icon-big text-center reactedShare icon-warning react-button"
     size="sm"
     onClick={this.createRetwist}>
     <i className="fa-2x far fa-share-square outline-share"></i>

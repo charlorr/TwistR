@@ -13,7 +13,7 @@ class LegendCard extends React.Component {
     return (
       <>
       <Col lg="12" md="12" sm="12">
-        <Card className="card-stats transparent-button text-center">
+        <Card className="card-stats transparent-card text-center">
           <CardBody>
             <Button
               className="btn-round"
