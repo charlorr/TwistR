@@ -83,8 +83,9 @@ class Post extends React.Component {
     if(this.props.show_react_card) {
       if(this.state.hasRetwist === true){
         if(this.state.currentRetwist.text_body){
+          if(this.state.currentPost.text_body){
+
           console.log(this.state.currentPost);
-         // dashboard = false;
 
         return (
           <>
@@ -105,7 +106,7 @@ class Post extends React.Component {
                 <Card className="theme-card-bg">
                 <CardBody>
                 Retwist
-                <PostCard parent = {this.props.parent} post={this.state.currentRetwist} dashboard={dashboard}/>
+                <PostCard parent = {this.props.parent} post={this.state.currentRetwist} tags_author={this.state.currentPost} dashboard={dashboard}/>
                 Original Post  
                 <RetwistCard parent = {this.props.parent} post={this.state.currentPost} />
                 </CardBody>
@@ -116,6 +117,7 @@ class Post extends React.Component {
           </>
         );
       }
+    }
     }
       //console.log("not on explore");
       return (

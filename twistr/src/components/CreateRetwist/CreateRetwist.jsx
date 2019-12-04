@@ -31,6 +31,7 @@ class CreateRetwist extends React.Component {
       currentPost: [],
       currentUser: [],
       chars_left: 280, max_chars: 280,
+      text: ""
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleCreate = this.handleCreate.bind(this);
@@ -42,17 +43,14 @@ class CreateRetwist extends React.Component {
     }
   }
   handleCreate(){
-    if(document.getElementById("text_body").value){
+    if(this.state.text){
       postService.createPost(
         {
-          "text_body": document.getElementById("text_body").value,
+          "text_body": this.state.text,
           "author": localStorage.getItem('pk')
         }
       ).then((result) =>{
-        alert("Post created!");
-        //console.log(result.data.pk);
         this.setState({currentPostPk : result.data.pk});
-        //console.log(this.state.currentPostPk);
         this.handleRetwistCreate(result.data.pk);
       }).catch(()=>{
         alert("There was an error! Please re-check your form.")
@@ -65,7 +63,6 @@ class CreateRetwist extends React.Component {
           "author": localStorage.getItem('pk')
         }
       ).then((result) =>{
-        alert("Post created!");
         this.setState({currentPostPk : result.data.pk});
         this.handleRetwistCreate(result.data.pk);
       }).catch(()=>{
@@ -77,8 +74,6 @@ class CreateRetwist extends React.Component {
   
 
   handleRetwistCreate(newPostPk){
-      //console.log(this.props.post.pk);
-      //console.log(newPostPk);
       retwistService.createRetwist(
           {
               "original_post": this.props.post.pk,
@@ -92,8 +87,6 @@ class CreateRetwist extends React.Component {
   }
 
   handleSubmit = async function (event){
-    console.log(this.props.post.text_body);
-    console.log(document.getElementById("text_body").value);
     event.preventDefault();
     this.handleCreate();
     event.preventDefault();
@@ -106,6 +99,7 @@ class CreateRetwist extends React.Component {
     const maxChar = this.state.max_chars;
     const charLength = maxChar - charCount;
     this.setState({chars_left: charLength});
+    this.setState({text: event.target.value});
   }
  
   render() {
@@ -122,7 +116,7 @@ class CreateRetwist extends React.Component {
                 <Form onSubmit={this.handleSubmit}>
                 <Row>
                   <Col lg="12" md="12" sm="12">
-                    <CardTitle tag="h5">Write the retwist here.</CardTitle>
+                    <CardTitle tag="p">Write the retwist here.</CardTitle>
                   </Col>
                 </Row>
                 <Row>
@@ -132,10 +126,9 @@ class CreateRetwist extends React.Component {
                       <Input
                           name="text_body"
                           id="text_body"
-                          placeholder="Write your retwist here!"
+                          placeholder="Retwist!"
                           type="text"
                           maxLength="280"
-                          //required
                           onChange={this.handleWordCount}
                           author={this.state.currentUser}
                       />
@@ -158,7 +151,7 @@ class CreateRetwist extends React.Component {
               <CardFooter>
                 <hr />
                 <div className="stats">
-                  <i className="fas fa-sync-alt" /> {this.state.chars_left} / 280 characters left
+                  <i className="fas fa-sync-alt" /> {this.state.chars_left}/280
                 </div>
               </CardFooter>
             </Card>
