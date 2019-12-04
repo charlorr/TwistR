@@ -125,6 +125,7 @@ class ReactCard extends React.Component {
     else{
         //alert("Post liked!")
     }
+    window.location.reload();
     }).catch(()=>{
         alert('There was an error liking the post!');
     });
@@ -145,6 +146,7 @@ class ReactCard extends React.Component {
     else{
         //alert("Post unliked!")
     }
+    window.location.reload();
     }).catch(()=>{
         alert('There was an error unliking the post!');
     });
